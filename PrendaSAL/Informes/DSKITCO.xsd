@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSKITCO" targetNamespace="http://tempuri.org/DSKITCO.xsd" xmlns:mstns="http://tempuri.org/DSKITCO.xsd" xmlns="http://tempuri.org/DSKITCO.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSKITCO" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSKITCO" msprop:Generator_UserDSName="DSKITCO">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="KITCO" msprop:Generator_TableClassName="KITCODataTable" msprop:Generator_TableVarName="tableKITCO" msprop:Generator_RowChangedName="KITCORowChanged" msprop:Generator_TablePropName="KITCO" msprop:Generator_RowDeletingName="KITCORowDeleting" msprop:Generator_RowChangingName="KITCORowChanging" msprop:Generator_RowEvHandlerName="KITCORowChangeEventHandler" msprop:Generator_RowDeletedName="KITCORowDeleted" msprop:Generator_RowClassName="KITCORow" msprop:Generator_UserTableName="KITCO" msprop:Generator_RowEvArgName="KITCORowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="KILATAJE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="KILATAJE" msprop:Generator_ColumnVarNameInTable="columnKILATAJE" msprop:Generator_ColumnPropNameInTable="KILATAJEColumn" msprop:Generator_UserColumnName="KILATAJE" type="xs:string" minOccurs="0" />
+              <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PRECIO" msprop:Generator_ColumnVarNameInTable="columnPRECIO" msprop:Generator_ColumnPropNameInRow="PRECIO" msprop:Generator_ColumnPropNameInTable="PRECIOColumn" msprop:Generator_UserColumnName="PRECIO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MONTO" msprop:Generator_ColumnVarNameInTable="columnMONTO" msprop:Generator_ColumnPropNameInRow="MONTO" msprop:Generator_ColumnPropNameInTable="MONTOColumn" msprop:Generator_UserColumnName="MONTO" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
