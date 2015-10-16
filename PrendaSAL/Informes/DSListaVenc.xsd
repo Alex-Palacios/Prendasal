@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCierre" targetNamespace="http://tempuri.org/DSCierre.xsd" xmlns:mstns="http://tempuri.org/DSCierre.xsd" xmlns="http://tempuri.org/DSCierre.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCierre" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCierre" msprop:Generator_UserDSName="DSCierre">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LISTA_CIERRE" msprop:Generator_TableClassName="LISTA_CIERREDataTable" msprop:Generator_TableVarName="tableLISTA_CIERRE" msprop:Generator_TablePropName="LISTA_CIERRE" msprop:Generator_RowDeletingName="LISTA_CIERRERowDeleting" msprop:Generator_RowChangingName="LISTA_CIERRERowChanging" msprop:Generator_RowEvHandlerName="LISTA_CIERRERowChangeEventHandler" msprop:Generator_RowDeletedName="LISTA_CIERRERowDeleted" msprop:Generator_UserTableName="LISTA_CIERRE" msprop:Generator_RowChangedName="LISTA_CIERRERowChanged" msprop:Generator_RowEvArgName="LISTA_CIERRERowChangeEvent" msprop:Generator_RowClassName="LISTA_CIERRERow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REACTIVADO" msprop:Generator_ColumnVarNameInTable="columnREACTIVADO" msprop:Generator_ColumnPropNameInRow="REACTIVADO" msprop:Generator_ColumnPropNameInTable="REACTIVADOColumn" msprop:Generator_UserColumnName="REACTIVADO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CONTRATO" msprop:Generator_ColumnVarNameInTable="columnCONTRATO" msprop:Generator_ColumnPropNameInRow="CONTRATO" msprop:Generator_ColumnPropNameInTable="CONTRATOColumn" msprop:Generator_UserColumnName="CONTRATO" type="xs:string" minOccurs="0" />
+              <xs:element name="CLIENTE" msprop:Generator_ColumnVarNameInTable="columnCLIENTE" msprop:Generator_ColumnPropNameInRow="CLIENTE" msprop:Generator_ColumnPropNameInTable="CLIENTEColumn" msprop:Generator_UserColumnName="CLIENTE" type="xs:string" minOccurs="0" />
+              <xs:element name="CATEGORIA" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CATEGORIA" msprop:Generator_ColumnVarNameInTable="columnCATEGORIA" msprop:Generator_ColumnPropNameInTable="CATEGORIAColumn" msprop:Generator_UserColumnName="CATEGORIA" type="xs:string" minOccurs="0" />
+              <xs:element name="ARTICULO" msprop:Generator_ColumnVarNameInTable="columnARTICULO" msprop:Generator_ColumnPropNameInRow="ARTICULO" msprop:Generator_ColumnPropNameInTable="ARTICULOColumn" msprop:Generator_UserColumnName="ARTICULO" type="xs:string" minOccurs="0" />
+              <xs:element name="PRESTAMO" msprop:Generator_ColumnVarNameInTable="columnPRESTAMO" msprop:Generator_ColumnPropNameInRow="PRESTAMO" msprop:Generator_ColumnPropNameInTable="PRESTAMOColumn" msprop:Generator_UserColumnName="PRESTAMO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SALDO" msprop:Generator_ColumnVarNameInTable="columnSALDO" msprop:Generator_ColumnPropNameInRow="SALDO" msprop:Generator_ColumnPropNameInTable="SALDOColumn" msprop:Generator_UserColumnName="SALDO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FECHAV" msprop:Generator_ColumnVarNameInTable="columnFECHAV" msprop:Generator_ColumnPropNameInRow="FECHAV" msprop:Generator_ColumnPropNameInTable="FECHAVColumn" msprop:Generator_UserColumnName="FECHAV" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DIAS" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="DIAS" msprop:Generator_ColumnVarNameInTable="columnDIAS" msprop:Generator_ColumnPropNameInTable="DIASColumn" msprop:Generator_UserColumnName="DIAS" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
