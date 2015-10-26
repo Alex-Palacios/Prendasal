@@ -11,7 +11,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Caja
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -33,7 +32,7 @@ namespace PrendaSAL.Caja
 
         //variables
         private DBUsuario dbUser;
-        private GastoController dbGasto;
+        private DBGasto dbGasto;
 
         private eOperacion ACCION;
         private Gasto SELECTED;
@@ -44,7 +43,7 @@ namespace PrendaSAL.Caja
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbGasto = new GastoController();
+            dbGasto = new DBGasto();
         }
 
 
@@ -84,7 +83,7 @@ namespace PrendaSAL.Caja
 
         public void cargarHistoryGastos()
         {
-            GASTOS = dbGasto.GASTOS_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA);
+            GASTOS = dbGasto.findBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year);
             tblGASTOS.DataSource = GASTOS;
             calcularTotales();
         }
@@ -107,9 +106,8 @@ namespace PrendaSAL.Caja
                 switch (tblGASTOS.Columns[e.ColumnIndex].Name)
                 {
                     
-                    case "TIPO_DOC":
-                        eTipoDocGasto tipodoc = (eTipoDocGasto)e.Value;
-                        e.Value = tipodoc.ToString();
+                    case "DOCUMENTO":
+                        e.Value = GASTOS.Rows[e.RowIndex].Field<string>("TIPO_DOC") + e.Value.ToString();
                         break;
                 }
             }
@@ -122,19 +120,7 @@ namespace PrendaSAL.Caja
             SELECTED = null;
             if (tblGASTOS.CurrentCell != null && tblGASTOS.SelectedRows.Count == 1)
             {
-                SELECTED = new Gasto();
-                SELECTED.ID_GASTO = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<int>("ID_GASTO");
-                SELECTED.TRANSACCION = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("COD_TRANS");
-                SELECTED.RESPONSABLE = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("RESPONSABLE");
-                SELECTED.COD_SUC = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("COD_SUC");
-                SELECTED.FECHA = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<DateTime>("FECHA");
-                SELECTED.TIPO_DOC = (eTipoDocGasto) GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<int>("TIPO_DOC");
-                SELECTED.DOCUMENTO = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("DOCUMENTO");
-                SELECTED.DESCRIPCION = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("DESCRIPCION");
-                SELECTED.SUMAS = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<decimal>("SUMAS");
-                SELECTED.TOTAL = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<decimal>("TOTAL");
-                SELECTED.ESTADO =(eEstadoGasto) GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<int>("ESTADO");
-                SELECTED.NOTA = GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex].Field<string>("NOTA");
+                SELECTED = Gasto.ConvertToGasto(GASTOS.Rows[tblGASTOS.CurrentCell.RowIndex]);
             }
         }
 
@@ -153,7 +139,7 @@ namespace PrendaSAL.Caja
             if (tblGASTOS.CurrentCell != null && tblGASTOS.SelectedRows.Count == 1)
             {
                 cargarSelected();
-                if (SELECTED != null && !SELECTED.INIT_BALANCE)
+                if (SELECTED != null)
                 {
                     ACCION = eOperacion.UPDATE;
                     ConfirmarGasto gasto = new ConfirmarGasto(SELECTED);
@@ -161,7 +147,7 @@ namespace PrendaSAL.Caja
                 }
                 else
                 {
-                    MessageBox.Show("GASTO HISTORICO O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SELECCIONE GASTO A EDITAR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -173,7 +159,7 @@ namespace PrendaSAL.Caja
             if (tblGASTOS.CurrentCell != null && tblGASTOS.SelectedRows.Count == 1)
             {
                 cargarSelected();
-                if (SELECTED != null && ! SELECTED.INIT_BALANCE)
+                if (SELECTED != null)
                 {
                     ACCION = eOperacion.DELETE;
                     DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el GASTO " + SELECTED.TIPO_DOC.ToString() + " " + SELECTED.DOCUMENTO + " con FECHA:" + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR GASTO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -182,18 +168,9 @@ namespace PrendaSAL.Caja
                         string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
-                            string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                            if (cambioNota.Trim() != "")
+                            if (dbGasto.delete(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                             {
-                                SELECTED.NOTA_CAMBIO = cambioNota;
-                                if (dbGasto.eliminarGastoPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                                {
-                                    cargarHistoryGastos();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA ELIMINACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                cargarHistoryGastos();
                             }
                         }
                         else
@@ -209,10 +186,8 @@ namespace PrendaSAL.Caja
             }
         }
 
-        private void IMPRIMIR(object sender, EventArgs e)
-        {
 
-        }
+
 
         private void LOG(object sender, EventArgs e)
         {

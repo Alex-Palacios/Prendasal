@@ -30,7 +30,8 @@ namespace MODELO
         CIERRE =16,
         APERTURA_CAJA =17,
         CORTE_DIARIO =18,
-        REACTIVACION =19
+        REACTIVACION =19,
+        GASTO = 20,
     }
 
 

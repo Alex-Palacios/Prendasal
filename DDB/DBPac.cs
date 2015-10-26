@@ -87,7 +87,7 @@ namespace DDB
                 desc_pac.Value = pac.DESCUENTO;
                 abono_pac.Value = pac.ABONO;
                 total_pac.Value = pac.TOTAL;
-                imp_interes.Value = pac.IVA_ING;
+                imp_interes.Value = pac.IVA;
                 imp_desc.Value = pac.IVA_DESC;
                 nivel_pac.Value = (int)pac.NIVEL;
                 nota_pac.Value = pac.NOTA;

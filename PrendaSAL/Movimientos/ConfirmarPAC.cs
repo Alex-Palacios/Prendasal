@@ -87,7 +87,7 @@ namespace PrendaSAL.Movimientos
                 {
                     case eOperacion.INSERT:
                         PAC.DOCUMENTO = PAC.RECIBO;
-                        PAC.IVA_ING = Decimal.Round(PAC.INTERES * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
+                        PAC.IVA = Decimal.Round(PAC.INTERES * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
                         PAC.IVA_DESC = Decimal.Round(PAC.DESCUENTO * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
                         if (dbPAC.insert(PAC, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                         {
@@ -96,7 +96,8 @@ namespace PrendaSAL.Movimientos
                         }
                         break;
                     case eOperacion.UPDATE:
-                        
+                        PAC.IVA = Decimal.Round(PAC.INTERES * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
+                        PAC.IVA_DESC = Decimal.Round(PAC.DESCUENTO * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
                         break;
 
                 }

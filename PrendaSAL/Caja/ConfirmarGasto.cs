@@ -12,16 +12,15 @@ using ControlesPersonalizados;
 namespace PrendaSAL.Caja
 {
     using MODELO;
-    using LOGICA;
     using DDB;
 
     public partial class ConfirmarGasto : Form
     {
         private DBUsuario dbUser;
-        private GastoController dbGasto;
+        private DBGasto dbGasto;
 
         private Gasto SELECTED;
-        private decimal TOTAL;
+
         private eOperacion ACCION;
 
 
@@ -29,8 +28,12 @@ namespace PrendaSAL.Caja
         {
             InitializeComponent(); 
             dbUser = new DBUsuario();
-            dbGasto = new GastoController();
+            dbGasto = new DBGasto();
             ACCION = eOperacion.INSERT;
+            SELECTED = new Gasto();
+            SELECTED.COD_SUC = HOME.Instance().SUCURSAL.COD_SUC;
+            SELECTED.FECHA = HOME.Instance().FECHA_SISTEMA;
+            SELECTED.TIPO_DOC = eTipoFactura.CCF;
         }
 
 
@@ -38,36 +41,39 @@ namespace PrendaSAL.Caja
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbGasto = new GastoController();
-
+            dbGasto = new DBGasto();
             ACCION = eOperacion.UPDATE;
-            SELECTED = g;
+            SELECTED = g.Copy();
+        }
+
+        private void permisos()
+        {
+            if (HOME.Instance().USUARIO.TIPO == eTipoUsuario.ASESOR)
+            {
+                cbxSUCURSAL.Enabled = false;
+            }
+            else
+            {
+                cbxSUCURSAL.Enabled = true;
+            }
         }
 
 
 
         private void ConfirmarGasto_Load(object sender, EventArgs e)
         {
+            permisos();
             cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
-            dateGasto.Value = HOME.Instance().FECHA_SISTEMA;
             if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
             {
                 cbxSUCURSAL.DisplayMember = "SUCURSAL";
-                cbxSUCURSAL.ValueMember = "CODIGO";
+                cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
-            cbxTIPODOC.DataSource = Enum.GetValues(new eTipoDocGasto().GetType());
-            TOTAL = (decimal)0.00;
-            txtTOTAL.Text = TOTAL.ToString();
+
+            cbxTIPODOC.DataSource = Enum.GetValues(new eTipoFactura().GetType());
             txtDOCUMENTO.Focus();
-            switch (ACCION)
-            {
-                case eOperacion.INSERT:
-                    break;
-                case eOperacion.UPDATE:
-                    cargarDatos();
-                    break;
-            }
+            cargarDatos();
         }
 
 
@@ -82,8 +88,8 @@ namespace PrendaSAL.Caja
                 cbxTIPODOC.SelectedItem = SELECTED.TIPO_DOC;
                 txtDOCUMENTO.Text = SELECTED.DOCUMENTO;
                 txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
-                TOTAL = SELECTED.TOTAL;
-                txtTOTAL.Text = TOTAL.ToString();
+                txtTOTAL.Text = SELECTED.TOTAL.ToString("C2");
+                txtNOTA.Text = SELECTED.NOTA;
             }
         }
 
@@ -99,19 +105,19 @@ namespace PrendaSAL.Caja
                 MessageBox.Show("ELIJA SUCURSAL", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return OK;
             }
-            else if (txtDOCUMENTO.Text.Trim() == string.Empty)
+            else if (SELECTED.DOCUMENTO.Trim() == string.Empty)
             {
                 OK = false;
                 MessageBox.Show("NUMERO DOCUMENTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return OK;
             }
-            else if (txtDESCRIPCION.Text.Trim() == string.Empty)
+            else if (SELECTED.DESCRIPCION.Trim() == string.Empty)
             {
                 OK = false;
                 MessageBox.Show("DESCRIBA EL GASTO REALIZADO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return OK;
             }
-            else if (TOTAL <= 0)
+            else if (SELECTED.TOTAL <= 0)
             {
                 OK = false;
                 MessageBox.Show("TOTAL DE GASTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -121,53 +127,37 @@ namespace PrendaSAL.Caja
         }
 
 
-        private Gasto buildGASTO()
-        {
-           Gasto g = new Gasto();
-           switch (ACCION)
-           {
-               case eOperacion.INSERT:
-                   if (cbxSUCURSAL.SelectedIndex >= 0)
-                   {
-                       g.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
-                   }
-                   g.FECHA = dateGasto.Value;
-                   g.TIPO_DOC = (eTipoDocGasto)cbxTIPODOC.SelectedItem;
-                   g.DOCUMENTO = txtDOCUMENTO.Text;
-                   g.DESCRIPCION = txtDESCRIPCION.Text;
-                   g.SUMAS = TOTAL;
-                   g.TOTAL = TOTAL;
-                   g.TOTAL_IMP = g.TOTAL;
-                   break;
-               case eOperacion.UPDATE:
-                   g = SELECTED;
-                   g.FECHA = dateGasto.Value;
-                   g.TIPO_DOC = (eTipoDocGasto)cbxTIPODOC.SelectedItem;
-                   g.DOCUMENTO = txtDOCUMENTO.Text;
-                   g.DESCRIPCION = txtDESCRIPCION.Text;
-                   g.SUMAS = TOTAL;
-                   g.TOTAL = TOTAL;
-                   g.TOTAL_IMP = g.TOTAL;
-                   break;
-           }
-           return g;
-        }
+
+
 
 
 
         private void GUARDAR_Click(object sender, EventArgs e)
         {
-            Gasto gasto = new Gasto();
+            SELECTED.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
+            SELECTED.TIPO_DOC = (eTipoFactura)cbxTIPODOC.SelectedItem;
+            SELECTED.DOCUMENTO = txtDOCUMENTO.Text;
+            SELECTED.FECHA = dateGasto.Value;
+            SELECTED.DESCRIPCION = txtDESCRIPCION.Text;
+            SELECTED.NOTA = txtNOTA.Text;
+            switch (SELECTED.TIPO_DOC)
+            {
+                case eTipoFactura.CCF:
+                    SELECTED.IVA = Decimal.Round(SELECTED.TOTAL * Properties.Settings.Default.IVA / 100, 2,MidpointRounding.AwayFromZero);
+                    break;
+                case eTipoFactura.FCF:
+                    SELECTED.IVA = 0;
+                    break;
+            }
             switch (ACCION)
             {
                 case eOperacion.INSERT:
                     if (validar())
                     {
-                        gasto = buildGASTO();
                         string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
-                            if (dbGasto.registrarGastoPRENDASAL(gasto, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                            if (dbGasto.insert(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                             {
                                 GastosForm.Instance().cargarHistoryGastos();
                                 this.Close();
@@ -182,25 +172,13 @@ namespace PrendaSAL.Caja
                 case eOperacion.UPDATE:
                     if (validar())
                     {
-                        gasto = buildGASTO();
-                        gasto.ID_GASTO = SELECTED.ID_GASTO;
-                        gasto.INIT_BALANCE = SELECTED.INIT_BALANCE;
                         string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
-                            string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                            if (cambioNota.Trim() != "")
+                            if (dbGasto.update(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                             {
-                                gasto.NOTA_CAMBIO = cambioNota;
-                                if (dbGasto.editarGastoPRENDASAL(gasto, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                                {
-                                    GastosForm.Instance().cargarHistoryGastos();
-                                    this.Close();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA MODIFICACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                GastosForm.Instance().cargarHistoryGastos();
+                                this.Close();
                             }
                         }
                         else
@@ -222,9 +200,13 @@ namespace PrendaSAL.Caja
 
 
 
+
+
+
         private void txtTOTAL_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Impide introducir mas de un punto
+
             if (e.KeyChar == 46 && txtTOTAL.Text.IndexOf('.') != -1)
             {
                 e.Handled = true;
@@ -238,24 +220,25 @@ namespace PrendaSAL.Caja
             }
         }
 
-
-
-
-
         private void txtTOTAL_Leave(object sender, EventArgs e)
         {
-            TOTAL = (decimal)0.00;
+            SELECTED.TOTAL = (decimal)0.00;
             decimal valor;
             if (Decimal.TryParse(txtTOTAL.Text, System.Globalization.NumberStyles.Currency, null, out valor))
             {
-                TOTAL = Decimal.Round(valor, 2);
+                SELECTED.TOTAL = Decimal.Round(valor, 2);
             }
             else
             {
                 MessageBox.Show("FORMATO INVALIDO", "ERROR DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            txtTOTAL.Text = TOTAL.ToString();
+            txtTOTAL.Text = SELECTED.TOTAL.ToString("C2");
         }
+
+
+        
+
+
 
 
 

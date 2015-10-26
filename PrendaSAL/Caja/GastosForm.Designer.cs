@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -40,14 +40,14 @@
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblGASTOS = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbTOTAL = new System.Windows.Forms.Label();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_MOV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_DOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RESPONSABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbTOTAL = new System.Windows.Forms.Label();
+            this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblGASTOS)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.btnAyuda});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1004, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(889, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -146,45 +146,60 @@
             this.tblGASTOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblGASTOS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FECHA,
-            this.TIPO_MOV,
-            this.TIPO_DOC,
+            this.RESPONSABLE,
             this.DOCUMENTO,
             this.DESCRIPCION,
-            this.TOTAL});
+            this.TOTAL,
+            this.NOTA});
             this.tblGASTOS.Location = new System.Drawing.Point(0, 28);
             this.tblGASTOS.Name = "tblGASTOS";
             this.tblGASTOS.ReadOnly = true;
             this.tblGASTOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblGASTOS.Size = new System.Drawing.Size(997, 357);
+            this.tblGASTOS.Size = new System.Drawing.Size(872, 357);
             this.tblGASTOS.TabIndex = 5;
             this.tblGASTOS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblGASTOS_CellFormatting);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(648, 388);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 23);
+            this.label4.TabIndex = 112;
+            this.label4.Text = "T O T A L";
+            // 
+            // lbTOTAL
+            // 
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTOTAL.Location = new System.Drawing.Point(795, 391);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
+            this.lbTOTAL.TabIndex = 113;
+            this.lbTOTAL.Text = "$0.00";
             // 
             // FECHA
             // 
             this.FECHA.DataPropertyName = "FECHA";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FECHA.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.FECHA.DefaultCellStyle = dataGridViewCellStyle3;
             this.FECHA.HeaderText = "FECHA";
             this.FECHA.Name = "FECHA";
             this.FECHA.ReadOnly = true;
             this.FECHA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // TIPO_MOV
+            // RESPONSABLE
             // 
-            this.TIPO_MOV.DataPropertyName = "NAT_COMPRA";
-            this.TIPO_MOV.HeaderText = "TIPO MOV";
-            this.TIPO_MOV.Name = "TIPO_MOV";
-            this.TIPO_MOV.ReadOnly = true;
-            this.TIPO_MOV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // TIPO_DOC
-            // 
-            this.TIPO_DOC.DataPropertyName = "TIPO_DOC";
-            this.TIPO_DOC.HeaderText = "TIPO DOC";
-            this.TIPO_DOC.Name = "TIPO_DOC";
-            this.TIPO_DOC.ReadOnly = true;
-            this.TIPO_DOC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RESPONSABLE.DataPropertyName = "RESPONSABLE";
+            this.RESPONSABLE.HeaderText = "RESPONSABLE";
+            this.RESPONSABLE.Name = "RESPONSABLE";
+            this.RESPONSABLE.ReadOnly = true;
+            this.RESPONSABLE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RESPONSABLE.Width = 125;
             // 
             // DOCUMENTO
             // 
@@ -201,39 +216,25 @@
             this.DESCRIPCION.Name = "DESCRIPCION";
             this.DESCRIPCION.ReadOnly = true;
             this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DESCRIPCION.Width = 450;
+            this.DESCRIPCION.Width = 400;
             // 
             // TOTAL
             // 
             this.TOTAL.DataPropertyName = "TOTAL";
-            dataGridViewCellStyle2.Format = "c2";
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "c2";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle4;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
             this.TOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // label4
+            // NOTA
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(770, 391);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 23);
-            this.label4.TabIndex = 112;
-            this.label4.Text = "T O T A L";
-            // 
-            // lbTOTAL
-            // 
-            this.lbTOTAL.AutoSize = true;
-            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTOTAL.Location = new System.Drawing.Point(915, 391);
-            this.lbTOTAL.Name = "lbTOTAL";
-            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
-            this.lbTOTAL.TabIndex = 113;
-            this.lbTOTAL.Text = "$0.00";
+            this.NOTA.DataPropertyName = "NOTA";
+            this.NOTA.HeaderText = "NOTA";
+            this.NOTA.Name = "NOTA";
+            this.NOTA.ReadOnly = true;
+            this.NOTA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // GastosForm
             // 
@@ -243,7 +244,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1004, 423);
+            this.ClientSize = new System.Drawing.Size(889, 423);
             this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tblGASTOS);
@@ -277,10 +278,10 @@
         private System.Windows.Forms.Label lbTOTAL;
         private System.Windows.Forms.ToolStripButton btnAnular;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_MOV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_DOC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RESPONSABLE;
         private System.Windows.Forms.DataGridViewTextBoxColumn DOCUMENTO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOTA;
     }
 }
