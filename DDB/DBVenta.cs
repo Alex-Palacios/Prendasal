@@ -26,26 +26,14 @@ namespace DDB
         private string buildItemsVenta(Venta venta)
         {
             string items = "";
-            foreach (DataGridViewRow row in venta.ITEMS_VENTA)
+            foreach (DataRow row in venta.ITEMS_VENTA.Rows)
             {
-                string inv = row.Cells["ITEM"].Value.ToString();
-                if (inv == "N/A" || inv == "-----")
-                {
-                    inv = null;
-                }
-                string descripcion = row.Cells["DESCRIPCION"].Value.ToString().ToUpper();
-                descripcion = descripcion.Replace(',',' ');
-                descripcion = descripcion.Replace(';',' ');
-
-                items = items + Double.Parse(row.Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) + ","
-                    + inv + "," + descripcion + ","
-                    + Decimal.Parse(row.Cells["PRECIO_UNIT"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) + ","
-                    + Decimal.Parse(row.Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) + ","
-                    + Int32.Parse(row.Cells["TAX"].FormattedValue.ToString()) + ","
-                    + Decimal.Parse(row.Cells["PRECIO_IMP"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) + ","
-                    + Decimal.Parse(row.Cells["MONTO_IMP"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) + ","
-                    + row.Cells["CUENTA"].Value + ","
-                    + Int32.Parse(row.Cells["INV"].FormattedValue.ToString()) + ";";
+                items = items + row.Field<string>("CODIGO") + ">"
+                    + row.Field<string>("COD_ITEM") + ">"
+                    + row.Field<decimal>("CANTIDAD") + ">"
+                    + row.Field<string>("DESCRIPCION") + ">"
+                    + row.Field<decimal>("MONTO") + ">"
+                    + row.Field<decimal>("PRECIO") + "&";
             }
             return items;
         }
@@ -53,18 +41,275 @@ namespace DDB
 
         // FUNCIONES CRUD
        
-        public DataTable getItemsVenta(int venta)
+
+        public bool insert(Venta venta, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_INSERT_VENTA";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_venta = cmd.Parameters.Add("suc_venta", MySqlDbType.VarChar, 2);
+                suc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter cli_venta = cmd.Parameters.Add("cli_venta", MySqlDbType.VarChar, 15);
+                cli_venta.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_venta = cmd.Parameters.Add("fecha_venta", MySqlDbType.Date);
+                fecha_venta.Direction = ParameterDirection.Input;
+                MySqlParameter tipo_venta = cmd.Parameters.Add("tipo_venta", MySqlDbType.Int32);
+                tipo_venta.Direction = ParameterDirection.Input;
+                MySqlParameter num_venta = cmd.Parameters.Add("num_venta", MySqlDbType.VarChar, 20);
+                num_venta.Direction = ParameterDirection.Input;
+                MySqlParameter doc_venta = cmd.Parameters.Add("doc_venta", MySqlDbType.VarChar, 20);
+                doc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter pago_venta = cmd.Parameters.Add("pago_venta", MySqlDbType.Int32);
+                pago_venta.Direction = ParameterDirection.Input;
+                MySqlParameter desc_venta = cmd.Parameters.Add("desc_venta", MySqlDbType.Decimal);
+                desc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter total_venta = cmd.Parameters.Add("total_venta", MySqlDbType.Decimal);
+                total_venta.Direction = ParameterDirection.Input;
+                MySqlParameter iva_venta = cmd.Parameters.Add("iva_venta", MySqlDbType.Decimal);
+                iva_venta.Direction = ParameterDirection.Input;
+                MySqlParameter ivadesc_venta = cmd.Parameters.Add("ivadesc_venta", MySqlDbType.Decimal);
+                ivadesc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter cat_venta = cmd.Parameters.Add("cat_venta", MySqlDbType.VarChar, 50);
+                cat_venta.Direction = ParameterDirection.Input;
+                MySqlParameter nivel_venta = cmd.Parameters.Add("nivel_venta", MySqlDbType.Int32);
+                nivel_venta.Direction = ParameterDirection.Input;
+                MySqlParameter nota_venta = cmd.Parameters.Add("nota_venta", MySqlDbType.VarChar, 100);
+                nota_venta.Direction = ParameterDirection.Input;
+                MySqlParameter items_venta = cmd.Parameters.Add("items_venta", MySqlDbType.LongText);
+                items_venta.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                suc_venta.Value = venta.COD_SUC;
+                cli_venta.Value = venta.COD_CLIENTE;
+                fecha_venta.Value = venta.FECHA.Date;
+                tipo_venta.Value = (int)venta.TIPO;
+                num_venta.Value = venta.NUMVENTA;
+                doc_venta.Value = venta.DOCUMENTO;
+                pago_venta.Value = (int)venta.TIPO_PAGO;
+                desc_venta.Value = venta.DESCUENTO;
+                total_venta.Value = venta.TOTAL;
+                iva_venta.Value = venta.IVA_ING;
+                ivadesc_venta.Value = venta.IVA_DESC;
+                cat_venta.Value = venta.CATEGORIA.ToString();
+                nivel_venta.Value = (int)venta.NIVEL;
+                nota_venta.Value = venta.NOTA;
+
+                items_venta.Value = buildItemsVenta(venta);
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("VENTA REGISTRADA", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL REGISTRAR VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+        public bool update(Venta venta, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_UPDATE_VENTA";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
+                idventa.Direction = ParameterDirection.Input;
+                MySqlParameter suc_venta = cmd.Parameters.Add("suc_venta", MySqlDbType.VarChar, 2);
+                suc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter cli_venta = cmd.Parameters.Add("cli_venta", MySqlDbType.VarChar, 15);
+                cli_venta.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_venta = cmd.Parameters.Add("fecha_venta", MySqlDbType.Date);
+                fecha_venta.Direction = ParameterDirection.Input;
+                MySqlParameter tipo_venta = cmd.Parameters.Add("tipo_venta", MySqlDbType.Int32);
+                tipo_venta.Direction = ParameterDirection.Input;
+                MySqlParameter num_venta = cmd.Parameters.Add("num_venta", MySqlDbType.VarChar, 20);
+                num_venta.Direction = ParameterDirection.Input;
+                MySqlParameter doc_venta = cmd.Parameters.Add("doc_venta", MySqlDbType.VarChar, 20);
+                doc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter pago_venta = cmd.Parameters.Add("pago_venta", MySqlDbType.Int32);
+                pago_venta.Direction = ParameterDirection.Input;
+                MySqlParameter desc_venta = cmd.Parameters.Add("desc_venta", MySqlDbType.Decimal);
+                desc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter total_venta = cmd.Parameters.Add("total_venta", MySqlDbType.Decimal);
+                total_venta.Direction = ParameterDirection.Input;
+                MySqlParameter iva_venta = cmd.Parameters.Add("iva_venta", MySqlDbType.Decimal);
+                iva_venta.Direction = ParameterDirection.Input;
+                MySqlParameter ivadesc_venta = cmd.Parameters.Add("ivadesc_venta", MySqlDbType.Decimal);
+                ivadesc_venta.Direction = ParameterDirection.Input;
+                MySqlParameter cat_venta = cmd.Parameters.Add("cat_venta", MySqlDbType.VarChar, 50);
+                cat_venta.Direction = ParameterDirection.Input;
+                MySqlParameter nivel_venta = cmd.Parameters.Add("nivel_venta", MySqlDbType.Int32);
+                nivel_venta.Direction = ParameterDirection.Input;
+                MySqlParameter nota_venta = cmd.Parameters.Add("nota_venta", MySqlDbType.VarChar, 100);
+                nota_venta.Direction = ParameterDirection.Input;
+                MySqlParameter items_venta = cmd.Parameters.Add("items_venta", MySqlDbType.LongText);
+                items_venta.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                idventa.Value = venta.ID_VENTA;
+                suc_venta.Value = venta.COD_SUC;
+                cli_venta.Value = venta.COD_CLIENTE;
+                fecha_venta.Value = venta.FECHA.Date;
+                tipo_venta.Value = (int)venta.TIPO;
+                num_venta.Value = venta.NUMVENTA;
+                doc_venta.Value = venta.DOCUMENTO;
+                pago_venta.Value = (int)venta.TIPO_PAGO;
+                desc_venta.Value = venta.DESCUENTO;
+                total_venta.Value = venta.TOTAL;
+                iva_venta.Value = venta.IVA_ING;
+                ivadesc_venta.Value = venta.IVA_DESC;
+                cat_venta.Value = venta.CATEGORIA.ToString();
+                nivel_venta.Value = (int)venta.NIVEL;
+                nota_venta.Value = venta.NOTA;
+
+                items_venta.Value = buildItemsVenta(venta);
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("VENTA ACTUALIZADA", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL ACTUALIZAR VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+        public void changeFCF(int venta, string fcf)
+        {
+            try
+            {
+                string sql = "prendasal.SP_CHANGE_FCF_VENTA";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
+                idventa.Direction = ParameterDirection.Input;
+                MySqlParameter factura = cmd.Parameters.Add("fcf", MySqlDbType.VarChar, 20);
+                factura.Direction = ParameterDirection.Input;
+
+                idventa.Value = venta;
+                factura.Value = fcf;
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(null, e.Message, "ERROR AL ACTUALIZAR FACTURA P.A.C", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw e;
+            }
+        }
+
+
+
+        public bool delete(Venta venta, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_DELETE_VENTA";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
+                idventa.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                idventa.Value = venta.ID_VENTA;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("REGISTRO DE VENTA ELIMINADA", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL ELIMINAR VENTA ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+        public string nextNumVenta(string codsuc)
+        {
+            string reader = null;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "SELECT prendasal.FN_NEXT_NUMVENTA(@sucursal)";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
+                sucursal.Direction = ParameterDirection.Input;
+
+                sucursal.Value = codsuc;
+
+                reader = (string)cmd.ExecuteScalar();
+            }
+            catch (Exception e)
+            { reader = null; }
+            return reader;
+        }
+
+
+
+        public DataTable getItemsVenta(Venta venta)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "ddicark.SP_SHOW_DETALLE_VENTA";
+                string sql = "prendasal.SP_GET_ITEMS_VENTA";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter c = cmd.Parameters.Add("venta", MySqlDbType.Int32);
-                c.Direction = ParameterDirection.Input;
-                c.Value = venta;
+
+                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
+                idventa.Direction = ParameterDirection.Input;
+
+                idventa.Value = venta.ID_VENTA;
+
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -74,7 +319,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR DETALLE DE VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR AL CONSULTAR DETALLE DE VENTA", "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -82,61 +327,21 @@ namespace DDB
 
         
 
-
-        public bool isCancelada(int venta)
-        {
-            bool reader = false;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT ddicark.FN_VENTA_isCANCELADA(@idventa)";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
-                idventa.Direction = ParameterDirection.Input;
-                idventa.Value = venta;
-                reader = (bool)cmd.ExecuteScalar();
-            }
-            catch (Exception e)
-            { reader = false; }
-            return reader;
-        }
-
-
-
-
-
-
-
-        public DataTable findByVentaPRENDASAL(DateTime? fecha, eTipoDocVenta tipo, string doc)
+        public DataRow getVentaByNumVenta(string documento)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
+            DataRow row = null;
             try
             {
-                string sql = "SELECT * FROM prendasal.view_ventas WHERE TIPO_DOC = @tipo AND DOCUMENTO = @doc ";
-                if (fecha != null)
-                {
-                    sql = sql + "AND FECHA = @f";
-                }
-                sql = sql + ";";
+                string sql = "SELECT * FROM prendasal.view_ventas WHERE NUMVENTA = @doc;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
 
-                if (fecha != null)
-                {
-                    MySqlParameter f = cmd.Parameters.Add("f", MySqlDbType.Date);
-                    f.Direction = ParameterDirection.Input;
-                    f.Value = fecha.Value.Date.ToString("yyyy-MM-yyyy");
-                }
-                MySqlParameter t = cmd.Parameters.Add("tipo", MySqlDbType.Int32);
-                t.Direction = ParameterDirection.Input;
-                MySqlParameter d = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
-                d.Direction = ParameterDirection.Input;
+                MySqlParameter doc = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
+                doc.Direction = ParameterDirection.Input;
 
-                
-                t.Value = (int)tipo;
-                d.Value = doc;
+                doc.Value = documento;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -147,210 +352,13 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("ERROR AL BUSCAR VENTA # " + doc + "\n" + e.Message, "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR AL OBTENER VENTA", "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return datos;
-        }
-
-
-
-        public void insertPRENDASAL(Venta venta, string sucursal, string empleado, string sistema)
-        {
-            string items = "";
-            try
+            if (datos.Rows.Count == 1)
             {
-                items = buildItemsVenta(venta);
-
-                string sql = "prendasal.SP_REGISTRAR_VENTA";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter cliente = cmd.Parameters.Add("cliente", MySqlDbType.VarChar, 15);
-                cliente.Direction = ParameterDirection.Input;
-                MySqlParameter fecha = cmd.Parameters.Add("fecha", MySqlDbType.Date);
-                fecha.Direction = ParameterDirection.Input;
-                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
-                tipodoc.Direction = ParameterDirection.Input;
-                MySqlParameter documento = cmd.Parameters.Add("documento", MySqlDbType.VarChar, 20);
-                documento.Direction = ParameterDirection.Input;
-                MySqlParameter tipoventa = cmd.Parameters.Add("tipoventa", MySqlDbType.Int32);
-                tipoventa.Direction = ParameterDirection.Input;
-                MySqlParameter sumas = cmd.Parameters.Add("total_sumas", MySqlDbType.Decimal);
-                sumas.Direction = ParameterDirection.Input;
-                MySqlParameter total = cmd.Parameters.Add("total_venta", MySqlDbType.Decimal);
-                total.Direction = ParameterDirection.Input;
-                MySqlParameter estado = cmd.Parameters.Add("estado_venta", MySqlDbType.Int32);
-                estado.Direction = ParameterDirection.Input;
-                MySqlParameter nivel_venta = cmd.Parameters.Add("nivel_venta", MySqlDbType.Int32);
-                nivel_venta.Direction = ParameterDirection.Input;
-                MySqlParameter ventaNat = cmd.Parameters.Add("ventaNat", MySqlDbType.Int32);
-                ventaNat.Direction = ParameterDirection.Input;
-                MySqlParameter observacion = cmd.Parameters.Add("observacion", MySqlDbType.VarChar, 100);
-                observacion.Direction = ParameterDirection.Input;
-                MySqlParameter init = cmd.Parameters.Add("init", MySqlDbType.Bit);
-                init.Direction = ParameterDirection.Input;
-                MySqlParameter codSUC = cmd.Parameters.Add("suc_venta", MySqlDbType.VarChar, 2);
-                codSUC.Direction = ParameterDirection.Input;
-                MySqlParameter itemsV = cmd.Parameters.Add("items", MySqlDbType.LongText);
-                itemsV.Direction = ParameterDirection.Input;
-                MySqlParameter suc = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter emp = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                emp.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-
-
-                cliente.Value = venta.COD_CLIENTE;
-                fecha.Value = venta.FECHA.Date.ToString("yyyy-MM-dd");
-                tipodoc.Value = (int)venta.TIPO_DOC;
-                documento.Value = venta.DOCUMENTO;
-                tipoventa.Value = (int)venta.TIPO_VENTA;
-                sumas.Value = venta.SUMAS;
-                total.Value = venta.TOTAL;
-                estado.Value = (int)venta.ESTADO;
-                nivel_venta.Value = (int)venta.NIVEL;
-                ventaNat.Value = (int)venta.NAT_VENTA;
-                init.Value = venta.INIT_BALANCE;
-                codSUC.Value = venta.COD_SUC;
-                observacion.Value = venta.NOTA;
-
-                itemsV.Value = items;
-                
-                suc.Value = sucursal;
-                emp.Value = empleado;
-                system.Value = sistema;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("VENTA REGISTRADA", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                row = datos.Rows[0];
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(null, e.Message, "ERROR AL REGISTRAR VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
-            }
-        }
-
-
-
-
-        public void updatePRENDASAL(Venta venta, string sucursal, string empleado, string sistema)
-        {
-            string items = "";
-            try
-            {
-                items = buildItemsVenta(venta);
-
-                string sql = "prendasal.SP_EDITAR_VENTA";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter idventa = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
-                idventa.Direction = ParameterDirection.Input;
-                MySqlParameter cliente = cmd.Parameters.Add("cliente", MySqlDbType.VarChar, 15);
-                cliente.Direction = ParameterDirection.Input;
-                MySqlParameter fecha = cmd.Parameters.Add("fecha", MySqlDbType.Date);
-                fecha.Direction = ParameterDirection.Input;
-                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
-                tipodoc.Direction = ParameterDirection.Input;
-                MySqlParameter documento = cmd.Parameters.Add("documento", MySqlDbType.VarChar, 20);
-                documento.Direction = ParameterDirection.Input;
-                MySqlParameter tipoventa = cmd.Parameters.Add("tipoventa", MySqlDbType.Int32);
-                tipoventa.Direction = ParameterDirection.Input;
-                MySqlParameter sumas = cmd.Parameters.Add("total_sumas", MySqlDbType.Decimal);
-                sumas.Direction = ParameterDirection.Input;
-                MySqlParameter total = cmd.Parameters.Add("total_venta", MySqlDbType.Decimal);
-                total.Direction = ParameterDirection.Input;
-                MySqlParameter estado = cmd.Parameters.Add("estado_venta", MySqlDbType.Int32);
-                estado.Direction = ParameterDirection.Input;
-                MySqlParameter nivel_venta = cmd.Parameters.Add("nivel_venta", MySqlDbType.Int32);
-                nivel_venta.Direction = ParameterDirection.Input;
-                MySqlParameter ventaNat = cmd.Parameters.Add("ventaNat", MySqlDbType.Int32);
-                ventaNat.Direction = ParameterDirection.Input;
-                MySqlParameter observacion = cmd.Parameters.Add("observacion", MySqlDbType.VarChar, 100);
-                observacion.Direction = ParameterDirection.Input;
-                MySqlParameter init = cmd.Parameters.Add("init", MySqlDbType.Bit);
-                init.Direction = ParameterDirection.Input;
-                MySqlParameter codSUC = cmd.Parameters.Add("suc_venta", MySqlDbType.VarChar, 2);
-                codSUC.Direction = ParameterDirection.Input;
-                MySqlParameter itemsV = cmd.Parameters.Add("items", MySqlDbType.LongText);
-                itemsV.Direction = ParameterDirection.Input;
-                MySqlParameter suc = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter emp = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                emp.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-                MySqlParameter notaCambio = cmd.Parameters.Add("notaCambio", MySqlDbType.VarChar, 100);
-                notaCambio.Direction = ParameterDirection.Input;
-
-                idventa.Value = venta.ID_VENTA;
-                cliente.Value = venta.COD_CLIENTE;
-                fecha.Value = venta.FECHA.Date.ToString("yyyy-MM-dd");
-                tipodoc.Value = (int)venta.TIPO_DOC;
-                documento.Value = venta.DOCUMENTO;
-                tipoventa.Value = (int)venta.TIPO_VENTA;
-                sumas.Value = venta.SUMAS;
-                total.Value = venta.TOTAL;
-                estado.Value = (int)venta.ESTADO;
-                nivel_venta.Value = (int)venta.NIVEL;
-                ventaNat.Value = (int)venta.NAT_VENTA;
-                init.Value = venta.INIT_BALANCE;
-                codSUC.Value = venta.COD_SUC;
-                observacion.Value = venta.NOTA;
-
-                itemsV.Value = items;
-
-                suc.Value = sucursal;
-                emp.Value = empleado;
-                system.Value = sistema;
-
-
-                notaCambio.Value = venta.NOTA_CAMBIO;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("VENTA ACTUALIZADA", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(null, e.Message, "ERROR AL ACTUALIZAR VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
-            }
-        }
-
-
-
-        public void deletePRENDASAL(Venta venta, string suc, string emp, string sistema)
-        {
-            try
-            {
-                string sql = "prendasal.SP_ELIMINAR_VENTA";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter v = cmd.Parameters.Add("idventa", MySqlDbType.Int32);
-                v.Direction = ParameterDirection.Input;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-                MySqlParameter empleado = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                empleado.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-                MySqlParameter notaCambio = cmd.Parameters.Add("notaCambio", MySqlDbType.VarChar, 100);
-                notaCambio.Direction = ParameterDirection.Input;
-
-                v.Value = venta.ID_VENTA;
-                notaCambio.Value = venta.NOTA_CAMBIO;
-
-                sucursal.Value = suc;
-                empleado.Value = emp;
-                system.Value = sistema;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("REGISTRO DE VENTA ELIMINADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL ELIMINAR VENTA ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
-            }
+            return row;
         }
 
 

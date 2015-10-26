@@ -68,7 +68,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DOCUMENTO")) { pac.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
                 if (dr.Table.Columns.Contains("TIPO_PAGO")) { pac.TIPO_PAGO = (eTipoPago)dr.Field<int>("TIPO_PAGO"); }
                 if (dr.Table.Columns.Contains("MESES")) { pac.MESES = dr.Field<int>("MESES"); }
-                if (dr.Table.Columns.Contains("DIAS")) { pac.MESES = dr.Field<int>("DIAS"); }
+                if (dr.Table.Columns.Contains("DIAS")) { pac.DIAS = dr.Field<int>("DIAS"); }
                 if (dr.Table.Columns.Contains("INTERES")) { pac.INTERES = dr.Field<decimal>("INTERES"); }
                 if (dr.Table.Columns.Contains("DESCUENTO")) { pac.DESCUENTO = dr.Field<decimal>("DESCUENTO"); }
                 if (dr.Table.Columns.Contains("ABONO")) { pac.ABONO = dr.Field<decimal>("ABONO"); }
@@ -100,21 +100,19 @@ namespace MODELO
         {
             get
             {
-                DateTime DESDE = HASTA.AddDays(-this.DIAS);
-                DESDE = DESDE.AddMonths(-this.MESES);
-                return DESDE;
+                return HASTA.AddDays(-this.DIAS).AddMonths(-this.MESES);
             }
         }
+
+
 
         public DateTime PROXIMO_PAGO
         {
             get
             {
-                DateTime PROX = HASTA.AddMonths(this.CONTRATO.PLAZO_CONTRATO/30);
-                return PROX;
+                return  HASTA.AddMonths(this.CONTRATO.PLAZO_CONTRATO/30);
             }
         }
-
 
 
 
@@ -122,7 +120,7 @@ namespace MODELO
         {
             get
             {
-                return (this.NUEVO_SALDO - this.ABONO);
+                return (this.NUEVO_SALDO + this.ABONO);
             }
         }
 

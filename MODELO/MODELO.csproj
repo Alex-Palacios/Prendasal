@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Existencia.cs" />
     <Compile Include="Pac.cs" />
     <Compile Include="Vencidos.cs" />
     <Compile Include="Cliente.cs" />
@@ -57,11 +58,8 @@
     <Compile Include="Images.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Permiso.cs" />
-    <Compile Include="PSInventario.cs" />
     <Compile Include="MovCash.cs" />
-    <Compile Include="Personal.cs" />
     <Compile Include="Prestamo.cs" />
-    <Compile Include="Puntos.cs" />
     <Compile Include="Reglas.cs" />
     <Compile Include="Sucursal.cs" />
     <Compile Include="Tarjeta.cs" />

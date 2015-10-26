@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.opciones = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -274,10 +274,10 @@
             // 
             // txtNOTA
             // 
-            this.txtNOTA.Location = new System.Drawing.Point(893, 363);
+            this.txtNOTA.Location = new System.Drawing.Point(893, 353);
             this.txtNOTA.MaxLength = 100;
             this.txtNOTA.Name = "txtNOTA";
-            this.txtNOTA.Size = new System.Drawing.Size(162, 142);
+            this.txtNOTA.Size = new System.Drawing.Size(162, 152);
             this.txtNOTA.TabIndex = 12;
             this.txtNOTA.Text = "";
             // 
@@ -688,19 +688,22 @@
             this.DESCRIPCION,
             this.MONTO});
             this.tblITEMS.Location = new System.Drawing.Point(6, 37);
+            this.tblITEMS.MultiSelect = false;
             this.tblITEMS.Name = "tblITEMS";
             this.tblITEMS.ReadOnly = true;
+            this.tblITEMS.RowHeadersWidth = 40;
             this.tblITEMS.Size = new System.Drawing.Size(786, 174);
             this.tblITEMS.TabIndex = 3;
             this.tblITEMS.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.tblITEMS_CellBeginEdit);
             this.tblITEMS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblITEMS_CellEndEdit);
             this.tblITEMS.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tblITEMS_CellPainting);
+            this.tblITEMS.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tblITEMS_CellValidating);
             // 
             // COD_ITEM
             // 
             this.COD_ITEM.DataPropertyName = "COD_ITEM";
-            dataGridViewCellStyle1.NullValue = "-----";
-            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.NullValue = "-----";
+            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle7;
             this.COD_ITEM.Frozen = true;
             this.COD_ITEM.HeaderText = "KIL/ART";
             this.COD_ITEM.Name = "COD_ITEM";
@@ -711,8 +714,8 @@
             // CANTIDAD
             // 
             this.CANTIDAD.DataPropertyName = "CANTIDAD";
-            dataGridViewCellStyle2.Format = "N1";
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "N1";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle8;
             this.CANTIDAD.Frozen = true;
             this.CANTIDAD.HeaderText = "PESO/CANT";
             this.CANTIDAD.Name = "CANTIDAD";
@@ -733,9 +736,9 @@
             // MONTO
             // 
             this.MONTO.DataPropertyName = "MONTO";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0.00";
-            this.MONTO.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = "0.00";
+            this.MONTO.DefaultCellStyle = dataGridViewCellStyle9;
             this.MONTO.Frozen = true;
             this.MONTO.HeaderText = "MONTO";
             this.MONTO.Name = "MONTO";
@@ -744,9 +747,9 @@
             // 
             // viewerCONTRATO
             // 
-            reportDataSource1.Name = "DSI";
-            reportDataSource1.Value = null;
-            this.viewerCONTRATO.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource3.Name = "DSI";
+            reportDataSource3.Value = null;
+            this.viewerCONTRATO.LocalReport.DataSources.Add(reportDataSource3);
             this.viewerCONTRATO.LocalReport.ReportEmbeddedResource = "";
             this.viewerCONTRATO.Location = new System.Drawing.Point(897, 0);
             this.viewerCONTRATO.Name = "viewerCONTRATO";

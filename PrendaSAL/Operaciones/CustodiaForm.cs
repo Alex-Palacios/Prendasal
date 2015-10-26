@@ -12,7 +12,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -33,7 +32,7 @@ namespace PrendaSAL.Operaciones
 
         //VARIABLE
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         public DataTable CUSTODIA_VALORES;
         private eOperacion ACCION;
         private Traslado SELECTED;
@@ -43,7 +42,7 @@ namespace PrendaSAL.Operaciones
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
             tblCustodia.AutoGenerateColumns = false;
         }
 
@@ -136,7 +135,7 @@ namespace PrendaSAL.Operaciones
                 cbxSUC_ORG.SelectedValue = SELECTED.SUC_ORG;
                 cbxSUC_DEST.SelectedValue = SELECTED.SUC_DEST;
                 txtNOTA.Text = SELECTED.NOTA;
-                tblCustodia.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
+                //tblCustodia.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
 
                 btnGuardar.Enabled = false;
                 btnCancelar.Enabled = false;
@@ -166,7 +165,7 @@ namespace PrendaSAL.Operaciones
             ACCION = eOperacion.INSERT;
             limpiar();
             cbxTIPODOC.SelectedItem = eTipoDocTraslado.ENVIO;
-            txtNUMERO.Text = dbInventario.NEXT_CUSTODIA_VALORES(HOME.Instance().SUCURSAL.COD_SUC);
+            //txtNUMERO.Text = dbInventario.NEXT_CUSTODIA_VALORES(HOME.Instance().SUCURSAL.COD_SUC);
             dateTraslado.Value = HOME.Instance().FECHA_SISTEMA;
             txtEnvia.Text = HOME.Instance().USUARIO.NOMBRE;
             cbxSUC_ORG.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
@@ -238,12 +237,12 @@ namespace PrendaSAL.Operaciones
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
                             t.RECIBIDO = false;
-                            if (dbInventario.REGISTRAR_CUSTODIA_PRENDASAL(t, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                            {
-                                SELECTED = dbInventario.findCustodiaValoresByDocPRENDASAL(t.DOCUMENTO);
-                                cargarTrasladoSelected();
-                                ImprimirCustodiaValores();
-                            }
+                            //if (dbInventario.REGISTRAR_CUSTODIA_PRENDASAL(t, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                            //{
+                            //    SELECTED = dbInventario.findCustodiaValoresByDocPRENDASAL(t.DOCUMENTO);
+                            //    cargarTrasladoSelected();
+                            //    ImprimirCustodiaValores();
+                            //}
                         }
                         else
                         {
@@ -283,10 +282,10 @@ namespace PrendaSAL.Operaciones
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbInventario.ELIMINAR_CUSTODIA_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            NUEVO(null, null);
-                        }
+                        //if (dbInventario.ELIMINAR_CUSTODIA_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    NUEVO(null, null);
+                        //}
                     }
                     else
                     {
@@ -303,7 +302,7 @@ namespace PrendaSAL.Operaciones
             string documento = Controles.InputBox("CUSTODIA DE VALORE #:", "BUSCAR");
             if (documento.Trim() != "")
             {
-                SELECTED = dbInventario.findCustodiaValoresByDocPRENDASAL(documento.Trim());
+                //SELECTED = dbInventario.findCustodiaValoresByDocPRENDASAL(documento.Trim());
                 if (SELECTED != null)
                 {
                     cargarTrasladoSelected();

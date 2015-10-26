@@ -1155,9 +1155,9 @@ namespace PrendaSAL.Movimientos
             viewerCONTRATO.Clear();
             if (PRESTAMO != null)
             {
-                Sucursal SUC = Sucursal.ConverterToSucursal(HOME.Instance().datSUCURSALES.Rows[cbxSUCURSAL.SelectedIndex]);
+                Sucursal SUC = HOME.Instance().getSucursal(PRESTAMO.COD_SUC).Copy();
 
-                ReportParameter[] parameters = new ReportParameter[16];
+                ReportParameter[] parameters = new ReportParameter[17];
                 parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
                 parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION + " ,"+SUC.DEPTO);
                 parameters[2] = new ReportParameter("CONTRATO", PRESTAMO.DOCUMENTO);
@@ -1173,7 +1173,8 @@ namespace PrendaSAL.Movimientos
                 parameters[12] = new ReportParameter("DIAS", PRESTAMO.FECHA.Date.ToString("dd"));
                 parameters[13] = new ReportParameter("MES", PRESTAMO.FECHA.Date.ToString("MMMM").ToUpper());
                 parameters[14] = new ReportParameter("ANIO", PRESTAMO.FECHA.Date.ToString("yyyy"));
-                parameters[15] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                parameters[15] = new ReportParameter("PLAZO", HOME.Instance().convertirNumeroLetra(PRESTAMO.PLAZO_VENC).ToLower());
+                parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
 
                 viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoPrestamo2.rdlc";
                 viewerCONTRATO.LocalReport.SetParameters(parameters);
@@ -1187,7 +1188,7 @@ namespace PrendaSAL.Movimientos
             viewerCONTRATO.Clear();
             if (PRESTAMO != null)
             {
-                Sucursal SUC = Sucursal.ConverterToSucursal(HOME.Instance().datSUCURSALES.Rows[cbxSUCURSAL.SelectedIndex]);
+                Sucursal SUC = HOME.Instance().getSucursal(PRESTAMO.COD_SUC).Copy();
 
                 ReportParameter[] parameters = new ReportParameter[23];
                 parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);

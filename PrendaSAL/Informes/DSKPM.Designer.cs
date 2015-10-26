@@ -379,7 +379,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KPMRow AddKPMRow(string KILATAJE, double PESO, decimal MONTO) {
+            public KPMRow AddKPMRow(string KILATAJE, decimal PESO, decimal MONTO) {
                 KPMRow rowKPMRow = ((KPMRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         KILATAJE,
@@ -417,7 +417,7 @@ namespace PrendaSAL.Informes {
             private void InitClass() {
                 this.columnKILATAJE = new global::System.Data.DataColumn("KILATAJE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKILATAJE);
-                this.columnPESO = new global::System.Data.DataColumn("PESO", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnPESO = new global::System.Data.DataColumn("PESO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPESO);
                 this.columnMONTO = new global::System.Data.DataColumn("MONTO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMONTO);
@@ -579,10 +579,10 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double PESO {
+            public decimal PESO {
                 get {
                     try {
-                        return ((double)(this[this.tableKPM.PESOColumn]));
+                        return ((decimal)(this[this.tableKPM.PESOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("El valor de la columna \'PESO\' de la tabla \'KPM\' es DBNull.", e);

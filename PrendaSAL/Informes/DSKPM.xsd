@@ -12,11 +12,11 @@
   <xs:element name="DSKPM" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSKPM" msprop:Generator_UserDSName="DSKPM">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="KPM" msprop:Generator_TableClassName="KPMDataTable" msprop:Generator_TableVarName="tableKPM" msprop:Generator_RowChangedName="KPMRowChanged" msprop:Generator_TablePropName="KPM" msprop:Generator_RowDeletingName="KPMRowDeleting" msprop:Generator_RowChangingName="KPMRowChanging" msprop:Generator_RowEvHandlerName="KPMRowChangeEventHandler" msprop:Generator_RowDeletedName="KPMRowDeleted" msprop:Generator_RowClassName="KPMRow" msprop:Generator_UserTableName="KPM" msprop:Generator_RowEvArgName="KPMRowChangeEvent">
+        <xs:element name="KPM" msprop:Generator_TableClassName="KPMDataTable" msprop:Generator_TableVarName="tableKPM" msprop:Generator_TablePropName="KPM" msprop:Generator_RowDeletingName="KPMRowDeleting" msprop:Generator_RowChangingName="KPMRowChanging" msprop:Generator_RowEvHandlerName="KPMRowChangeEventHandler" msprop:Generator_RowDeletedName="KPMRowDeleted" msprop:Generator_UserTableName="KPM" msprop:Generator_RowChangedName="KPMRowChanged" msprop:Generator_RowEvArgName="KPMRowChangeEvent" msprop:Generator_RowClassName="KPMRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="KILATAJE" msprop:Generator_ColumnVarNameInTable="columnKILATAJE" msprop:Generator_ColumnPropNameInRow="KILATAJE" msprop:Generator_ColumnPropNameInTable="KILATAJEColumn" msprop:Generator_UserColumnName="KILATAJE" type="xs:string" minOccurs="0" />
-              <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:double" minOccurs="0" />
+              <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:decimal" minOccurs="0" />
               <xs:element name="MONTO" msprop:Generator_ColumnVarNameInTable="columnMONTO" msprop:Generator_ColumnPropNameInRow="MONTO" msprop:Generator_ColumnPropNameInTable="MONTOColumn" msprop:Generator_UserColumnName="MONTO" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

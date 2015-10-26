@@ -2,64 +2,32 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="Textbox11">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>CERRADOS</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>2.64128cm</Top>
-        <Left>16.16697cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.21747cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Tablix Name="TBL_CERRADOS">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.55188cm</Width>
+              <Width>0.54857cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.49833cm</Width>
+              <Width>1.49502cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.60318cm</Width>
+              <Width>5.26143cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.74313cm</Width>
+              <Width>6.15774cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.90596cm</Width>
+              <Width>1.90265cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.77789cm</Width>
+              <Width>1.77458cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.92008cm</Width>
+              <Width>1.91677cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.75375cm</Width>
+              <Width>1.04275cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -186,7 +154,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FECHAV</Value>
+                              <Value>ESTADO</Value>
                               <Style>
                                 <FontFamily>Andalus</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -223,7 +191,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>D</Value>
+                              <Value>DIAS</Value>
                               <Style>
                                 <FontFamily>Andalus</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -260,7 +228,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="REACTIVADO">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -455,7 +422,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!FECHAV.Value</Value>
+                              <Value>=Fields!ESTADO_CONTRATO.Value</Value>
                               <Style>
                                 <FontFamily>Andalus</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -487,7 +454,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DIAS.Value</Value>
+                              <Value>=Fields!DIAS_VENC.Value</Value>
                               <Style>
                                 <FontFamily>Andalus</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -495,7 +462,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -518,7 +485,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox20">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -549,7 +515,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox21">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -581,7 +546,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox22">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -613,7 +577,6 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox23">
-                      <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -819,45 +782,61 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <RepeatColumnHeaders>true</RepeatColumnHeaders>
-        <RepeatRowHeaders>true</RepeatRowHeaders>
-        <FixedColumnHeaders>true</FixedColumnHeaders>
-        <FixedRowHeaders>true</FixedRowHeaders>
-        <KeepTogether>true</KeepTogether>
         <DataSetName>CONTRATOS</DataSetName>
-        <Top>0.69067cm</Top>
-        <Left>0.30663cm</Left>
+        <Top>4.55331cm</Top>
+        <Left>0.62413cm</Left>
         <Height>1.69417cm</Height>
-        <Width>20.7542cm</Width>
-        <ZIndex>1</ZIndex>
+        <Width>20.09952cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox13">
-        <CanGrow>true</CanGrow>
+      <Subreport Name="KPM">
+        <ReportName>KPM</ReportName>
+        <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
+        <Top>6.42386cm</Top>
+        <Left>0.71075cm</Left>
+        <Height>2.09667cm</Height>
+        <Width>19.92628cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Subreport>
+      <Textbox Name="Textbox3">
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>REACTIVADOS</Value>
+                <Value>VENCIDOS     </Value>
                 <Style>
                   <FontSize>8pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!VENCIDOS.Value</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>3.13545cm</Top>
-        <Left>16.16697cm</Left>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>6.7558cm</Top>
+        <Left>15.8424cm</Left>
         <Height>0.49417cm</Height>
-        <Width>2.21747cm</Width>
+        <Width>4.79463cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -869,75 +848,37 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Subreport Name="KPM">
-        <ReportName>KPM</ReportName>
-        <Top>4.51185cm</Top>
-        <Left>0.62413cm</Left>
-        <Height>2.70521cm</Height>
-        <Width>17.76031cm</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Subreport>
-      <Textbox Name="Textbox3">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Variables!CERRADOS.Value</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                  <FontWeight>ExtraBold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>2.64128cm</Top>
-        <Left>18.56083cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>4</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox6">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Variables!REACTIVADOS.Value</Value>
+                <Value>REACTIVADOS  </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!REACTIVADOS.Value</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                   <FontWeight>ExtraBold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>3.17073cm</Top>
-        <Left>18.56083cm</Left>
+        <Top>7.39108cm</Top>
+        <Left>15.8424cm</Left>
         <Height>0.49417cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>5</ZIndex>
+        <Width>4.88125cm</Width>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -949,28 +890,36 @@
         </Style>
       </Textbox>
       <Textbox Name="Textbox4">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Variables!CERRADOS.Value + Variables!REACTIVADOS.Value</Value>
+                <Value>TOTAL           </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!TOTAL.Value</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                   <FontWeight>ExtraBold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>3.80601cm</Top>
-        <Left>18.56083cm</Left>
+        <Top>8.02636cm</Top>
+        <Left>15.8424cm</Left>
         <Height>0.49417cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>6</ZIndex>
+        <Width>4.79463cm</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -986,14 +935,157 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox15">
+      <Textbox Name="Textbox1">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GRUPO D´DICARK S.A de C.V</Value>
+                <Style>
+                  <FontSize>15pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!SUCURSAL.Value</Value>
+                <Style>
+                  <FontSize>15pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.52917cm</Top>
+        <Left>3.79252cm</Left>
+        <Height>1.3282cm</Height>
+        <Width>13.59329cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>LISTA DE VENCIDOS</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>1.89265cm</Top>
+        <Left>3.79252cm</Left>
+        <Height>0.67938cm</Height>
+        <Width>13.59329cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>TOTAL</Value>
+                <Value />
+                <Style>
+                  <FontWeight>Medium</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>LISTA #</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!docVenc.Value</Value>
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>0.78113cm</Top>
+        <Left>17.56219cm</Left>
+        <Height>1.75562cm</Height>
+        <Width>3.16146cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+            <Width>2pt</Width>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>VENCIDOS EL:</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1004,11 +1096,141 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>3.80601cm</Top>
-        <Left>16.16697cm</Left>
+        <Top>2.71314cm</Top>
+        <Left>0.71075cm</Left>
         <Height>0.49417cm</Height>
-        <Width>2.21747cm</Width>
-        <ZIndex>7</ZIndex>
+        <Width>3.01121cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="fechaEnvio">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!fechaVenc.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>fechaEnvio</rd:DefaultName>
+        <Top>2.74842cm</Top>
+        <Left>3.79252cm</Left>
+        <Height>0.50712cm</Height>
+        <Width>4.02167cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>AUTORIZADO POR:</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>3.36137cm</Top>
+        <Left>0.71075cm</Left>
+        <Height>0.49417cm</Height>
+        <Width>3.01121cm</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="fechaEnvio2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!responsable.Value</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>fechaEnvio</rd:DefaultName>
+        <Top>3.36137cm</Top>
+        <Left>3.79252cm</Left>
+        <Height>0.45889cm</Height>
+        <Width>4.02167cm</Width>
+        <ZIndex>11</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="FechaImp">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!FechaImp.Value</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>FechaImp</rd:DefaultName>
+        <Top>0.49389cm</Top>
+        <Left>0.96718cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.05021cm</Width>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1020,332 +1242,18 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>7.58974cm</Height>
-    <Style />
+    <Height>8.8862cm</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+        <Width>0.3pt</Width>
+      </Border>
+    </Style>
   </Body>
-  <Width>21.39029cm</Width>
+  <Width>21.59cm</Width>
   <Page>
-    <PageHeader>
-      <Height>4.15396cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <ReportItems>
-        <Textbox Name="Textbox1">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>GRUPO D´DICARK S.A de C.V</Value>
-                  <Style>
-                    <FontSize>15pt</FontSize>
-                    <FontWeight>ExtraBold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!SUCURSAL.Value</Value>
-                  <Style>
-                    <FontSize>15pt</FontSize>
-                    <FontWeight>ExtraBold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.49714cm</Top>
-          <Left>3.04129cm</Left>
-          <Height>1.3282cm</Height>
-          <Width>14.37979cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox2">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>LISTA DE CIERRE DE CONTRATOS</Value>
-                  <Style>
-                    <FontSize>12pt</FontSize>
-                    <FontWeight>ExtraBold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>1.86062cm</Top>
-          <Left>3.92481cm</Left>
-          <Height>0.67938cm</Height>
-          <Width>11.89271cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox5">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value />
-                  <Style>
-                    <FontWeight>Medium</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>CIERRE #</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!numCIERRE.Value</Value>
-                  <Style>
-                    <FontWeight>ExtraBold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox5</rd:DefaultName>
-          <Top>0.78438cm</Top>
-          <Left>17.89937cm</Left>
-          <Height>1.75562cm</Height>
-          <Width>3.16146cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-              <Width>2pt</Width>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox9">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>FECHA DE CIERRE:</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>2.69406cm</Top>
-          <Left>0.39325cm</Left>
-          <Height>0.49417cm</Height>
-          <Width>3.01121cm</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="fechaEnvio">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!fechaCierre.Value</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <TextDecoration>Underline</TextDecoration>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>fechaEnvio</rd:DefaultName>
-          <Top>2.71639cm</Top>
-          <Left>3.54557cm</Left>
-          <Height>0.50712cm</Height>
-          <Width>4.02167cm</Width>
-          <ZIndex>4</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox10">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>AUTORIZADO POR:</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>3.36462cm</Top>
-          <Left>0.39325cm</Left>
-          <Height>0.49417cm</Height>
-          <Width>3.01121cm</Width>
-          <ZIndex>5</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="fechaEnvio2">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!responsableCierre.Value</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>fechaEnvio</rd:DefaultName>
-          <Top>3.3999cm</Top>
-          <Left>3.58085cm</Left>
-          <Height>0.45889cm</Height>
-          <Width>4.02167cm</Width>
-          <ZIndex>6</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="FechaImp">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!FechaImp.Value</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>FechaImp</rd:DefaultName>
-          <Top>0.49714cm</Top>
-          <Left>0.62413cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.05021cm</Width>
-          <ZIndex>7</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-      </ReportItems>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageHeader>
     <PageFooter>
-      <Height>0.67056cm</Height>
+      <Height>0.5cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1386,14 +1294,14 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.07056cm</Top>
-          <Left>0.62413cm</Left>
-          <Height>0.52062cm</Height>
-          <Width>20.4367cm</Width>
+          <Left>2.66773cm</Left>
+          <Height>0.5cm</Height>
+          <Width>15.67468cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <VerticalAlign>Top</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1411,8 +1319,8 @@
     <PageWidth>21.59cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
-    <TopMargin>0cm</TopMargin>
-    <BottomMargin>0cm</BottomMargin>
+    <TopMargin>0.4cm</TopMargin>
+    <BottomMargin>0.4cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
@@ -1461,18 +1369,18 @@
           <DataField>SALDO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="FECHAV">
-          <DataField>FECHAV</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="ESTADO_CONTRATO">
+          <DataField>ESTADO_CONTRATO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DIAS">
-          <DataField>DIAS</DataField>
+        <Field Name="DIAS_VENC">
+          <DataField>DIAS_VENC</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DSCierre</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\INFORMATICA\Documents\Visual Studio 2013\Projects\PrendaSAL\PrendaSAL\Informes\DSCierre.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\INFORMATICA\documents\visual studio 2013\Projects\PrendaSAL\PrendaSAL\Informes\DSListaVenc.xsd</rd:SchemaPath>
         <rd:TableName>LISTA_CIERRE</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -1485,21 +1393,33 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="numCIERRE">
+    <ReportParameter Name="docVenc">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="fechaCierre">
+    <ReportParameter Name="fechaVenc">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="responsableCierre">
+    <ReportParameter Name="responsable">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="SUCURSAL">
       <DataType>String</DataType>
       <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="VENCIDOS">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="REACTIVADOS">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TOTAL">
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1521,14 +1441,6 @@ ZGM6c3ViamVjdD4KICAgPGRjOmRlc2NyaXB0aW9uPgogICAgPHJkZjpBbHQ+CiAgICAgPHJkZjpsaSB4
 dpIKLgLjKhIQXAhZCMEcwRvUniA5QnqT9gZ6g/QE5gTSCS6yiDC4000ruMxP3xt8ISapUvrgzczL+74372fS6/1TGC6u63LGWAjHRSeIseV2u/3o8j3hUhTFPbIvhKjIjuPgZREcoziOX1WAPM+JvALnqsb/3u12gozZbMYBGwHGRV+VQZZldNtbkiSiKxPbthUZK75iwyoAOBQoTVNFnk6nHgCCsiwX+/3+DDaHMisySAjY91YGKJPJxIOAVEYE9hLssEaWmqb5N02kDK4NrfcASbI5ESnlGc/j8fhZowAUBHaf7A4NDoeDKtOyLA+np96BaZol7qfTSdmj0ciD+leNPobgfyGDOK0MUI7H47qRiYTb/Hq0Gw7nvERtjm44HHrw/Qv2edNHHJWyYRhEdi+Xi3j0/gGPAT9bJcA4g8FgML9HRj/iiKMy6Pf7m9/+hQcSqVXXdQ6PYwNa/kE3yPsRYADJ3N43dnuf2gAAAABJRU5ErkJggg==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <Variables>
-    <Variable Name="REACTIVADOS">
-      <Value>=Sum(IIf(Fields!REACTIVADO.Value,1,0))</Value>
-    </Variable>
-    <Variable Name="CERRADOS">
-      <Value>=Sum(IIf(Fields!REACTIVADO.Value,0,1))</Value>
-    </Variable>
-  </Variables>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>fe0e8459-4185-43e9-b1ec-5f4d2576fff4</rd:ReportID>
 </Report>

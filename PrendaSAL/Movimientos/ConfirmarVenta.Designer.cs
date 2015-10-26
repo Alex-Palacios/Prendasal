@@ -35,7 +35,7 @@
             this.lbTOTAL = new System.Windows.Forms.Label();
             this.lbCLIENTE = new System.Windows.Forms.Label();
             this.lbFECHA = new System.Windows.Forms.Label();
-            this.lbDOCUMENTO = new System.Windows.Forms.Label();
+            this.lbNUMVENTA = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -116,15 +116,15 @@
             this.lbFECHA.TabIndex = 99;
             this.lbFECHA.Text = "dd/MM/yyyy";
             // 
-            // lbDOCUMENTO
+            // lbNUMVENTA
             // 
-            this.lbDOCUMENTO.AutoSize = true;
-            this.lbDOCUMENTO.ForeColor = System.Drawing.Color.Navy;
-            this.lbDOCUMENTO.Location = new System.Drawing.Point(118, 17);
-            this.lbDOCUMENTO.Name = "lbDOCUMENTO";
-            this.lbDOCUMENTO.Size = new System.Drawing.Size(86, 13);
-            this.lbDOCUMENTO.TabIndex = 98;
-            this.lbDOCUMENTO.Text = "tipo - documento";
+            this.lbNUMVENTA.AutoSize = true;
+            this.lbNUMVENTA.ForeColor = System.Drawing.Color.Navy;
+            this.lbNUMVENTA.Location = new System.Drawing.Point(118, 17);
+            this.lbNUMVENTA.Name = "lbNUMVENTA";
+            this.lbNUMVENTA.Size = new System.Drawing.Size(54, 13);
+            this.lbNUMVENTA.TabIndex = 98;
+            this.lbNUMVENTA.Text = "numventa";
             // 
             // label5
             // 
@@ -162,9 +162,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 93;
-            this.label1.Text = "DOCUMENTO";
+            this.label1.Text = "# VENTA";
             // 
             // CANCELAR
             // 
@@ -227,7 +227,7 @@
             this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.lbCLIENTE);
             this.Controls.Add(this.lbFECHA);
-            this.Controls.Add(this.lbDOCUMENTO);
+            this.Controls.Add(this.lbNUMVENTA);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -254,7 +254,7 @@
         private System.Windows.Forms.Label lbTOTAL;
         private System.Windows.Forms.Label lbCLIENTE;
         private System.Windows.Forms.Label lbFECHA;
-        private System.Windows.Forms.Label lbDOCUMENTO;
+        private System.Windows.Forms.Label lbNUMVENTA;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

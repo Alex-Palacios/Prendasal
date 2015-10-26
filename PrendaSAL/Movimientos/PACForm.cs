@@ -36,7 +36,7 @@ namespace PrendaSAL.Movimientos
         private DBPRENDASAL dbPrendasal;
         private DBUsuario dbUser;
         private DBPrestamo dbPrestamo;
-        private DBVencidos dbCierre;
+        private DBVencidos dbVencidos;
         private DBPac dbPAC;
 
         private eOperacion ACCION;
@@ -56,6 +56,7 @@ namespace PrendaSAL.Movimientos
             dbPrendasal = new DBPRENDASAL();
             dbPrestamo = new DBPrestamo();
             dbPAC = new DBPac();
+            dbVencidos = new DBVencidos();
         }
 
 
@@ -213,6 +214,7 @@ namespace PrendaSAL.Movimientos
 
         private void cargarDatosContrato()
         {
+            ACCION = eOperacion.INSERT;
             limpiarDatosContrato();
             if (PAC.CONTRATO != null)
             {
@@ -808,10 +810,13 @@ namespace PrendaSAL.Movimientos
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        //if (dbCierre.reactivarContratoPRENDASAL(CONTRATO, HOME.Instance().FECHA_SISTEMA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        //{
-                        //    buscarContrato(CONTRATO.DOCUMENTO);
-                        //}
+                        if (dbVencidos.reactivar(PAC.CONTRATO.ID_PRESTAMO, HOME.Instance().FECHA_SISTEMA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            if (buscarContrato(PAC.CONTRATO.DOCUMENTO))
+                            {
+                                cargarDatosContrato(); 
+                            }
+                        }
                     }else{
                          MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
@@ -834,7 +839,8 @@ namespace PrendaSAL.Movimientos
                 if (buscarContrato(RECIBO.CONTRATO.DOCUMENTO))
                 {
                     cargarDatosContrato();
-                    tblHistorialPAC.CurrentCell = this.tblHistorialPAC[PAC.CONTRATO.HISTORIAL_PAC.Rows.Count - 1, 0];
+                    tblHistorialPAC.CurrentCell = this.tblHistorialPAC[0, PAC.CONTRATO.HISTORIAL_PAC.Rows.Count - 1];
+                    tblHistorialA_CellClick(null, null);
                     if (SELECTED != null)
                     {
                         if (SELECTED.INTERES <= 0)
@@ -848,7 +854,7 @@ namespace PrendaSAL.Movimientos
                             {
                                 numFactura = Controles.InputBox("Se imprimirá la FCF N° : ", "FACTURA CONSUMIDOR FINAL");
                             }
-                            dbPAC.changeFCF(RECIBO.ID_PAC, numFactura);
+                            dbPAC.changeFCF(SELECTED.ID_PAC, numFactura);
                             ImprimirFactura();
                         }
                     }
@@ -914,9 +920,9 @@ namespace PrendaSAL.Movimientos
             viewerRECIBO.Clear();
             if (SELECTED != null && SELECTED.INTERES <= 0)
             {
-                Sucursal SUC = Sucursal.ConverterToSucursal(HOME.Instance().datSUCURSALES.Rows[cbxSUCURSAL.SelectedIndex]);
+                Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
                 //IMPRIMIR RECIBO
-                ReportParameter[] parameters = new ReportParameter[17];
+                ReportParameter[] parameters = new ReportParameter[19];
                 parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);
                 parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
                 parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
@@ -925,16 +931,31 @@ namespace PrendaSAL.Movimientos
                 parameters[5] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.getArticulosText());
                 parameters[6] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
                 parameters[7] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
-                parameters[8] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
-                parameters[9] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
-                parameters[10] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
-                parameters[11] = new ReportParameter("PeriodoPagado", " Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
-                parameters[12] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE);
-                parameters[13] = new ReportParameter("FechaPago", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
-                parameters[14] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+                parameters[8] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
+                parameters[9] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
+                parameters[10] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
+                parameters[11] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
+                parameters[12] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
+                parameters[13] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE);
+                parameters[14] = new ReportParameter("FechaPago", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
                 parameters[15] = new ReportParameter("NumCONTRATO", SELECTED.CONTRATO.DOCUMENTO);
                 parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
-
+                if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+                {
+                    parameters[17] = new ReportParameter("PeriodoPagado", "Prorroga:(" + SELECTED.MESES + " Meses - " + SELECTED.DIAS + " Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+                }
+                else
+                {
+                    parameters[17] = new ReportParameter("PeriodoPagado", "------------");
+                }
+                if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
+                {
+                    parameters[18] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
+                }
+                else
+                {
+                    parameters[18] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+                }
                 viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ReciboPAC.rdlc";
                 viewerRECIBO.LocalReport.SetParameters(parameters);
                 viewerRECIBO.RefreshReport();
@@ -950,7 +971,7 @@ namespace PrendaSAL.Movimientos
             viewerRECIBO.Clear();
             if (SELECTED != null && SELECTED.INTERES > 0)
             {
-                Sucursal SUC = Sucursal.ConverterToSucursal(HOME.Instance().datSUCURSALES.Rows[cbxSUCURSAL.SelectedIndex]);
+                Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
                 dSItemFCF.Clear();
                 dSItemFCF.ITEM.AddITEMRow("", SELECTED.MESES + " Meses " + SELECTED.DIAS + " Dias " + " INTERES Cto #" + SELECTED.CONTRATO.DOCUMENTO, SELECTED.INTERES);
                 if (SELECTED.DESCUENTO > 0)
@@ -969,11 +990,10 @@ namespace PrendaSAL.Movimientos
                 {
                     dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
                 }
-                dSItemFCF.ITEM.AddITEMRow("", " CANCELACION Cto #" + SELECTED.CONTRATO.DOCUMENTO, Decimal.Zero);
                 switch(SELECTED.TIPO)
                 {
                     case eTipoMovPac.CANCELACION:
-                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                        dSItemFCF.ITEM.AddITEMRow("", eTipoMovPac.CANCELACION.ToString(), Decimal.Zero);
                         dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
                         break;
                     case eTipoMovPac.ABONO:
@@ -987,14 +1007,15 @@ namespace PrendaSAL.Movimientos
                 }
                 bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                ReportParameter[] parameters = new ReportParameter[7];
-                parameters[0] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-                parameters[1] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                parameters[2] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                parameters[3] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                parameters[4] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                parameters[5] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                parameters[6] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
+                ReportParameter[] parameters = new ReportParameter[8];
+                parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
+                parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                parameters[5] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                parameters[6] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
 
                 viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
                 viewerRECIBO.LocalReport.DataSources.Clear();
@@ -1020,18 +1041,35 @@ namespace PrendaSAL.Movimientos
         {
             //IMPRIMIR DETALLE AL REVERSO DE LA FACTURA
             viewerRECIBO.Clear();
-            ReportParameter[] parameters = new ReportParameter[11];
-            parameters[0] = new ReportParameter("CONTRATO", SELECTED.CONTRATO.DOCUMENTO);
-            parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-            parameters[2] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.getArticulosText());
-            parameters[3] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
-            parameters[4] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
-            parameters[5] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
-            parameters[6] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
-            parameters[7] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
-            parameters[8] = new ReportParameter("PeriodoPagado", " Del" + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
-            parameters[9] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
-            parameters[10] = new ReportParameter("numRECIBO", SELECTED.RECIBO);
+            ReportParameter[] parameters = new ReportParameter[13];
+            parameters[0] = new ReportParameter("numRECIBO", SELECTED.RECIBO);
+            parameters[1] = new ReportParameter("CONTRATO", SELECTED.CONTRATO.DOCUMENTO);
+            parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+            parameters[3] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.getArticulosText());
+            parameters[4] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
+            parameters[5] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
+            parameters[6] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
+            parameters[7] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
+            parameters[8] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
+            parameters[9] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
+            parameters[10] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
+            if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+            {
+                parameters[11] = new ReportParameter("PeriodoPagado", "Prorroga:("+SELECTED.MESES+" Meses - "+SELECTED.DIAS+" Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+            }
+            else
+            {
+                parameters[11] = new ReportParameter("PeriodoPagado", "------------");
+            }
+            if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
+            {
+                parameters[12] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
+            }
+            else
+            {
+                parameters[12] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+            }
+            
 
             viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Reverse.rdlc";
             viewerRECIBO.LocalReport.SetParameters(parameters);

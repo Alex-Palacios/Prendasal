@@ -12,25 +12,25 @@ namespace MODELO
     {
         NON = -1,
         ABRIR_PERIODO =0,
-        BALANCE_INICIAL,
-        INVENTARIO_INICIAL,
-        CxC_INICIAL,
-        PARTIDA_DIARIA,
-        COMPRA,
-        PAGO,
-        DEVOLUCION_COMPRA,
-        VENTA,
-        COBRO,
-        DEVOLUCION_VENTA,
-        PRESTAMO,
-        PAC,
-        MOV_CASH,
-        IMPORTACION,
-        ENVIO,
-        CIERRE,
-        APERTURA_CAJA,
-        CORTE_DIARIO,
-        REACTIVACION
+        BALANCE_INICIAL =1,
+        INVENTARIO_INICIAL =2,
+        CxC_INICIAL =3,
+        PARTIDA_DIARIA =4,
+        COMPRA = 5,
+        PAGO =6,
+        DEVOLUCION_COMPRA =7,
+        VENTA =8,
+        COBRO = 9,
+        DEVOLUCION_VENTA = 10,
+        PRESTAMO =11,
+        PAC =12,
+        MOV_CASH =13,
+        IMPORTACION =14,
+        ENVIO =15,
+        CIERRE =16,
+        APERTURA_CAJA =17,
+        CORTE_DIARIO =18,
+        REACTIVACION =19
     }
 
 
@@ -161,6 +161,8 @@ namespace MODELO
 
 
 
+
+
     public enum eTipoFactura
     {
         FCF,
@@ -169,13 +171,20 @@ namespace MODELO
 
 
 
-
-
     public enum eTipoMovInv
     {
         ENTRADA = 1,
         SALIDA = 2
     }
+
+
+
+    public enum eTipoVenta
+    {
+        CREDITO = 1,
+        CONTADO
+    }
+
 
 
     public class Transaccion

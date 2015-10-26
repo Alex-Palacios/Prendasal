@@ -22,7 +22,7 @@ namespace PrendaSAL.Operaciones
         //VARIABLES
         private DBPRENDASAL dbPrendasal;
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private DBCatalogo dbCatalogo;
         private Inventario SELECTED;
 
@@ -36,7 +36,7 @@ namespace PrendaSAL.Operaciones
             ACCION = eOperacion.INSERT;
             dbPrendasal = new DBPRENDASAL();
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
             dbCatalogo = new DBCatalogo();
         }
 
@@ -48,7 +48,7 @@ namespace PrendaSAL.Operaciones
             dbPrendasal = new DBPRENDASAL();
             SELECTED = item;
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
             dbCatalogo = new DBCatalogo();
             
         }
@@ -280,11 +280,11 @@ namespace PrendaSAL.Operaciones
                         autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
-                            if (dbInventario.registrarInvInicialPRENDASAL(i, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                            {
-                                CorteInvInicialForm.Instance().cargarInventarioInicial();
-                                this.Close();
-                            }
+                            //if (dbInventario.insertInvInicialPRENDASAL(i, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                            //{
+                            //    CorteInvInicialForm.Instance().cargarInventarioInicial();
+                            //    this.Close();
+                            //}
                         }
                         else
                         {
@@ -301,11 +301,11 @@ namespace PrendaSAL.Operaciones
                    autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbInventario.editarInvInicialPRENDASAL(i, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            CorteInvInicialForm.Instance().cargarInventarioInicial();
-                            this.Close();
-                        }
+                        //if (dbInventario.updateInvInicialPRENDASAL(i, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    CorteInvInicialForm.Instance().cargarInventarioInicial();
+                        //    this.Close();
+                        //}
                     }
                     else
                     {

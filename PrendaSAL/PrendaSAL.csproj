@@ -388,12 +388,6 @@
     <Compile Include="Operaciones\ItemInicial.Designer.cs">
       <DependentUpon>ItemInicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\ListaVencPDF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operaciones\ListaVencPDF.Designer.cs">
-      <DependentUpon>ListaVencPDF.cs</DependentUpon>
-    </Compile>
     <Compile Include="Operaciones\RecibirInvForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,12 +399,6 @@
     </Compile>
     <Compile Include="Operaciones\RemisionForm.Designer.cs">
       <DependentUpon>RemisionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operaciones\VencidosForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operaciones\VencidosForm.Designer.cs">
-      <DependentUpon>VencidosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -564,9 +552,10 @@
     <EmbeddedResource Include="HOME.resx">
       <DependentUpon>HOME.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Informes\ContratoCompra2.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo2.rdlc" />
     <EmbeddedResource Include="Informes\KPM.rdlc" />
-    <EmbeddedResource Include="Informes\ContratoCompra.rdlc" />
+    <EmbeddedResource Include="Informes\ContratoCompra1.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo1.rdlc" />
     <EmbeddedResource Include="Informes\ContratosCancelados.rdlc" />
     <EmbeddedResource Include="Informes\CustodiaValores.rdlc" />
@@ -631,17 +620,11 @@
     <EmbeddedResource Include="Operaciones\ItemInicial.resx">
       <DependentUpon>ItemInicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\ListaVencPDF.resx">
-      <DependentUpon>ListaVencPDF.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\RecibirInvForm.resx">
       <DependentUpon>RecibirInvForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\RemisionForm.resx">
       <DependentUpon>RemisionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\VencidosForm.resx">
-      <DependentUpon>VencidosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

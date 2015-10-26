@@ -118,7 +118,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> Términos: a) Al cancelar el contrato se pagará al vencimiento, en un solo abono que comprende capital e intereses; no obstante, el cliente podrá hacer abonos anticipados, b) Cualquier pago que se haga por parte del cliente será aplicado primero a intereses y el saldo a capital. Es expresamente entendido que si el cliente al vencimiento del plazo o, en forma anticipada abona la totalidad de los intereses, el plazo del contrato se prorrogará si el cliente lo desea, por el mismo plazo inicial. c) cuando ocurre el pago de la cantidad mutuada y los respectivos intereses, el cliente podrá recuperar los bienes dados en prenda en lugar, día y hora que se le indique por parte de Grupo D´DICARK.  Es expresamente entendido que los bienes pignorados solamente serán entregados al cliente o a un apoderado con facultades suficientes, a discreción de Grupo D´DICARK. </Value>
+                <Value> Términos: a) Al cancelar el contrato se pagará al vencimiento, en un solo abono que comprende capital e intereses; el cliente no podrá hacer abonos anticipados, ni prorrogas por el mismo plazo inicial, se reitera que será un solo pago al vencimiento del plazo, b) Cualquier pago que se haga por parte del cliente será aplicado primero a intereses y el saldo a capital. Es expresamente entendido que si el cliente al vencimiento del plazo o, en forma anticipada abona la totalidad de los intereses, el plazo del contrato se prorrogará si el cliente lo desea, por el mismo plazo inicial. c) cuando ocurre el pago de la cantidad mutuada y los respectivos intereses, el cliente podrá recuperar los bienes dados en prenda en lugar, día y hora que se le indique por parte de Grupo D´DICARK.  Es expresamente entendido que los bienes pignorados solamente serán entregados al cliente o a un apoderado con facultades suficientes, a discreción de Grupo D´DICARK. </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Calibri</FontFamily>
@@ -333,9 +333,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>3.57243cm</Top>
+        <Top>3.50187cm</Top>
         <Left>0.71279cm</Left>
-        <Height>9.42743cm</Height>
+        <Height>9.49799cm</Height>
         <Width>20.20062cm</Width>
         <Style>
           <Border>
@@ -423,7 +423,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>BOLETA No:  </Value>
+                <Value>BOLETA "C" No:  </Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>12pt</FontSize>

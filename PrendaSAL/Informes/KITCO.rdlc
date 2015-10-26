@@ -312,8 +312,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>KITCO</DataSetName>
-        <Top>0.28787cm</Top>
-        <Left>0.59244cm</Left>
+        <Top>0.57891cm</Top>
+        <Left>0.90994cm</Left>
         <Height>1.2cm</Height>
         <Width>5.76667cm</Width>
         <Style>
@@ -323,10 +323,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.73161in</Height>
+    <Height>0.89828in</Height>
     <Style />
   </Body>
-  <Width>2.68067in</Width>
+  <Width>3.08692in</Width>
   <Page>
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>

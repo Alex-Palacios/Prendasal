@@ -14,6 +14,7 @@ namespace PrendaSAL.Operaciones
     using MODELO;
     using DDB;
     using ControlesPersonalizados;
+    using Microsoft.Reporting.WinForms;
 
     public partial class ListaVencidosForm : Form
     {
@@ -93,6 +94,7 @@ namespace PrendaSAL.Operaciones
         {
             permisos();
             tblCONTRATOS.AutoGenerateColumns = false;
+            tblKPM.AutoGenerateColumns = false;
 
             cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
             if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
@@ -102,6 +104,13 @@ namespace PrendaSAL.Operaciones
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
 
+            List<string> cat = new List<string>();
+            cat.Add("TODAS");
+            cat.Add(eCategoria.ARTICULO.ToString());
+            cat.Add(eCategoria.ORO.ToString());
+            cbxCategorias.DataSource = cat;
+
+            
             NUEVO(null, null);
         }
 
@@ -148,11 +157,14 @@ namespace PrendaSAL.Operaciones
 
             btnGuardar.Enabled = true;
             btnCancelar.Enabled = true;
-            btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             btnLog.Enabled = false;
             btnReimprimir.Enabled = false;
-            
+
+            numDIAS.Enabled = true;
+            cbxCategorias.Enabled = true;
+            btnLISTAR.Enabled = true;
+
         }
 
 
@@ -160,8 +172,16 @@ namespace PrendaSAL.Operaciones
 
         private void btnLISTAR_Click(object sender, EventArgs e)
         {
-            VencidosForm verVencidos = new VencidosForm();
-            verVencidos.ShowDialog(this);
+            if (cbxCategorias.Text == "TODAS")
+            {
+                LISTA.CONTRATOS_VENCIDOS = dbVencidos.getVencidos((string)cbxSUCURSAL.SelectedValue, (int)numDIAS.Value,null);
+            }
+            else
+            {
+                LISTA.CONTRATOS_VENCIDOS = dbVencidos.getVencidos((string)cbxSUCURSAL.SelectedValue, (int)numDIAS.Value, (eCategoria)Enum.Parse(typeof(eCategoria), cbxCategorias.Text));
+            }
+            tblCONTRATOS.DataSource = LISTA.CONTRATOS_VENCIDOS;
+
         }
 
 
@@ -175,19 +195,20 @@ namespace PrendaSAL.Operaciones
                 txtResponsable.Text = LISTA.RESPONSABLE;
                 txtNOTA.Text = LISTA.NOTA;
                 tblCONTRATOS.DataSource = LISTA.CONTRATOS_VENCIDOS;
-
+                tblKPM.DataSource = LISTA.KPM;
+                
                 lbCONTRATOS.Text = LISTA.VENCIDOS + " VENCIDOS";
                 lbREACTIVADOS.Text = LISTA.REACTIVADOS + " REACTIVADOS";
                 lbTOTAL.Text = LISTA.TOTAL + " CONTRATOS";
-                //cargar KPM
-
-
+                
             }
             else
             {
                 limpiarDatosListaVencidos();
             }
         }
+
+
 
 
         private void cbxSUCURSAL_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,7 +342,12 @@ namespace PrendaSAL.Operaciones
             {
                 if (buscarListaVencidos(numLIST))
                 {
+                    
                     MessageBox.Show("LISTA DE VENCIDOS CARGADA", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    numDIAS.Enabled = false;
+                    cbxCategorias.Enabled = false;
+                    btnLISTAR.Enabled = false;
                 }
                 else
                 {
@@ -340,6 +366,7 @@ namespace PrendaSAL.Operaciones
             if (SELECTED != null)
             {
                 SELECTED.CONTRATOS_VENCIDOS = dbVencidos.getItemsVencidos(SELECTED);
+                SELECTED.KPM = dbVencidos.getKPMVencidos(SELECTED);
                 LISTA = SELECTED.Copy();
                 cargarListaVencido();
                 bloquear();
@@ -347,7 +374,6 @@ namespace PrendaSAL.Operaciones
 
                 btnGuardar.Enabled = false;
                 btnCancelar.Enabled = false;
-                btnEditar.Enabled = true;
                 btnEliminar.Enabled = true;
                 btnLog.Enabled = true;
                 btnReimprimir.Enabled = true;
@@ -361,21 +387,67 @@ namespace PrendaSAL.Operaciones
 
 
 
+
+
         private void IMPRIMIR(object sender, EventArgs e)
         {
+            viewerLISTAVENC.Clear();
             if (SELECTED != null)
             {
-                ListaVencPDF printerLista = new ListaVencPDF(SELECTED);
-                printerLista.MdiParent = HOME.Instance();
-                printerLista.Show();
-                if (printerLista.WindowState == FormWindowState.Minimized)
+                try
                 {
-                    printerLista.WindowState = FormWindowState.Normal;
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    dSListaVenc.Clear();
+                    dSKPM.Clear();
+                    foreach(DataRow row in SELECTED.CONTRATOS_VENCIDOS.Rows)
+                    {
+                        dSListaVenc.LISTA_VENC.AddLISTA_VENCRow(row.Field<bool>("REACTIVADO"), row.Field<string>("CONTRATO"), row.Field<string>("CLIENTE"), row.Field<string>("CATEGORIA"), row.Field<string>("ARTICULO"), row.Field<decimal>("PRESTAMO"), row.Field<decimal>("SALDO"), row.Field<string>("ESTADO_CONTRATO"), row.Field<Int64>("DIAS_VENC"));
+                    }
+                    bsListaVenc.DataSource = dSListaVenc.LISTA_VENC;
+
+                    foreach (DataRow row in SELECTED.KPM.Rows)
+                    {
+                        dSKPM.KPM.AddKPMRow(row.Field<string>("KILATAJE"), row.Field<decimal>("PESO"), row.Field<decimal>("MONTO"));
+                    }
+                    bsKPM.DataSource = dSKPM.KPM;
+
+                    ReportParameter[] parameters = new ReportParameter[8];
+                    parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[1] = new ReportParameter("docVenc", SELECTED.DOCUMENTO);
+                    parameters[2] = new ReportParameter("fechaVenc", SELECTED.FECHA.ToString("dd/MM/yyyy"));
+                    parameters[3] = new ReportParameter("responsable", SELECTED.RESPONSABLE);
+                    parameters[4] = new ReportParameter("VENCIDOS", SELECTED.VENCIDOS.ToString());
+                    parameters[5] = new ReportParameter("REACTIVADOS", SELECTED.REACTIVADOS.ToString());
+                    parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString());
+                    parameters[7] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                    viewerLISTAVENC.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ListaVencidos.rdlc";
+                    viewerLISTAVENC.LocalReport.DataSources.Clear();
+                    viewerLISTAVENC.LocalReport.DataSources.Add(new ReportDataSource("CONTRATOS", bsListaVenc));
+                    viewerLISTAVENC.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubInformeKPMHandler);
+                    viewerLISTAVENC.LocalReport.SetParameters(parameters);
+                    viewerLISTAVENC.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n"+ex.Message , "ERROR AL IMPRIMIR LISTA DE VENCIDO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
 
+
+        private void SubInformeKPMHandler(object sender, SubreportProcessingEventArgs e)
+        {
+            e.DataSources.Add(new ReportDataSource("KPM", bsKPM));
+        }
+
+        private void ShowPrintDialog(object sender, RenderingCompleteEventArgs e)
+        {
+            if (e != null)
+            {
+                viewerLISTAVENC.PrintDialog();
+            }
+        }
 
 
         private void LOG(object sender, EventArgs e)

@@ -142,11 +142,6 @@
                   <GroupExpression>=Fields!KILATAJE.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!KILATAJE.Value</Value>
-                </SortExpression>
-              </SortExpressions>
               <TablixHeader>
                 <Size>0.6cm</Size>
                 <CellContents>
@@ -194,7 +189,7 @@
                 </GroupExpressions>
               </Group>
               <TablixHeader>
-                <Size>1.70056cm</Size>
+                <Size>0.95281cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox3">
                     <CanGrow>true</CanGrow>
@@ -203,7 +198,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>COMPRAS</Value>
+                            <Value>ORO</Value>
                             <Style>
                               <FontSize>8pt</FontSize>
                               <FontWeight>Bold</FontWeight>
@@ -211,7 +206,7 @@
                           </TextRun>
                         </TextRuns>
                         <Style>
-                          <TextAlign>Right</TextAlign>
+                          <TextAlign>Center</TextAlign>
                         </Style>
                       </Paragraph>
                     </Paragraphs>
@@ -238,15 +233,10 @@
         </TablixRowHierarchy>
         <KeepTogether>true</KeepTogether>
         <DataSetName>KPM</DataSetName>
-        <SortExpressions>
-          <SortExpression>
-            <Value>=Len(Fields!KILATAJE.Value)</Value>
-          </SortExpression>
-        </SortExpressions>
-        <Top>0.40969cm</Top>
-        <Left>0.30082cm</Left>
+        <Top>0.26458cm</Top>
+        <Left>0.26458cm</Left>
         <Height>1.8cm</Height>
-        <Width>3.39358cm</Width>
+        <Width>2.64583cm</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -256,10 +246,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.61938cm</Height>
+    <Height>2.24896cm</Height>
     <Style />
   </Body>
-  <Width>4.10105cm</Width>
+  <Width>3.175cm</Width>
   <Page>
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
@@ -293,7 +283,7 @@
         </Field>
         <Field Name="PESO">
           <DataField>PESO</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="MONTO">
           <DataField>MONTO</DataField>

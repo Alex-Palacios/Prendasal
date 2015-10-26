@@ -18,7 +18,8 @@ namespace PrendaSAL.Movimientos
     public partial class ConfirmarVenta : Form
     {
         private DBUsuario dbUser;
-        private VentaController dbVenta;
+        private DBVenta dbVenta;
+
         private Venta VENTA;
         private eOperacion ACCION;
 
@@ -27,7 +28,7 @@ namespace PrendaSAL.Movimientos
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbVenta = new VentaController();
+            dbVenta = new DBVenta();
             ACCION = operacion;
             VENTA = v;
             mostrarDatos();
@@ -37,9 +38,9 @@ namespace PrendaSAL.Movimientos
         {
             if (VENTA != null)
             {
-                lbDOCUMENTO.Text = VENTA.TIPO_DOC.ToString() + " " +VENTA.DOCUMENTO;
+                lbNUMVENTA.Text = VENTA.NUMVENTA;
                 lbFECHA.Text = VENTA.FECHA.ToString("dd/MM/yyyy");
-                lbCLIENTE.Text = VENTA.CLIENTE.CLIENTE;
+                lbCLIENTE.Text = VENTA.CLIENTE;
                 lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
                 lbDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
                 lbTOTAL.Text = VENTA.TOTAL.ToString("C2");
@@ -70,31 +71,24 @@ namespace PrendaSAL.Movimientos
             string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
             if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
             {
+                VENTA.DOCUMENTO = VENTA.NUMVENTA;
+                VENTA.IVA_ING = Decimal.Round(VENTA.SUMAS * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
+                VENTA.IVA_DESC = Decimal.Round(VENTA.DESCUENTO * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
                 switch (ACCION)
                 {
                     case eOperacion.INSERT:
 
-                        if (dbVenta.registrarVentaPRENDASAL(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        if (dbVenta.insert(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                         {
-                            VentasForm.Instance().buscarVenta(VENTA.FECHA,VENTA.TIPO_DOC,VENTA.DOCUMENTO);
-                            VentasForm.Instance().ImprimirFactura();
+                            VentasForm.Instance().IMPRIMIR(VENTA);
                             this.Close();
                         }
                         break;
                     case eOperacion.UPDATE:
-                        string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                        if (cambioNota.Trim() != "")
+                        if (dbVenta.update(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                         {
-                            VENTA.NOTA_CAMBIO = cambioNota;
-                            if (dbVenta.editarVentaPRENDASAL(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                            {
-                                VentasForm.Instance().buscarVenta(VENTA.FECHA,VENTA.TIPO_DOC,VENTA.DOCUMENTO);
-                                this.Close();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA MODIFICACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            ComprasForm.Instance().buscarCompra(VENTA.NUMVENTA);
+                            this.Close();
                         }
                         break;
 

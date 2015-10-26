@@ -604,8 +604,10 @@
             this.ABONO,
             this.TOTAL});
             this.tblHistorialPAC.Location = new System.Drawing.Point(3, 14);
+            this.tblHistorialPAC.MultiSelect = false;
             this.tblHistorialPAC.Name = "tblHistorialPAC";
             this.tblHistorialPAC.ReadOnly = true;
+            this.tblHistorialPAC.RowHeadersVisible = false;
             this.tblHistorialPAC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblHistorialPAC.Size = new System.Drawing.Size(827, 164);
             this.tblHistorialPAC.TabIndex = 0;

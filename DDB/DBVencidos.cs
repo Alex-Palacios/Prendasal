@@ -27,13 +27,11 @@ namespace DDB
             foreach (DataRow row in venc.CONTRATOS_VENCIDOS.Rows)
             {
                 items = items + row.Field<int>("ID_PRESTAMO") + ">" 
-                            + row.Field<string>("COD_TRANS") + ">"
-                            + row.Field<DateTime>("FECHA") + ">" 
-                            + row.Field<string>("DOCUMENTO") + ">"
-                            + row.Field<string>("COD_SUC") + "&";
+                            + row.Field<string>("CONTRATO") + "&";
             }
             return items;
         }
+
 
 
 
@@ -88,58 +86,6 @@ namespace DDB
 
 
 
-
-        public bool update(Vencidos venc, string sucursal, string empleado, string sistema)
-        {
-            bool OK = true;
-            try
-            {
-                string sql = "prendasal.SP_UPDATE_LISTAVENC";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter idvenc = cmd.Parameters.Add("idvenc", MySqlDbType.Int32);
-                idvenc.Direction = ParameterDirection.Input;
-                MySqlParameter suc_venc = cmd.Parameters.Add("suc_venc", MySqlDbType.VarChar, 2);
-                suc_venc.Direction = ParameterDirection.Input;
-                MySqlParameter fecha_venc = cmd.Parameters.Add("fecha_venc", MySqlDbType.Date);
-                fecha_venc.Direction = ParameterDirection.Input;
-                MySqlParameter doc_venc = cmd.Parameters.Add("doc_venc", MySqlDbType.VarChar, 20);
-                doc_venc.Direction = ParameterDirection.Input;
-                MySqlParameter nota_venc = cmd.Parameters.Add("nota_venc", MySqlDbType.VarChar, 100);
-                nota_venc.Direction = ParameterDirection.Input;
-
-                MySqlParameter items_venc = cmd.Parameters.Add("items_venc", MySqlDbType.LongText);
-                items_venc.Direction = ParameterDirection.Input;
-
-                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
-                emp.Direction = ParameterDirection.Input;
-                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
-                sys.Direction = ParameterDirection.Input;
-
-                idvenc.Value = venc.ID_VENC;
-                suc_venc.Value = venc.COD_SUC;
-                fecha_venc.Value = venc.FECHA.Date;
-                doc_venc.Value = venc.DOCUMENTO;
-                nota_venc.Value = venc.NOTA;
-
-                items_venc.Value = buildItemsVencidos(venc);
-
-                suc.Value = sucursal;
-                emp.Value = empleado;
-                sys.Value = sistema;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("LISTA DE VENCIDOS ACTUALIZADA CORRECTAMENTE", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                OK = false;
-                MessageBox.Show(e.Message, "ERROR AL GENERAR LISTA DE VENCIDOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return OK;
-        }
 
 
 
@@ -265,6 +211,41 @@ namespace DDB
 
 
 
+        public DataTable getVencidos(string codsuc, int diastrans,eCategoria? categoria)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.SP_GET_VENCIDOS;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter dias = cmd.Parameters.Add("dias", MySqlDbType.Int32);
+                dias.Direction = ParameterDirection.Input;
+                MySqlParameter cat = cmd.Parameters.Add("cat", MySqlDbType.VarChar,20);
+                cat.Direction = ParameterDirection.Input;
+                
+                suc.Value = codsuc;
+                dias.Value = diastrans;
+                cat.Value = categoria.ToString();
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR CONTRATOS VENCIDOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            return datos;
+        }
+
 
 
         public DataRow getListaVencByDoc(string doc)
@@ -308,18 +289,19 @@ namespace DDB
 
 
 
-        public void reactivarContrato(string contrato,DateTime fechaR, string sucursal, string empleado, string sistema)
+        public bool reactivar(int prestamo,DateTime fecha, string sucursal, string empleado, string sistema)
         {
+            bool OK = true;
             try
             {
                 string sql = "prendasal.SP_REACTIVAR_CONTRATO";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                MySqlParameter prestamo = cmd.Parameters.Add("contrato", MySqlDbType.VarChar,20);
-                prestamo.Direction = ParameterDirection.Input;
-                MySqlParameter fecha = cmd.Parameters.Add("fechaR", MySqlDbType.Date);
-                fecha.Direction = ParameterDirection.Input;
+                MySqlParameter idprestamo = cmd.Parameters.Add("idprestamo", MySqlDbType.Int32);
+                idprestamo.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_r = cmd.Parameters.Add("fecha_r", MySqlDbType.Date);
+                fecha_r.Direction = ParameterDirection.Input;
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
                 MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
@@ -327,21 +309,22 @@ namespace DDB
                 MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
                 sys.Direction = ParameterDirection.Input;
 
-                prestamo.Value = contrato;
-                fecha.Value = fechaR.Date;
+                idprestamo.Value = prestamo;
+                fecha_r.Value = fecha.Date;
 
                 suc.Value = sucursal;
                 emp.Value = empleado;
                 sys.Value = sistema;
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("CONTRATO #"+contrato+" HA SIDO REACTIVADO", "REACTIVACION DE CONTRATO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("CONTRATO HA SIDO REACTIVADO ", "REACTIVACION DE CONTRATO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL REACTIVAR CONTRATO #" + contrato + "\nDetalle: " + e.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL REACTIVAR CONTRATO ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return OK;
         }
 
 

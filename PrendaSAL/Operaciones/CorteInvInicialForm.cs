@@ -12,7 +12,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -33,7 +32,7 @@ namespace PrendaSAL.Operaciones
 
         //VARIABLES
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private DataTable INVENTARIO;
         private Inventario SELECTED;
 
@@ -41,7 +40,7 @@ namespace PrendaSAL.Operaciones
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
             tblInventario.AutoGenerateColumns = false;
         }
 
@@ -77,7 +76,7 @@ namespace PrendaSAL.Operaciones
 
         public void cargarInventarioInicial()
         {
-            INVENTARIO = dbInventario.INVENTARIO_INICIAL_PRENDASAL();
+            //INVENTARIO = dbInventario.INVENTARIO_INICIAL_PRENDASAL();
             tblInventario.DataSource = INVENTARIO;
 
             btnEditar.Enabled = false;
@@ -149,10 +148,10 @@ namespace PrendaSAL.Operaciones
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbInventario.eliminarInvInicialPrestamoPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            cargarInventarioInicial();
-                        }
+                        //if (dbInventario.eliminarInvInicialPrestamoPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    cargarInventarioInicial();
+                        //}
                     }
                     else
                     {

@@ -1,9 +1,10 @@
-﻿namespace PrendaSAL.Informes
+﻿
+namespace PrendaSAL.Informes
 {
     
     
-    public partial class DSCierre {
-        partial class LISTA_CIERREDataTable
+    public partial class DSListaVenc {
+        partial class LISTA_VENCDataTable
         {
         }
     }

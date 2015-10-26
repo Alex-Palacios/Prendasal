@@ -20,7 +20,7 @@ namespace PrendaSAL.Reportes
     {
 
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private Inventario SELECTED;
 
         private eOperacion ACCION;
@@ -31,7 +31,7 @@ namespace PrendaSAL.Reportes
             ACCION = eOperacion.UPDATE;
             SELECTED = item;
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
         }
 
 
@@ -122,11 +122,11 @@ namespace PrendaSAL.Reportes
                 {
                     SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();
                     SELECTED.PRECIO = Decimal.Parse(txtPRECIO.Text.Trim());
-                    if (dbInventario.editarArticuloVentaPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                    {
-                        RInvVentaForm.Instance().recargar();
-                        this.Close();
-                    }
+                    //if (dbInventario.updateArticuloVentaPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                    //{
+                    //    RInvVentaForm.Instance().recargar();
+                    //    this.Close();
+                    //}
                 }
                 else
                 {

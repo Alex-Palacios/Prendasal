@@ -21,40 +21,55 @@ namespace DDB
             conn = DBConexion.Instance();
         }
 
+        //EXISTENCIAS
 
-
-        public DataTable getExistenciasPRENDASAL(string sucursal,string categoria,string articulo)
+        public DataTable getExistenciasORO()
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_existencias WHERE CATEGORIA != 'X' ";
-                if (sucursal != "00")
+                string sql = "SELECT * FROM prendasal.view_inv_oro;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    sql = sql + "AND COD_SUC = @suc ";
+                    datos.Load(reader);
                 }
-                if (categoria != "TODAS")
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ORO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+        
+        public DataTable getExistenciasARTICULOS(string sucursal)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = string.Empty;
+                if(sucursal == "00"){
+                    sql = "SELECT * FROM prendasal.view_inv_articulos;";
+                }
+                else
                 {
-                    sql = sql + "AND CATEGORIA = @cat ";
+                    sql = "SELECT * FROM prendasal.view_inv_articulos WHERE COD_SUC = @suc";
                 }
-                if (articulo != "TODAS")
-                {
-                    sql = sql + "AND ARTICULO = @item ";
-                }
-                sql = sql + "ORDER BY CODIGO;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
-                MySqlParameter cat = cmd.Parameters.Add("cat", MySqlDbType.VarChar, 50);
-                cat.Direction = ParameterDirection.Input;
-                MySqlParameter item = cmd.Parameters.Add("item", MySqlDbType.VarChar, 100);
-                item.Direction = ParameterDirection.Input;
 
                 suc.Value = sucursal;
-                cat.Value = categoria;
-                item.Value = articulo;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -65,101 +80,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS PRENDASAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
-
-
-
-
-        public DataTable getExistenciasByCodigoPRENDASAL(string codigo)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM prendasal.view_existencias WHERE CATEGORIA != 'X' AND CODIGO LIKE @contrato ORDER BY CODIGO;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter contrato = cmd.Parameters.Add("contrato", MySqlDbType.VarChar,25);
-                contrato.Direction = ParameterDirection.Input;
-                
-                contrato.Value = codigo + "%";
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS PRENDASAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
-
-
-
-
-
-
-        public DataTable getExistenciasBySucPRENDASAL(string suc)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM prendasal.view_existencias WHERE CATEGORIA != 'X' AND COD_SUC = @sucursal ORDER BY CODIGO;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-
-                sucursal.Value = suc;
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS PRENDASAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
-
-
-
-        public DataTable getExistenciasByVentaPRENDASAL(string suc)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM prendasal.view_existencias WHERE CATEGORIA != 'ORO' AND COD_SUC = @sucursal ORDER BY CODIGO;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-
-                sucursal.Value = suc;
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS PRENDASAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ARTICULOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -170,7 +91,7 @@ namespace DDB
 
 
 
-
+        // INVENTARIO EN CUSTODIA DE VALORES
 
         public DataTable getArticulosCustodiaPRENDASAL(string sucursal, string categoria, string articulo)
         {
@@ -287,6 +208,8 @@ namespace DDB
 
 
 
+
+        //TRASLADOS DE INVENTARIO
 
 
         public DataTable getItemsTraslado(Traslado traslado)
@@ -611,6 +534,9 @@ namespace DDB
 
 
 
+
+
+        //INVENTARIO INICIAL
 
 
 

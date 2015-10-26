@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -32,7 +31,7 @@ namespace PrendaSAL.Operaciones
 
         //VARIABLES
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private DataTable VALORES_CUSTODIA;
         private DataTable INVENTARIO;
         private DataTable SELECCION_CUSTODIA;
@@ -42,7 +41,7 @@ namespace PrendaSAL.Operaciones
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
         }
 
         private void permisos()
@@ -101,11 +100,11 @@ namespace PrendaSAL.Operaciones
                 switch (tabControlEnvio.SelectedTab.Name)
                 {
                     case "pagCustodia":
-                        VALORES_CUSTODIA = dbInventario.CUSTODIA_BY_SUCURSAL_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
+                        //VALORES_CUSTODIA = dbInventario.CUSTODIA_BY_SUCURSAL_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
                         tblCustodia.DataSource = VALORES_CUSTODIA;
                         break;
                     case "pagRemision":
-                        INVENTARIO = dbInventario.EXISTENCIAS_BY_SUCURSAL_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
+                        //INVENTARIO = dbInventario.EXISTENCIAS_BY_SUCURSAL_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
                         tblInventario.DataSource = INVENTARIO;
                         break;
                 }

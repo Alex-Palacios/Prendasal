@@ -3,7 +3,6 @@
   <Body>
     <ReportItems>
       <Textbox Name="Textbox7">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -86,6 +85,23 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value>Descuento       :     </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!Descuento.Value</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>Abono a Capital:    </Value>
                 <Style />
               </TextRun>
@@ -94,7 +110,27 @@
                 <Style />
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">                             </Value>
+                <Value xml:space="preserve">  </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>TOTAL:                 </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!Total.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                     </Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -198,18 +234,6 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value xml:space="preserve">  </Value>
-                <Style>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>                                                                                                             F. ______________________________</Value>
                 <Style>
                   <FontWeight>Normal</FontWeight>
@@ -261,7 +285,7 @@
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>2.41419cm</Top>
         <Left>0.87074cm</Left>
-        <Height>6.81742cm</Height>
+        <Height>6.8968cm</Height>
         <Width>20.05229cm</Width>
         <Style>
           <Border>
@@ -389,7 +413,6 @@
         </Style>
       </Textbox>
       <Textbox Name="DireccionSUC">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -421,7 +444,6 @@
         </Style>
       </Textbox>
       <Textbox Name="TelSUC">
-        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
@@ -635,6 +657,14 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="ProximoPago">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Descuento">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Total">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

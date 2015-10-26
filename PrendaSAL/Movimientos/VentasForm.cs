@@ -13,7 +13,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Movimientos
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -32,25 +31,19 @@ namespace PrendaSAL.Movimientos
             return frmInstance;
         }
 
+        //VARIABLES
         private DBPRENDASAL dbPrendasal;
         private DBUsuario dbUser;
-        private VentaController dbVenta;
         private DBCliente dbCliente;
+        private DBVenta dbVenta;
         private DBCatalogo dbCatalogo;
 
         private eOperacion ACCION;
-        public Cliente CLIENTE;
-        public Venta SELECTED;
 
-        public DataTable ITEMS_VENTA;
-
-        public eNIVEL NIVEL;
-        public Reglas REGLAS;
+        private Venta VENTA;
+        private Venta SELECTED; 
+        private Reglas REGLAS;
         public Tarjeta TARJETA;
-
-        private decimal SUMAS;
-        private decimal DESCUENTO;
-        private decimal TOTAL;
 
 
         public VentasForm()
@@ -59,22 +52,9 @@ namespace PrendaSAL.Movimientos
             dbPrendasal = new DBPRENDASAL();
             dbUser = new DBUsuario();
             dbCliente = new DBCliente();
-            dbVenta= new VentaController();
+            dbVenta = new DBVenta();
             dbCatalogo = new DBCatalogo();
-
-            ITEMS_VENTA = new DataTable();
-            ITEMS_VENTA.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
-            ITEMS_VENTA.Columns.Add("COD_ITEM").DataType = System.Type.GetType("System.String");
-            ITEMS_VENTA.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Double");
-            ITEMS_VENTA.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
-            ITEMS_VENTA.Columns.Add("PRECIO_UNIT").DataType = System.Type.GetType("System.Decimal");
-            ITEMS_VENTA.Columns.Add("MONTO").DataType = System.Type.GetType("System.Decimal");
-            ITEMS_VENTA.Columns.Add("CUENTA").DataType = System.Type.GetType("System.String");
-            ITEMS_VENTA.Columns.Add("TAX").DataType = System.Type.GetType("System.Int32");
-            ITEMS_VENTA.Columns.Add("PRECIO_IMP").DataType = System.Type.GetType("System.Decimal");
-            ITEMS_VENTA.Columns.Add("MONTO_IMP").DataType = System.Type.GetType("System.Decimal");
-            ITEMS_VENTA.Columns.Add("INV").DataType = System.Type.GetType("System.Int32"); 
-            ITEMS_VENTA.Columns.Add("VALUO_UNIT").DataType = System.Type.GetType("System.Decimal");
+            VENTA = new Venta();
         }
 
         private void permisos()
@@ -100,6 +80,15 @@ namespace PrendaSAL.Movimientos
                     btnReimprimir.Visible = p.Field<bool>("REIMPRIMIR");
                 }
             }
+
+            if (HOME.Instance().USUARIO.TIPO == eTipoUsuario.ASESOR)
+            {
+                cbxSUCURSAL.Enabled = false;
+            }
+            else
+            {
+                cbxSUCURSAL.Enabled = true;
+            }
         }
 
 
@@ -108,28 +97,18 @@ namespace PrendaSAL.Movimientos
             permisos();
             tblITEMS.AutoGenerateColumns = false;
             cbxBuscarPorCLI.DataSource = Enum.GetValues(new eTipoDocCliente().GetType());
-
             cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
             if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
             {
                 cbxSUCURSAL.DisplayMember = "SUCURSAL";
-                cbxSUCURSAL.ValueMember = "CODIGO";
+                cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
-
-            List<eTipoDocVenta> doc = new List<eTipoDocVenta>();
-            doc.Add(eTipoDocVenta.FCF);
-            cbxTIPODOC.DataSource = doc;
-
-
-
-            ((DataGridViewComboBoxColumn)tblITEMS.Columns["CATEGORIA"]).DataSource = Enum.GetValues(new eCategoria().GetType());
-
-           
-
+            
+            bloquear();
             NUEVO(null, null);
-            txtDocCLI.Focus();
         }
+
 
 
 
@@ -138,6 +117,12 @@ namespace PrendaSAL.Movimientos
             grbCLIENTE.Enabled = false;
             grbVENTA.Enabled = false;
             grbDETALLE.Enabled = false;
+            tblITEMS.Columns["CODIGO"].ReadOnly = true;
+            tblITEMS.Columns["COD_ITEM"].ReadOnly = true;
+            tblITEMS.Columns["CANTIDAD"].ReadOnly = true;
+            tblITEMS.Columns["DESCRIPCION"].ReadOnly = true;
+            tblITEMS.Columns["MONTO"].ReadOnly = true;
+            txtNOTA.ReadOnly = true;
         }
 
 
@@ -146,123 +131,228 @@ namespace PrendaSAL.Movimientos
             grbCLIENTE.Enabled = true;
             grbVENTA.Enabled = true;
             grbDETALLE.Enabled = true;
-            tblITEMS.ReadOnly = false;
-            tblITEMS.Columns["CATEGORIA"].ReadOnly = true;
-            tblITEMS.Columns["ITEM"].ReadOnly = true;
+            tblITEMS.Columns["CODIGO"].ReadOnly = true;
+            tblITEMS.Columns["COD_ITEM"].ReadOnly = true;
             tblITEMS.Columns["CANTIDAD"].ReadOnly = true;
             tblITEMS.Columns["DESCRIPCION"].ReadOnly = true;
-            tblITEMS.Columns["PRECIO_UNIT"].ReadOnly = true;
-            tblITEMS.Columns["MONTO"].ReadOnly = true;
-            tblITEMS.Columns["CUENTA"].ReadOnly = true;
-            tblITEMS.Columns["TAX"].ReadOnly = true;
-            tblITEMS.Columns["PRECIO_IMP"].ReadOnly = true;
-            tblITEMS.Columns["INV"].ReadOnly = true;
+            tblITEMS.Columns["MONTO"].ReadOnly = false;
+            txtNOTA.ReadOnly = false;
+        }
+
+
+        private void limpiarDatosCliente()
+        {
+            txtCodigoCLI.Text = string.Empty;
+            txtDocCLI.Text = string.Empty;
+            txtExtCLI.Text = string.Empty;
+            txtNombreCLI.Text = string.Empty;
+            txtEdadCLI.Text = string.Empty;
+            txtTelCLI.Text = string.Empty;
+            txtDomicilioCLI.Text = string.Empty;
+            txtDireccionCLI.Text = string.Empty;
+        }
+
+        private void limpiarDatosVenta()
+        {
+            txtNUMVENTA.Text = string.Empty;
+            lbDOCUMENTO.Text = string.Empty;
+            tblITEMS.DataSource = null;
+            lbNIVEL.Text = string.Empty;
+            txtTOTAL.Text = string.Empty;
+            txtNOTA.Text = string.Empty;
+        }
+
+
+        private void NUEVO(object sender, EventArgs e)
+        {
+            ACCION = eOperacion.INSERT;
+            VENTA = new Venta();
+            VENTA.COD_SUC = HOME.Instance().SUCURSAL.COD_SUC;
+            VENTA.NUMVENTA = dbVenta.nextNumVenta(VENTA.COD_SUC);
+            VENTA.FECHA = HOME.Instance().FECHA_SISTEMA;
+            VENTA.NIVEL = eNIVEL.PRENDASAL;
+            VENTA.TIPO = eTipoVenta.CONTADO;
+            VENTA.TIPO_PAGO = eTipoPago.EFECTIVO;
+            VENTA.CATEGORIA = eCategoria.ARTICULO;
+            cargarDatosCliente(null);
+            cargarDatosVenta();
+            desbloquear();
+            txtDocCLI.Focus();
+            actualizarParametros();
+
+            btnGuardar.Enabled = true;
+            btnCancelar.Enabled = true;
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnLog.Enabled = false;
+            btnReimprimir.Enabled = false;
+
         }
 
 
 
-        private void limpiarCliente()
+
+
+
+        public void cargarDatosCliente(Cliente CLIENTE)
         {
-            txtCodigoCLI.Text = "";
-            txtDocCLI.Text = "";
-            txtExpCLI.Text = "";
-            txtClienteCLI.Text = "";
-            txtEdadCLI.Text = "";
-            txtTelCLI.Text = "";
-            txtDomicilioCLI.Text = "";
-            txtDireccionCLI.Text = "";
-        }
-
-
-        private void limpiarVenta()
-        {
-            txtNUM_DOC.Text = "";
-            dateVenta.Value = HOME.Instance().FECHA_SISTEMA;
-            SUMAS = (decimal)0.00;
-            DESCUENTO = (decimal)0.00;
-            TOTAL = (decimal)0.00;
-            lbSUMAS.Text = SUMAS.ToString("C2");
-            txtDESCUENTO.Text = DESCUENTO.ToString("C2");
-            txtTOTAL.Text = TOTAL.ToString("C2");
-            ITEMS_VENTA.Rows.Clear();
-            tblITEMS.DataSource = ITEMS_VENTA;
-        }
-
-
-        public void cargarItems()
-        {
-            tblITEMS.DataSource = ITEMS_VENTA;
-            calcularTotales();
-        }
-
-
-        public void cargarCliente()
-        {
-            if (CLIENTE != null)
+            if (CLIENTE != null && CLIENTE.COD_CLIENTE != null && CLIENTE.COD_CLIENTE != string.Empty)
             {
-                txtCodigoCLI.Text = CLIENTE.COD_CLIENTE;
-                txtClienteCLI.Text = CLIENTE.CLIENTE;
-                if (CLIENTE.EDAD != null)
-                {
-                    txtEdadCLI.Text = CLIENTE.EDAD + " AÑOS";
-                }
-                else
-                {
-                    txtEdadCLI.Text = "N/A";
-                }
-                if (CLIENTE.DUI != null && CLIENTE.DUI != "")
-                {
-                    cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.DUI;
-                    txtDocCLI.Text = CLIENTE.DUI;
-                }
-                else if (CLIENTE.LICENCIA != null && CLIENTE.LICENCIA != "")
-                {
-                    cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.LICENCIA;
-                    txtDocCLI.Text = CLIENTE.LICENCIA;
-                }
-                else if (CLIENTE.PASAPORTE != null && CLIENTE.PASAPORTE != "")
-                {
-                    cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.PASAPORTE;
-                    txtDocCLI.Text = CLIENTE.PASAPORTE;
-                }
-                else if (CLIENTE.CARNET != null && CLIENTE.CARNET != "")
-                {
-                    cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.CARNET;
-                    txtDocCLI.Text = CLIENTE.CARNET;
-                }
-                if (CLIENTE.EXT != null)
-                {
-                    txtExpCLI.Text = CLIENTE.EXT;
-                }
-                else
-                {
-                    txtExpCLI.Text = "N/A";
-                }
-                txtTelCLI.Text = CLIENTE.TEL;
-                if (CLIENTE.COD_MUNICIPIO != null)
-                {
-                    txtDomicilioCLI.Text = CLIENTE.DOMICILIO;
-                }
-                else
-                {
-                    txtDomicilioCLI.Text = "N/A";
-                }
-                txtDireccionCLI.Text = CLIENTE.DIRECCION;
-                actualizarParametros();
+                VENTA.COD_CLIENTE = CLIENTE.COD_CLIENTE;
+                VENTA.CLIENTE = CLIENTE.CLIENTE;
+                VENTA.EDAD = CLIENTE.EDAD;
+                VENTA.DUI = CLIENTE.DUI;
+                VENTA.LICENCIA = CLIENTE.LICENCIA;
+                VENTA.PASAPORTE = CLIENTE.PASAPORTE;
+                VENTA.CARNET = CLIENTE.CARNET;
+                VENTA.EXTENDIDO = CLIENTE.EXTENDIDO;
+                VENTA.TEL_CLI = CLIENTE.TEL;
+                VENTA.DOMICILIO_CLI = CLIENTE.DOMICILIO;
+                VENTA.DIRECCION_CLI = CLIENTE.DIRECCION;
+            }
+            txtCodigoCLI.Text = VENTA.COD_CLIENTE;
+            txtNombreCLI.Text = VENTA.CLIENTE;
+            if (VENTA.DUI != null && VENTA.DUI != string.Empty)
+            {
+                cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.DUI;
+                txtDocCLI.Text = VENTA.DUI;
+            }
+            else if (VENTA.LICENCIA != null && VENTA.LICENCIA != string.Empty)
+            {
+                cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.LICENCIA;
+                txtDocCLI.Text = VENTA.LICENCIA;
+            }
+            else if (VENTA.PASAPORTE != null && VENTA.PASAPORTE != string.Empty)
+            {
+                cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.PASAPORTE;
+                txtDocCLI.Text = VENTA.PASAPORTE;
+            }
+            else if (VENTA.CARNET != null && VENTA.CARNET != string.Empty)
+            {
+                cbxBuscarPorCLI.SelectedItem = eTipoDocCliente.CARNET;
+                txtDocCLI.Text = VENTA.CARNET;
             }
             else
             {
-                limpiarCliente();
-                MessageBox.Show("CLIENTE NO ENCONTRADO", "Error al cargar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDocCLI.Text = string.Empty;
+            }
+            txtEdadCLI.Text = VENTA.EDAD + "";
+            txtExtCLI.Text = VENTA.EXTENDIDO;
+            txtTelCLI.Text = VENTA.TEL_CLI;
+            txtDomicilioCLI.Text = VENTA.DOMICILIO_CLI;
+            txtDireccionCLI.Text = VENTA.DIRECCION_CLI;
+        }
+
+
+
+
+        private void cargarDatosVenta()
+        {
+            if (VENTA != null)
+            {
+                cbxSUCURSAL.SelectedValue = VENTA.COD_SUC;
+                txtNUMVENTA.Text = VENTA.NUMVENTA;
+                lbDOCUMENTO.Text = VENTA.DOCUMENTO;
+                dateVenta.Value = VENTA.FECHA;
+                lbNIVEL.Text = VENTA.NIVEL.ToString();
+                tblITEMS.DataSource = null;
+                tblITEMS.DataSource = VENTA.ITEMS_VENTA;
+                lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
+                txtDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
+                txtTOTAL.Text = VENTA.TOTAL.ToString("C2");
+                txtNOTA.Text = VENTA.NOTA;
+            }
+            else
+            {
+                limpiarDatosVenta();
+            }
+        }
+
+
+        //CARGAR CLIENTE
+        private void txtDocCLI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && txtDocCLI.Text.Trim() != string.Empty)
+            {
+                Cliente CLIENTE = new Cliente();
+                switch (cbxBuscarPorCLI.SelectedIndex)
+                {
+                    case 0: //DUI
+                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByDui(txtDocCLI.Text.Trim()));
+                        break;
+                    case 1: //LICENCIA
+                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByLicencia(txtDocCLI.Text.Trim()));
+                        break;
+                    case 2://PASAPORTE
+                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByPasaporte(txtDocCLI.Text.Trim()));
+                        break;
+                    case 3://CARNET
+                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByCarnet(txtDocCLI.Text.Trim()));
+                        break;
+                    case 4: //CODIGO
+                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByCodigo(txtDocCLI.Text.Trim()));
+                        break;
+                }
+                if (CLIENTE.COD_CLIENTE != null && CLIENTE.COD_CLIENTE != string.Empty)
+                {
+                    cargarDatosCliente(CLIENTE);
+                }
+                else
+                {
+                    MessageBox.Show("CLIENTE NO ENCONTRADO", "BUSCAR CLIENTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    limpiarDatosCliente();
+                }
+                e.Handled = true;
+            }
+        }
+
+
+        //BUSCAR CLIENTE
+        private void btnCLI_Click(object sender, EventArgs e)
+        {
+            Catalogos.ClientesForm cartera;
+            cartera = Catalogos.ClientesForm.Instance(this.Name);
+            cartera.StartPosition = FormStartPosition.CenterParent;
+            cartera.ShowDialog(this);
+            if (cartera.WindowState == FormWindowState.Minimized)
+            {
+                cartera.WindowState = FormWindowState.Normal;
+            }
+        }
+
+
+        //CARGAR TARJETA
+        private void btnTARJETA_Click(object sender, EventArgs e)
+        {
+            Catalogos.BuscarTarjetaForm tarjeta = new Catalogos.BuscarTarjetaForm(this.Name);
+            tarjeta.ShowDialog();
+        }
+
+
+
+
+        private void cbxSUCURSAL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSUCURSAL.ValueMember != "" && cbxSUCURSAL.SelectedIndex >= 0)
+            {
+                switch (ACCION)
+                {
+                    case eOperacion.INSERT:
+                        VENTA.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
+                        VENTA.NUMVENTA = dbVenta.nextNumVenta(VENTA.COD_SUC);
+                        txtNUMVENTA.Text = VENTA.NUMVENTA;
+                        break;
+
+                }
             }
         }
 
 
 
 
-        public void actualizarParametros()
+        private void actualizarParametros()
         {
-            switch (NIVEL)
+            switch (VENTA.NIVEL)
             {
                 case eNIVEL.PRENDASAL:
                     REGLAS = Reglas.ConvertToReglas(dbPrendasal.getReglas(eNIVEL.PRENDASAL));
@@ -289,202 +379,193 @@ namespace PrendaSAL.Movimientos
                     lbNIVEL.ForeColor = Color.DarkBlue;
                     break;
             }
-            lbNIVEL.Text = NIVEL.ToString();
-            calcularTotales();
-            
+            lbNIVEL.Text = VENTA.NIVEL.ToString();
         }
 
 
 
 
-        private void btnCLI_Click(object sender, EventArgs e)
+        public void getExistencias(object sender, EventArgs e)
         {
-            Catalogos.ClientesForm cartera;
-            cartera = Catalogos.ClientesForm.Instance(this.Name);
-            cartera.StartPosition = FormStartPosition.CenterParent;
-            cartera.ShowDialog(this);
-            if (cartera.WindowState == FormWindowState.Minimized)
+            if (tblITEMS.Rows.Count <= 5)
             {
-                cartera.WindowState = FormWindowState.Normal;
+                ExistenciasForm carrito = new ExistenciasForm();
+                carrito.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("NUMERO DE ITEMS POR VENTA SUPERADO", "VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        public bool addItemVenta(Existencia exist)
+        {
+            bool OK = false;
+            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
+            return OK;
+        }
+
+
+
+        private void removeItemVenta(object sender, EventArgs e)
+        {
+            if (VENTA.ITEMS_VENTA.Rows.Count > 0)
+            {
+                VENTA.ITEMS_VENTA.Rows.RemoveAt(tblITEMS.CurrentCell.RowIndex);
+                calcularTotales();
+            }
+        }
+
+
+        private void tblITEMS_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (tblITEMS.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected == true)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
+                    using (Pen p = new Pen(Color.Red, 1))
+                    {
+                        Rectangle rect = e.CellBounds;
+                        rect.Width -= 2;
+                        rect.Height -= 2;
+                        e.Graphics.DrawRectangle(p, rect);
+                    }
+                    e.Handled = true;
+                }
             }
         }
 
 
 
 
-        private void txtDocCLI_KeyPress(object sender, KeyPressEventArgs e)
+        private void tblITEMS_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter && txtDocCLI.Text.Trim() != string.Empty)
+            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
+            switch (columnName)
             {
-                CLIENTE = null;
-                switch (cbxBuscarPorCLI.SelectedIndex)
-                {
-                    case 0: //DUI
-                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByDui(txtDocCLI.Text.Trim()));
-                        cargarCliente();
-                        if (CLIENTE != null)
-                        {
-                            cbxBuscarPorCLI.SelectedIndex = 0;
-                            txtDocCLI.Text = CLIENTE.DUI;
-                            NIVEL = eNIVEL.PRENDASAL;
-                            actualizarParametros();
-                        }
-                        break;
-                    case 1: //LICENCIA
-                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByLicencia(txtDocCLI.Text.Trim()));
-                        cargarCliente();
-                        if (CLIENTE != null)
-                        {
-                            cbxBuscarPorCLI.SelectedIndex = 1;
-                            txtDocCLI.Text = CLIENTE.LICENCIA;
-                            NIVEL = eNIVEL.PRENDASAL;
-                            actualizarParametros();
-                        }
-                        break;
-                    case 2://PASAPORTE
-                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByPasaporte(txtDocCLI.Text.Trim()));
-                        cargarCliente();
-                        if (CLIENTE != null)
-                        {
-                            cbxBuscarPorCLI.SelectedIndex = 2;
-                            txtDocCLI.Text = CLIENTE.PASAPORTE;
-                            NIVEL = eNIVEL.PRENDASAL;
-                            actualizarParametros();
-                        }
-                        break;
-                    case 3://CARNET
-                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByCarnet(txtDocCLI.Text.Trim()));
-                        cargarCliente();
-                        if (CLIENTE != null)
-                        {
-                            cbxBuscarPorCLI.SelectedIndex = 3;
-                            txtDocCLI.Text = CLIENTE.CARNET;
-                            NIVEL = eNIVEL.PRENDASAL;
-                            actualizarParametros();
-                        }
-                        break;
-                    case 4: //CODIGO
-                        CLIENTE = Cliente.ConvertToCliente(dbCliente.findByCodigo(txtDocCLI.Text.Trim()));
-                        cargarCliente();
-                        if (CLIENTE != null)
-                        {
-                            cbxBuscarPorCLI.SelectedIndex = 4;
-                            txtDocCLI.Text = CLIENTE.COD_CLIENTE;
-                            NIVEL = eNIVEL.PRENDASAL;
-                            actualizarParametros();
-                        }
-                        break;
-                    case 5: //TARJETA
+                case "MONTO":
+                    if (tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == string.Empty || tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == "-----")
+                    {
+                        System.Media.SystemSounds.Beep.Play();
+                        e.Cancel = true;
+                    }
+                    break;
+            }
+        }
 
+
+
+
+
+
+        private void tblITEMS_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
+            switch (columnName)
+            {
+                case "MONTO":
+                    // Verificar si columna esta vacia
+                    if (e.FormattedValue != null)
+                    {
+                        decimal valor;
+
+                        if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                        {
+                            tblITEMS.Rows[e.RowIndex].ErrorText = "Columna MONTO Vacia";
+                            System.Media.SystemSounds.Beep.Play();
+                            e.Cancel = true;
+                        }
+                        else if (!Decimal.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null, out valor))
+                        {
+                            tblITEMS.Rows[e.RowIndex].ErrorText = "Formato Invalido";
+                            System.Media.SystemSounds.Beep.Play();
+                            e.Cancel = true;
+                        }
+                        else if (valor < 0)
+                        {
+                            tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO debe ser mayor a 0";
+                            System.Media.SystemSounds.Beep.Play();
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            decimal precioR = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["PRECIO"].FormattedValue.ToString(),System.Globalization.NumberStyles.Currency);
+                            if (valor > 0 && (precioR == 0 || valor < precioR))
+                            {
+                                tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO NO AUTORIZADO";
+                                System.Media.SystemSounds.Beep.Play();
+                                e.Cancel = true;
+                            }
+                            
+                        }
+                        
+                    }
+                    break;
+            }
+        }
+
+
+
+        private void tblITEMS_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            tblITEMS.Rows[e.RowIndex].ErrorText = String.Empty;
+            if (e.RowIndex >= 0)
+            {
+                string item = tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString();
+                string descripcion = tblITEMS.Rows[e.RowIndex].Cells["DESCRIPCION"].FormattedValue.ToString();
+                decimal cantidad = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
+                decimal monto = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
+
+                string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
+
+                switch (columnName)
+                {
+                    case "MONTO":
+                        calcularTotales();
                         break;
                 }
-                e.Handled = true;
-            }
-        }
-
-
-
-
-        private void cargarVentaSelected()
-        {
-            if (SELECTED != null)
-            {
-                limpiarCliente();
-                limpiarVenta();
-                bloquear();
-                NIVEL = SELECTED.NIVEL;
-                TARJETA = new Tarjeta();
-                TARJETA.TIPO = SELECTED.NIVEL;
-                actualizarParametros();
-                CLIENTE = SELECTED.CLIENTE;
-                cargarCliente();
-                cbxSUCURSAL.SelectedValue = SELECTED.COD_SUC;
-                cbxTIPODOC.SelectedItem = SELECTED.TIPO_DOC;
-                txtNUM_DOC.Text = SELECTED.DOCUMENTO;
-                dateVenta.Value = SELECTED.FECHA;
-                NIVEL = SELECTED.NIVEL;
-                ITEMS_VENTA = dbVenta.GET_ITEMS_VENTA(SELECTED);
-                tblITEMS.DataSource = ITEMS_VENTA;
-                SUMAS = SELECTED.SUMAS;
-                DESCUENTO = SELECTED.DESCUENTO;
-                TOTAL = SELECTED.TOTAL;
-                txtDESCUENTO.Text = SELECTED.DESCUENTO.ToString("C2");
-                txtTOTAL.Text = SELECTED.TOTAL.ToString("C2");
-                txtNOTA.Text = SELECTED.NOTA;
-                
-                
-                btnGuardar.Enabled = false;
-                btnCancelar.Enabled = false;
-                btnEditar.Enabled = true;
-                btnEliminar.Enabled = true;
-                btnLog.Enabled = true;
-                btnReimprimir.Enabled = true;
             }
         }
 
 
         private void calcularTotales()
         {
-            SUMAS = (decimal)0.00;
-            TOTAL = (decimal)0.00;
-            DESCUENTO = (decimal)0.00;
-            SUMAS = tblITEMS.Rows.Cast<DataGridViewRow>().Sum(x => Decimal.Parse(x.Cells["MONTO_IMP"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency));
-            DESCUENTO = Decimal.Round((decimal)REGLAS.DESC_COMPRA*SUMAS/100, 2);
-            TOTAL = SUMAS - DESCUENTO;
-            lbSUMAS.Text = SUMAS.ToString("C2");
-            txtDESCUENTO.Text = DESCUENTO.ToString("C2");
-            txtTOTAL.Text = TOTAL.ToString("C2");
+            decimal SUMAS = VENTA.ITEMS_VENTA.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
+            VENTA.DESCUENTO = Decimal.Round(SUMAS * REGLAS.DESC_COMPRA / 100,2,MidpointRounding.AwayFromZero);
+            VENTA.TOTAL = SUMAS - VENTA.DESCUENTO;
+            lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
+            txtDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
+            txtTOTAL.Text = VENTA.TOTAL.ToString("C2");
         }
 
 
 
-
-        public void NUEVO(object sender, EventArgs e)
-        {
-            SELECTED = null;
-            ACCION = eOperacion.INSERT;
-            limpiarCliente();
-            limpiarVenta();
-            desbloquear();
-            NIVEL = eNIVEL.PRENDASAL;
-            actualizarParametros();
-            btnGuardar.Enabled = true;
-            btnCancelar.Enabled = true;
-            btnEditar.Enabled = false;
-            btnEliminar.Enabled = false;
-            btnLog.Enabled = false;
-            btnReimprimir.Enabled = false;
-
-            txtDocCLI.Focus();
-        }
-
-
-
-
-        public bool validarVenta()
+        private bool validarVenta()
         {
             bool OK = true;
             try
             {
-                if (CLIENTE == null || txtCodigoCLI.Text.Trim() == string.Empty)
+                if (VENTA.COD_CLIENTE == null || VENTA.COD_CLIENTE == string.Empty)
                 {
                     OK = false;
                     MessageBox.Show("Seleccione Cliente para la transaccion", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
-                else if (cbxSUCURSAL.SelectedIndex < 0)
+                else if (VENTA.COD_SUC == null || VENTA.COD_SUC == string.Empty)
                 {
                     OK = false;
-                    MessageBox.Show("ELIJA SUCURSAL", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Seleccion SUCURSAL", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
-                else if (txtNUM_DOC.Text.Trim() == string.Empty)
+                else if (VENTA.NUMVENTA == string.Empty)
                 {
                     OK = false;
-                    MessageBox.Show("NUMERO DOCUMENTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("NUMERO DE VENTA INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
-                else if (TOTAL <= 0)
+                else if (VENTA.TOTAL <= 0)
                 {
                     OK = false;
                     MessageBox.Show("TOTAL DE VENTA INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -503,14 +584,14 @@ namespace PrendaSAL.Movimientos
 
 
 
-        public bool validarItemsVenta()
+        private bool validarItemsVenta()
         {
             bool OK = true;
             if (tblITEMS.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in tblITEMS.Rows)
                 {
-                    if (row.Cells["CANTIDAD"].Value == null || Double.Parse(row.Cells["CANTIDAD"].Value.ToString()) < 0)
+                    if (row.Cells["CANTIDAD"].Value == null || (decimal)row.Cells["CANTIDAD"].Value <= 0)
                     {
                         OK = false;
                         tblITEMS.CurrentRow.Selected = false;
@@ -518,7 +599,7 @@ namespace PrendaSAL.Movimientos
                         MessageBox.Show("CANTIDAD INVALIDA EN DETALLE DE VENTA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                     }
-                    if (row.Cells["ITEM"].Value == null || (string)row.Cells["ITEM"].Value == "-----")
+                    if (row.Cells["COD_ITEM"].Value == null || row.Cells["COD_ITEM"].Value == "-----")
                     {
                         OK = false;
                         tblITEMS.CurrentRow.Selected = false;
@@ -533,7 +614,7 @@ namespace PrendaSAL.Movimientos
                         tblITEMS.CurrentRow.Selected = false;
                         tblITEMS.Rows[row.Index].Selected = true;
                         tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("DESCRIPCION VACIO EN DETALLE DE VENTA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("DESCRIPCION VACIA EN DETALLE DE VENTA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                     }
                     if (row.Cells["MONTO"].Value == null || Decimal.Parse(row.Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) <= 0)
@@ -557,64 +638,20 @@ namespace PrendaSAL.Movimientos
 
 
 
-        private Venta buildVENTA()
-        {
-            Venta v = new Venta();
-            v.NIVEL = NIVEL;
-            v.NAT_VENTA = eNaturalezaVenta.VENTA;
-            v.COD_CLIENTE = CLIENTE.COD_CLIENTE;
-            v.CLIENTE = CLIENTE;
-            v.FECHA = dateVenta.Value;
-            v.TIPO_DOC = (eTipoDocVenta) cbxTIPODOC.SelectedItem;
-            v.DOCUMENTO = txtNUM_DOC.Text.Trim();
-            v.TIPO_VENTA = eTipoVenta.CONTADO;
-            v.SUMAS = SUMAS;
-            v.TOTAL_IMP = (decimal)0.00;
-            v.DESCUENTO = DESCUENTO;
-            v.TOTAL = TOTAL;
-            if (cbxSUCURSAL.SelectedIndex >= 0)
-            {
-                v.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
-            }
-            v.NOTA = txtNOTA.Text;
-            v.ITEMS_VENTA = tblITEMS.Rows;
-            return v;
-        }
-
 
 
 
         private void GUARDAR(object sender, EventArgs e)
         {
-            Venta v = new Venta();
-            switch (ACCION)
+            txtTOTAL.Focus();
+            if (validarVenta())
             {
-                case eOperacion.INSERT:
-                    txtTOTAL.Focus();
-                    if (validarVenta())
-                    {
-                        v = buildVENTA();
-                        ConfirmarVenta confirmar = new ConfirmarVenta(v, ACCION);
-                        confirmar.ShowDialog();
-                    }
-                    break;
-                case eOperacion.UPDATE:
-                    txtTOTAL.Focus();
-                    if (validarVenta())
-                    {
-                        v = buildVENTA();
-                        v.ID_VENTA = SELECTED.ID_VENTA;
-                        v.ESTADO = SELECTED.ESTADO;
-                        v.INIT_BALANCE = SELECTED.INIT_BALANCE;
-                        ConfirmarVenta confirmar = new ConfirmarVenta(v, ACCION);
-                        confirmar.ShowDialog();
-                    }
-                    break;
+                VENTA.NOTA = txtNOTA.Text;
+                ConfirmarVenta confirmar = new ConfirmarVenta(VENTA, ACCION);
+                confirmar.ShowDialog();
             }
+
         }
-
-
-
 
 
         private void CANCELAR(object sender, EventArgs e)
@@ -625,108 +662,90 @@ namespace PrendaSAL.Movimientos
                     NUEVO(null, null);
                     break;
                 case eOperacion.UPDATE:
-                    cargarVentaSelected();
+                    ACCION = eOperacion.SEARCH;
+                    VENTA = SELECTED.Copy();
+                    cargarDatosCliente(null);
+                    cargarDatosVenta();
                     bloquear();
+
+                    btnGuardar.Enabled = false;
+                    btnCancelar.Enabled = false;
+                    btnEditar.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnLog.Enabled = true;
+                    btnReimprimir.Enabled = true;
                     break;
             }
         }
 
 
 
-
-
         private void EDITAR(object sender, EventArgs e)
         {
-            if (SELECTED != null && !SELECTED.INIT_BALANCE)
+            if (VENTA != null)
             {
                 ACCION = eOperacion.UPDATE;
+                desbloquear();
                 btnGuardar.Enabled = true;
                 btnCancelar.Enabled = true;
                 btnEditar.Enabled = false;
                 btnEliminar.Enabled = false;
                 btnLog.Enabled = false;
                 btnReimprimir.Enabled = false;
-                desbloquear();
             }
             else
             {
-                MessageBox.Show("VENTA HISTORICA O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("VENTA NO CARGADA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
 
 
 
         private void ELIMINAR(object sender, EventArgs e)
         {
-            if (SELECTED != null && !SELECTED.INIT_BALANCE)
+            if (VENTA != null)
             {
                 ACCION = eOperacion.DELETE;
-                    DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar la VENTA " + SELECTED.TIPO_DOC.ToString() + " " + SELECTED.DOCUMENTO + " con FECHA:" + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR VENTA REGISTRADA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (eliminar == DialogResult.Yes)
+                DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar la VENTA " + VENTA.NUMVENTA +"-"+VENTA.DOCUMENTO+ " con FECHA:" + VENTA.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR COMPRA REGISTRADA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (eliminar == DialogResult.Yes)
+                {
+                    string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
+                    if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
-                        if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
+                        if (dbVenta.delete(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                         {
-                            string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                            if (cambioNota.Trim() != "")
-                            {
-                                SELECTED.NOTA_CAMBIO = cambioNota;
-                                if (dbVenta.eliminarVentaPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                                {
-                                    NUEVO(null, null);
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA ELIMINACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            }
+                            NUEVO(null, null);
                         }
-                        else
-                        {
-                            MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-                        
                     }
+                    else
+                    {
+                        MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("VENTA HISTORICA O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("VENTA NO CARGADA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
 
 
-
-
-
-
-        public void buscarVenta(DateTime fecha,eTipoDocVenta tipo,string documento)
-        {
-            try
-            {
-                SELECTED = dbVenta.findByVentaPRENDASAL(fecha,tipo,documento);
-                if (SELECTED != null)
-                {
-                    cargarVentaSelected();
-                }
-            }
-            catch (Exception ex) { }
-        }
 
 
 
 
         private void BUSCAR(object sender, EventArgs e)
         {
-            string numFACTURA = Controles.InputBox("NUMERO DE DOCUMENTO :", "BUSCAR");
-            if (numFACTURA != "")
+            ACCION = eOperacion.SEARCH;
+            string numVENT = Controles.InputBox("VENTA #: ", "BUSCAR");
+            if (numVENT != "")
             {
-                SELECTED = dbVenta.findByVentaPRENDASAL(null,(eTipoDocVenta)cbxTIPODOC.SelectedItem,numFACTURA);
-                if (SELECTED != null)
+                if (buscarVenta(numVENT))
                 {
-                    cargarVentaSelected();
-                    MessageBox.Show("VENTA # " + SELECTED.DOCUMENTO + " CARGADA", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("VENTA # " + VENTA.DOCUMENTO + " CARGADA", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -738,303 +757,105 @@ namespace PrendaSAL.Movimientos
 
 
 
-        private void IMPRIMIR(object sender, EventArgs e)
+        public bool buscarVenta(string documento)
+        {
+            bool OK = false;
+            SELECTED = Venta.ConvertToVenta(dbVenta.getVentaByNumVenta(documento));
+            if (SELECTED != null)
+            {
+                SELECTED.ITEMS_VENTA = dbVenta.getItemsVenta(SELECTED);
+                VENTA = SELECTED.Copy();
+                cargarDatosCliente(null);
+                cargarDatosVenta();
+                bloquear();
+                OK = true;
+
+                btnGuardar.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnEditar.Enabled = true;
+                btnEliminar.Enabled = true;
+                btnLog.Enabled = true;
+                btnReimprimir.Enabled = true;
+            }
+            else
+            {
+                OK = false;
+            }
+            return OK;
+        }
+
+
+
+
+        public void IMPRIMIR(Venta v)
+        {
+            SELECTED = null;
+            if (v != null && v.NUMVENTA != null)
+            {
+                if (buscarVenta(v.NUMVENTA))
+                {
+                    cargarDatosVenta();
+                    if (SELECTED != null)
+                    {
+                       string numFactura = string.Empty;
+                       while (numFactura.Trim() == string.Empty)
+                       {
+                            numFactura = Controles.InputBox("Factura N° : ", "FACTURA CONSUMIDOR FINAL");
+                       }
+                       dbVenta.changeFCF(SELECTED.ID_VENTA, numFactura);
+                       ImprimirFactura();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR AL IMPRIMIR FACTURA DE VENTA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR AL IMPRIMIR FACTURA DE VENTA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+        
+        }
+
+
+
+        private void REIMPRIMIR(object sender, EventArgs e)
         {
             if (SELECTED != null)
             {
-                ACCION = eOperacion.PREVIEW;
+                DialogResult cambiar = MessageBox.Show(" Cambiar numero de FACTURA # " + SELECTED.DOCUMENTO + "?", "REIMPRIMIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (cambiar == DialogResult.Yes)
+                {
+                    string numFactura = string.Empty;
+                       while (numFactura.Trim() == string.Empty)
+                       {
+                            numFactura = Controles.InputBox("Factura N° : ", "FACTURA CONSUMIDOR FINAL");
+                       }
+                       dbVenta.changeFCF(SELECTED.ID_VENTA, numFactura);
+                }
                 ImprimirFactura();
             }
         }
 
-        private void LOG(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AYUDA(object sender, EventArgs e)
-        {
-
-        }
+        
 
 
 
 
-
-        private void addItemVenta(object sender, EventArgs e)
-        {
-            if (tblITEMS.Rows.Count <= 5)
-            {
-                ExistenciasForm carrito = ExistenciasForm.Instance();
-                carrito.SUC = (string)cbxSUCURSAL.SelectedValue;
-                carrito.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("NUMERO DE ITEMS POR VENTA SUPERADO", "VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-
-
-
-        private void removeItemVenta(object sender, EventArgs e)
-        {
-            if (tblITEMS.DataSource != null && tblITEMS.CurrentCell != null && tblITEMS.CurrentCell.RowIndex >= 0 && tblITEMS.CurrentCell.ColumnIndex >= 0)
-            {
-                tblITEMS.Rows.Remove(tblITEMS.Rows[tblITEMS.CurrentCell.RowIndex]);
-                calcularTotales();
-            }
-
-        }
-
-
-
-        private void tblITEMS_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (tblITEMS.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected == true)
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
-                    using (Pen p = new Pen(Color.Red, 1))
-                    {
-                        Rectangle rect = e.CellBounds;
-                        rect.Width -= 2;
-                        rect.Height -= 2;
-                        e.Graphics.DrawRectangle(p, rect);
-                    }
-                    e.Handled = true;
-                }
-            }
-        }
-
-
-        private void tblITEMS_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-            switch (columnName)
-            {
-
-                case "ITEM":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["CATEGORIA"].Value == DBNull.Value || tblITEMS.Rows[e.RowIndex].Cells["CATEGORIA"].Value.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "CANTIDAD":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value == DBNull.Value || tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "DESCRIPCION":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value == DBNull.Value || tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "MONTO_IMP":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value == DBNull.Value || tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-            }
-        }
-
-
-
-        private void tblITEMS_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-            switch (columnName)
-            {
-                case "CANTIDAD":
-                    // Verificar si columna esta vacia
-                    if (e.FormattedValue != null)
-                    {
-                        double valor;
-                        if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Columna CANTIDAD Vacia";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (!Double.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null, out valor))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Formato Invalido";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (valor < 0)
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "CANTIDAD debe ser mayor a 0";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                    }
-                    break;
-                case "MONTO_IMP":
-                    // Verificar si columna esta vacia
-                    if (e.FormattedValue != null)
-                    {
-                        decimal valor;
-                        string categoria = tblITEMS.Rows[e.RowIndex].Cells["CATEGORIA"].FormattedValue.ToString();
-
-                        if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Columna MONTO Vacia";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (!Decimal.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null, out valor))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Formato Invalido";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (valor < 0)
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO debe ser mayor a 0";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (tblITEMS.Rows[e.RowIndex].Cells["VALUO_UNIT"].FormattedValue != null && tblITEMS.Rows[e.RowIndex].Cells["VALUO_UNIT"].FormattedValue != "")
-                        {
-                            decimal precioAuto = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["VALUO_UNIT"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-
-                            if (precioAuto > 0 && valor < precioAuto)
-                            {
-                                tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO DEL ARTICULO NO ES EL AUTORIZADO";
-                                System.Media.SystemSounds.Beep.Play();
-                                e.Cancel = true;
-                            }
-                        }
-                        
-                    }
-                    break;
-            }
-        }
-
-
-
-        private void tblITEMS_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            tblITEMS.Rows[e.RowIndex].ErrorText = String.Empty;
-            if (e.RowIndex >= 0)
-            {
-                double cantidad = Double.Parse(tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                decimal precio = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                decimal monto = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["MONTO_IMP"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                eCategoria categoria = (eCategoria) tblITEMS.Rows[e.RowIndex].Cells["CATEGORIA"].Value;
-                string item = tblITEMS.Rows[e.RowIndex].Cells["ITEM"].FormattedValue.ToString();
-
-                string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-
-                switch (columnName)
-                {
-                    case "CATEGORIA":
-                        tblITEMS.Rows[e.RowIndex].Cells["ITEM"].Value = null;
-                        DataTable itemsInv = new DataTable();
-                        itemsInv = dbCatalogo.showCatalogo(categoria);
-                        if (itemsInv.Rows.Count == 0)
-                        {
-                            itemsInv.Columns.Add("COD_ITEM");
-                        }
-                        DataRow R = itemsInv.NewRow();
-                        R.SetField<string>("COD_ITEM", "-----");
-                        itemsInv.Rows.InsertAt(R, 0);
-
-                        ((DataGridViewComboBoxCell)tblITEMS.Rows[e.RowIndex].Cells["ITEM"]).DataSource = itemsInv.Copy();
-                        ((DataGridViewComboBoxCell)tblITEMS.Rows[e.RowIndex].Cells["ITEM"]).DisplayMember = "COD_ITEM";
-
-                        tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].Value = 0.0;
-                        tblITEMS.Rows[e.RowIndex].Cells["DESCRIPCION"].Value = "";
-                        tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = 0.00;
-                        tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = 0.00;
-                        tblITEMS.Rows[e.RowIndex].Cells["MONTO_IMP"].Value = 0.00;
-                        tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = 0.00;
-                        break;
-                    case "ITEM":
-                        if (item == "-----")
-                        {
-                            tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].Value = 0.0;
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO_IMP"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = 0.00;
-                        }
-                        else
-                        {
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO_IMP"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = 0.00;
-                        }
-                        break;
-                    case "CANTIDAD":
-                        monto =(decimal) 0.00;
-                        tblITEMS.Rows[e.RowIndex].Cells["MONTO_IMP"].Value = monto;
-                        tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
-                        if (cantidad > 0)
-                        {
-                            decimal cost = Decimal.Round(monto / (decimal)cantidad, 2);
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = cost;
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = cost;
-                        }
-                        else
-                        {
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = 0.00;
-                            tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = 0.00;
-                        }
-                        calcularTotales();
-                        break;
-                    case "MONTO_IMP":
-                        tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
-                        if (cantidad != 0.00)
-                        {
-                            precio = Decimal.Round(monto / (decimal)cantidad, 2);
-                        }
-                        else
-                        {
-                            precio = Decimal.Zero;
-                        }
-                        tblITEMS.Rows[e.RowIndex].Cells["PRECIO_UNIT"].Value = precio;
-                        tblITEMS.Rows[e.RowIndex].Cells["PRECIO_IMP"].Value = precio;
-                        calcularTotales();
-                        break;
-                }
-            }
-        }
-
-
-
-        private void btnTARJETA_Click(object sender, EventArgs e)
-        {
-            Catalogos.BuscarTarjetaForm tarjeta = new Catalogos.BuscarTarjetaForm(this.Name);
-            tarjeta.ShowDialog();
-        }
-
-
-
-        public void ImprimirFactura()
+        private void ImprimirFactura()
         {
             viewerFACTURA.Clear();
             if (SELECTED != null)
             {
                 dSItemFCF.Clear();
-                foreach(DataRow row in ITEMS_VENTA.Rows)
+                foreach(DataRow row in VENTA.ITEMS_VENTA.Rows)
                 {
-                   dSItemFCF.ITEM.AddITEMRow(row.Field<double>("CANTIDAD").ToString(),row.Field<string>("DESCRIPCION"), row.Field<decimal>("MONTO_IMP"));
+                   dSItemFCF.ITEM.AddITEMRow(row.Field<decimal>("CANTIDAD").ToString(),row.Field<string>("DESCRIPCION"), row.Field<decimal>("MONTO"));
                 }
                 //RELLENAR ESPACIOS SIN OCUPAR
                 for(int i = 1; i <= 5 ; i++){
-                    if (i > ITEMS_VENTA.Rows.Count)
+                    if (i > VENTA.ITEMS_VENTA.Rows.Count)
                     {
                         dSItemFCF.ITEM.AddITEMRow("", "",Decimal.Zero);
                     }
@@ -1050,14 +871,15 @@ namespace PrendaSAL.Movimientos
                 }
                 bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                ReportParameter[] parameters = new ReportParameter[7];
-                parameters[0] = new ReportParameter("CLIENTE", SELECTED.CLIENTE.CLIENTE);
-                parameters[1] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                parameters[2] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                parameters[3] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                parameters[4] = new ReportParameter("SUMAS", SELECTED.SUMAS.ToString("C2"));
-                parameters[5] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
-                parameters[6] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
+                ReportParameter[] parameters = new ReportParameter[8];
+                parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
+                parameters[1] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
+                parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                parameters[5] = new ReportParameter("SUMAS", SELECTED.SUMAS.ToString("C2"));
+                parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
 
                 viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
                 viewerFACTURA.LocalReport.DataSources.Clear();
@@ -1077,6 +899,16 @@ namespace PrendaSAL.Movimientos
             }
         }
 
+
+        private void LOG(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AYUDA(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }

@@ -22,15 +22,15 @@ namespace PrendaSAL.Informes {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("DSCierre")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DSCierre : global::System.Data.DataSet {
+    public partial class DSListaVenc : global::System.Data.DataSet {
         
-        private LISTA_CIERREDataTable tableLISTA_CIERRE;
+        private LISTA_VENCDataTable tableLISTA_VENC;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DSCierre() {
+        public DSListaVenc() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace PrendaSAL.Informes {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DSCierre(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DSListaVenc(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace PrendaSAL.Informes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["LISTA_CIERRE"] != null)) {
-                    base.Tables.Add(new LISTA_CIERREDataTable(ds.Tables["LISTA_CIERRE"]));
+                if ((ds.Tables["LISTA_VENC"] != null)) {
+                    base.Tables.Add(new LISTA_VENCDataTable(ds.Tables["LISTA_VENC"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace PrendaSAL.Informes {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public LISTA_CIERREDataTable LISTA_CIERRE {
+        public LISTA_VENCDataTable LISTA_VENC {
             get {
-                return this.tableLISTA_CIERRE;
+                return this.tableLISTA_VENC;
             }
         }
         
@@ -127,7 +127,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DSCierre cln = ((DSCierre)(base.Clone()));
+            DSListaVenc cln = ((DSListaVenc)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace PrendaSAL.Informes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["LISTA_CIERRE"] != null)) {
-                    base.Tables.Add(new LISTA_CIERREDataTable(ds.Tables["LISTA_CIERRE"]));
+                if ((ds.Tables["LISTA_VENC"] != null)) {
+                    base.Tables.Add(new LISTA_VENCDataTable(ds.Tables["LISTA_VENC"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableLISTA_CIERRE = ((LISTA_CIERREDataTable)(base.Tables["LISTA_CIERRE"]));
+            this.tableLISTA_VENC = ((LISTA_VENCDataTable)(base.Tables["LISTA_VENC"]));
             if ((initTable == true)) {
-                if ((this.tableLISTA_CIERRE != null)) {
-                    this.tableLISTA_CIERRE.InitVars();
+                if ((this.tableLISTA_VENC != null)) {
+                    this.tableLISTA_VENC.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace PrendaSAL.Informes {
             this.Namespace = "http://tempuri.org/DSCierre.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableLISTA_CIERRE = new LISTA_CIERREDataTable();
-            base.Tables.Add(this.tableLISTA_CIERRE);
+            this.tableLISTA_VENC = new LISTA_VENCDataTable();
+            base.Tables.Add(this.tableLISTA_VENC);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeLISTA_CIERRE() {
+        private bool ShouldSerializeLISTA_VENC() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DSCierre ds = new DSCierre();
+            DSListaVenc ds = new DSListaVenc();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace PrendaSAL.Informes {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void LISTA_CIERRERowChangeEventHandler(object sender, LISTA_CIERRERowChangeEvent e);
+        public delegate void LISTA_VENCRowChangeEventHandler(object sender, LISTA_VENCRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class LISTA_CIERREDataTable : global::System.Data.TypedTableBase<LISTA_CIERRERow> {
+        public partial class LISTA_VENCDataTable : global::System.Data.TypedTableBase<LISTA_VENCRow> {
             
             private global::System.Data.DataColumn columnREACTIVADO;
             
@@ -293,14 +293,14 @@ namespace PrendaSAL.Informes {
             
             private global::System.Data.DataColumn columnSALDO;
             
-            private global::System.Data.DataColumn columnFECHAV;
+            private global::System.Data.DataColumn columnESTADO_CONTRATO;
             
-            private global::System.Data.DataColumn columnDIAS;
+            private global::System.Data.DataColumn columnDIAS_VENC;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERREDataTable() {
-                this.TableName = "LISTA_CIERRE";
+            public LISTA_VENCDataTable() {
+                this.TableName = "LISTA_VENC";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -308,7 +308,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal LISTA_CIERREDataTable(global::System.Data.DataTable table) {
+            internal LISTA_VENCDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -325,7 +325,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected LISTA_CIERREDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected LISTA_VENCDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -388,17 +388,17 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHAVColumn {
+            public global::System.Data.DataColumn ESTADO_CONTRATOColumn {
                 get {
-                    return this.columnFECHAV;
+                    return this.columnESTADO_CONTRATO;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DIASColumn {
+            public global::System.Data.DataColumn DIAS_VENCColumn {
                 get {
-                    return this.columnDIAS;
+                    return this.columnDIAS_VENC;
                 }
             }
             
@@ -413,34 +413,34 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERRERow this[int index] {
+            public LISTA_VENCRow this[int index] {
                 get {
-                    return ((LISTA_CIERRERow)(this.Rows[index]));
+                    return ((LISTA_VENCRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event LISTA_CIERRERowChangeEventHandler LISTA_CIERRERowChanging;
+            public event LISTA_VENCRowChangeEventHandler LISTA_VENCRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event LISTA_CIERRERowChangeEventHandler LISTA_CIERRERowChanged;
+            public event LISTA_VENCRowChangeEventHandler LISTA_VENCRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event LISTA_CIERRERowChangeEventHandler LISTA_CIERRERowDeleting;
+            public event LISTA_VENCRowChangeEventHandler LISTA_VENCRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event LISTA_CIERRERowChangeEventHandler LISTA_CIERRERowDeleted;
+            public event LISTA_VENCRowChangeEventHandler LISTA_VENCRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddLISTA_CIERRERow(LISTA_CIERRERow row) {
+            public void AddLISTA_VENCRow(LISTA_VENCRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERRERow AddLISTA_CIERRERow(bool REACTIVADO, string CONTRATO, string CLIENTE, string CATEGORIA, string ARTICULO, decimal PRESTAMO, decimal SALDO, System.DateTime FECHAV, long DIAS) {
-                LISTA_CIERRERow rowLISTA_CIERRERow = ((LISTA_CIERRERow)(this.NewRow()));
+            public LISTA_VENCRow AddLISTA_VENCRow(bool REACTIVADO, string CONTRATO, string CLIENTE, string CATEGORIA, string ARTICULO, decimal PRESTAMO, decimal SALDO, string ESTADO_CONTRATO, long DIAS_VENC) {
+                LISTA_VENCRow rowLISTA_VENCRow = ((LISTA_VENCRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         REACTIVADO,
                         CONTRATO,
@@ -449,17 +449,17 @@ namespace PrendaSAL.Informes {
                         ARTICULO,
                         PRESTAMO,
                         SALDO,
-                        FECHAV,
-                        DIAS};
-                rowLISTA_CIERRERow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowLISTA_CIERRERow);
-                return rowLISTA_CIERRERow;
+                        ESTADO_CONTRATO,
+                        DIAS_VENC};
+                rowLISTA_VENCRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowLISTA_VENCRow);
+                return rowLISTA_VENCRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                LISTA_CIERREDataTable cln = ((LISTA_CIERREDataTable)(base.Clone()));
+                LISTA_VENCDataTable cln = ((LISTA_VENCDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -467,7 +467,7 @@ namespace PrendaSAL.Informes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new LISTA_CIERREDataTable();
+                return new LISTA_VENCDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -480,8 +480,8 @@ namespace PrendaSAL.Informes {
                 this.columnARTICULO = base.Columns["ARTICULO"];
                 this.columnPRESTAMO = base.Columns["PRESTAMO"];
                 this.columnSALDO = base.Columns["SALDO"];
-                this.columnFECHAV = base.Columns["FECHAV"];
-                this.columnDIAS = base.Columns["DIAS"];
+                this.columnESTADO_CONTRATO = base.Columns["ESTADO_CONTRATO"];
+                this.columnDIAS_VENC = base.Columns["DIAS_VENC"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -501,36 +501,36 @@ namespace PrendaSAL.Informes {
                 base.Columns.Add(this.columnPRESTAMO);
                 this.columnSALDO = new global::System.Data.DataColumn("SALDO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSALDO);
-                this.columnFECHAV = new global::System.Data.DataColumn("FECHAV", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHAV);
-                this.columnDIAS = new global::System.Data.DataColumn("DIAS", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDIAS);
+                this.columnESTADO_CONTRATO = new global::System.Data.DataColumn("ESTADO_CONTRATO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnESTADO_CONTRATO);
+                this.columnDIAS_VENC = new global::System.Data.DataColumn("DIAS_VENC", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDIAS_VENC);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERRERow NewLISTA_CIERRERow() {
-                return ((LISTA_CIERRERow)(this.NewRow()));
+            public LISTA_VENCRow NewLISTA_VENCRow() {
+                return ((LISTA_VENCRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new LISTA_CIERRERow(builder);
+                return new LISTA_VENCRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(LISTA_CIERRERow);
+                return typeof(LISTA_VENCRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.LISTA_CIERRERowChanged != null)) {
-                    this.LISTA_CIERRERowChanged(this, new LISTA_CIERRERowChangeEvent(((LISTA_CIERRERow)(e.Row)), e.Action));
+                if ((this.LISTA_VENCRowChanged != null)) {
+                    this.LISTA_VENCRowChanged(this, new LISTA_VENCRowChangeEvent(((LISTA_VENCRow)(e.Row)), e.Action));
                 }
             }
             
@@ -538,8 +538,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.LISTA_CIERRERowChanging != null)) {
-                    this.LISTA_CIERRERowChanging(this, new LISTA_CIERRERowChangeEvent(((LISTA_CIERRERow)(e.Row)), e.Action));
+                if ((this.LISTA_VENCRowChanging != null)) {
+                    this.LISTA_VENCRowChanging(this, new LISTA_VENCRowChangeEvent(((LISTA_VENCRow)(e.Row)), e.Action));
                 }
             }
             
@@ -547,8 +547,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.LISTA_CIERRERowDeleted != null)) {
-                    this.LISTA_CIERRERowDeleted(this, new LISTA_CIERRERowChangeEvent(((LISTA_CIERRERow)(e.Row)), e.Action));
+                if ((this.LISTA_VENCRowDeleted != null)) {
+                    this.LISTA_VENCRowDeleted(this, new LISTA_VENCRowChangeEvent(((LISTA_VENCRow)(e.Row)), e.Action));
                 }
             }
             
@@ -556,14 +556,14 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.LISTA_CIERRERowDeleting != null)) {
-                    this.LISTA_CIERRERowDeleting(this, new LISTA_CIERRERowChangeEvent(((LISTA_CIERRERow)(e.Row)), e.Action));
+                if ((this.LISTA_VENCRowDeleting != null)) {
+                    this.LISTA_VENCRowDeleting(this, new LISTA_VENCRowChangeEvent(((LISTA_VENCRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveLISTA_CIERRERow(LISTA_CIERRERow row) {
+            public void RemoveLISTA_VENCRow(LISTA_VENCRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -572,7 +572,7 @@ namespace PrendaSAL.Informes {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DSCierre ds = new DSCierre();
+                DSListaVenc ds = new DSListaVenc();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -590,7 +590,7 @@ namespace PrendaSAL.Informes {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "LISTA_CIERREDataTable";
+                attribute2.FixedValue = "LISTA_VENCDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -634,15 +634,15 @@ namespace PrendaSAL.Informes {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class LISTA_CIERRERow : global::System.Data.DataRow {
+        public partial class LISTA_VENCRow : global::System.Data.DataRow {
             
-            private LISTA_CIERREDataTable tableLISTA_CIERRE;
+            private LISTA_VENCDataTable tableLISTA_VENC;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal LISTA_CIERRERow(global::System.Data.DataRowBuilder rb) : 
+            internal LISTA_VENCRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableLISTA_CIERRE = ((LISTA_CIERREDataTable)(this.Table));
+                this.tableLISTA_VENC = ((LISTA_VENCDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -650,14 +650,14 @@ namespace PrendaSAL.Informes {
             public bool REACTIVADO {
                 get {
                     try {
-                        return ((bool)(this[this.tableLISTA_CIERRE.REACTIVADOColumn]));
+                        return ((bool)(this[this.tableLISTA_VENC.REACTIVADOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'REACTIVADO\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'REACTIVADO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.REACTIVADOColumn] = value;
+                    this[this.tableLISTA_VENC.REACTIVADOColumn] = value;
                 }
             }
             
@@ -666,14 +666,14 @@ namespace PrendaSAL.Informes {
             public string CONTRATO {
                 get {
                     try {
-                        return ((string)(this[this.tableLISTA_CIERRE.CONTRATOColumn]));
+                        return ((string)(this[this.tableLISTA_VENC.CONTRATOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CONTRATO\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CONTRATO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.CONTRATOColumn] = value;
+                    this[this.tableLISTA_VENC.CONTRATOColumn] = value;
                 }
             }
             
@@ -682,14 +682,14 @@ namespace PrendaSAL.Informes {
             public string CLIENTE {
                 get {
                     try {
-                        return ((string)(this[this.tableLISTA_CIERRE.CLIENTEColumn]));
+                        return ((string)(this[this.tableLISTA_VENC.CLIENTEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CLIENTE\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CLIENTE\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.CLIENTEColumn] = value;
+                    this[this.tableLISTA_VENC.CLIENTEColumn] = value;
                 }
             }
             
@@ -701,11 +701,11 @@ namespace PrendaSAL.Informes {
                         return string.Empty;
                     }
                     else {
-                        return ((string)(this[this.tableLISTA_CIERRE.CATEGORIAColumn]));
+                        return ((string)(this[this.tableLISTA_VENC.CATEGORIAColumn]));
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.CATEGORIAColumn] = value;
+                    this[this.tableLISTA_VENC.CATEGORIAColumn] = value;
                 }
             }
             
@@ -714,14 +714,14 @@ namespace PrendaSAL.Informes {
             public string ARTICULO {
                 get {
                     try {
-                        return ((string)(this[this.tableLISTA_CIERRE.ARTICULOColumn]));
+                        return ((string)(this[this.tableLISTA_VENC.ARTICULOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ARTICULO\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ARTICULO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.ARTICULOColumn] = value;
+                    this[this.tableLISTA_VENC.ARTICULOColumn] = value;
                 }
             }
             
@@ -730,14 +730,14 @@ namespace PrendaSAL.Informes {
             public decimal PRESTAMO {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLISTA_CIERRE.PRESTAMOColumn]));
+                        return ((decimal)(this[this.tableLISTA_VENC.PRESTAMOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PRESTAMO\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PRESTAMO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.PRESTAMOColumn] = value;
+                    this[this.tableLISTA_VENC.PRESTAMOColumn] = value;
                 }
             }
             
@@ -746,155 +746,155 @@ namespace PrendaSAL.Informes {
             public decimal SALDO {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLISTA_CIERRE.SALDOColumn]));
+                        return ((decimal)(this[this.tableLISTA_VENC.SALDOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SALDO\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SALDO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.SALDOColumn] = value;
+                    this[this.tableLISTA_VENC.SALDOColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHAV {
+            public string ESTADO_CONTRATO {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLISTA_CIERRE.FECHAVColumn]));
+                        return ((string)(this[this.tableLISTA_VENC.ESTADO_CONTRATOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHAV\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ESTADO_CONTRATO\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.FECHAVColumn] = value;
+                    this[this.tableLISTA_VENC.ESTADO_CONTRATOColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long DIAS {
+            public long DIAS_VENC {
                 get {
                     try {
-                        return ((long)(this[this.tableLISTA_CIERRE.DIASColumn]));
+                        return ((long)(this[this.tableLISTA_VENC.DIAS_VENCColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DIAS\' de la tabla \'LISTA_CIERRE\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DIAS_VENC\' de la tabla \'LISTA_VENC\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLISTA_CIERRE.DIASColumn] = value;
+                    this[this.tableLISTA_VENC.DIAS_VENCColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsREACTIVADONull() {
-                return this.IsNull(this.tableLISTA_CIERRE.REACTIVADOColumn);
+                return this.IsNull(this.tableLISTA_VENC.REACTIVADOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetREACTIVADONull() {
-                this[this.tableLISTA_CIERRE.REACTIVADOColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.REACTIVADOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCONTRATONull() {
-                return this.IsNull(this.tableLISTA_CIERRE.CONTRATOColumn);
+                return this.IsNull(this.tableLISTA_VENC.CONTRATOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCONTRATONull() {
-                this[this.tableLISTA_CIERRE.CONTRATOColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.CONTRATOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCLIENTENull() {
-                return this.IsNull(this.tableLISTA_CIERRE.CLIENTEColumn);
+                return this.IsNull(this.tableLISTA_VENC.CLIENTEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCLIENTENull() {
-                this[this.tableLISTA_CIERRE.CLIENTEColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.CLIENTEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCATEGORIANull() {
-                return this.IsNull(this.tableLISTA_CIERRE.CATEGORIAColumn);
+                return this.IsNull(this.tableLISTA_VENC.CATEGORIAColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCATEGORIANull() {
-                this[this.tableLISTA_CIERRE.CATEGORIAColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.CATEGORIAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsARTICULONull() {
-                return this.IsNull(this.tableLISTA_CIERRE.ARTICULOColumn);
+                return this.IsNull(this.tableLISTA_VENC.ARTICULOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetARTICULONull() {
-                this[this.tableLISTA_CIERRE.ARTICULOColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.ARTICULOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPRESTAMONull() {
-                return this.IsNull(this.tableLISTA_CIERRE.PRESTAMOColumn);
+                return this.IsNull(this.tableLISTA_VENC.PRESTAMOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPRESTAMONull() {
-                this[this.tableLISTA_CIERRE.PRESTAMOColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.PRESTAMOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSALDONull() {
-                return this.IsNull(this.tableLISTA_CIERRE.SALDOColumn);
+                return this.IsNull(this.tableLISTA_VENC.SALDOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSALDONull() {
-                this[this.tableLISTA_CIERRE.SALDOColumn] = global::System.Convert.DBNull;
+                this[this.tableLISTA_VENC.SALDOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHAVNull() {
-                return this.IsNull(this.tableLISTA_CIERRE.FECHAVColumn);
+            public bool IsESTADO_CONTRATONull() {
+                return this.IsNull(this.tableLISTA_VENC.ESTADO_CONTRATOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHAVNull() {
-                this[this.tableLISTA_CIERRE.FECHAVColumn] = global::System.Convert.DBNull;
+            public void SetESTADO_CONTRATONull() {
+                this[this.tableLISTA_VENC.ESTADO_CONTRATOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDIASNull() {
-                return this.IsNull(this.tableLISTA_CIERRE.DIASColumn);
+            public bool IsDIAS_VENCNull() {
+                return this.IsNull(this.tableLISTA_VENC.DIAS_VENCColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDIASNull() {
-                this[this.tableLISTA_CIERRE.DIASColumn] = global::System.Convert.DBNull;
+            public void SetDIAS_VENCNull() {
+                this[this.tableLISTA_VENC.DIAS_VENCColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -902,22 +902,22 @@ namespace PrendaSAL.Informes {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class LISTA_CIERRERowChangeEvent : global::System.EventArgs {
+        public class LISTA_VENCRowChangeEvent : global::System.EventArgs {
             
-            private LISTA_CIERRERow eventRow;
+            private LISTA_VENCRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERRERowChangeEvent(LISTA_CIERRERow row, global::System.Data.DataRowAction action) {
+            public LISTA_VENCRowChangeEvent(LISTA_VENCRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTA_CIERRERow Row {
+            public LISTA_VENCRow Row {
                 get {
                     return this.eventRow;
                 }

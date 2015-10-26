@@ -790,7 +790,7 @@ namespace PrendaSAL.Movimientos
                         tblITEMS.CurrentRow.Selected = false;
                         tblITEMS.Rows[row.Index].Selected = true;
                         tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("DESCRIPCION VACIO EN DETALLE DE COMPRA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("DESCRIPCION VACIA EN DETALLE DE COMPRA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                     }
                     if (row.Cells["MONTO"].Value == null || Decimal.Parse(row.Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) <= 0)
@@ -822,6 +822,7 @@ namespace PrendaSAL.Movimientos
             txtTOTAL.Focus();
             if (validarCompra())
             {
+                COMPRA.NOTA = txtNOTA.Text;
                 ConfirmarCompra confirmar = new ConfirmarCompra(COMPRA, ACCION);
                 confirmar.ShowDialog();
             }
@@ -968,40 +969,88 @@ namespace PrendaSAL.Movimientos
         {
             if (COMPRA != null)
             {
-                ImprimirContratoCompra();
+                ImprimirContratoCompra_Plantilla_2();
             }
         }
 
-        
-        public void ImprimirContratoCompra()
+
+
+
+
+        public void ImprimirContratoCompra_Plantilla_2()
         {
             viewerCONTRATO.Clear();
             if (COMPRA != null)
             {
-                Sucursal SUC = Sucursal.ConverterToSucursal(HOME.Instance().datSUCURSALES.Rows[cbxSUCURSAL.SelectedIndex]);
+                Sucursal SUC = HOME.Instance().getSucursal(COMPRA.COD_SUC).Copy();
 
-                ReportParameter[] parameters = new ReportParameter[18];
-                parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);
-                parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
-                parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
-                parameters[3] = new ReportParameter("NumCOMPRA", COMPRA.DOCUMENTO);
-                parameters[4] = new ReportParameter("CLIENTE", COMPRA.CLIENTE);
-                parameters[5] = new ReportParameter("DomicilioCLI", COMPRA.DOMICILIO_CLI);
-                parameters[6] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
-                parameters[7] = new ReportParameter("ExpCLI", COMPRA.EXTENDIDO);
-                parameters[8] = new ReportParameter("DireccionCLI", COMPRA.DIRECCION_CLI);
-                parameters[9] = new ReportParameter("TelCLI", COMPRA.TEL_CLI);
-                parameters[10] = new ReportParameter("TOTAL", COMPRA.TOTAL.ToString("C2"));
-                parameters[11] = new ReportParameter("ARTICULO", COMPRA.getArticulosText());
-                parameters[12] = new ReportParameter("MUNICIPIO", SUC.MUNICIPIO);
-                parameters[13] = new ReportParameter("DIAS", COMPRA.FECHA.Date.ToString("dd"));
-                parameters[14] = new ReportParameter("MES", COMPRA.FECHA.Date.ToString("MMMM").ToUpper());
-                parameters[15] = new ReportParameter("ANIO", COMPRA.FECHA.Date.ToString("yyyy"));
-                parameters[16] = new ReportParameter("EMPLEADO", COMPRA.RESPONSABLE);
-                parameters[17] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
-                viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoCompra.rdlc";
+                ReportParameter[] parameters = new ReportParameter[17];
+                parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION + " ," + SUC.DEPTO);
+                parameters[2] = new ReportParameter("CONTRATO", COMPRA.DOCUMENTO);
+                parameters[3] = new ReportParameter("CLIENTE", COMPRA.CLIENTE);
+                parameters[4] = new ReportParameter("EdadCLI", COMPRA.EDAD + "");
+                parameters[5] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
+                parameters[6] = new ReportParameter("NitCLI", COMPRA.NIT);
+                parameters[7] = new ReportParameter("DireccionCLI", COMPRA.DIRECCION_CLI + " " + COMPRA.DOMICILIO_CLI + " ," + COMPRA.DEPTO_CLI);
+                parameters[8] = new ReportParameter("TOTAL", COMPRA.TOTAL.ToString("C2"));
+                parameters[9] = new ReportParameter("TASA", 15 + "");
+                parameters[10] = new ReportParameter("INTERES", (COMPRA.TOTAL*(decimal)0.15).ToString("C2"));
+                parameters[11] = new ReportParameter("GARANTIA", COMPRA.getArticulosText());
+                parameters[12] = new ReportParameter("DIAS", COMPRA.FECHA.Date.ToString("dd"));
+                parameters[13] = new ReportParameter("MES", COMPRA.FECHA.Date.ToString("MMMM").ToUpper());
+                parameters[14] = new ReportParameter("ANIO", COMPRA.FECHA.Date.ToString("yyyy"));
+                parameters[15] = new ReportParameter("PLAZO", HOME.Instance().convertirNumeroLetra(3).ToLower());
+                parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+
+                viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoCompra2.rdlc";
                 viewerCONTRATO.LocalReport.SetParameters(parameters);
                 viewerCONTRATO.RefreshReport();
+            }
+        }
+
+
+
+
+
+
+        public void ImprimirContratoCompra_Plantilla_1()
+        {
+            viewerCONTRATO.Clear();
+            if (COMPRA != null)
+            {
+                try
+                {
+                    Sucursal SUC = HOME.Instance().getSucursal(COMPRA.COD_SUC).Copy();
+
+                    ReportParameter[] parameters = new ReportParameter[18];
+                    parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);
+                    parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
+                    parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
+                    parameters[3] = new ReportParameter("NumCOMPRA", COMPRA.DOCUMENTO);
+                    parameters[4] = new ReportParameter("CLIENTE", COMPRA.CLIENTE);
+                    parameters[5] = new ReportParameter("DomicilioCLI", COMPRA.DOMICILIO_CLI);
+                    parameters[6] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
+                    parameters[7] = new ReportParameter("ExpCLI", COMPRA.EXTENDIDO);
+                    parameters[8] = new ReportParameter("DireccionCLI", COMPRA.DIRECCION_CLI);
+                    parameters[9] = new ReportParameter("TelCLI", COMPRA.TEL_CLI);
+                    parameters[10] = new ReportParameter("TOTAL", COMPRA.TOTAL.ToString("C2"));
+                    parameters[11] = new ReportParameter("ARTICULO", COMPRA.getArticulosText());
+                    parameters[12] = new ReportParameter("MUNICIPIO", SUC.MUNICIPIO);
+                    parameters[13] = new ReportParameter("DIAS", COMPRA.FECHA.Date.ToString("dd"));
+                    parameters[14] = new ReportParameter("MES", COMPRA.FECHA.Date.ToString("MMMM").ToUpper());
+                    parameters[15] = new ReportParameter("ANIO", COMPRA.FECHA.Date.ToString("yyyy"));
+                    parameters[16] = new ReportParameter("EMPLEADO", COMPRA.RESPONSABLE);
+                    parameters[17] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                    viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoCompra1.rdlc";
+                    viewerCONTRATO.LocalReport.SetParameters(parameters);
+                    viewerCONTRATO.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n"+ex.Message , "ERROR AL IMPRIMIR CONTRATO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
 

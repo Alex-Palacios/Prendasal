@@ -267,6 +267,10 @@ namespace PrendaSAL.Catalogos
                         Movimientos.ContratosForm.Instance().cargarDatosCliente(SELECTED);
                         this.Close();
                         break;
+                    case "VentasForm":
+                        Movimientos.VentasForm.Instance().cargarDatosCliente(SELECTED);
+                        this.Close();
+                        break;
                 }
             }
         }

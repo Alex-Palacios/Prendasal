@@ -146,6 +146,27 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value>Descuento: </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!Descuento.Value</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>Abono a Capital: </Value>
                 <Style>
                   <FontSize>8pt</FontSize>
@@ -162,7 +183,34 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">                             </Value>
+                <Value xml:space="preserve">    </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>TOTAL: </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">               </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!Total.Value</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                          </Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -308,8 +356,8 @@
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>0.87692cm</Top>
         <Left>0.58209cm</Left>
-        <Height>8.14034cm</Height>
-        <Width>14.49683cm</Width>
+        <Height>6.12951cm</Height>
+        <Width>14.60266cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -321,13 +369,13 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>10cm</Height>
+    <Height>8.3cm</Height>
     <Style />
   </Body>
   <Width>16cm</Width>
   <Page>
-    <PageHeight>10cm</PageHeight>
-    <PageWidth>16cm</PageWidth>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
@@ -379,6 +427,14 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="numRECIBO">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Descuento">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Total">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

@@ -53,6 +53,12 @@ namespace MODELO
             }
             return suc;
         }
+
+
+        public Sucursal Copy()
+        {
+            return (Sucursal)this.MemberwiseClone();
+        }
         
     }
 }

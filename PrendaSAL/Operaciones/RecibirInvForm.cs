@@ -11,7 +11,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -32,7 +31,7 @@ namespace PrendaSAL.Operaciones
 
         //VARIABLES
         private DBUsuario dbUser;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private DataTable VALORES_CUSTODIA;
         private DataTable INVENTARIO;
         private decimal TOTAL_CUSTODIA;
@@ -43,7 +42,7 @@ namespace PrendaSAL.Operaciones
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
         }
 
         private void permisos()
@@ -152,7 +151,7 @@ namespace PrendaSAL.Operaciones
         {
             if (e.KeyChar == (char)Keys.Enter && txtNUMERO_Custodia.Text.Trim() != string.Empty)
             {
-                SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_CUSTODIA, eTipoDocTraslado.ENVIO, txtNUMERO_Custodia.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
+                //SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_CUSTODIA, eTipoDocTraslado.ENVIO, txtNUMERO_Custodia.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
                 cargarCustodia();
                 e.Handled = true;
             }
@@ -186,7 +185,7 @@ namespace PrendaSAL.Operaciones
                     txtRecibe_Custodia.Text = HOME.Instance().USUARIO.NOMBRE;
                     btnRECIBIR_CUSTODIA.Enabled = true;
                 }
-                tblCustodia.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
+                //tblCustodia.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
                 MessageBox.Show("TRASLADO DE " + SELECTED.TIPO_DOC.ToString().Replace('_', ' ') + " #" + SELECTED.DOCUMENTO + " CARGADO", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -228,11 +227,11 @@ namespace PrendaSAL.Operaciones
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbInventario.RECIBIR_TRASLADO_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_CUSTODIA, eTipoDocTraslado.ENVIO, txtNUMERO_Custodia.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
-                            cargarCustodia();
-                        }
+                        //if (dbInventario.RECIBIR_TRASLADO_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_CUSTODIA, eTipoDocTraslado.ENVIO, txtNUMERO_Custodia.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
+                        //    cargarCustodia();
+                        //}
                     }
                     else
                     {
@@ -256,7 +255,7 @@ namespace PrendaSAL.Operaciones
         {
             if (e.KeyChar == (char)Keys.Enter && txtNUMERO_Remision.Text.Trim() != string.Empty)
             {
-                SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_INVENTARIO, eTipoDocTraslado.REMISION, txtNUMERO_Remision.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
+                //SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_INVENTARIO, eTipoDocTraslado.REMISION, txtNUMERO_Remision.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
                 cargarRemision();
                 e.Handled = true;
             }
@@ -290,7 +289,7 @@ namespace PrendaSAL.Operaciones
                     txtRecibe_Remision.Text = HOME.Instance().USUARIO.NOMBRE;
                     btnRECIBIR_REMISION.Enabled = true;
                 }
-                tblInventario.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
+                //tblInventario.DataSource = dbInventario.GET_ITEMS_TRASLADO(SELECTED);
                 MessageBox.Show("TRASLADO DE " + SELECTED.TIPO_DOC.ToString().Replace('_', ' ') + " #" + SELECTED.DOCUMENTO + " CARGADO", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -332,11 +331,11 @@ namespace PrendaSAL.Operaciones
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbInventario.RECIBIR_TRASLADO_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_INVENTARIO, eTipoDocTraslado.REMISION, txtNUMERO_Remision.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
-                            cargarRemision();
-                        }
+                        //if (dbInventario.RECIBIR_TRASLADO_PRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    SELECTED = dbInventario.findRecibirTrasladoByDocPRENDASAL(eTipoTraslado.MOV_INVENTARIO, eTipoDocTraslado.REMISION, txtNUMERO_Remision.Text.Trim().ToUpper(), HOME.Instance().SUCURSAL.COD_SUC);
+                        //    cargarRemision();
+                        //}
                     }
                     else
                     {

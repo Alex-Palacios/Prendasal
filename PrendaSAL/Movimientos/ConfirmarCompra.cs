@@ -78,7 +78,7 @@ namespace PrendaSAL.Movimientos
                         {
                             if (ComprasForm.Instance().buscarCompra(COMPRA.DOCUMENTO))
                             {
-                                ComprasForm.Instance().ImprimirContratoCompra();
+                                ComprasForm.Instance().ImprimirContratoCompra_Plantilla_2();
                             }
                             this.Close();
                         }

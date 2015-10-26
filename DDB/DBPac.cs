@@ -123,7 +123,7 @@ namespace DDB
                 factura.Direction = ParameterDirection.Input;
 
                 idpac.Value = pac;
-                factura.Value = eTipoFactura.FCF.ToString() + fcf;
+                factura.Value = fcf;
 
                 cmd.ExecuteNonQuery();
                 

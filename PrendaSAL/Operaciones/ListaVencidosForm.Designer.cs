@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
             this.opciones = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,6 +54,16 @@
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblCONTRATOS = new System.Windows.Forms.DataGridView();
+            this.ID_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REACTIVADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SALDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ESTADO_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DIAS_VENC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateVencidos = new System.Windows.Forms.DateTimePicker();
             this.txtDOCUMENTO = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -61,35 +73,33 @@
             this.lbCONTRATOS = new System.Windows.Forms.Label();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.bsKPM = new System.Windows.Forms.BindingSource(this.components);
-            this.dSKPM = new PrendaSAL.Informes.DSKPM();
             this.btnLISTAR = new System.Windows.Forms.Button();
             this.txtNOTA = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.bsListaCierre = new System.Windows.Forms.BindingSource(this.components);
-            this.dSCierre = new PrendaSAL.Informes.DSCierre();
             this.lbREACTIVADOS = new System.Windows.Forms.Label();
             this.lbTOTAL = new System.Windows.Forms.Label();
-            this.tblKPM = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.ID_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REACTIVADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SALDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ESTADO_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DIAS_VENC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numDIAS = new System.Windows.Forms.NumericUpDown();
+            this.cbxCategorias = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tblKPM = new System.Windows.Forms.DataGridView();
+            this.KILATAJE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PESO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewerLISTAVENC = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.bsListaVenc = new System.Windows.Forms.BindingSource(this.components);
+            this.dSListaVenc = new PrendaSAL.Informes.DSListaVenc();
+            this.bsKPM = new System.Windows.Forms.BindingSource(this.components);
+            this.dSKPM = new PrendaSAL.Informes.DSKPM();
             this.opciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDIAS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblKPM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsListaVenc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSListaVenc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsKPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSKPM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsListaCierre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSCierre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblKPM)).BeginInit();
             this.SuspendLayout();
             // 
             // opciones
@@ -100,7 +110,6 @@
             this.btnGuardar,
             this.btnCancelar,
             this.toolStripSeparator2,
-            this.btnEditar,
             this.btnBuscar,
             this.btnReimprimir,
             this.btnLog,
@@ -108,7 +117,7 @@
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
             this.opciones.Name = "opciones";
-            this.opciones.Size = new System.Drawing.Size(1102, 25);
+            this.opciones.Size = new System.Drawing.Size(1184, 25);
             this.opciones.TabIndex = 2;
             this.opciones.Text = "toolStrip1";
             // 
@@ -169,7 +178,7 @@
             this.btnReimprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReimprimir.Name = "btnReimprimir";
             this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnReimprimir.Text = "toolStripButton1";
+            this.btnReimprimir.ToolTipText = "Imprimir";
             this.btnReimprimir.Click += new System.EventHandler(this.IMPRIMIR);
             // 
             // btnLog
@@ -212,7 +221,6 @@
             this.ID_PRESTAMO,
             this.REACTIVADO,
             this.CONTRATO,
-            this.FECHA_CONTRATO,
             this.CLIENTE,
             this.CATEGORIA,
             this.ARTICULO,
@@ -224,20 +232,124 @@
             this.tblCONTRATOS.Name = "tblCONTRATOS";
             this.tblCONTRATOS.ReadOnly = true;
             this.tblCONTRATOS.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblCONTRATOS.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.tblCONTRATOS.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle74.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle74.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle74.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle74.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle74.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblCONTRATOS.RowHeadersDefaultCellStyle = dataGridViewCellStyle74;
+            this.tblCONTRATOS.RowHeadersVisible = false;
+            dataGridViewCellStyle75.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.tblCONTRATOS.RowsDefaultCellStyle = dataGridViewCellStyle75;
             this.tblCONTRATOS.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tblCONTRATOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblCONTRATOS.Size = new System.Drawing.Size(1052, 296);
+            this.tblCONTRATOS.Size = new System.Drawing.Size(983, 397);
             this.tblCONTRATOS.TabIndex = 107;
+            // 
+            // ID_PRESTAMO
+            // 
+            this.ID_PRESTAMO.DataPropertyName = "ID_PRESTAMO";
+            this.ID_PRESTAMO.HeaderText = "ID_PRESTAMO";
+            this.ID_PRESTAMO.Name = "ID_PRESTAMO";
+            this.ID_PRESTAMO.ReadOnly = true;
+            this.ID_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID_PRESTAMO.Visible = false;
+            // 
+            // REACTIVADO
+            // 
+            this.REACTIVADO.DataPropertyName = "REACTIVADO";
+            this.REACTIVADO.HeaderText = "R";
+            this.REACTIVADO.Name = "REACTIVADO";
+            this.REACTIVADO.ReadOnly = true;
+            this.REACTIVADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.REACTIVADO.Width = 20;
+            // 
+            // CONTRATO
+            // 
+            this.CONTRATO.DataPropertyName = "CONTRATO";
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CONTRATO.DefaultCellStyle = dataGridViewCellStyle66;
+            this.CONTRATO.HeaderText = "CONTRATO";
+            this.CONTRATO.Name = "CONTRATO";
+            this.CONTRATO.ReadOnly = true;
+            this.CONTRATO.Width = 70;
+            // 
+            // CLIENTE
+            // 
+            this.CLIENTE.DataPropertyName = "CLIENTE";
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CLIENTE.DefaultCellStyle = dataGridViewCellStyle67;
+            this.CLIENTE.HeaderText = "CLIENTE";
+            this.CLIENTE.Name = "CLIENTE";
+            this.CLIENTE.ReadOnly = true;
+            this.CLIENTE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CLIENTE.Width = 220;
+            // 
+            // CATEGORIA
+            // 
+            this.CATEGORIA.DataPropertyName = "CATEGORIA";
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CATEGORIA.DefaultCellStyle = dataGridViewCellStyle68;
+            this.CATEGORIA.HeaderText = "CATEGORIA";
+            this.CATEGORIA.Name = "CATEGORIA";
+            this.CATEGORIA.ReadOnly = true;
+            // 
+            // ARTICULO
+            // 
+            this.ARTICULO.DataPropertyName = "ARTICULO";
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.ARTICULO.DefaultCellStyle = dataGridViewCellStyle69;
+            this.ARTICULO.HeaderText = "ARTICULO";
+            this.ARTICULO.Name = "ARTICULO";
+            this.ARTICULO.ReadOnly = true;
+            this.ARTICULO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ARTICULO.Width = 200;
+            // 
+            // PRESTAMO
+            // 
+            this.PRESTAMO.DataPropertyName = "PRESTAMO";
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle70.Format = "C2";
+            this.PRESTAMO.DefaultCellStyle = dataGridViewCellStyle70;
+            this.PRESTAMO.HeaderText = "PRESTAMO";
+            this.PRESTAMO.Name = "PRESTAMO";
+            this.PRESTAMO.ReadOnly = true;
+            this.PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PRESTAMO.Width = 70;
+            // 
+            // SALDO
+            // 
+            this.SALDO.DataPropertyName = "SALDO";
+            dataGridViewCellStyle71.Format = "C2";
+            this.SALDO.DefaultCellStyle = dataGridViewCellStyle71;
+            this.SALDO.HeaderText = "SALDO";
+            this.SALDO.Name = "SALDO";
+            this.SALDO.ReadOnly = true;
+            this.SALDO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SALDO.Width = 70;
+            // 
+            // ESTADO_CONTRATO
+            // 
+            this.ESTADO_CONTRATO.DataPropertyName = "ESTADO_CONTRATO";
+            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ESTADO_CONTRATO.DefaultCellStyle = dataGridViewCellStyle72;
+            this.ESTADO_CONTRATO.HeaderText = "ESTADO";
+            this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
+            this.ESTADO_CONTRATO.ReadOnly = true;
+            this.ESTADO_CONTRATO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DIAS_VENC
+            // 
+            this.DIAS_VENC.DataPropertyName = "DIAS_VENC";
+            dataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DIAS_VENC.DefaultCellStyle = dataGridViewCellStyle73;
+            this.DIAS_VENC.HeaderText = "DIAS VENC";
+            this.DIAS_VENC.Name = "DIAS_VENC";
+            this.DIAS_VENC.ReadOnly = true;
+            this.DIAS_VENC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DIAS_VENC.Width = 50;
             // 
             // dateVencidos
             // 
@@ -305,7 +417,7 @@
             this.lbCONTRATOS.AutoSize = true;
             this.lbCONTRATOS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCONTRATOS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbCONTRATOS.Location = new System.Drawing.Point(947, 479);
+            this.lbCONTRATOS.Location = new System.Drawing.Point(1037, 465);
             this.lbCONTRATOS.Name = "lbCONTRATOS";
             this.lbCONTRATOS.Size = new System.Drawing.Size(94, 13);
             this.lbCONTRATOS.TabIndex = 116;
@@ -332,20 +444,10 @@
             this.label19.TabIndex = 118;
             this.label19.Text = "SUCURSAL";
             // 
-            // bsKPM
-            // 
-            this.bsKPM.DataMember = "KPM";
-            this.bsKPM.DataSource = this.dSKPM;
-            // 
-            // dSKPM
-            // 
-            this.dSKPM.DataSetName = "DSKPM";
-            this.dSKPM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btnLISTAR
             // 
             this.btnLISTAR.Image = global::PrendaSAL.Properties.Resources.lista1;
-            this.btnLISTAR.Location = new System.Drawing.Point(504, 83);
+            this.btnLISTAR.Location = new System.Drawing.Point(929, 86);
             this.btnLISTAR.Name = "btnLISTAR";
             this.btnLISTAR.Size = new System.Drawing.Size(122, 48);
             this.btnLISTAR.TabIndex = 121;
@@ -361,29 +463,19 @@
             // 
             this.txtNOTA.Border.Class = "TextBoxBorder";
             this.txtNOTA.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtNOTA.Location = new System.Drawing.Point(693, 34);
+            this.txtNOTA.Location = new System.Drawing.Point(457, 37);
             this.txtNOTA.Multiline = true;
             this.txtNOTA.Name = "txtNOTA";
-            this.txtNOTA.Size = new System.Drawing.Size(358, 62);
+            this.txtNOTA.Size = new System.Drawing.Size(254, 88);
             this.txtNOTA.TabIndex = 122;
             this.txtNOTA.WatermarkText = "Nota Adicional";
-            // 
-            // bsListaCierre
-            // 
-            this.bsListaCierre.DataMember = "LISTA_CIERRE";
-            this.bsListaCierre.DataSource = this.dSCierre;
-            // 
-            // dSCierre
-            // 
-            this.dSCierre.DataSetName = "DSCierre";
-            this.dSCierre.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lbREACTIVADOS
             // 
             this.lbREACTIVADOS.AutoSize = true;
             this.lbREACTIVADOS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbREACTIVADOS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbREACTIVADOS.Location = new System.Drawing.Point(947, 506);
+            this.lbREACTIVADOS.Location = new System.Drawing.Point(1037, 489);
             this.lbREACTIVADOS.Name = "lbREACTIVADOS";
             this.lbREACTIVADOS.Size = new System.Drawing.Size(94, 13);
             this.lbREACTIVADOS.TabIndex = 123;
@@ -394,11 +486,78 @@
             this.lbTOTAL.AutoSize = true;
             this.lbTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTOTAL.Location = new System.Drawing.Point(947, 539);
+            this.lbTOTAL.Location = new System.Drawing.Point(1037, 525);
             this.lbTOTAL.Name = "lbTOTAL";
             this.lbTOTAL.Size = new System.Drawing.Size(94, 13);
             this.lbTOTAL.TabIndex = 124;
             this.lbTOTAL.Text = "0 CONTRATOS";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.Location = new System.Drawing.Point(1019, 502);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 13);
+            this.label3.TabIndex = 126;
+            this.label3.Text = "_________________";
+            // 
+            // numDIAS
+            // 
+            this.numDIAS.Location = new System.Drawing.Point(966, 34);
+            this.numDIAS.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numDIAS.Name = "numDIAS";
+            this.numDIAS.Size = new System.Drawing.Size(43, 20);
+            this.numDIAS.TabIndex = 129;
+            this.numDIAS.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // cbxCategorias
+            // 
+            this.cbxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCategorias.FormattingEnabled = true;
+            this.cbxCategorias.Location = new System.Drawing.Point(942, 59);
+            this.cbxCategorias.Name = "cbxCategorias";
+            this.cbxCategorias.Size = new System.Drawing.Size(105, 21);
+            this.cbxCategorias.TabIndex = 130;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(846, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 131;
+            this.label4.Text = "CATEGORIA";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1015, 37);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 132;
+            this.label6.Text = "DIAS";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(939, 34);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(21, 13);
+            this.label7.TabIndex = 133;
+            this.label7.Text = ">=";
             // 
             // tblKPM
             // 
@@ -406,157 +565,77 @@
             this.tblKPM.AllowUserToDeleteRows = false;
             this.tblKPM.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tblKPM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblKPM.Location = new System.Drawing.Point(12, 462);
+            this.tblKPM.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.KILATAJE,
+            this.PESO,
+            this.MONTO});
+            this.tblKPM.Location = new System.Drawing.Point(1001, 152);
             this.tblKPM.Name = "tblKPM";
             this.tblKPM.ReadOnly = true;
-            this.tblKPM.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblKPM.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.tblKPM.RowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.tblKPM.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.tblKPM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblKPM.Size = new System.Drawing.Size(550, 70);
-            this.tblKPM.TabIndex = 125;
+            this.tblKPM.RowHeadersVisible = false;
+            this.tblKPM.Size = new System.Drawing.Size(172, 296);
+            this.tblKPM.TabIndex = 134;
             // 
-            // label3
+            // KILATAJE
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(925, 519);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 13);
-            this.label3.TabIndex = 126;
-            this.label3.Text = "_________________";
+            this.KILATAJE.DataPropertyName = "KILATAJE";
+            dataGridViewCellStyle76.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.KILATAJE.DefaultCellStyle = dataGridViewCellStyle76;
+            this.KILATAJE.HeaderText = "KIL";
+            this.KILATAJE.Name = "KILATAJE";
+            this.KILATAJE.ReadOnly = true;
+            this.KILATAJE.Width = 50;
             // 
-            // btnEditar
+            // PESO
             // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(23, 22);
-            this.btnEditar.ToolTipText = "Editar";
+            this.PESO.DataPropertyName = "PESO";
+            dataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.PESO.DefaultCellStyle = dataGridViewCellStyle77;
+            this.PESO.HeaderText = "GRS";
+            this.PESO.Name = "PESO";
+            this.PESO.ReadOnly = true;
+            this.PESO.Width = 50;
             // 
-            // ID_PRESTAMO
+            // MONTO
             // 
-            this.ID_PRESTAMO.DataPropertyName = "ID_PRESTAMO";
-            this.ID_PRESTAMO.HeaderText = "ID_PRESTAMO";
-            this.ID_PRESTAMO.Name = "ID_PRESTAMO";
-            this.ID_PRESTAMO.ReadOnly = true;
-            this.ID_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID_PRESTAMO.Visible = false;
+            this.MONTO.DataPropertyName = "MONTO";
+            dataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle78.Format = "C2";
+            this.MONTO.DefaultCellStyle = dataGridViewCellStyle78;
+            this.MONTO.HeaderText = "MONTO";
+            this.MONTO.Name = "MONTO";
+            this.MONTO.ReadOnly = true;
+            this.MONTO.Width = 60;
             // 
-            // REACTIVADO
+            // viewerLISTAVENC
             // 
-            this.REACTIVADO.DataPropertyName = "REACTIVADO";
-            this.REACTIVADO.HeaderText = "R";
-            this.REACTIVADO.Name = "REACTIVADO";
-            this.REACTIVADO.ReadOnly = true;
-            this.REACTIVADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.REACTIVADO.Width = 20;
+            this.viewerLISTAVENC.Location = new System.Drawing.Point(993, 0);
+            this.viewerLISTAVENC.Name = "viewerLISTAVENC";
+            this.viewerLISTAVENC.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.viewerLISTAVENC.Size = new System.Drawing.Size(191, 25);
+            this.viewerLISTAVENC.TabIndex = 135;
+            this.viewerLISTAVENC.Visible = false;
+            this.viewerLISTAVENC.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
             // 
-            // CONTRATO
+            // bsListaVenc
             // 
-            this.CONTRATO.DataPropertyName = "CONTRATO";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CONTRATO.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CONTRATO.HeaderText = "CONTRATO";
-            this.CONTRATO.Name = "CONTRATO";
-            this.CONTRATO.ReadOnly = true;
-            this.CONTRATO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CONTRATO.Width = 70;
+            this.bsListaVenc.DataMember = "LISTA_VENC";
+            this.bsListaVenc.DataSource = this.dSListaVenc;
             // 
-            // FECHA_CONTRATO
+            // dSListaVenc
             // 
-            this.FECHA_CONTRATO.DataPropertyName = "FECHA_CONTRATO";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.FECHA_CONTRATO.DefaultCellStyle = dataGridViewCellStyle2;
-            this.FECHA_CONTRATO.HeaderText = "FECHA";
-            this.FECHA_CONTRATO.Name = "FECHA_CONTRATO";
-            this.FECHA_CONTRATO.ReadOnly = true;
-            this.FECHA_CONTRATO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FECHA_CONTRATO.Width = 70;
+            this.dSListaVenc.DataSetName = "DSCierre";
+            this.dSListaVenc.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // CLIENTE
+            // bsKPM
             // 
-            this.CLIENTE.DataPropertyName = "CLIENTE";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CLIENTE.DefaultCellStyle = dataGridViewCellStyle3;
-            this.CLIENTE.HeaderText = "CLIENTE";
-            this.CLIENTE.Name = "CLIENTE";
-            this.CLIENTE.ReadOnly = true;
-            this.CLIENTE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CLIENTE.Width = 220;
+            this.bsKPM.DataMember = "KPM";
+            this.bsKPM.DataSource = this.dSKPM;
             // 
-            // CATEGORIA
+            // dSKPM
             // 
-            this.CATEGORIA.DataPropertyName = "CATEGORIA";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CATEGORIA.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CATEGORIA.HeaderText = "CATEGORIA";
-            this.CATEGORIA.Name = "CATEGORIA";
-            this.CATEGORIA.ReadOnly = true;
-            this.CATEGORIA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ARTICULO
-            // 
-            this.ARTICULO.DataPropertyName = "ARTICULO";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.ARTICULO.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ARTICULO.HeaderText = "ARTICULO";
-            this.ARTICULO.Name = "ARTICULO";
-            this.ARTICULO.ReadOnly = true;
-            this.ARTICULO.Width = 200;
-            // 
-            // PRESTAMO
-            // 
-            this.PRESTAMO.DataPropertyName = "PRESTAMO";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle6.Format = "C2";
-            this.PRESTAMO.DefaultCellStyle = dataGridViewCellStyle6;
-            this.PRESTAMO.HeaderText = "PRESTAMO";
-            this.PRESTAMO.Name = "PRESTAMO";
-            this.PRESTAMO.ReadOnly = true;
-            this.PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PRESTAMO.Width = 70;
-            // 
-            // SALDO
-            // 
-            this.SALDO.DataPropertyName = "SALDO";
-            dataGridViewCellStyle7.Format = "C2";
-            this.SALDO.DefaultCellStyle = dataGridViewCellStyle7;
-            this.SALDO.HeaderText = "SALDO";
-            this.SALDO.Name = "SALDO";
-            this.SALDO.ReadOnly = true;
-            this.SALDO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SALDO.Width = 70;
-            // 
-            // ESTADO_CONTRATO
-            // 
-            this.ESTADO_CONTRATO.DataPropertyName = "ESTADO_CONTRATO";
-            this.ESTADO_CONTRATO.HeaderText = "ESTADO";
-            this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
-            this.ESTADO_CONTRATO.ReadOnly = true;
-            this.ESTADO_CONTRATO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DIAS_VENC
-            // 
-            this.DIAS_VENC.DataPropertyName = "DIAS_VENC";
-            this.DIAS_VENC.HeaderText = "DIAS VENC";
-            this.DIAS_VENC.Name = "DIAS_VENC";
-            this.DIAS_VENC.ReadOnly = true;
-            this.DIAS_VENC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DIAS_VENC.Width = 50;
+            this.dSKPM.DataSetName = "DSKPM";
+            this.dSKPM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ListaVencidosForm
             // 
@@ -565,9 +644,15 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1102, 561);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.Controls.Add(this.viewerLISTAVENC);
             this.Controls.Add(this.tblKPM);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cbxCategorias);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.numDIAS);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.lbREACTIVADOS);
             this.Controls.Add(this.txtNOTA);
@@ -592,11 +677,12 @@
             this.opciones.ResumeLayout(false);
             this.opciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDIAS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblKPM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsListaVenc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSListaVenc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsKPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSKPM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsListaCierre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSCierre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblKPM)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -622,10 +708,6 @@
         private System.Windows.Forms.Label lbCONTRATOS;
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.BindingSource bsListaCierre;
-        private Informes.DSCierre dSCierre;
-        private System.Windows.Forms.BindingSource bsKPM;
-        private Informes.DSKPM dSKPM;
         private System.Windows.Forms.ToolStripButton btnLog;
         private System.Windows.Forms.ToolStripButton btnEliminar;
         private System.Windows.Forms.ToolStripButton btnReimprimir;
@@ -633,13 +715,20 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtNOTA;
         private System.Windows.Forms.Label lbREACTIVADOS;
         private System.Windows.Forms.Label lbTOTAL;
-        private System.Windows.Forms.DataGridView tblKPM;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripButton btnEditar;
+        private System.Windows.Forms.NumericUpDown numDIAS;
+        private System.Windows.Forms.ComboBox cbxCategorias;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView tblKPM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KILATAJE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PESO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTO;
+        private Microsoft.Reporting.WinForms.ReportViewer viewerLISTAVENC;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_PRESTAMO;
         private System.Windows.Forms.DataGridViewCheckBoxColumn REACTIVADO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FECHA_CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CLIENTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
@@ -647,5 +736,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SALDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ESTADO_CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DIAS_VENC;
+        private System.Windows.Forms.BindingSource bsListaVenc;
+        private Informes.DSListaVenc dSListaVenc;
+        private System.Windows.Forms.BindingSource bsKPM;
+        private Informes.DSKPM dSKPM;
     }
 }

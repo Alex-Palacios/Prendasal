@@ -61,7 +61,6 @@
     <Compile Include="DBCliente.cs" />
     <Compile Include="DBCompra.cs" />
     <Compile Include="DBConexion.cs" />
-    <Compile Include="DBInvInicial.cs" />
     <Compile Include="DBCatalogo.cs" />
     <Compile Include="DBSucursal.cs" />
     <Compile Include="DBUsuario.cs" />

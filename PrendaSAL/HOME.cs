@@ -377,6 +377,23 @@ namespace PrendaSAL
             datSUCURSALES = dbSucursal.showSucursales();
         }
 
+
+        public Sucursal getSucursal(string codsuc)
+        {
+            Sucursal suc = null;
+            if (datSUCURSALES != null)
+            {
+                foreach (DataRow row in datSUCURSALES.Rows)
+                {
+                    if (row.Field<string>("COD_SUC") == codsuc)
+                    {
+                        suc = Sucursal.ConverterToSucursal(row);
+                    }
+                }
+            }
+            return suc;
+        }
+
         
         private void ventanasCASCADA(object sender, EventArgs e)
         {
@@ -895,7 +912,7 @@ namespace PrendaSAL
 
 
 
-        private string convertirNumeroLetra(int Numero)
+        public string convertirNumeroLetra(int Numero)
         {
             String resultado = "";
 

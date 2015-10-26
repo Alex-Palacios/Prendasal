@@ -34,26 +34,7 @@ namespace MODELO
 
         public Vencidos()
         {
-            //DATOS POR DEFECTO
-            //CONTRATOS_VENCIDOS = new DataTable();
-            //CONTRATOS_VENCIDOS.Columns.Add("ID_DET_VENC").DataType = System.Type.GetType("System.Int32");
-            //CONTRATOS_VENCIDOS.Columns.Add("ID_VENC").DataType = System.Type.GetType("System.Int32");
-            //CONTRATOS_VENCIDOS.Columns.Add("REACTIVADO").DataType = System.Type.GetType("System.Boolean");
-            //CONTRATOS_VENCIDOS.Columns.Add("FECHA_REACTIVADO").DataType = System.Type.GetType("System.DateTime");
-            //CONTRATOS_VENCIDOS.Columns.Add("REACTIVADO_POR").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("ID_PRESTAMO").DataType = System.Type.GetType("System.Int32");
-            //CONTRATOS_VENCIDOS.Columns.Add("CONTRATO").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("FECHA_CONTRATO").DataType = System.Type.GetType("System.DateTime");
-            //CONTRATOS_VENCIDOS.Columns.Add("CLIENTE").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("ARTICULO").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("PRESTAMO").DataType = System.Type.GetType("System.Decimal");
-            //CONTRATOS_VENCIDOS.Columns.Add("SALDO").DataType = System.Type.GetType("System.Decimal");
-            //CONTRATOS_VENCIDOS.Columns.Add("ESTADO_CONTRATO").DataType = System.Type.GetType("System.String");
-            //CONTRATOS_VENCIDOS.Columns.Add("DIAS_VENC").DataType = System.Type.GetType("System.Int64");
 
-
-            ///
         }
 
        
@@ -88,6 +69,7 @@ namespace MODELO
         {
             Vencidos copy = (Vencidos)this.MemberwiseClone();
             copy.CONTRATOS_VENCIDOS = this.CONTRATOS_VENCIDOS.Copy();
+            copy.KPM = this.KPM.Copy();
             return copy;
         }
 

@@ -48,13 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GastoController.cs" />
-    <Compile Include="IIController.cs" />
     <Compile Include="ImagesController.cs" />
-    <Compile Include="InventarioController.cs" />
     <Compile Include="MovCashController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteController.cs" />
-    <Compile Include="VentaController.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

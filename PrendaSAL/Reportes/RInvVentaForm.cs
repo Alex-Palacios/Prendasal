@@ -32,7 +32,7 @@ namespace PrendaSAL.Reportes
 
         //VARIABLES
         private DBPRENDASAL dbPrendasal;
-        private InventarioController dbInventario;
+        private DBInventario dbInventario;
         private DBCatalogo dbCatalogo;
         private DataTable INVENTARIO;
         private DataTable SUCURSALES;
@@ -44,7 +44,7 @@ namespace PrendaSAL.Reportes
         {
             InitializeComponent();
             dbPrendasal = new DBPRENDASAL();
-            dbInventario = new InventarioController();
+            dbInventario = new DBInventario();
             dbCatalogo = new DBCatalogo();
         }
 
@@ -157,7 +157,7 @@ namespace PrendaSAL.Reportes
                 //BUSCAR POR ARTICULO
                 if (cbxSUCURSAL.SelectedIndex >= 0 && cbxCATEGORIA.SelectedIndex >= 0 && cbxARTICULO.SelectedIndex >= 0)
                 {
-                    INVENTARIO = dbInventario.EXISTENCIAS_PRENDASAL((string) cbxSUCURSAL.SelectedValue,(string) cbxCATEGORIA.SelectedValue,(string)cbxARTICULO.SelectedValue);
+                    //INVENTARIO = dbInventario.EXISTENCIAS_PRENDASAL((string) cbxSUCURSAL.SelectedValue,(string) cbxCATEGORIA.SelectedValue,(string)cbxARTICULO.SelectedValue);
                     tblINVENTARIO.DataSource = INVENTARIO.Copy();
                     System.Media.SystemSounds.Exclamation.Play();
                     btnEditar.Enabled = false;
@@ -169,7 +169,7 @@ namespace PrendaSAL.Reportes
                 //BUSCAR POR CODIGO
                 if (txtCODIGO.Text.Trim() != string.Empty)
                 {
-                    INVENTARIO = dbInventario.EXISTENCIAS_BY_CODIGO_PRENDASAL(txtCODIGO.Text.Trim());
+                    //INVENTARIO = dbInventario.EXISTENCIAS_BY_CODIGO_PRENDASAL(txtCODIGO.Text.Trim());
                     tblINVENTARIO.DataSource = INVENTARIO.Copy();
                     System.Media.SystemSounds.Exclamation.Play();
                     btnEditar.Enabled = false;
