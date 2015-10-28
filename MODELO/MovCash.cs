@@ -6,55 +6,72 @@ using System.Threading.Tasks;
 
 namespace MODELO
 {
-    
-    public enum eTipoMovCash
-    {
-        FINANCIAMIENTO = 1,
-        REMESA,
-    }
 
-    public enum eTipoDocMovCash
-    {
-        TICKET = 1,
-    }
-
-    public enum eEstadoMovCash
-    {
-        HISTORICO = -2,
-        PREINGRESADO = -1,
-        ANULADO = 0,
-        REGISTRADO = 1,
-    }
+    using System.Data;
 
 
     public class MovCash
     {
         public int ID_MOV;
-        public string TRANSACCION;
+        public string COD_TRANS;
         public DateTime FECHA;
-        public eTipoMovCash TIPO_MOV;
-        public eTipoDocMovCash TIPO_DOC;
         public string DOCUMENTO;
+        public string SUC_ENVIA;
+        public string SUC_DEST;
+        public string TRASLADA;
+        public string RECIBE;
         public decimal TOTAL;
-        public string SUC_ORIGEN;
-        public string RESPONSABLE_ENVIO;
-        public string SUC_DESTINO;
-        public string RESPONSABLE_RECIBE;
-        public eEstadoMovCash ESTADO;
-        public string CTA_ORIGEN;
-        public string CTA_DESTINO;
         public bool RECIBIDO;
+        public eEstado ESTADO;
+        public bool INIT_BALANCE;
         public string NOTA;
 
         //VARIABLES AUXILIARES
-        public string SUCURSAL_ENVIO;
-        public string SUCURSAL_DESTINO;
         public string RESPONSABLE;
-        public string NOTA_CAMBIO;
+        public string DESTINO;
+        public string ENVIA;
 
         public MovCash()
         {
 
+        }
+
+
+        public static MovCash ConvertToMovCash(DataRow dr)
+        {
+            MovCash movimiento = null;
+            if (dr != null)
+            {
+                movimiento = new MovCash();
+                if (dr.Table.Columns.Contains("ID_MOV")) { movimiento.ID_MOV = dr.Field<int>("ID_MOV"); }
+                if (dr.Table.Columns.Contains("COD_TRANS")) { movimiento.COD_TRANS = dr.Field<string>("COD_TRANS"); }
+                if (dr.Table.Columns.Contains("FECHA")) { movimiento.FECHA = dr.Field<DateTime>("FECHA"); }
+                if (dr.Table.Columns.Contains("DOCUMENTO")) { movimiento.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
+                if (dr.Table.Columns.Contains("SUC_ENVIA")) { movimiento.SUC_ENVIA = dr.Field<string>("SUC_ENVIA"); }
+                if (dr.Table.Columns.Contains("SUC_DEST")) { movimiento.SUC_DEST = dr.Field<string>("SUC_DEST"); }
+                if (dr.Table.Columns.Contains("TRASLADA")) { movimiento.TRASLADA = dr.Field<string>("TRASLADA"); }
+                if (dr.Table.Columns.Contains("RECIBE")) { movimiento.RECIBE = dr.Field<string>("RECIBE"); }
+                if (dr.Table.Columns.Contains("TOTAL")) { movimiento.TOTAL = dr.Field<decimal>("TOTAL"); }
+                if (dr.Table.Columns.Contains("RECIBIDO")) { movimiento.RECIBIDO = dr.Field<bool>("RECIBIDO"); }
+                if (dr.Table.Columns.Contains("ESTADO")) { movimiento.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
+                if (dr.Table.Columns.Contains("INIT_BALANCE")) { movimiento.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
+                if (dr.Table.Columns.Contains("NOTA")) { movimiento.NOTA = dr.Field<string>("NOTA"); }
+
+                if (dr.Table.Columns.Contains("RESPONSABLE")) { movimiento.RESPONSABLE = dr.Field<string>("RESPONSABLE"); }
+                if (dr.Table.Columns.Contains("DESTINO")) { movimiento.DESTINO = dr.Field<string>("DESTINO"); }
+                if (dr.Table.Columns.Contains("ENVIA")) { movimiento.ENVIA = dr.Field<string>("ENVIA"); }
+
+            }
+            return movimiento;
+
+        }
+
+
+
+        public MovCash Copy()
+        {
+            MovCash copy = (MovCash)this.MemberwiseClone();
+            return copy;
         }
 
     }

@@ -12,7 +12,6 @@ using Microsoft.Reporting.WinForms;
 namespace PrendaSAL.Reportes
 {
     using MODELO;
-    using LOGICA;
     using DDB;
     using Informes;
 
@@ -33,7 +32,7 @@ namespace PrendaSAL.Reportes
         }
 
         //VARIABLES
-        private ReporteController dbReportes;
+        private DBReporte dbReportes;
         private DBUsuario dbUser;
         private DataTable SUCURSALES;
         private DataTable CANCELADOS;
@@ -42,7 +41,7 @@ namespace PrendaSAL.Reportes
         public CanceladosForm()
         {
             InitializeComponent();
-            dbReportes = new ReporteController();
+            dbReportes = new DBReporte();
             dbUser = new DBUsuario();
         }
 

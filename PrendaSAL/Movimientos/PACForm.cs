@@ -42,7 +42,6 @@ namespace PrendaSAL.Movimientos
         private eOperacion ACCION;
         private Pac PAC;
         private Pac SELECTED;
-
         private Reglas REGLAS;
         private Tarjeta TARJETA;
 
@@ -57,6 +56,7 @@ namespace PrendaSAL.Movimientos
             dbPrestamo = new DBPrestamo();
             dbPAC = new DBPac();
             dbVencidos = new DBVencidos();
+            PAC = new Pac();
         }
 
 

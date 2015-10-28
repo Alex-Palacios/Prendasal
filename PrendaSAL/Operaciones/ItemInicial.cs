@@ -12,7 +12,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

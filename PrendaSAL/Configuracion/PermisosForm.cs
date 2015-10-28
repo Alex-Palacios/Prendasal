@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace PrendaSAL.Configuracion
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

@@ -22,8 +22,9 @@ namespace DDB
 
 
         // FUNCIONES CRUD
-        public void insertImages(Images img,string empleado)
+        public bool insertImages(Images img,string empleado)
         {
+            bool OK = true;
             try
             {
                 string sql = "prendasal.SP_INSERT_IMAGES";
@@ -50,15 +51,17 @@ namespace DDB
             }
             catch (Exception e)
             {
+                OK = false;
                 MessageBox.Show(null, e.Message, "ERROR AL GUARDAR IMAGEN", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
             }
+            return OK;
         }
 
 
 
-        public void deleteImages(Images img,string empleado)
+        public bool deleteImages(Images img,string empleado)
         {
+            bool OK = true;
             try
             {
                 string sql = "prendasal.SP_DELETE_IMAGES";
@@ -80,9 +83,10 @@ namespace DDB
             }
             catch (Exception e)
             {
+                OK = false;
                 MessageBox.Show(e.Message, "ERROR AL ELIMINAR IMAGEN", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
             }
+            return OK;
         }
 
 

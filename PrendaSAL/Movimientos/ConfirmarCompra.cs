@@ -12,7 +12,6 @@ using ControlesPersonalizados;
 namespace PrendaSAL.Movimientos
 {
     using MODELO;
-    using LOGICA;
     using DDB;
 
     public partial class ConfirmarCompra : Form

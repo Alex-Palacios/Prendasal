@@ -226,7 +226,7 @@ namespace PrendaSAL.Caja
             decimal valor;
             if (Decimal.TryParse(txtTOTAL.Text, System.Globalization.NumberStyles.Currency, null, out valor))
             {
-                SELECTED.TOTAL = Decimal.Round(valor, 2);
+                SELECTED.TOTAL = Decimal.Round(valor, 2,MidpointRounding.AwayFromZero);
             }
             else
             {

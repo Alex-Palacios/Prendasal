@@ -11,14 +11,14 @@ using DevComponents.DotNetBar;
 
 namespace PrendaSAL.Reportes
 {
-    using LOGICA;
+    using DDB;
     using MODELO;
 
     public partial class FotoArticuloForm : Office2007Form
     {
         
         //VARIABLES
-        private ImagesController dbImages;
+        private DBImages dbImages;
         private eOperacion ACCION;
         private string COD_ARTICULO;
         private DataTable pictureList;
@@ -29,7 +29,7 @@ namespace PrendaSAL.Reportes
         public FotoArticuloForm(string codigo)
         {
             InitializeComponent(); 
-            dbImages = new ImagesController();
+            dbImages = new DBImages();
             COD_ARTICULO = codigo;
             defaultPicture = IMAGEN.BackgroundImage;
         }
@@ -104,7 +104,7 @@ namespace PrendaSAL.Reportes
                 DialogResult guardar = MessageBox.Show("¿Guardar Imagen ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (guardar == DialogResult.Yes)
                 {
-                    if (dbImages.guardarImagen(newPicture,HOME.Instance().USUARIO.COD_EMPLEADO))
+                    if (dbImages.insertImages(newPicture,HOME.Instance().USUARIO.COD_EMPLEADO))
                     {
                         cargarImagenes();
                     }
@@ -125,7 +125,7 @@ namespace PrendaSAL.Reportes
                 if (eliminar == DialogResult.Yes)
                 {
                     cargarImagenSelected();
-                    if (dbImages.eliminarImagen(selectedPicture, HOME.Instance().USUARIO.COD_EMPLEADO))
+                    if (dbImages.deleteImages(selectedPicture, HOME.Instance().USUARIO.COD_EMPLEADO))
                     {
                         cargarImagenes();
                     }

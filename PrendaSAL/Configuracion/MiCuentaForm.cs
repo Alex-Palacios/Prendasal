@@ -11,7 +11,6 @@ using DevComponents.DotNetBar;
 
 namespace PrendaSAL.Configuracion
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

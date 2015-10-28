@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -41,15 +41,17 @@
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblRemesas = new System.Windows.Forms.DataGridView();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_MOV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_DOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESTINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RESPONSABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RETIRADO_POR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.viewerCOMPROBANTE = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.lbTOTAL = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.NUM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RESPONSABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TRASLADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESTINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblRemesas)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +70,7 @@
             this.btnAyuda});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(854, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(904, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -105,7 +107,7 @@
             this.btnAnular.Name = "btnAnular";
             this.btnAnular.Size = new System.Drawing.Size(23, 22);
             this.btnAnular.Text = "Anular";
-            this.btnAnular.Click += new System.EventHandler(this.btnAnular_Click);
+            this.btnAnular.Click += new System.EventHandler(this.ANULAR);
             // 
             // btnEliminar
             // 
@@ -130,7 +132,7 @@
             this.btnReimprimir.Name = "btnReimprimir";
             this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
             this.btnReimprimir.ToolTipText = "Imprimir";
-            this.btnReimprimir.Click += new System.EventHandler(this.IMPRIMIR);
+            this.btnReimprimir.Click += new System.EventHandler(this.REIMPRIMIR);
             // 
             // btnLog
             // 
@@ -159,56 +161,110 @@
             this.tblRemesas.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.tblRemesas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblRemesas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NUM,
             this.FECHA,
-            this.TIPO_MOV,
-            this.TIPO_DOC,
-            this.DOCUMENTO,
-            this.TOTAL,
-            this.DESTINO,
             this.RESPONSABLE,
-            this.RETIRADO_POR});
+            this.DOCUMENTO,
+            this.TRASLADA,
+            this.DESTINO,
+            this.TOTAL,
+            this.NOTA});
             this.tblRemesas.Location = new System.Drawing.Point(0, 28);
             this.tblRemesas.Name = "tblRemesas";
             this.tblRemesas.ReadOnly = true;
+            this.tblRemesas.RowHeadersVisible = false;
             this.tblRemesas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblRemesas.Size = new System.Drawing.Size(854, 357);
+            this.tblRemesas.Size = new System.Drawing.Size(904, 298);
             this.tblRemesas.TabIndex = 4;
             this.tblRemesas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblRemesas_CellFormatting);
+            // 
+            // viewerCOMPROBANTE
+            // 
+            reportDataSource4.Name = "DSI";
+            reportDataSource4.Value = null;
+            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource4);
+            this.viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "";
+            this.viewerCOMPROBANTE.Location = new System.Drawing.Point(719, 0);
+            this.viewerCOMPROBANTE.Name = "viewerCOMPROBANTE";
+            this.viewerCOMPROBANTE.Size = new System.Drawing.Size(170, 25);
+            this.viewerCOMPROBANTE.TabIndex = 93;
+            this.viewerCOMPROBANTE.Visible = false;
+            this.viewerCOMPROBANTE.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
+            // 
+            // lbTOTAL
+            // 
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTOTAL.Location = new System.Drawing.Point(724, 329);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
+            this.lbTOTAL.TabIndex = 115;
+            this.lbTOTAL.Text = "$0.00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(593, 329);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 23);
+            this.label4.TabIndex = 114;
+            this.label4.Text = "T O T A L";
+            // 
+            // NUM
+            // 
+            this.NUM.HeaderText = "#";
+            this.NUM.Name = "NUM";
+            this.NUM.ReadOnly = true;
+            this.NUM.Width = 30;
             // 
             // FECHA
             // 
             this.FECHA.DataPropertyName = "FECHA";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FECHA.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.FECHA.DefaultCellStyle = dataGridViewCellStyle4;
             this.FECHA.HeaderText = "FECHA";
             this.FECHA.Name = "FECHA";
             this.FECHA.ReadOnly = true;
             this.FECHA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // TIPO_MOV
+            // RESPONSABLE
             // 
-            this.TIPO_MOV.DataPropertyName = "TIPO_MOV";
-            this.TIPO_MOV.HeaderText = "TIPO MOV";
-            this.TIPO_MOV.Name = "TIPO_MOV";
-            this.TIPO_MOV.ReadOnly = true;
-            this.TIPO_MOV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // TIPO_DOC
-            // 
-            this.TIPO_DOC.DataPropertyName = "TIPO_DOC";
-            this.TIPO_DOC.HeaderText = "TIPO DOC";
-            this.TIPO_DOC.Name = "TIPO_DOC";
-            this.TIPO_DOC.ReadOnly = true;
-            this.TIPO_DOC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RESPONSABLE.DataPropertyName = "RESPONSABLE";
+            this.RESPONSABLE.HeaderText = "RESPONSABLE";
+            this.RESPONSABLE.Name = "RESPONSABLE";
+            this.RESPONSABLE.ReadOnly = true;
+            this.RESPONSABLE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RESPONSABLE.Width = 150;
             // 
             // DOCUMENTO
             // 
             this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
-            this.DOCUMENTO.HeaderText = "DOCUMENTO";
+            this.DOCUMENTO.HeaderText = "TICKET";
             this.DOCUMENTO.Name = "DOCUMENTO";
             this.DOCUMENTO.ReadOnly = true;
             this.DOCUMENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TRASLADA
+            // 
+            this.TRASLADA.DataPropertyName = "TRASLADA";
+            this.TRASLADA.HeaderText = "TRASLADA";
+            this.TRASLADA.Name = "TRASLADA";
+            this.TRASLADA.ReadOnly = true;
+            this.TRASLADA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TRASLADA.Width = 175;
+            // 
+            // DESTINO
+            // 
+            this.DESTINO.DataPropertyName = "DESTINO";
+            this.DESTINO.HeaderText = "DESTINO";
+            this.DESTINO.Name = "DESTINO";
+            this.DESTINO.ReadOnly = true;
+            this.DESTINO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DESTINO.Width = 200;
             // 
             // TOTAL
             // 
@@ -218,42 +274,12 @@
             this.TOTAL.ReadOnly = true;
             this.TOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // DESTINO
+            // NOTA
             // 
-            this.DESTINO.DataPropertyName = "SUCURSAL_DESTINO";
-            this.DESTINO.HeaderText = "DESTINO";
-            this.DESTINO.Name = "DESTINO";
-            this.DESTINO.ReadOnly = true;
-            this.DESTINO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // RESPONSABLE
-            // 
-            this.RESPONSABLE.DataPropertyName = "RESPONSABLE";
-            this.RESPONSABLE.HeaderText = "RESPONSABLE";
-            this.RESPONSABLE.Name = "RESPONSABLE";
-            this.RESPONSABLE.ReadOnly = true;
-            this.RESPONSABLE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // RETIRADO_POR
-            // 
-            this.RETIRADO_POR.DataPropertyName = "RECIBE";
-            this.RETIRADO_POR.HeaderText = "RETIRADO POR";
-            this.RETIRADO_POR.Name = "RETIRADO_POR";
-            this.RETIRADO_POR.ReadOnly = true;
-            this.RETIRADO_POR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // viewerCOMPROBANTE
-            // 
-            reportDataSource1.Name = "DSI";
-            reportDataSource1.Value = null;
-            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource1);
-            this.viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "";
-            this.viewerCOMPROBANTE.Location = new System.Drawing.Point(547, 0);
-            this.viewerCOMPROBANTE.Name = "viewerCOMPROBANTE";
-            this.viewerCOMPROBANTE.Size = new System.Drawing.Size(170, 25);
-            this.viewerCOMPROBANTE.TabIndex = 93;
-            this.viewerCOMPROBANTE.Visible = false;
-            this.viewerCOMPROBANTE.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
+            this.NOTA.DataPropertyName = "NOTA";
+            this.NOTA.HeaderText = "NOTA";
+            this.NOTA.Name = "NOTA";
+            this.NOTA.ReadOnly = true;
             // 
             // RemesasForm
             // 
@@ -263,7 +289,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(854, 386);
+            this.ClientSize = new System.Drawing.Size(904, 361);
+            this.Controls.Add(this.lbTOTAL);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.viewerCOMPROBANTE);
             this.Controls.Add(this.tblRemesas);
             this.Controls.Add(this.toolStrip1);
@@ -295,14 +323,16 @@
         private System.Windows.Forms.DataGridView tblRemesas;
         private Microsoft.Reporting.WinForms.ReportViewer viewerCOMPROBANTE;
         private System.Windows.Forms.ToolStripButton btnAnular;
+        private System.Windows.Forms.Label lbTOTAL;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NUM;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_MOV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_DOC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DOCUMENTO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESTINO;
         private System.Windows.Forms.DataGridViewTextBoxColumn RESPONSABLE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RETIRADO_POR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DOCUMENTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TRASLADA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESTINO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOTA;
 
     }
 }

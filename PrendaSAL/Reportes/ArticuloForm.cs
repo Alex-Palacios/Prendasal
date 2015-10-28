@@ -12,7 +12,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Reportes
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

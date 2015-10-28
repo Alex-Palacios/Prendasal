@@ -181,7 +181,7 @@ namespace PrendaSAL.Caja
                 }
                 else
                 {
-                    MessageBox.Show("GASTO HISTORICO O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SELECCIONE GASTO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

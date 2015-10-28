@@ -13,7 +13,6 @@ using ControlesPersonalizados;
 namespace PrendaSAL.Movimientos
 {
 
-    using LOGICA;
     using MODELO;
     using DDB;
     using Informes;
@@ -36,10 +35,10 @@ namespace PrendaSAL.Movimientos
         }
 
         //VARIABLES
-        private ReporteController dbReportes;
+        private DBReporte dbReportes;
         private DBUsuario dbUser;
         private DataTable DIAS_ABIERTOS;
-        private DataTable CORTE_DIARIO;
+        private DataTable MOVIMIENTOS;
         private DateTime FECHA_CORTE;
 
 
@@ -49,7 +48,7 @@ namespace PrendaSAL.Movimientos
         public CorteDiarioForm()
         {
             InitializeComponent();
-            dbReportes = new ReporteController();
+            dbReportes = new DBReporte();
             dbUser = new DBUsuario();
         }
 
@@ -75,16 +74,15 @@ namespace PrendaSAL.Movimientos
         {
             permisos();
             btnCORTE_DIARIO.Enabled = false;
-            listarDiasAbiertos();
+            //listarDiasAbiertos();
+            FECHA_CORTE = HOME.Instance().FECHA_SISTEMA;
         }
 
 
 
         private void listarDiasAbiertos()
         {
-            DIAS_ABIERTOS = dbReportes.DIAS_ABIERTOS_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
-            cbxCORTE.DataSource = DIAS_ABIERTOS;
-            cbxCORTE.DisplayMember = "FECHA";
+            //DIAS_ABIERTOS = dbReportes.DIAS_ABIERTOS_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
             FECHA_CORTE = new DateTime();
             lbFECHA_CORTE.Text = "N/A";
             btnCORTE_DIARIO.Enabled = false;
@@ -94,92 +92,92 @@ namespace PrendaSAL.Movimientos
 
         private void btnCARGAR_Click(object sender, EventArgs e)
         {
-            if (cbxCORTE.SelectedIndex >= 0 && HOME.Instance().SUCURSAL != null)
-            {
-                FECHA_CORTE = DateTime.Parse(cbxCORTE.Text);
-                decimal APERTURA = dbReportes.FN_CALCULAR_APERTURA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE);
-                CORTE_DIARIO = dbReportes.REPORTE_DIARIO_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
-                DataTable COMPRAS_KIL = dbReportes.COMPRAS_KIL_DIARIO(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
-                dSReporteDiario.Clear();
-                dSKPM.Clear();
-                try
-                {
-                    foreach (DataRow row in CORTE_DIARIO.Rows)
-                    {
-                        switch (row.Field<string>("CONCEPTO"))
-                        {
-                            case "PRESTAMO":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"),row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "COMPRA":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "GASTO":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), ((eTipoFactura)row.Field<int>("TIPO_DOC")).ToString() + row.Field<string>("DOCUMENTO"), "GASTOS DE OFICINA", row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "REMESA":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "FINANCIAMIENTO":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "VENTA":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "INTERES":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"),"R/N°: "+ row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "ABONO":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
-                            case "CANCELADO":
-                                dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-                                break;
+           
+            //if (HOME.Instance().SUCURSAL != null)
+            //{
+            //    decimal APERTURA = dbReportes.FN_CALCULAR_APERTURA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE);
+            //    CORTE_DIARIO = dbReportes.REPORTE_DIARIO_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
+            //    DataTable COMPRAS_KIL = dbReportes.COMPRAS_KIL_DIARIO(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
+            //    dSReporteDiario.Clear();
+            //    dSKPM.Clear();
+            //    try
+            //    {
+            //        foreach (DataRow row in CORTE_DIARIO.Rows)
+            //        {
+            //            switch (row.Field<string>("CONCEPTO"))
+            //            {
+            //                case "PRESTAMO":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"),row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "COMPRA":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "GASTO":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), ((eTipoFactura)row.Field<int>("TIPO_DOC")).ToString() + row.Field<string>("DOCUMENTO"), "GASTOS DE OFICINA", row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "REMESA":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "FINANCIAMIENTO":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "VENTA":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "INTERES":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"),"R/N°: "+ row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "ABONO":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
+            //                case "CANCELADO":
+            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
+            //                    break;
                             
-                        }
-                    }
+            //            }
+            //        }
 
-                    bsReporteDiario.DataSource = dSReporteDiario.TRANSACCIONES;
-                    // INVENTARIO COMPRA
-                    foreach (DataRow row in COMPRAS_KIL.Rows)
-                    {
-                        dSKPM.KPM.AddKPMRow(row.Field<string>("KILATAJE"), row.Field<decimal>("PESO"), row.Field<decimal>("MONTO"));
-                    }
-                    bsKPM.DataSource = dSKPM.KPM;
+            //        bsReporteDiario.DataSource = dSReporteDiario.TRANSACCIONES;
+            //        // INVENTARIO COMPRA
+            //        foreach (DataRow row in COMPRAS_KIL.Rows)
+            //        {
+            //            dSKPM.KPM.AddKPMRow(row.Field<string>("KILATAJE"), row.Field<decimal>("PESO"), row.Field<decimal>("MONTO"));
+            //        }
+            //        bsKPM.DataSource = dSKPM.KPM;
 
-                    ReportParameter[] parameters = new ReportParameter[6];
-                    parameters[0] = new ReportParameter("Sucursal", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("COD_SUC")+" - " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("SUCURSAL"));
-                    parameters[1] = new ReportParameter("DireccionSUC", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("DIRECCION_SUC"));
-                    parameters[2] = new ReportParameter("TelSUC", "TELEFONO: " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("TEL_SUC"));
-                    parameters[3] = new ReportParameter("Fecha", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<DateTime>("FECHA").ToString("dd/MM/yyyy"));
-                    parameters[4] = new ReportParameter("APERTURA", APERTURA.ToString());
-                    parameters[5] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+            //        ReportParameter[] parameters = new ReportParameter[6];
+            //        //parameters[0] = new ReportParameter("Sucursal", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("COD_SUC")+" - " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("SUCURSAL"));
+            //        //parameters[1] = new ReportParameter("DireccionSUC", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("DIRECCION_SUC"));
+            //        //parameters[2] = new ReportParameter("TelSUC", "TELEFONO: " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("TEL_SUC"));
+            //        //parameters[3] = new ReportParameter("Fecha", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<DateTime>("FECHA").ToString("dd/MM/yyyy"));
+            //        //parameters[4] = new ReportParameter("APERTURA", APERTURA.ToString());
+            //        //parameters[5] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
 
-                    viewerREPORTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.CorteDiario.rdlc";
-                    viewerREPORTE.LocalReport.DataSources.Clear();
-                    viewerREPORTE.LocalReport.DataSources.Add(new ReportDataSource("ITEMS", bsReporteDiario));
-                    viewerREPORTE.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubInformeKPMHandler);
-                    viewerREPORTE.LocalReport.SetParameters(parameters);
-                    viewerREPORTE.RefreshReport();
-                    lbFECHA_CORTE.Text = FECHA_CORTE.Date.ToString("dd/MM/yyyy");
-                    btnCORTE_DIARIO.Enabled = true;
+            //        viewerREPORTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.CorteDiario.rdlc";
+            //        viewerREPORTE.LocalReport.DataSources.Clear();
+            //        viewerREPORTE.LocalReport.DataSources.Add(new ReportDataSource("ITEMS", bsReporteDiario));
+            //        viewerREPORTE.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubInformeKPMHandler);
+            //        viewerREPORTE.LocalReport.SetParameters(parameters);
+            //        viewerREPORTE.RefreshReport();
+            //        lbFECHA_CORTE.Text = FECHA_CORTE.Date.ToString("dd/MM/yyyy");
+            //        btnCORTE_DIARIO.Enabled = true;
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR al recuperar datos .... verifique que fecha inicial sea una fecha valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    FECHA_CORTE = new DateTime();
-                    lbFECHA_CORTE.Text = "N/A";
-                    btnCORTE_DIARIO.Enabled = false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione Fecha y sucursal", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                FECHA_CORTE = new DateTime();
-                lbFECHA_CORTE.Text = "N/A";
-                btnCORTE_DIARIO.Enabled = false;
-            }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("ERROR al recuperar datos .... verifique que fecha inicial sea una fecha valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        FECHA_CORTE = new DateTime();
+            //        lbFECHA_CORTE.Text = "N/A";
+            //        btnCORTE_DIARIO.Enabled = false;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Seleccione Fecha y sucursal", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    FECHA_CORTE = new DateTime();
+            //    lbFECHA_CORTE.Text = "N/A";
+            //    btnCORTE_DIARIO.Enabled = false;
+            //}
         }
 
 
@@ -204,10 +202,10 @@ namespace PrendaSAL.Movimientos
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        if (dbReportes.CERRAR_DIA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        {
-                            listarDiasAbiertos();
-                        }
+                        //if (dbReportes.CERRAR_DIA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        //{
+                        //    listarDiasAbiertos();
+                        //}
                     }
                     else
                     {
@@ -223,6 +221,23 @@ namespace PrendaSAL.Movimientos
         }
 
 
+        private void calendarCIERRE_MonthChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("CAMBIO MES " + calendarCIERRE.SelectedDate.ToShortDateString());
+            calendarCIERRE.Colors.Today.IsBold =true;
+
+            calendarCIERRE.TodayDate = HOME.Instance().FECHA_SISTEMA;
+            calendarCIERRE.SelectedDate = HOME.Instance().FECHA_SISTEMA;
+
+            DateTime myVacation1 = new DateTime(2015, 10, 1);
+            DateTime myVacation2 = new DateTime(2015, 10, 17);
+            DateTime[] VacationDates = { myVacation1, myVacation2 };
+            calendarCIERRE.MarkedDates = VacationDates;
+            calendarCIERRE.Colors.DayMarker.BackColor = Color.Blue;
+        }
+
+
+        
 
 
     }

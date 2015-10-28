@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace PrendaSAL.Reportes
 {
     using DDB;
-    using LOGICA;
     using MODELO;
 
 

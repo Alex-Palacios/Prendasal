@@ -786,7 +786,7 @@
         <Top>4.55331cm</Top>
         <Left>0.62413cm</Left>
         <Height>1.69417cm</Height>
-        <Width>20.09952cm</Width>
+        <Width>20.09951cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1209,6 +1209,39 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="ExecutionTime">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                  <Format>hh:mm tt</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ExecutionTime</rd:DefaultName>
+        <Top>0.77639cm</Top>
+        <Left>0.96718cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.05021cm</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
       <Textbox Name="FechaImp">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -1230,7 +1263,7 @@
         <Left>0.96718cm</Left>
         <Height>0.6cm</Height>
         <Width>2.05021cm</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>

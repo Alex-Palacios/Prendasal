@@ -12,7 +12,6 @@ using Microsoft.Reporting.WinForms;
 
 namespace PrendaSAL.Caja
 {
-    using LOGICA;
     using DDB;
     using MODELO;
 
@@ -36,19 +35,17 @@ namespace PrendaSAL.Caja
 
         //variables
         private DBUsuario dbUser;
-        private MovCashController dbRemesa;
+        private DBMovCash dbRemesa;
 
         private eOperacion ACCION;
-
         private MovCash SELECTED;
-
         private DataTable REMESAS;
 
         public RemesasForm()
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbRemesa = new MovCashController();
+            dbRemesa = new DBMovCash();
         }
 
 
@@ -86,10 +83,29 @@ namespace PrendaSAL.Caja
 
         public void cargarHistoryRemesa()
         {
-            REMESAS = dbRemesa.REMESA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA);
+            REMESAS = dbRemesa.getRemesasBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year);
             tblRemesas.DataSource = REMESAS;
+            calcularTotales();
         }
 
+
+
+        private void calcularTotales()
+        {
+            decimal TOTAL = tblRemesas.Rows.Cast<DataGridViewRow>().Sum(x => Decimal.Parse(x.Cells["TOTAL"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency));
+            lbTOTAL.Text = TOTAL.ToString("C2");
+        }
+
+
+
+        private void cargarSelected()
+        {
+            SELECTED = null;
+            if (tblRemesas.CurrentCell != null && tblRemesas.SelectedRows.Count == 1)
+            {
+                SELECTED = MovCash.ConvertToMovCash(REMESAS.Rows[tblRemesas.CurrentCell.RowIndex]);
+            }
+        }
 
 
 
@@ -99,43 +115,31 @@ namespace PrendaSAL.Caja
             {
                 switch (tblRemesas.Columns[e.ColumnIndex].Name)
                 {
-                    case "TIPO_MOV":
-                        eTipoMovCash tipomov = (eTipoMovCash)e.Value;
-                        e.Value = tipomov.ToString();
-                        break;
-                    case "TIPO_DOC":
-                        eTipoDocMovCash tipodoc = (eTipoDocMovCash)e.Value;
-                        e.Value = tipodoc.ToString();
+                    case "NUM":
+                        e.Value = e.RowIndex + 1;
                         break;
                 }
             }
         }
 
-        private void cargarSelected()
+
+
+
+        private bool buscarRemesa(string comprobante)
         {
-            SELECTED = null;
-            if (tblRemesas.CurrentCell != null && tblRemesas.SelectedRows.Count == 1)
+            bool OK = false;
+            SELECTED = MovCash.ConvertToMovCash(dbRemesa.findByComprobante(comprobante));
+            if (SELECTED != null)
             {
-                SELECTED = new MovCash();
-                SELECTED.ID_MOV = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<int>("ID_MOV");
-                SELECTED.TRANSACCION = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("COD_TRANS");
-                SELECTED.RESPONSABLE = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("RESPONSABLE");
-                SELECTED.SUC_ORIGEN = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("SUC_ORG");
-                SELECTED.SUCURSAL_ENVIO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("SUCURSAL_ORIGEN");
-                SELECTED.FECHA = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<DateTime>("FECHA");
-                SELECTED.TIPO_MOV = (eTipoMovCash) REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<int>("TIPO_MOV");
-                SELECTED.TIPO_DOC = (eTipoDocMovCash)REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<int>("TIPO_DOC");
-                SELECTED.DOCUMENTO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("DOCUMENTO");
-                SELECTED.TOTAL = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<decimal>("TOTAL");
-                SELECTED.RESPONSABLE_ENVIO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("ENVIA");
-                SELECTED.SUC_DESTINO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("SUC_DEST");
-                SELECTED.SUCURSAL_DESTINO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("SUCURSAL_DESTINO");
-                SELECTED.RESPONSABLE_RECIBE = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("RECIBE");
-                SELECTED.NOTA = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<string>("NOTA");
-                SELECTED.RECIBIDO = REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<bool>("RECIBIDO");
-                SELECTED.ESTADO = (eEstadoMovCash) REMESAS.Rows[tblRemesas.CurrentCell.RowIndex].Field<int>("ESTADO");
+                OK = true;
             }
+            else
+            {
+                OK = false;
+            }
+            return OK;
         }
+
 
 
         private void NUEVO(object sender, EventArgs e)
@@ -152,7 +156,7 @@ namespace PrendaSAL.Caja
             if (tblRemesas.CurrentCell != null && tblRemesas.SelectedRows.Count == 1)
             {
                 cargarSelected();
-                if (SELECTED != null && SELECTED.ESTADO != eEstadoMovCash.HISTORICO)
+                if (SELECTED != null)
                 {
                     ACCION = eOperacion.UPDATE;
                     ConfirmarRemesa financ = new ConfirmarRemesa(SELECTED);
@@ -160,7 +164,7 @@ namespace PrendaSAL.Caja
                 }
                 else
                 {
-                    MessageBox.Show("REMESA HISTORICA O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SELECCIONE REMESA", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -172,27 +176,18 @@ namespace PrendaSAL.Caja
             if (tblRemesas.CurrentCell != null && tblRemesas.SelectedRows.Count == 1)
             {
                 cargarSelected();
-                if (SELECTED != null && SELECTED.ESTADO != eEstadoMovCash.HISTORICO)
+                if (SELECTED != null )
                 {
                     ACCION = eOperacion.DELETE;
-                    DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el REMESAIAMIENTO " + SELECTED.TIPO_DOC.ToString() + " " + SELECTED.DOCUMENTO + " con FECHA:" + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR REMESAIAMIENTO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar la REMESA con comprobante # " + SELECTED.DOCUMENTO + " con FECHA:" + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR REMESA REGISTRADA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (eliminar == DialogResult.Yes)
                     {
                         string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                         if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                         {
-                            string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                            if (cambioNota.Trim() != "")
+                            if (dbRemesa.delete(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                             {
-                                SELECTED.NOTA_CAMBIO = cambioNota;
-                                if (dbRemesa.eliminarMovCashPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                                {
-                                    cargarHistoryRemesa();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA ELIMINACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                cargarHistoryRemesa();
                             }
                         }
                         else
@@ -203,7 +198,7 @@ namespace PrendaSAL.Caja
                 }
                 else
                 {
-                    MessageBox.Show("REMESA HISTORICA O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SELECCIONE REMESA", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -213,14 +208,39 @@ namespace PrendaSAL.Caja
 
 
 
-        private void IMPRIMIR(object sender, EventArgs e)
+        public void IMPRIMIR(MovCash REMESA)
+        {
+            SELECTED = null;
+            if (REMESA != null)
+            {
+                if (buscarRemesa(REMESA.DOCUMENTO))
+                {
+                    cargarHistoryRemesa();
+                    if (SELECTED != null)
+                    {
+                        ImprimirComprobanteRemesa();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR AL IMPRIMIR COMPROBANTE DE MOVIMIENTO DE EFECTIVO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR AL IMPRIMIR COMPROBANTE DE MOVIMIENTO DE EFECTIVO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+        }
+
+
+
+        private void REIMPRIMIR(object sender, EventArgs e)
         {
             if (tblRemesas.CurrentCell != null && tblRemesas.SelectedRows.Count == 1)
             {
                 cargarSelected();
                 if (SELECTED != null)
                 {
-                    ACCION = eOperacion.PREVIEW;
                     ImprimirComprobanteRemesa();
                 }
             }
@@ -228,52 +248,26 @@ namespace PrendaSAL.Caja
 
 
 
-        private void LOG(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AYUDA(object sender, EventArgs e)
-        {
-
-        }
 
 
-
-        public void CargarRemesa(string doc)
-        {
-            foreach (DataGridViewRow row in tblRemesas.Rows)
-            {
-                if (row.Cells["DOCUMENTO"].Value.ToString() == doc)
-                {
-                    tblRemesas.Rows[row.Index].Selected = true;
-                    tblRemesas.CurrentCell = tblRemesas.Rows[row.Index].Cells[0];
-                    cargarSelected();
-                    return;
-                }
-            }
-        }
-
-
-
-
-
-        public void ImprimirComprobanteRemesa()
+        private void ImprimirComprobanteRemesa()
         {
             viewerCOMPROBANTE.Clear();
             if (SELECTED != null)
             {
+                Sucursal SUC = HOME.Instance().getSucursal(SELECTED.SUC_ENVIA).Copy();
+
                 ReportParameter[] parameters = new ReportParameter[8];
-                parameters[0] = new ReportParameter("NumTICKET", SELECTED.DOCUMENTO);
+                parameters[0] = new ReportParameter("TICKET", SELECTED.DOCUMENTO);
                 parameters[1] = new ReportParameter("FECHA", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
-                parameters[2] = new ReportParameter("SUCURSAL", SELECTED.SUCURSAL_ENVIO);
-                parameters[3] = new ReportParameter("DESTINO", SELECTED.SUCURSAL_DESTINO);
-                parameters[4] = new ReportParameter("CAPITAL", SELECTED.TOTAL.ToString("C2"));
-                parameters[5] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE_ENVIO);
-                parameters[6] = new ReportParameter("RETIRA", SELECTED.RESPONSABLE_RECIBE);
+                parameters[2] = new ReportParameter("ENVIA", SUC.SUCURSAL);
+                parameters[3] = new ReportParameter("DESTINO", SELECTED.DESTINO);
+                parameters[4] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                parameters[5] = new ReportParameter("RESPONSABLE", SELECTED.RESPONSABLE);
+                parameters[6] = new ReportParameter("TRASLADA", SELECTED.TRASLADA);
                 parameters[7] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
 
-                viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.TicketRemesa.rdlc";
+                viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.TicketMovCash.rdlc";
                 viewerCOMPROBANTE.LocalReport.SetParameters(parameters);
                 viewerCOMPROBANTE.RefreshReport();
             }
@@ -288,11 +282,20 @@ namespace PrendaSAL.Caja
             }
         }
 
-        private void btnAnular_Click(object sender, EventArgs e)
+        private void LOG(object sender, EventArgs e)
         {
 
         }
 
+        private void AYUDA(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ANULAR(object sender, EventArgs e)
+        {
+
+        }
 
 
     }

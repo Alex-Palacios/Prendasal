@@ -11,7 +11,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Configuracion
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

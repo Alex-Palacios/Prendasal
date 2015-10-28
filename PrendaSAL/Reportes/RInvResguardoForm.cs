@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace PrendaSAL.Reportes
 {
-    using LOGICA;
     using DDB;
     using MODELO;
 

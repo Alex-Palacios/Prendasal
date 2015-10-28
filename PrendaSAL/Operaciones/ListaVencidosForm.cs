@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace PrendaSAL.Operaciones
 {
-    using LOGICA;
     using MODELO;
     using DDB;
     using ControlesPersonalizados;
@@ -51,6 +50,7 @@ namespace PrendaSAL.Operaciones
             InitializeComponent();
             dbUser = new DBUsuario();
             dbVencidos = new DBVencidos();
+            LISTA = new Vencidos();
         }
 
 
@@ -124,6 +124,8 @@ namespace PrendaSAL.Operaciones
         {
             txtNOTA.ReadOnly = true;
         }
+
+
 
         public void limpiarDatosListaVencidos()
         {
@@ -213,7 +215,7 @@ namespace PrendaSAL.Operaciones
 
         private void cbxSUCURSAL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxSUCURSAL.ValueMember != "" && cbxSUCURSAL.SelectedIndex >= 0)
+            if (cbxSUCURSAL.ValueMember != "" && cbxSUCURSAL.SelectedIndex >= 0 )
             {
                 switch (ACCION)
                 {

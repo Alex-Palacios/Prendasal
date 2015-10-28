@@ -12,7 +12,6 @@ using System.Globalization;
 
 namespace PrendaSAL.Reportes
 {
-    using LOGICA;
     using MODELO;
     using DDB;
     using Informes;
@@ -34,7 +33,7 @@ namespace PrendaSAL.Reportes
 
 
         //VARIABLES
-        private ReporteController dbReportes;
+        private DBReporte dbReportes;
         private DBUsuario dbUser;
         private DataTable MESES;
         private DataTable COMPRAS_KILMES;
@@ -57,7 +56,7 @@ namespace PrendaSAL.Reportes
         public ComprasOroForm()
         {
             InitializeComponent(); 
-            dbReportes = new ReporteController();
+            dbReportes = new DBReporte();
             dbUser = new DBUsuario();
         }
 

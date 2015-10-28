@@ -12,7 +12,6 @@ using Microsoft.Reporting.WinForms;
 
 namespace PrendaSAL.Caja
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 
@@ -34,41 +33,31 @@ namespace PrendaSAL.Caja
 
         //variables
         private DBUsuario dbUser;
-        private MovCashController dbFinanc;
+        private DBMovCash dbFinanc;
         private eOperacion ACCION;
 
         private MovCash SELECTED;
-
         private DataTable FINANCIAMIENTOS;
 
         public FinancForm()
         {
             InitializeComponent();
             dbUser = new DBUsuario();
-            dbFinanc = new MovCashController();
+            dbFinanc = new DBMovCash();
         }
 
 
         private void permisos()
         {
-            btnNuevo.Visible = false;
-            btnEditar.Visible = false;
-            btnAnular.Visible = false;
-            btnEliminar.Visible = false;
+            btnRecibir.Visible = false;
             btnLog.Visible = false;
-            btnReimprimir.Visible = false;
 
             foreach (DataRow p in HOME.Instance().USUARIO.PERMISOS.Rows)
             {
                 if (p.Field<string>("CODIGO") == "P9")
                 {
-                    btnNuevo.Visible = p.Field<bool>("REGISTRAR");
-                    btnEditar.Visible = p.Field<bool>("ACTUALIZAR");
-                    btnAnular.Visible = p.Field<bool>("ANULAR");
-                    btnEliminar.Visible = p.Field<bool>("ELIMINAR");
-                    btnLog.Visible = p.Field<bool>("LOG");
-                    btnReimprimir.Visible = p.Field<bool>("REIMPRIMIR");
-                }
+                    btnRecibir.Visible = p.Field<bool>("REGISTRAR");
+                    btnLog.Visible = p.Field<bool>("LOG");                }
             }
         }
 
@@ -79,15 +68,24 @@ namespace PrendaSAL.Caja
             permisos();
             tblFinanc.AutoGenerateColumns = false;
             cargarHistoryFinanc();
+            btnRecibir.Enabled = false;
         }
 
 
         public void cargarHistoryFinanc()
         {
-            FINANCIAMIENTOS = dbFinanc.FINANC_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA);
+            FINANCIAMIENTOS = dbFinanc.getFinancBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year);
             tblFinanc.DataSource = FINANCIAMIENTOS;
+            calcularTotales();
         }
 
+
+
+        private void calcularTotales()
+        {
+            decimal TOTAL = tblFinanc.Rows.Cast<DataGridViewRow>().Sum(x => Decimal.Parse(x.Cells["TOTAL"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency));
+            lbTOTAL.Text = TOTAL.ToString("C2");
+        }
 
 
 
@@ -97,68 +95,66 @@ namespace PrendaSAL.Caja
             {
                 switch (tblFinanc.Columns[e.ColumnIndex].Name)
                 {
-                    case "TIPO_MOV":
-                        eTipoMovCash tipomov = (eTipoMovCash)e.Value;
-                        e.Value = tipomov.ToString();
+                    case "NUM":
+                        e.Value = e.RowIndex + 1;
                         break;
-                    case "TIPO_DOC":
-                        eTipoDocMovCash tipodoc = (eTipoDocMovCash)e.Value;
-                        e.Value = tipodoc.ToString();
+                    case "RECIBE":
+                        if (e.Value == null || e.Value.ToString() == string.Empty)
+                        {
+                            e.Value = "PENDIENTE";
+                            e.CellStyle.ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            e.CellStyle.ForeColor = Color.Black;
+                        }
                         break;
                 }
             }
         }
 
-        private void cargarSelected()
+
+
+        private void tblFinanc_SelectionChanged(object sender, EventArgs e)
         {
             SELECTED = null;
             if (tblFinanc.CurrentCell != null && tblFinanc.SelectedRows.Count == 1)
             {
-                SELECTED = new MovCash();
-                SELECTED.ID_MOV = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<int>("ID_MOV");
-                SELECTED.TRANSACCION = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("COD_TRANS");
-                SELECTED.RESPONSABLE = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("RESPONSABLE");
-                SELECTED.SUC_ORIGEN = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("SUC_ORG");
-                SELECTED.SUCURSAL_ENVIO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("SUCURSAL_ORIGEN");
-                SELECTED.FECHA = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<DateTime>("FECHA");
-                SELECTED.TIPO_MOV = (eTipoMovCash) FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<int>("TIPO_MOV");
-                SELECTED.TIPO_DOC = (eTipoDocMovCash)FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<int>("TIPO_DOC");
-                SELECTED.DOCUMENTO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("DOCUMENTO");
-                SELECTED.TOTAL = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<decimal>("TOTAL");
-                SELECTED.RESPONSABLE_ENVIO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("ENVIA");
-                SELECTED.SUC_DESTINO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("SUC_DEST");
-                SELECTED.SUCURSAL_DESTINO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("SUCURSAL_DESTINO");
-                SELECTED.RESPONSABLE_RECIBE = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("RECIBE");
-                SELECTED.NOTA = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<string>("NOTA");
-                SELECTED.RECIBIDO = FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<bool>("RECIBIDO");
-                SELECTED.ESTADO = (eEstadoMovCash) FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex].Field<int>("ESTADO");
+                SELECTED = MovCash.ConvertToMovCash(FINANCIAMIENTOS.Rows[tblFinanc.CurrentCell.RowIndex]);
+                if (SELECTED != null)
+                {
+                    if (SELECTED.RECIBIDO)
+                    {
+                        btnRecibir.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRecibir.Enabled = true;
+                    }
+                }
+                else
+                {
+                    btnRecibir.Enabled = false;
+                }
             }
         }
 
 
-        private void NUEVO(object sender, EventArgs e)
+
+        private void RECIBIR(object sender, EventArgs e)
         {
-            ACCION = eOperacion.INSERT;
-            ConfirmarFinanc financ = new ConfirmarFinanc();
-            financ.ShowDialog();
-        }
-
-
-
-        private void EDITAR(object sender, EventArgs e)
-        {
-            if (tblFinanc.CurrentCell != null && tblFinanc.SelectedRows.Count == 1)
+            if (SELECTED != null)
             {
-                cargarSelected();
-                if (SELECTED != null && SELECTED.ESTADO != eEstadoMovCash.HISTORICO)
+                if (SELECTED != null)
                 {
                     ACCION = eOperacion.UPDATE;
+                    SELECTED.RECIBE = HOME.Instance().USUARIO.NOMBRE;
                     ConfirmarFinanc financ = new ConfirmarFinanc(SELECTED);
                     financ.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("FINANCIAMIENTO HISTORICO O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SELECCIONE FINANCIAMIENTO A RECIBIR", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -166,60 +162,7 @@ namespace PrendaSAL.Caja
 
 
 
-
-        private void ELIMINAR(object sender, EventArgs e)
-        {
-            if (tblFinanc.CurrentCell != null && tblFinanc.SelectedRows.Count == 1)
-            {
-                cargarSelected();
-                if (SELECTED != null && SELECTED.ESTADO != eEstadoMovCash.HISTORICO)
-                {
-                    ACCION = eOperacion.DELETE;
-                    DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el FINANCIAMIENTO " + SELECTED.TIPO_DOC.ToString() + " " + SELECTED.DOCUMENTO + " con FECHA:" + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR FINANCIAMIENTO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (eliminar == DialogResult.Yes)
-                    {
-                        string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
-                        if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
-                        {
-                            string cambioNota = Controles.InputBox("NOTA", "CAMBIO DETECTADO");
-                            if (cambioNota.Trim() != "")
-                            {
-                                SELECTED.NOTA_CAMBIO = cambioNota;
-                                if (dbFinanc.eliminarMovCashPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                                {
-                                    cargarHistoryFinanc();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("INGRESE UNA NOTA ACLARATORIA DE LA ELIMINACION", "REQUERIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("FINANCIAMIENTO HISTORICO O INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-
-        private void IMPRIMIR(object sender, EventArgs e)
-        {
-            if (tblFinanc.CurrentCell != null && tblFinanc.SelectedRows.Count == 1)
-            {
-                cargarSelected();
-                if (SELECTED != null)
-                {
-                    ACCION = eOperacion.PREVIEW;
-                    ImprimirComprobanteFinanc();
-                }
-            }
-        }
+        
 
         private void LOG(object sender, EventArgs e)
         {
@@ -232,51 +175,9 @@ namespace PrendaSAL.Caja
         }
 
 
-        public void CargarFinanc(string doc)
-        {
-            foreach(DataGridViewRow row in tblFinanc.Rows)
-            {
-                if (row.Cells["DOCUMENTO"].Value.ToString() == doc)
-                {
-                    tblFinanc.Rows[row.Index].Selected = true;
-                    tblFinanc.CurrentCell = tblFinanc.Rows[row.Index].Cells[0];
-                    cargarSelected();
-                    return;
-                }
-            }
-        }
+       
 
 
-
-        public void ImprimirComprobanteFinanc()
-        {
-            viewerCOMPROBANTE.Clear();
-            if (SELECTED != null)
-            {
-                ReportParameter[] parameters = new ReportParameter[7];
-                parameters[0] = new ReportParameter("NumTICKET", SELECTED.DOCUMENTO);
-                parameters[1] = new ReportParameter("FECHA", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
-                parameters[2] = new ReportParameter("SUCURSAL", SELECTED.SUCURSAL_ENVIO);
-                parameters[3] = new ReportParameter("DESTINO", SELECTED.SUCURSAL_DESTINO);
-                parameters[4] = new ReportParameter("CAPITAL", SELECTED.TOTAL.ToString("C2"));
-                parameters[5] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE_RECIBE);
-                parameters[6] = new ReportParameter("ENTREGA", SELECTED.RESPONSABLE_ENVIO);
-                parameters[7] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
-
-                viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.TicketFinanc.rdlc";
-                viewerCOMPROBANTE.LocalReport.SetParameters(parameters);
-                viewerCOMPROBANTE.RefreshReport();
-            }
-        }
-
-
-        private void ShowPrintDialog(object sender, RenderingCompleteEventArgs e)
-        {
-            if (e != null)
-            {
-                viewerCOMPROBANTE.PrintDialog();
-            }
-        }
 
 
 

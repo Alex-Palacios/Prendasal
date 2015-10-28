@@ -567,8 +567,7 @@
     <EmbeddedResource Include="Informes\ReporteDiario.rdlc" />
     <EmbeddedResource Include="Informes\ReciboPAC.rdlc" />
     <EmbeddedResource Include="Informes\CorteDiario.rdlc" />
-    <EmbeddedResource Include="Informes\TicketFinanc.rdlc" />
-    <EmbeddedResource Include="Informes\TicketRemesa.rdlc" />
+    <EmbeddedResource Include="Informes\TicketMovCash.rdlc" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -789,17 +788,13 @@
     <None Include="Resources\prensaSAL_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlesPersonalizados\ControlesPersonalizados.csproj">
+    <ProjectReference Include="..\..\ControlesPersonalizados\ControlesPersonalizados.csproj">
       <Project>{eb2f7811-97eb-4482-b608-bcb034b8e26e}</Project>
       <Name>ControlesPersonalizados</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDB\DDB.csproj">
       <Project>{10dcabc1-f281-4e3a-b784-5f5854e09ddb}</Project>
       <Name>DDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LOGICA\LOGICA.csproj">
-      <Project>{a52cb32b-4091-4a89-8a80-59c03c0b3e1a}</Project>
-      <Name>LOGICA</Name>
     </ProjectReference>
     <ProjectReference Include="..\MODELO\MODELO.csproj">
       <Project>{ca31fe1d-27b2-41f9-9398-4602143d809a}</Project>
@@ -1032,6 +1027,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\dolar.png" />
     <None Include="Resources\dia.jpg" />
     <None Include="Resources\lista1.png" />
     <None Include="Resources\ok21.jpg" />

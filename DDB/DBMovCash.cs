@@ -27,26 +27,213 @@ namespace DDB
         // FUNCIONES CRUD
         
 
-        public string nextComprobantePRENDASAL(string suc , eTipoMovCash mov)
+        public bool insert(MovCash mov, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_INSERT_MOV_CASH";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter fecha_mov = cmd.Parameters.Add("fecha_mov", MySqlDbType.Date);
+                fecha_mov.Direction = ParameterDirection.Input;
+                MySqlParameter doc_mov = cmd.Parameters.Add("doc_mov", MySqlDbType.VarChar, 20);
+                doc_mov.Direction = ParameterDirection.Input;
+                MySqlParameter envia_mov = cmd.Parameters.Add("envia_mov", MySqlDbType.VarChar, 2);
+                envia_mov.Direction = ParameterDirection.Input;
+                MySqlParameter dest_mov = cmd.Parameters.Add("dest_mov", MySqlDbType.VarChar, 2);
+                dest_mov.Direction = ParameterDirection.Input;
+                MySqlParameter traslada_mov = cmd.Parameters.Add("traslada_mov", MySqlDbType.VarChar, 50);
+                traslada_mov.Direction = ParameterDirection.Input;
+                MySqlParameter total_mov = cmd.Parameters.Add("total_mov", MySqlDbType.Decimal);
+                total_mov.Direction = ParameterDirection.Input;
+                MySqlParameter nota_mov = cmd.Parameters.Add("nota_mov", MySqlDbType.VarChar, 100);
+                nota_mov.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                fecha_mov.Value = mov.FECHA.Date;
+                doc_mov.Value = mov.DOCUMENTO;
+                envia_mov.Value = mov.SUC_ENVIA;
+                dest_mov.Value = mov.SUC_DEST;
+                traslada_mov.Value = mov.TRASLADA;
+                total_mov.Value = mov.TOTAL;
+                nota_mov.Value = mov.NOTA;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("MOVIMIENTO DE CAPITAL REGISTRADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL REGISTRAR MOVIMIENTO DE CAPITAL" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+        public bool update(MovCash mov, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_UPDATE_MOV_CASH";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter idmov = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
+                idmov.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_mov = cmd.Parameters.Add("fecha_mov", MySqlDbType.Date);
+                fecha_mov.Direction = ParameterDirection.Input;
+                MySqlParameter doc_mov = cmd.Parameters.Add("doc_mov", MySqlDbType.VarChar, 20);
+                doc_mov.Direction = ParameterDirection.Input;
+                MySqlParameter envia_mov = cmd.Parameters.Add("envia_mov", MySqlDbType.VarChar, 2);
+                envia_mov.Direction = ParameterDirection.Input;
+                MySqlParameter dest_mov = cmd.Parameters.Add("dest_mov", MySqlDbType.VarChar, 2);
+                dest_mov.Direction = ParameterDirection.Input;
+                MySqlParameter traslada_mov = cmd.Parameters.Add("traslada_mov", MySqlDbType.VarChar, 50);
+                traslada_mov.Direction = ParameterDirection.Input;
+                MySqlParameter total_mov = cmd.Parameters.Add("total_mov", MySqlDbType.Decimal);
+                total_mov.Direction = ParameterDirection.Input;
+                MySqlParameter nota_mov = cmd.Parameters.Add("nota_mov", MySqlDbType.VarChar, 100);
+                nota_mov.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                idmov.Value = mov.ID_MOV;
+                fecha_mov.Value = mov.FECHA.Date;
+                doc_mov.Value = mov.DOCUMENTO;
+                envia_mov.Value = mov.SUC_ENVIA;
+                dest_mov.Value = mov.SUC_DEST;
+                traslada_mov.Value = mov.TRASLADA;
+                total_mov.Value = mov.TOTAL;
+                nota_mov.Value = mov.NOTA;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("MOVIMIENTO DE CAPITAL ACTUALIZADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL ACTUALIZAR MOVIMIENTO DE CAPITAL ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+        public bool delete(MovCash mov, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_DELETE_MOV_CASH";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter id = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
+                id.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                id.Value = mov.ID_MOV;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("MOVIMIENTO DE CAPITAL ELIMINADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL ELIMINAR MOVIMIENTO DE CAPITAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+
+
+        public bool recibirFinanc(MovCash mov, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_RECIBIR_MOV_CASH";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter id = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
+                id.Direction = ParameterDirection.Input;
+                MySqlParameter recibe_mov = cmd.Parameters.Add("recibe_mov", MySqlDbType.VarChar, 50);
+                recibe_mov.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                id.Value = mov.ID_MOV;
+                recibe_mov.Value = mov.RECIBE;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("FINANCIAMIENTO MARCADO COMO RECIBIDO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL RECIBIR FINANCIAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+        public string nextComprobanteMovCash(string codsuc)
         {
             string reader = null;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT prendasal.FN_NEXT_TICKET_MOV_CASH(@tipodoc,@tipomov,@sucursal)";
+                string sql = "SELECT prendasal.FN_NEXT_COMPROBANTE_MOVCASH(@sucursal)";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
-                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
-                tipodoc.Direction = ParameterDirection.Input;
-                MySqlParameter tipomov = cmd.Parameters.Add("tipomov", MySqlDbType.Int32);
-                tipomov.Direction = ParameterDirection.Input;
+
                 MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
                 sucursal.Direction = ParameterDirection.Input;
 
-
-                tipodoc.Value = (int)eTipoDocMovCash.TICKET;
-                tipomov.Value = (int)mov;
-                sucursal.Value = suc;
+                sucursal.Value = codsuc;
 
                 reader = (string)cmd.ExecuteScalar();
             }
@@ -56,26 +243,22 @@ namespace DDB
         }
 
 
-        public DataTable FinancBySucPRENDASAL(string sucursal, DateTime fecha)
+
+
+        public DataRow findByComprobante(string comprobante)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
+            DataRow row = null;
             try
             {
-                string sql = "SELECT * FROM prendasal.view_ingresos_egresos WHERE TIPO_MOV = @tipo AND SUC_DEST = @suc AND YEAR(FECHA) = @fechaF ORDER BY FECHA DESC;";
+                string sql = "SELECT * FROM prendasal.view_mov_cash WHERE DOCUMENTO = @doc;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
+                MySqlParameter doc = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
+                doc.Direction = ParameterDirection.Input;
 
-                MySqlParameter tipo = cmd.Parameters.Add("tipo", MySqlDbType.Int32);
-                tipo.Direction = ParameterDirection.Input;
-                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter fechaF = cmd.Parameters.Add("fechaF", MySqlDbType.Int32);
-                fechaF.Direction = ParameterDirection.Input;
-                
-                tipo.Value = (int)eTipoMovCash.FINANCIAMIENTO;
-                suc.Value = sucursal;
-                fechaF.Value = fecha.Date.ToString("yyyy");
+                doc.Value = comprobante;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -86,34 +269,37 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("ERROR AL LISTAR FINANCIAMIENTOS \n" + e.Message, "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL OBTENER COMPROBANTE DE MOVIMIENTO DE CAPITAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return datos;
+            if (datos.Rows.Count == 1)
+            {
+                row = datos.Rows[0];
+            }
+            return row;
         }
 
 
 
 
-        public DataTable RemesaBySucPRENDASAL(string sucursal, DateTime fecha)
+
+
+
+        public DataTable getRemesasBySucAnio(string sucursal, int anioRemesa)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_ingresos_egresos WHERE TIPO_MOV = @tipo AND SUC_ORG = @suc AND YEAR(FECHA) = @fechaR ORDER BY FECHA DESC;";
+                string sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_ENVIA = @suc AND YEAR(FECHA) = @anio ORDER BY FECHA DESC;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
-
-                MySqlParameter tipo = cmd.Parameters.Add("tipo", MySqlDbType.Int32);
-                tipo.Direction = ParameterDirection.Input;
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
-                MySqlParameter fechaR = cmd.Parameters.Add("fechaR", MySqlDbType.Int32);
-                fechaR.Direction = ParameterDirection.Input;
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.Int32);
+                anio.Direction = ParameterDirection.Input;
 
-                tipo.Value = (int)eTipoMovCash.REMESA;
                 suc.Value = sucursal;
-                fechaR.Value = fecha.Date.ToString("yyyy");
+                anio.Value = anioRemesa;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -124,195 +310,46 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("ERROR AL LISTAR REMESAS \n" + e.Message, "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR REMESAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
 
 
 
-        public void insertPRENDASAL(MovCash mov, string sucursal, string empleado, string sistema)
-        {
 
+
+        public DataTable getFinancBySucAnio(string sucursal, int aniofinanc)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_REGISTRAR_MOV_CASH";
+                string sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_DEST = @suc AND YEAR(FECHA) = @anio  ORDER BY FECHA DESC;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter fecha = cmd.Parameters.Add("fecha", MySqlDbType.Date);
-                fecha.Direction = ParameterDirection.Input;
-                MySqlParameter tipomov = cmd.Parameters.Add("tipomov", MySqlDbType.Int32);
-                tipomov.Direction = ParameterDirection.Input;
-                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
-                tipodoc.Direction = ParameterDirection.Input;
-                MySqlParameter documento = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
-                documento.Direction = ParameterDirection.Input;
-                MySqlParameter total = cmd.Parameters.Add("total_mov", MySqlDbType.Decimal);
-                total.Direction = ParameterDirection.Input;
-                MySqlParameter suc_destino = cmd.Parameters.Add("suc_destino", MySqlDbType.VarChar, 2);
-                suc_destino.Direction = ParameterDirection.Input;
-                MySqlParameter enviado = cmd.Parameters.Add("enviado", MySqlDbType.VarChar, 50);
-                enviado.Direction = ParameterDirection.Input;
-                MySqlParameter suc_mov = cmd.Parameters.Add("suc_mov", MySqlDbType.VarChar, 2);
-                suc_mov.Direction = ParameterDirection.Input;
-                MySqlParameter retirado = cmd.Parameters.Add("retirado", MySqlDbType.VarChar, 50);
-                retirado.Direction = ParameterDirection.Input;
-                MySqlParameter estado = cmd.Parameters.Add("estado_mov", MySqlDbType.Int32);
-                estado.Direction = ParameterDirection.Input;
-                MySqlParameter ok = cmd.Parameters.Add("ok", MySqlDbType.Bit);
-                ok.Direction = ParameterDirection.Input;
-                MySqlParameter nota = cmd.Parameters.Add("observacion", MySqlDbType.VarChar, 100);
-                nota.Direction = ParameterDirection.Input;
-                MySqlParameter suc = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
+                cmd.CommandType = CommandType.Text;
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
-                MySqlParameter emp = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                emp.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-
-                fecha.Value = mov.FECHA.Date.ToString("yyyy-MM-dd");
-                tipomov.Value = (int)mov.TIPO_MOV;
-                tipodoc.Value = (int)mov.TIPO_DOC;
-                documento.Value = mov.DOCUMENTO;
-                total.Value = mov.TOTAL;
-                suc_destino.Value = mov.SUC_DESTINO;
-                suc_mov.Value = mov.SUC_ORIGEN;
-                enviado.Value = mov.RESPONSABLE_ENVIO;
-                retirado.Value = mov.RESPONSABLE_RECIBE;
-                estado.Value = (int)mov.ESTADO;
-                ok.Value = mov.RECIBIDO;
-                nota.Value = mov.NOTA;
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.Int32);
+                anio.Direction = ParameterDirection.Input;
 
                 suc.Value = sucursal;
-                emp.Value = empleado;
-                system.Value = sistema;
+                anio.Value = aniofinanc;
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show(mov.TIPO_MOV.ToString() + " REGISTRADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
             }
             catch (Exception e)
             {
-                MessageBox.Show(null, e.Message, "ERROR AL REGISTRAR " + mov.TIPO_MOV.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR FINANCIAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return datos;
         }
 
-
-
-
-        public void updatePRENDASAL(MovCash mov, string sucursal, string empleado, string sistema)
-        {
-            try
-            {
-
-                string sql = "prendasal.SP_EDITAR_MOV_CASH";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter idmov = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
-                idmov.Direction = ParameterDirection.Input;
-                MySqlParameter fecha = cmd.Parameters.Add("fecha", MySqlDbType.Date);
-                fecha.Direction = ParameterDirection.Input;
-                MySqlParameter tipomov = cmd.Parameters.Add("tipomov", MySqlDbType.Int32);
-                tipomov.Direction = ParameterDirection.Input;
-                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
-                tipodoc.Direction = ParameterDirection.Input;
-                MySqlParameter documento = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
-                documento.Direction = ParameterDirection.Input;
-                MySqlParameter total = cmd.Parameters.Add("total_mov", MySqlDbType.Decimal);
-                total.Direction = ParameterDirection.Input;
-                MySqlParameter suc_destino = cmd.Parameters.Add("suc_destino", MySqlDbType.VarChar, 2);
-                suc_destino.Direction = ParameterDirection.Input;
-                MySqlParameter enviado = cmd.Parameters.Add("enviado", MySqlDbType.VarChar, 50);
-                enviado.Direction = ParameterDirection.Input;
-                MySqlParameter suc_mov = cmd.Parameters.Add("suc_mov", MySqlDbType.VarChar, 2);
-                suc_mov.Direction = ParameterDirection.Input;
-                MySqlParameter retirado = cmd.Parameters.Add("retirado", MySqlDbType.VarChar, 50);
-                retirado.Direction = ParameterDirection.Input;
-                MySqlParameter estado = cmd.Parameters.Add("estado_mov", MySqlDbType.Int32);
-                estado.Direction = ParameterDirection.Input;
-                MySqlParameter ok = cmd.Parameters.Add("ok", MySqlDbType.Bit);
-                ok.Direction = ParameterDirection.Input;
-                MySqlParameter nota = cmd.Parameters.Add("observacion", MySqlDbType.VarChar, 100);
-                nota.Direction = ParameterDirection.Input;
-                MySqlParameter suc = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter emp = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                emp.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-                MySqlParameter notaCambio = cmd.Parameters.Add("notaCambio", MySqlDbType.VarChar, 100);
-                notaCambio.Direction = ParameterDirection.Input;
-
-                idmov.Value = mov.ID_MOV;
-                fecha.Value = mov.FECHA.Date.ToString("yyyy-MM-dd");
-                tipomov.Value = (int)mov.TIPO_MOV;
-                tipodoc.Value = (int)mov.TIPO_DOC;
-                documento.Value = mov.DOCUMENTO;
-                total.Value = mov.TOTAL;
-                suc_destino.Value = mov.SUC_DESTINO;
-                suc_mov.Value = mov.SUC_ORIGEN;
-                enviado.Value = mov.RESPONSABLE_ENVIO;
-                retirado.Value = mov.RESPONSABLE_RECIBE;
-                estado.Value = (int)mov.ESTADO;
-                ok.Value = mov.RECIBIDO;
-                nota.Value = mov.NOTA;
-
-                suc.Value = sucursal;
-                emp.Value = empleado;
-                system.Value = sistema;
-
-
-                notaCambio.Value = mov.NOTA_CAMBIO;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show(mov.TIPO_MOV.ToString() + " ACTUALIZADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(null, e.Message, "ERROR AL ACTUALIZAR " + mov.TIPO_MOV.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
-            }
-        }
-
-
-
-        public void deletePRENDASAL(MovCash mov, string suc, string emp, string sistema)
-        {
-            try
-            {
-                string sql = "prendasal.SP_ELIMINAR_MOV_CASH";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter id = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
-                id.Direction = ParameterDirection.Input;
-                MySqlParameter tipo = cmd.Parameters.Add("tipoMov", MySqlDbType.Int32);
-                tipo.Direction = ParameterDirection.Input;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-                MySqlParameter empleado = cmd.Parameters.Add("empleado", MySqlDbType.VarChar, 15);
-                empleado.Direction = ParameterDirection.Input;
-                MySqlParameter system = cmd.Parameters.Add("sistema", MySqlDbType.VarChar, 20);
-                system.Direction = ParameterDirection.Input;
-                MySqlParameter notaCambio = cmd.Parameters.Add("notaCambio", MySqlDbType.VarChar, 100);
-                notaCambio.Direction = ParameterDirection.Input;
-
-                id.Value = mov.ID_MOV;
-                tipo.Value = (int) mov.TIPO_MOV;
-                notaCambio.Value = mov.NOTA_CAMBIO;
-
-                sucursal.Value = suc;
-                empleado.Value = emp;
-                system.Value = sistema;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("REGISTRO DE " + mov.ID_MOV.ToString() + " ELIMINADO", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL ELIMINAR " + mov.ID_MOV.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw e;
-            }
-        }
 
 
     }

@@ -201,7 +201,7 @@ namespace DDB
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_gastos WHERE COD_SUC = @suc AND YEAR(FECHA) = @anio;";
+                string sql = "SELECT * FROM prendasal.view_gastos WHERE COD_SUC = @suc AND YEAR(FECHA) = @anio ORDER BY FECHA DESC;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);

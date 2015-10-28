@@ -11,7 +11,6 @@ using ControlesPersonalizados;
 
 namespace PrendaSAL.Catalogos
 {
-    using LOGICA;
     using MODELO;
     using DDB;
 

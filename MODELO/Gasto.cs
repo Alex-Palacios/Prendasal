@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace MODELO
 {
     using System.Data;
-    using System.Windows.Forms;
 
-   
 
     public class Gasto
     {

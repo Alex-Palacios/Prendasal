@@ -859,7 +859,7 @@ namespace PrendaSAL.Movimientos
             decimal valor;
             if (Decimal.TryParse(txtTOTAL.Text, System.Globalization.NumberStyles.Currency, null, out valor))
             {
-                PRESTAMO.TOTAL = Decimal.Round(valor, 2);
+                PRESTAMO.TOTAL = Decimal.Round(valor, 2,MidpointRounding.AwayFromZero);
             }
             else
             {
