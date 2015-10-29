@@ -40,6 +40,7 @@ namespace MODELO
 
         //VARIBLES AUXILIARES
         public string RESPONSABLE;
+        public string ARTICULO;
         public string CLIENTE;
         public string NIT;
         public string DUI;
@@ -103,6 +104,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("NOTA")) { prestamo.NOTA = dr.Field<string>("NOTA"); }
 
                 if (dr.Table.Columns.Contains("RESPONSABLE")) { prestamo.RESPONSABLE = dr.Field<string>("RESPONSABLE"); }
+                if (dr.Table.Columns.Contains("ARTICULO")) { prestamo.ARTICULO = dr.Field<string>("ARTICULO"); }
                 if (dr.Table.Columns.Contains("CLIENTE")) { prestamo.CLIENTE = dr.Field<string>("CLIENTE"); }
                 if (dr.Table.Columns.Contains("NIT")) { prestamo.NIT = dr.Field<string>("NIT"); }
                 if (dr.Table.Columns.Contains("DUI")) { prestamo.DUI = dr.Field<string>("DUI"); }
@@ -187,32 +189,6 @@ namespace MODELO
         }
 
         
-
-
-        public string getArticulosText()
-        {
-            string ARTICULOS = string.Empty;
-            foreach (DataRow row in this.ITEMS_PRESTAMO.Rows)
-            {
-                switch (this.CATEGORIA)
-                {
-                    case eCategoria.ARTICULO:
-                        ARTICULOS = ARTICULOS + row.Field<string>("CATEGORIA") + ":" +
-                                    row.Field<decimal>("CANTIDAD") + " " +
-                                    row.Field<string>("COD_ITEM") +
-                                    row.Field<string>("DESCRIPCION") + ".-";
-                        break;
-                    case eCategoria.ORO:
-                        ARTICULOS = ARTICULOS + row.Field<string>("CATEGORIA") + ":" +
-                                    row.Field<string>("DESCRIPCION") + " " +
-                                    row.Field<string>("COD_ITEM") + " " +
-                                    row.Field<decimal>("CANTIDAD") + " " + eUnidadMedida.GRS.ToString() + ".-";
-                        break;
-                }
-            }
-            return ARTICULOS;
-        }
-
 
 
 

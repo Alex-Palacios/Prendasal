@@ -29,81 +29,47 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.btnCORTE_DIARIO = new System.Windows.Forms.Button();
-            this.btnCARGAR = new System.Windows.Forms.Button();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.btnGUARDAR = new System.Windows.Forms.Button();
             this.viewerREPORTE = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.lbFECHA_CORTE = new System.Windows.Forms.Label();
-            this.bsReporteDiario = new System.Windows.Forms.BindingSource(this.components);
-            this.dSReporteDiario = new PrendaSAL.Informes.DSReporteDiario();
             this.bsKPM = new System.Windows.Forms.BindingSource(this.components);
             this.dSKPM = new PrendaSAL.Informes.DSKPM();
-            this.calendarCIERRE = new DevComponents.Editors.DateTimeAdv.MonthCalendarAdv();
-            ((System.ComponentModel.ISupportInitialize)(this.bsReporteDiario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSReporteDiario)).BeginInit();
+            this.calendarCORTE = new DevComponents.Editors.DateTimeAdv.MonthCalendarAdv();
+            this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.bsReporteDiario = new System.Windows.Forms.BindingSource(this.components);
+            this.dSReporteDiario = new PrendaSAL.Informes.DSReporteDiario();
             ((System.ComponentModel.ISupportInitialize)(this.bsKPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSKPM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsReporteDiario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSReporteDiario)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnCORTE_DIARIO
+            // btnGUARDAR
             // 
-            this.btnCORTE_DIARIO.BackgroundImage = global::PrendaSAL.Properties.Resources.lock_key;
-            this.btnCORTE_DIARIO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCORTE_DIARIO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCORTE_DIARIO.Location = new System.Drawing.Point(894, 345);
-            this.btnCORTE_DIARIO.Name = "btnCORTE_DIARIO";
-            this.btnCORTE_DIARIO.Size = new System.Drawing.Size(130, 119);
-            this.btnCORTE_DIARIO.TabIndex = 4;
-            this.btnCORTE_DIARIO.Text = "REALIZAR CORTE";
-            this.btnCORTE_DIARIO.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCORTE_DIARIO.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCORTE_DIARIO.UseVisualStyleBackColor = true;
-            this.btnCORTE_DIARIO.Click += new System.EventHandler(this.btnCORTE_DIARIO_Click);
-            // 
-            // btnCARGAR
-            // 
-            this.btnCARGAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCARGAR.Image = global::PrendaSAL.Properties.Resources.informe;
-            this.btnCARGAR.Location = new System.Drawing.Point(887, 203);
-            this.btnCARGAR.Name = "btnCARGAR";
-            this.btnCARGAR.Size = new System.Drawing.Size(94, 72);
-            this.btnCARGAR.TabIndex = 2;
-            this.btnCARGAR.Text = "CARGAR";
-            this.btnCARGAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCARGAR.UseVisualStyleBackColor = true;
-            this.btnCARGAR.Click += new System.EventHandler(this.btnCARGAR_Click);
+            this.btnGUARDAR.BackgroundImage = global::PrendaSAL.Properties.Resources.lock_key;
+            this.btnGUARDAR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGUARDAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGUARDAR.Location = new System.Drawing.Point(894, 377);
+            this.btnGUARDAR.Name = "btnGUARDAR";
+            this.btnGUARDAR.Size = new System.Drawing.Size(130, 119);
+            this.btnGUARDAR.TabIndex = 4;
+            this.btnGUARDAR.Text = "CORTE DEL FECHA";
+            this.btnGUARDAR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGUARDAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGUARDAR.UseVisualStyleBackColor = true;
+            this.btnGUARDAR.Click += new System.EventHandler(this.btnCORTE_DIARIO_Click);
             // 
             // viewerREPORTE
             // 
-            reportDataSource2.Name = "DSI";
-            reportDataSource2.Value = null;
-            this.viewerREPORTE.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DSI";
+            reportDataSource1.Value = null;
+            this.viewerREPORTE.LocalReport.DataSources.Add(reportDataSource1);
             this.viewerREPORTE.LocalReport.ReportEmbeddedResource = "";
             this.viewerREPORTE.Location = new System.Drawing.Point(0, 2);
             this.viewerREPORTE.Name = "viewerREPORTE";
-            this.viewerREPORTE.ShowToolBar = false;
             this.viewerREPORTE.Size = new System.Drawing.Size(833, 541);
             this.viewerREPORTE.TabIndex = 20;
-            // 
-            // lbFECHA_CORTE
-            // 
-            this.lbFECHA_CORTE.AutoSize = true;
-            this.lbFECHA_CORTE.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFECHA_CORTE.Location = new System.Drawing.Point(923, 467);
-            this.lbFECHA_CORTE.Name = "lbFECHA_CORTE";
-            this.lbFECHA_CORTE.Size = new System.Drawing.Size(58, 17);
-            this.lbFECHA_CORTE.TabIndex = 21;
-            this.lbFECHA_CORTE.Text = "FECHA";
-            // 
-            // bsReporteDiario
-            // 
-            this.bsReporteDiario.DataSource = this.dSReporteDiario;
-            this.bsReporteDiario.Position = 0;
-            // 
-            // dSReporteDiario
-            // 
-            this.dSReporteDiario.DataSetName = "DSReporteDiario";
-            this.dSReporteDiario.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bsKPM
             // 
@@ -115,52 +81,84 @@
             this.dSKPM.DataSetName = "DSKPM";
             this.dSKPM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // calendarCIERRE
+            // calendarCORTE
             // 
-            this.calendarCIERRE.AnnuallyMarkedDates = new System.DateTime[0];
-            this.calendarCIERRE.AutoSize = true;
-            // 
-            // 
-            // 
-            this.calendarCIERRE.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.calendarCIERRE.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.calendarCIERRE.BackgroundStyle.BorderBottomWidth = 1;
-            this.calendarCIERRE.BackgroundStyle.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.calendarCIERRE.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.calendarCIERRE.BackgroundStyle.BorderLeftWidth = 1;
-            this.calendarCIERRE.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.calendarCIERRE.BackgroundStyle.BorderRightWidth = 1;
-            this.calendarCIERRE.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.calendarCIERRE.BackgroundStyle.BorderTopWidth = 1;
-            this.calendarCIERRE.BackgroundStyle.Class = "";
-            this.calendarCIERRE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.calendarCORTE.AnnuallyMarkedDates = new System.DateTime[0];
+            this.calendarCORTE.AutoSize = true;
             // 
             // 
             // 
-            this.calendarCIERRE.CommandsBackgroundStyle.Class = "";
-            this.calendarCIERRE.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.calendarCIERRE.ContainerControlProcessDialogKey = true;
-            this.calendarCIERRE.DisplayMonth = new System.DateTime(2015, 10, 1, 0, 0, 0, 0);
-            this.calendarCIERRE.Location = new System.Drawing.Point(872, 26);
-            this.calendarCIERRE.MarkedDates = new System.DateTime[0];
-            this.calendarCIERRE.MaxSelectionCount = 1;
-            this.calendarCIERRE.MonthlyMarkedDates = new System.DateTime[0];
-            this.calendarCIERRE.Name = "calendarCIERRE";
+            this.calendarCORTE.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.calendarCORTE.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.calendarCORTE.BackgroundStyle.BorderBottomWidth = 1;
+            this.calendarCORTE.BackgroundStyle.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.calendarCORTE.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.calendarCORTE.BackgroundStyle.BorderLeftWidth = 1;
+            this.calendarCORTE.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.calendarCORTE.BackgroundStyle.BorderRightWidth = 1;
+            this.calendarCORTE.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.calendarCORTE.BackgroundStyle.BorderTopWidth = 1;
+            this.calendarCORTE.BackgroundStyle.Class = "";
+            this.calendarCORTE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.calendarCIERRE.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.calendarCIERRE.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.calendarCIERRE.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.calendarCIERRE.NavigationBackgroundStyle.Class = "";
-            this.calendarCIERRE.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.calendarCIERRE.Size = new System.Drawing.Size(170, 128);
-            this.calendarCIERRE.TabIndex = 27;
-            this.calendarCIERRE.Text = "monthCalendarAdv1";
-            this.calendarCIERRE.TodayButtonVisible = true;
-            this.calendarCIERRE.WeekendDaysSelectable = false;
-            this.calendarCIERRE.WeeklyMarkedDays = new System.DayOfWeek[0];
-            this.calendarCIERRE.MonthChanged += new System.EventHandler(this.calendarCIERRE_MonthChanged);
+            this.calendarCORTE.CommandsBackgroundStyle.Class = "";
+            this.calendarCORTE.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.calendarCORTE.ContainerControlProcessDialogKey = true;
+            this.calendarCORTE.DisplayMonth = new System.DateTime(2015, 10, 1, 0, 0, 0, 0);
+            this.calendarCORTE.Location = new System.Drawing.Point(872, 96);
+            this.calendarCORTE.MarkedDates = new System.DateTime[0];
+            this.calendarCORTE.MaxSelectionCount = 1;
+            this.calendarCORTE.MonthlyMarkedDates = new System.DateTime[0];
+            this.calendarCORTE.Name = "calendarCORTE";
+            // 
+            // 
+            // 
+            this.calendarCORTE.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.calendarCORTE.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.calendarCORTE.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.calendarCORTE.NavigationBackgroundStyle.Class = "";
+            this.calendarCORTE.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.calendarCORTE.Size = new System.Drawing.Size(170, 158);
+            this.calendarCORTE.TabIndex = 27;
+            this.calendarCORTE.Text = "monthCalendarAdv1";
+            this.calendarCORTE.TodayButtonVisible = true;
+            this.calendarCORTE.WeeklyMarkedDays = new System.DayOfWeek[0];
+            this.calendarCORTE.MonthChanged += new System.EventHandler(this.calendarCIERRE_MonthChanged);
+            this.calendarCORTE.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendarCORTE_DateSelected);
+            this.calendarCORTE.ItemDoubleClick += new System.Windows.Forms.MouseEventHandler(this.calendarCORTE_ItemDoubleClick);
+            // 
+            // cbxSUCURSAL
+            // 
+            this.cbxSUCURSAL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSUCURSAL.Enabled = false;
+            this.cbxSUCURSAL.FormattingEnabled = true;
+            this.cbxSUCURSAL.Location = new System.Drawing.Point(854, 50);
+            this.cbxSUCURSAL.Name = "cbxSUCURSAL";
+            this.cbxSUCURSAL.Size = new System.Drawing.Size(196, 21);
+            this.cbxSUCURSAL.TabIndex = 85;
+            this.cbxSUCURSAL.SelectedIndexChanged += new System.EventHandler(this.cbxSUCURSAL_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(851, 34);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(73, 13);
+            this.label19.TabIndex = 86;
+            this.label19.Text = "SUCURSAL";
+            // 
+            // bsReporteDiario
+            // 
+            this.bsReporteDiario.DataSource = this.dSReporteDiario;
+            this.bsReporteDiario.Position = 0;
+            // 
+            // dSReporteDiario
+            // 
+            this.dSReporteDiario.DataSetName = "DSReporteDiario";
+            this.dSReporteDiario.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // CorteDiarioForm
             // 
@@ -170,21 +168,21 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1066, 545);
-            this.Controls.Add(this.calendarCIERRE);
-            this.Controls.Add(this.lbFECHA_CORTE);
+            this.Controls.Add(this.cbxSUCURSAL);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.calendarCORTE);
             this.Controls.Add(this.viewerREPORTE);
-            this.Controls.Add(this.btnCORTE_DIARIO);
-            this.Controls.Add(this.btnCARGAR);
+            this.Controls.Add(this.btnGUARDAR);
             this.MaximizeBox = false;
             this.Name = "CorteDiarioForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "CORTE DIARIO";
+            this.Text = "REPORTE DIARIO";
             this.Load += new System.EventHandler(this.CorteDiarioForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bsReporteDiario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSReporteDiario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsKPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSKPM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsReporteDiario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSReporteDiario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,15 +190,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCARGAR;
-        private System.Windows.Forms.Button btnCORTE_DIARIO;
+        private System.Windows.Forms.Button btnGUARDAR;
         private Microsoft.Reporting.WinForms.ReportViewer viewerREPORTE;
-        private System.Windows.Forms.Label lbFECHA_CORTE;
         private System.Windows.Forms.BindingSource bsReporteDiario;
         private Informes.DSReporteDiario dSReporteDiario;
         private System.Windows.Forms.BindingSource bsKPM;
         private Informes.DSKPM dSKPM;
-        private DevComponents.Editors.DateTimeAdv.MonthCalendarAdv calendarCIERRE;
+        private DevComponents.Editors.DateTimeAdv.MonthCalendarAdv calendarCORTE;
+        private System.Windows.Forms.ComboBox cbxSUCURSAL;
+        private System.Windows.Forms.Label label19;
 
     }
 }

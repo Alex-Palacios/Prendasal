@@ -281,6 +281,10 @@ namespace PrendaSAL.Informes {
             
             private global::System.Data.DataColumn columnCONCEPTO;
             
+            private global::System.Data.DataColumn columnCOD_TRANS;
+            
+            private global::System.Data.DataColumn columnCOD_SUC;
+            
             private global::System.Data.DataColumn columnFECHA;
             
             private global::System.Data.DataColumn columnDOCUMENTO;
@@ -289,15 +293,11 @@ namespace PrendaSAL.Informes {
             
             private global::System.Data.DataColumn columnDETALLE;
             
+            private global::System.Data.DataColumn columnRESPONSABLE;
+            
             private global::System.Data.DataColumn columnINGRESO;
             
             private global::System.Data.DataColumn columnEGRESO;
-            
-            private global::System.Data.DataColumn columnRESPONSABLE;
-            
-            private global::System.Data.DataColumn columnTRANS;
-            
-            private global::System.Data.DataColumn columnSUCURSAL;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -342,6 +342,22 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COD_TRANSColumn {
+                get {
+                    return this.columnCOD_TRANS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COD_SUCColumn {
+                get {
+                    return this.columnCOD_SUC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn FECHAColumn {
                 get {
                     return this.columnFECHA;
@@ -374,6 +390,14 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RESPONSABLEColumn {
+                get {
+                    return this.columnRESPONSABLE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn INGRESOColumn {
                 get {
                     return this.columnINGRESO;
@@ -385,30 +409,6 @@ namespace PrendaSAL.Informes {
             public global::System.Data.DataColumn EGRESOColumn {
                 get {
                     return this.columnEGRESO;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RESPONSABLEColumn {
-                get {
-                    return this.columnRESPONSABLE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TRANSColumn {
-                get {
-                    return this.columnTRANS;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SUCURSALColumn {
-                get {
-                    return this.columnSUCURSAL;
                 }
             }
             
@@ -449,19 +449,19 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TRANSACCIONESRow AddTRANSACCIONESRow(string CONCEPTO, System.DateTime FECHA, string DOCUMENTO, string CLIENTE, string DETALLE, decimal INGRESO, decimal EGRESO, string RESPONSABLE, string TRANS, string SUCURSAL) {
+            public TRANSACCIONESRow AddTRANSACCIONESRow(string CONCEPTO, string COD_TRANS, string COD_SUC, System.DateTime FECHA, string DOCUMENTO, string CLIENTE, string DETALLE, string RESPONSABLE, decimal INGRESO, decimal EGRESO) {
                 TRANSACCIONESRow rowTRANSACCIONESRow = ((TRANSACCIONESRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CONCEPTO,
+                        COD_TRANS,
+                        COD_SUC,
                         FECHA,
                         DOCUMENTO,
                         CLIENTE,
                         DETALLE,
-                        INGRESO,
-                        EGRESO,
                         RESPONSABLE,
-                        TRANS,
-                        SUCURSAL};
+                        INGRESO,
+                        EGRESO};
                 rowTRANSACCIONESRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTRANSACCIONESRow);
                 return rowTRANSACCIONESRow;
@@ -485,15 +485,15 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnCONCEPTO = base.Columns["CONCEPTO"];
+                this.columnCOD_TRANS = base.Columns["COD_TRANS"];
+                this.columnCOD_SUC = base.Columns["COD_SUC"];
                 this.columnFECHA = base.Columns["FECHA"];
                 this.columnDOCUMENTO = base.Columns["DOCUMENTO"];
                 this.columnCLIENTE = base.Columns["CLIENTE"];
                 this.columnDETALLE = base.Columns["DETALLE"];
+                this.columnRESPONSABLE = base.Columns["RESPONSABLE"];
                 this.columnINGRESO = base.Columns["INGRESO"];
                 this.columnEGRESO = base.Columns["EGRESO"];
-                this.columnRESPONSABLE = base.Columns["RESPONSABLE"];
-                this.columnTRANS = base.Columns["TRANS"];
-                this.columnSUCURSAL = base.Columns["SUCURSAL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -501,6 +501,10 @@ namespace PrendaSAL.Informes {
             private void InitClass() {
                 this.columnCONCEPTO = new global::System.Data.DataColumn("CONCEPTO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCONCEPTO);
+                this.columnCOD_TRANS = new global::System.Data.DataColumn("COD_TRANS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOD_TRANS);
+                this.columnCOD_SUC = new global::System.Data.DataColumn("COD_SUC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOD_SUC);
                 this.columnFECHA = new global::System.Data.DataColumn("FECHA", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFECHA);
                 this.columnDOCUMENTO = new global::System.Data.DataColumn("DOCUMENTO", typeof(string), null, global::System.Data.MappingType.Element);
@@ -509,16 +513,12 @@ namespace PrendaSAL.Informes {
                 base.Columns.Add(this.columnCLIENTE);
                 this.columnDETALLE = new global::System.Data.DataColumn("DETALLE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDETALLE);
+                this.columnRESPONSABLE = new global::System.Data.DataColumn("RESPONSABLE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESPONSABLE);
                 this.columnINGRESO = new global::System.Data.DataColumn("INGRESO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnINGRESO);
                 this.columnEGRESO = new global::System.Data.DataColumn("EGRESO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEGRESO);
-                this.columnRESPONSABLE = new global::System.Data.DataColumn("RESPONSABLE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRESPONSABLE);
-                this.columnTRANS = new global::System.Data.DataColumn("TRANS", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTRANS);
-                this.columnSUCURSAL = new global::System.Data.DataColumn("SUCURSAL", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSUCURSAL);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -677,6 +677,38 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string COD_TRANS {
+                get {
+                    try {
+                        return ((string)(this[this.tableTRANSACCIONES.COD_TRANSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COD_TRANS\' de la tabla \'TRANSACCIONES\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTRANSACCIONES.COD_TRANSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string COD_SUC {
+                get {
+                    if (this.IsCOD_SUCNull()) {
+                        return string.Empty;
+                    }
+                    else {
+                        return ((string)(this[this.tableTRANSACCIONES.COD_SUCColumn]));
+                    }
+                }
+                set {
+                    this[this.tableTRANSACCIONES.COD_SUCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime FECHA {
                 get {
                     try {
@@ -711,11 +743,11 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string CLIENTE {
                 get {
-                    if (this.IsCLIENTENull()) {
-                        return string.Empty;
-                    }
-                    else {
+                    try {
                         return ((string)(this[this.tableTRANSACCIONES.CLIENTEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CLIENTE\' de la tabla \'TRANSACCIONES\' es DBNull.", e);
                     }
                 }
                 set {
@@ -727,15 +759,31 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DETALLE {
                 get {
-                    if (this.IsDETALLENull()) {
-                        return string.Empty;
-                    }
-                    else {
+                    try {
                         return ((string)(this[this.tableTRANSACCIONES.DETALLEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DETALLE\' de la tabla \'TRANSACCIONES\' es DBNull.", e);
                     }
                 }
                 set {
                     this[this.tableTRANSACCIONES.DETALLEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RESPONSABLE {
+                get {
+                    if (this.IsRESPONSABLENull()) {
+                        return string.Empty;
+                    }
+                    else {
+                        return ((string)(this[this.tableTRANSACCIONES.RESPONSABLEColumn]));
+                    }
+                }
+                set {
+                    this[this.tableTRANSACCIONES.RESPONSABLEColumn] = value;
                 }
             }
             
@@ -773,54 +821,6 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RESPONSABLE {
-                get {
-                    if (this.IsRESPONSABLENull()) {
-                        return string.Empty;
-                    }
-                    else {
-                        return ((string)(this[this.tableTRANSACCIONES.RESPONSABLEColumn]));
-                    }
-                }
-                set {
-                    this[this.tableTRANSACCIONES.RESPONSABLEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TRANS {
-                get {
-                    if (this.IsTRANSNull()) {
-                        return string.Empty;
-                    }
-                    else {
-                        return ((string)(this[this.tableTRANSACCIONES.TRANSColumn]));
-                    }
-                }
-                set {
-                    this[this.tableTRANSACCIONES.TRANSColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SUCURSAL {
-                get {
-                    if (this.IsSUCURSALNull()) {
-                        return string.Empty;
-                    }
-                    else {
-                        return ((string)(this[this.tableTRANSACCIONES.SUCURSALColumn]));
-                    }
-                }
-                set {
-                    this[this.tableTRANSACCIONES.SUCURSALColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCONCEPTONull() {
                 return this.IsNull(this.tableTRANSACCIONES.CONCEPTOColumn);
             }
@@ -829,6 +829,30 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCONCEPTONull() {
                 this[this.tableTRANSACCIONES.CONCEPTOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOD_TRANSNull() {
+                return this.IsNull(this.tableTRANSACCIONES.COD_TRANSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOD_TRANSNull() {
+                this[this.tableTRANSACCIONES.COD_TRANSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOD_SUCNull() {
+                return this.IsNull(this.tableTRANSACCIONES.COD_SUCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOD_SUCNull() {
+                this[this.tableTRANSACCIONES.COD_SUCColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -881,6 +905,18 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRESPONSABLENull() {
+                return this.IsNull(this.tableTRANSACCIONES.RESPONSABLEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRESPONSABLENull() {
+                this[this.tableTRANSACCIONES.RESPONSABLEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsINGRESONull() {
                 return this.IsNull(this.tableTRANSACCIONES.INGRESOColumn);
             }
@@ -901,42 +937,6 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEGRESONull() {
                 this[this.tableTRANSACCIONES.EGRESOColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRESPONSABLENull() {
-                return this.IsNull(this.tableTRANSACCIONES.RESPONSABLEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRESPONSABLENull() {
-                this[this.tableTRANSACCIONES.RESPONSABLEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTRANSNull() {
-                return this.IsNull(this.tableTRANSACCIONES.TRANSColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTRANSNull() {
-                this[this.tableTRANSACCIONES.TRANSColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSUCURSALNull() {
-                return this.IsNull(this.tableTRANSACCIONES.SUCURSALColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSUCURSALNull() {
-                this[this.tableTRANSACCIONES.SUCURSALColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -557,16 +557,16 @@
     <EmbeddedResource Include="Informes\KPM.rdlc" />
     <EmbeddedResource Include="Informes\ContratoCompra1.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo1.rdlc" />
-    <EmbeddedResource Include="Informes\ContratosCancelados.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteCancelados.rdlc" />
     <EmbeddedResource Include="Informes\CustodiaValores.rdlc" />
     <EmbeddedResource Include="Informes\FCF.rdlc" />
     <EmbeddedResource Include="Informes\FCF_Reverse.rdlc" />
     <EmbeddedResource Include="Informes\KITCO.rdlc" />
     <EmbeddedResource Include="Informes\ListaVencidos.rdlc" />
     <EmbeddedResource Include="Informes\NotaRemision.rdlc" />
-    <EmbeddedResource Include="Informes\ReporteDiario.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteTransacciones.rdlc" />
     <EmbeddedResource Include="Informes\ReciboPAC.rdlc" />
-    <EmbeddedResource Include="Informes\CorteDiario.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteDiario.rdlc" />
     <EmbeddedResource Include="Informes\TicketMovCash.rdlc" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

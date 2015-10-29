@@ -1169,7 +1169,7 @@ namespace PrendaSAL.Movimientos
                 parameters[8] = new ReportParameter("TOTAL", PRESTAMO.TOTAL.ToString("C2"));
                 parameters[9] = new ReportParameter("TASA", PRESTAMO.TASA_MENSUAL +"");
                 parameters[10] = new ReportParameter("INTERES", PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2"));
-                parameters[11] = new ReportParameter("GARANTIA", PRESTAMO.getArticulosText());
+                parameters[11] = new ReportParameter("GARANTIA", PRESTAMO.ARTICULO);
                 parameters[12] = new ReportParameter("DIAS", PRESTAMO.FECHA.Date.ToString("dd"));
                 parameters[13] = new ReportParameter("MES", PRESTAMO.FECHA.Date.ToString("MMMM").ToUpper());
                 parameters[14] = new ReportParameter("ANIO", PRESTAMO.FECHA.Date.ToString("yyyy"));
@@ -1207,7 +1207,7 @@ namespace PrendaSAL.Movimientos
                 parameters[13] = new ReportParameter("PLAZO", PRESTAMO.PLAZO_CONTRATO+"");
                 parameters[14] = new ReportParameter("PlazoVenc", PRESTAMO.PLAZO_VENC + "");
                 parameters[15] = new ReportParameter("FechaVenc",PRESTAMO.FECHA_VENC_INIT.ToString("dd/MM/yyyy"));
-                parameters[16] = new ReportParameter("ARTICULO", PRESTAMO.getArticulosText());
+                parameters[16] = new ReportParameter("ARTICULO", PRESTAMO.ARTICULO);
                 parameters[17] = new ReportParameter("MUNICIPIO", SUC.MUNICIPIO);
                 parameters[18] = new ReportParameter("DIAS", PRESTAMO.FECHA.Date.ToString("dd"));
                 parameters[19] = new ReportParameter("MES", PRESTAMO.FECHA.Date.ToString("MMMM").ToUpper());

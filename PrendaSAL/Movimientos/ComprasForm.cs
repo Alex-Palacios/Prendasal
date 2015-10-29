@@ -996,7 +996,7 @@ namespace PrendaSAL.Movimientos
                 parameters[8] = new ReportParameter("TOTAL", COMPRA.TOTAL.ToString("C2"));
                 parameters[9] = new ReportParameter("TASA", 15 + "");
                 parameters[10] = new ReportParameter("INTERES", (COMPRA.TOTAL*(decimal)0.15).ToString("C2"));
-                parameters[11] = new ReportParameter("GARANTIA", COMPRA.getArticulosText());
+                parameters[11] = new ReportParameter("GARANTIA", COMPRA.ARTICULO);
                 parameters[12] = new ReportParameter("DIAS", COMPRA.FECHA.Date.ToString("dd"));
                 parameters[13] = new ReportParameter("MES", COMPRA.FECHA.Date.ToString("MMMM").ToUpper());
                 parameters[14] = new ReportParameter("ANIO", COMPRA.FECHA.Date.ToString("yyyy"));
@@ -1035,7 +1035,7 @@ namespace PrendaSAL.Movimientos
                     parameters[8] = new ReportParameter("DireccionCLI", COMPRA.DIRECCION_CLI);
                     parameters[9] = new ReportParameter("TelCLI", COMPRA.TEL_CLI);
                     parameters[10] = new ReportParameter("TOTAL", COMPRA.TOTAL.ToString("C2"));
-                    parameters[11] = new ReportParameter("ARTICULO", COMPRA.getArticulosText());
+                    parameters[11] = new ReportParameter("ARTICULO", COMPRA.ARTICULO);
                     parameters[12] = new ReportParameter("MUNICIPIO", SUC.MUNICIPIO);
                     parameters[13] = new ReportParameter("DIAS", COMPRA.FECHA.Date.ToString("dd"));
                     parameters[14] = new ReportParameter("MES", COMPRA.FECHA.Date.ToString("MMMM").ToUpper());

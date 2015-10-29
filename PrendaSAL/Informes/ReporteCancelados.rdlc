@@ -42,7 +42,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>CONTRATOS CANDELADOS</Value>
+                <Value>REPORTE DE CANCELADOS</Value>
                 <Style>
                   <FontSize>15pt</FontSize>
                   <FontWeight>ExtraBold</FontWeight>

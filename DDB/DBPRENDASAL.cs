@@ -327,6 +327,7 @@ namespace DDB
             MySqlDataReader reader;
             // Creamos nuestro queridisimo DataSet
             DataTable datos = new DataTable();
+            DataRow row = null;
             try
             {
                 string sql = "prendasal.SP_GET_REGLAS";
@@ -348,7 +349,11 @@ namespace DDB
             {
                 MessageBox.Show("NO SE PUDO CONSULTAR LOS PARAMETROS PARA CLIENTE: " + nivel.ToString(), "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return datos.Rows[datos.Rows.Count - 1];
+            if (datos.Rows.Count == 1)
+            {
+                row = datos.Rows[0];
+            }
+            return row;
         }
 
 

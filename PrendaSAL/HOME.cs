@@ -44,6 +44,13 @@ namespace PrendaSAL
         public string SISTEMA;
         public string TIPO_SESION;
 
+        public ToolStripProgressBar progress {
+            get
+            {
+                return this.progressBarStatus;
+            }
+       }
+
         public DataTable datSUCURSALES;
 
         public HOME()
@@ -388,6 +395,7 @@ namespace PrendaSAL
                     if (row.Field<string>("COD_SUC") == codsuc)
                     {
                         suc = Sucursal.ConverterToSucursal(row);
+                        break;
                     }
                 }
             }

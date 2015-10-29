@@ -261,7 +261,7 @@ namespace PrendaSAL.Movimientos
                 txtEstadoCONT.Text = PAC.CONTRATO.ESTADO_CONTRATO.ToString();
                 if (PAC.CONTRATO.TIPO == eTipoPrestamo.PRENDARIO)
                 {
-                    lbARTICULO.Text = PAC.CONTRATO.getArticulosText();
+                    lbARTICULO.Text = PAC.CONTRATO.ARTICULO;
                 }
                 else
                 {
@@ -928,7 +928,7 @@ namespace PrendaSAL.Movimientos
                 parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
                 parameters[3] = new ReportParameter("NumRECIBO", SELECTED.RECIBO);
                 parameters[4] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-                parameters[5] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.getArticulosText());
+                parameters[5] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
                 parameters[6] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
                 parameters[7] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
                 parameters[8] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
@@ -1045,7 +1045,7 @@ namespace PrendaSAL.Movimientos
             parameters[0] = new ReportParameter("numRECIBO", SELECTED.RECIBO);
             parameters[1] = new ReportParameter("CONTRATO", SELECTED.CONTRATO.DOCUMENTO);
             parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-            parameters[3] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.getArticulosText());
+            parameters[3] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
             parameters[4] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
             parameters[5] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
             parameters[6] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));

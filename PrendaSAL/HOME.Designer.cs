@@ -32,6 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
             this.styleForm = new DevComponents.DotNetBar.StyleManager(this.components);
             this.MENU_PRINCIPAL = new DevComponents.DotNetBar.RibbonControl();
+            this.ribbonPanel7 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
+            this.btnMenuCierreVencidos = new DevComponents.DotNetBar.ButtonItem();
+            this.grupoOperacionesInventario = new DevComponents.DotNetBar.RibbonBar();
+            this.btnMenuRecibirInv = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMenuEnviarInv = new DevComponents.DotNetBar.ButtonItem();
+            this.btnInventarioInicial = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
             this.grupoConfigConexion = new DevComponents.DotNetBar.RibbonBar();
             this.btnConfigConexionDB = new DevComponents.DotNetBar.ButtonItem();
@@ -53,13 +60,6 @@
             this.grupoReportesInventario = new DevComponents.DotNetBar.RibbonBar();
             this.btnReporteResguardo = new DevComponents.DotNetBar.ButtonItem();
             this.btnReporteEnVenta = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonPanel7 = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnMenuCierreVencidos = new DevComponents.DotNetBar.ButtonItem();
-            this.grupoOperacionesInventario = new DevComponents.DotNetBar.RibbonBar();
-            this.btnMenuRecibirInv = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMenuEnviarInv = new DevComponents.DotNetBar.ButtonItem();
-            this.btnInventarioInicial = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.btnCorteDiario = new DevComponents.DotNetBar.ButtonX();
             this.grupoCajaChica = new DevComponents.DotNetBar.RibbonBar();
@@ -111,9 +111,9 @@
             this.cascadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paraleloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MENU_PRINCIPAL.SuspendLayout();
+            this.ribbonPanel7.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
             this.ribbonPanel4.SuspendLayout();
-            this.ribbonPanel7.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
             this.ribbonPanel6.SuspendLayout();
@@ -132,10 +132,10 @@
             this.MENU_PRINCIPAL.BackgroundStyle.Class = "";
             this.MENU_PRINCIPAL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MENU_PRINCIPAL.CaptionVisible = true;
+            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel2);
+            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel4);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel7);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel3);
-            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel4);
-            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel2);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel1);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel6);
             resources.ApplyResources(this.MENU_PRINCIPAL, "MENU_PRINCIPAL");
@@ -157,6 +157,137 @@
             this.menuVista});
             this.MENU_PRINCIPAL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MENU_PRINCIPAL.TabGroupHeight = 14;
+            // 
+            // ribbonPanel7
+            // 
+            this.ribbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel7.Controls.Add(this.ribbonBar1);
+            this.ribbonPanel7.Controls.Add(this.grupoOperacionesInventario);
+            resources.ApplyResources(this.ribbonPanel7, "ribbonPanel7");
+            this.ribbonPanel7.Name = "ribbonPanel7";
+            // 
+            // 
+            // 
+            this.ribbonPanel7.Style.Class = "";
+            this.ribbonPanel7.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel7.StyleMouseDown.Class = "";
+            this.ribbonPanel7.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel7.StyleMouseOver.Class = "";
+            this.ribbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // ribbonBar1
+            // 
+            this.ribbonBar1.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBar1.BackgroundMouseOverStyle.Class = "";
+            this.ribbonBar1.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar1.BackgroundStyle.Class = "";
+            this.ribbonBar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar1.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.ribbonBar1, "ribbonBar1");
+            this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnMenuCierreVencidos});
+            this.ribbonBar1.Name = "ribbonBar1";
+            this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.ribbonBar1.TitleStyle.Class = "";
+            this.ribbonBar1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBar1.TitleStyleMouseOver.Class = "";
+            this.ribbonBar1.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnMenuCierreVencidos
+            // 
+            this.btnMenuCierreVencidos.FixedSize = new System.Drawing.Size(85, 64);
+            this.btnMenuCierreVencidos.Image = global::PrendaSAL.Properties.Resources.vencido;
+            this.btnMenuCierreVencidos.ImageFixedSize = new System.Drawing.Size(70, 64);
+            this.btnMenuCierreVencidos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuCierreVencidos.Name = "btnMenuCierreVencidos";
+            this.btnMenuCierreVencidos.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuCierreVencidos, "btnMenuCierreVencidos");
+            this.btnMenuCierreVencidos.Click += new System.EventHandler(this.menuOperacionesListaVencidos);
+            // 
+            // grupoOperacionesInventario
+            // 
+            this.grupoOperacionesInventario.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.grupoOperacionesInventario.BackgroundMouseOverStyle.Class = "";
+            this.grupoOperacionesInventario.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoOperacionesInventario.BackgroundStyle.Class = "";
+            this.grupoOperacionesInventario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoOperacionesInventario.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoOperacionesInventario, "grupoOperacionesInventario");
+            this.grupoOperacionesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnMenuRecibirInv,
+            this.btnMenuEnviarInv,
+            this.btnInventarioInicial});
+            this.grupoOperacionesInventario.Name = "grupoOperacionesInventario";
+            this.grupoOperacionesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.grupoOperacionesInventario.TitleStyle.Class = "";
+            this.grupoOperacionesInventario.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoOperacionesInventario.TitleStyleMouseOver.Class = "";
+            this.grupoOperacionesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnMenuRecibirInv
+            // 
+            this.btnMenuRecibirInv.Image = global::PrendaSAL.Properties.Resources.entregainv;
+            this.btnMenuRecibirInv.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnMenuRecibirInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuRecibirInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuRecibirInv.Name = "btnMenuRecibirInv";
+            this.btnMenuRecibirInv.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuRecibirInv, "btnMenuRecibirInv");
+            this.btnMenuRecibirInv.Click += new System.EventHandler(this.menuOperacionesRecibirInv);
+            // 
+            // btnMenuEnviarInv
+            // 
+            this.btnMenuEnviarInv.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnMenuEnviarInv.Image = global::PrendaSAL.Properties.Resources.enviosInv;
+            this.btnMenuEnviarInv.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnMenuEnviarInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuEnviarInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuEnviarInv.Name = "btnMenuEnviarInv";
+            this.btnMenuEnviarInv.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuEnviarInv, "btnMenuEnviarInv");
+            this.btnMenuEnviarInv.Click += new System.EventHandler(this.menuOperacionesEnviarInv);
+            // 
+            // btnInventarioInicial
+            // 
+            this.btnInventarioInicial.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnInventarioInicial.Image = global::PrendaSAL.Properties.Resources.lista;
+            this.btnInventarioInicial.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnInventarioInicial.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnInventarioInicial.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnInventarioInicial.Name = "btnInventarioInicial";
+            this.btnInventarioInicial.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnInventarioInicial, "btnInventarioInicial");
+            this.btnInventarioInicial.Click += new System.EventHandler(this.menuOperacionesCorteInv);
             // 
             // ribbonPanel3
             // 
@@ -527,137 +658,6 @@
             this.btnReporteEnVenta.SubItemsExpandWidth = 14;
             resources.ApplyResources(this.btnReporteEnVenta, "btnReporteEnVenta");
             this.btnReporteEnVenta.Click += new System.EventHandler(this.menuReportesInventarioVenta);
-            // 
-            // ribbonPanel7
-            // 
-            this.ribbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel7.Controls.Add(this.ribbonBar1);
-            this.ribbonPanel7.Controls.Add(this.grupoOperacionesInventario);
-            resources.ApplyResources(this.ribbonPanel7, "ribbonPanel7");
-            this.ribbonPanel7.Name = "ribbonPanel7";
-            // 
-            // 
-            // 
-            this.ribbonPanel7.Style.Class = "";
-            this.ribbonPanel7.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel7.StyleMouseDown.Class = "";
-            this.ribbonPanel7.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel7.StyleMouseOver.Class = "";
-            this.ribbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // ribbonBar1
-            // 
-            this.ribbonBar1.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar1.BackgroundMouseOverStyle.Class = "";
-            this.ribbonBar1.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar1.BackgroundStyle.Class = "";
-            this.ribbonBar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar1.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.ribbonBar1, "ribbonBar1");
-            this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMenuCierreVencidos});
-            this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            // 
-            // 
-            // 
-            this.ribbonBar1.TitleStyle.Class = "";
-            this.ribbonBar1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar1.TitleStyleMouseOver.Class = "";
-            this.ribbonBar1.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnMenuCierreVencidos
-            // 
-            this.btnMenuCierreVencidos.FixedSize = new System.Drawing.Size(85, 64);
-            this.btnMenuCierreVencidos.Image = global::PrendaSAL.Properties.Resources.vencido;
-            this.btnMenuCierreVencidos.ImageFixedSize = new System.Drawing.Size(70, 64);
-            this.btnMenuCierreVencidos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuCierreVencidos.Name = "btnMenuCierreVencidos";
-            this.btnMenuCierreVencidos.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuCierreVencidos, "btnMenuCierreVencidos");
-            this.btnMenuCierreVencidos.Click += new System.EventHandler(this.menuOperacionesListaVencidos);
-            // 
-            // grupoOperacionesInventario
-            // 
-            this.grupoOperacionesInventario.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.grupoOperacionesInventario.BackgroundMouseOverStyle.Class = "";
-            this.grupoOperacionesInventario.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoOperacionesInventario.BackgroundStyle.Class = "";
-            this.grupoOperacionesInventario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grupoOperacionesInventario.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.grupoOperacionesInventario, "grupoOperacionesInventario");
-            this.grupoOperacionesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMenuRecibirInv,
-            this.btnMenuEnviarInv,
-            this.btnInventarioInicial});
-            this.grupoOperacionesInventario.Name = "grupoOperacionesInventario";
-            this.grupoOperacionesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            // 
-            // 
-            // 
-            this.grupoOperacionesInventario.TitleStyle.Class = "";
-            this.grupoOperacionesInventario.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoOperacionesInventario.TitleStyleMouseOver.Class = "";
-            this.grupoOperacionesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnMenuRecibirInv
-            // 
-            this.btnMenuRecibirInv.Image = global::PrendaSAL.Properties.Resources.entregainv;
-            this.btnMenuRecibirInv.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnMenuRecibirInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuRecibirInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuRecibirInv.Name = "btnMenuRecibirInv";
-            this.btnMenuRecibirInv.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuRecibirInv, "btnMenuRecibirInv");
-            this.btnMenuRecibirInv.Click += new System.EventHandler(this.menuOperacionesRecibirInv);
-            // 
-            // btnMenuEnviarInv
-            // 
-            this.btnMenuEnviarInv.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnMenuEnviarInv.Image = global::PrendaSAL.Properties.Resources.enviosInv;
-            this.btnMenuEnviarInv.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnMenuEnviarInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuEnviarInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuEnviarInv.Name = "btnMenuEnviarInv";
-            this.btnMenuEnviarInv.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuEnviarInv, "btnMenuEnviarInv");
-            this.btnMenuEnviarInv.Click += new System.EventHandler(this.menuOperacionesEnviarInv);
-            // 
-            // btnInventarioInicial
-            // 
-            this.btnInventarioInicial.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnInventarioInicial.Image = global::PrendaSAL.Properties.Resources.lista;
-            this.btnInventarioInicial.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnInventarioInicial.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnInventarioInicial.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnInventarioInicial.Name = "btnInventarioInicial";
-            this.btnInventarioInicial.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnInventarioInicial, "btnInventarioInicial");
-            this.btnInventarioInicial.Click += new System.EventHandler(this.menuOperacionesCorteInv);
             // 
             // ribbonPanel2
             // 
@@ -1066,13 +1066,13 @@
             // 
             // moduloMOVIMIENTOS
             // 
+            this.moduloMOVIMIENTOS.Checked = true;
             this.moduloMOVIMIENTOS.Name = "moduloMOVIMIENTOS";
             this.moduloMOVIMIENTOS.Panel = this.ribbonPanel2;
             resources.ApplyResources(this.moduloMOVIMIENTOS, "moduloMOVIMIENTOS");
             // 
             // moduloOPERACIONES
             // 
-            this.moduloOPERACIONES.Checked = true;
             this.moduloOPERACIONES.Name = "moduloOPERACIONES";
             this.moduloOPERACIONES.Panel = this.ribbonPanel7;
             resources.ApplyResources(this.moduloOPERACIONES, "moduloOPERACIONES");
@@ -1298,9 +1298,9 @@
             this.Load += new System.EventHandler(this.HOME_Load);
             this.MENU_PRINCIPAL.ResumeLayout(false);
             this.MENU_PRINCIPAL.PerformLayout();
+            this.ribbonPanel7.ResumeLayout(false);
             this.ribbonPanel3.ResumeLayout(false);
             this.ribbonPanel4.ResumeLayout(false);
-            this.ribbonPanel7.ResumeLayout(false);
             this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel1.ResumeLayout(false);
             this.ribbonPanel6.ResumeLayout(false);

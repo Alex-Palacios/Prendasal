@@ -119,7 +119,7 @@ namespace DDB
             catch (Exception e)
             {
                 OK = false;
-                MessageBox.Show(e.Message, "ERROR AL ELIMINAR LISTA DE VENCIDO \n" + e.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL ELIMINAR LISTA DE VENCIDO" , MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return OK;
         }

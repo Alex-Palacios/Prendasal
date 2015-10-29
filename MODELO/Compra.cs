@@ -27,6 +27,7 @@ namespace MODELO
         public string NOTA;
 
         public string RESPONSABLE;
+        public string ARTICULO;
         public string CLIENTE;
         public string NIT;
         public string DUI;
@@ -79,6 +80,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("NOTA")) { compra.NOTA = dr.Field<string>("NOTA"); }
 
                 if (dr.Table.Columns.Contains("RESPONSABLE")) { compra.RESPONSABLE = dr.Field<string>("RESPONSABLE"); }
+                if (dr.Table.Columns.Contains("ARTICULO")) { compra.ARTICULO = dr.Field<string>("ARTICULO"); }
                 if (dr.Table.Columns.Contains("CLIENTE")) { compra.CLIENTE = dr.Field<string>("CLIENTE"); }
                 if (dr.Table.Columns.Contains("NIT")) { compra.NIT = dr.Field<string>("NIT"); }
                 if (dr.Table.Columns.Contains("DUI")) { compra.DUI = dr.Field<string>("DUI"); }
@@ -106,29 +108,6 @@ namespace MODELO
 
 
 
-        public string getArticulosText()
-        {
-            string ARTICULOS = string.Empty;
-            foreach (DataRow row in this.ITEMS_COMPRA.Rows)
-            {
-                switch (this.CATEGORIA)
-                {
-                    case eCategoria.ARTICULO:
-                        ARTICULOS = ARTICULOS + row.Field<string>("CATEGORIA") + ":" + 
-                                    row.Field<decimal>("CANTIDAD") + " " + 
-                                    row.Field<string>("COD_ITEM")  +
-                                    row.Field<string>("DESCRIPCION") + ".-";
-                        break;
-                    case eCategoria.ORO:
-                        ARTICULOS = ARTICULOS + row.Field<string>("CATEGORIA") + ":" +
-                                    row.Field<string>("DESCRIPCION") +" "+
-                                    row.Field<string>("COD_ITEM") +" "+
-                                    row.Field<decimal>("CANTIDAD") + " GRS" + ".-";
-                        break;
-                } 
-            }
-            return ARTICULOS;
-        }
 
 
 

@@ -35,11 +35,14 @@ namespace PrendaSAL.Movimientos
         }
 
         //VARIABLES
-        private DBReporte dbReportes;
+        private DBCorteDiario dbCorte;
         private DBUsuario dbUser;
-        private DataTable DIAS_ABIERTOS;
-        private DataTable MOVIMIENTOS;
-        private DateTime FECHA_CORTE;
+
+        private DateTime FECHA;
+        private CorteDiario SELECTED;
+        private DataTable CORTES_DIARIOS;
+
+        private eOperacion ACCION;
 
 
 
@@ -48,23 +51,31 @@ namespace PrendaSAL.Movimientos
         public CorteDiarioForm()
         {
             InitializeComponent();
-            dbReportes = new DBReporte();
             dbUser = new DBUsuario();
+            dbCorte = new DBCorteDiario();
         }
 
 
         private void permisos()
         {
-            btnCARGAR.Visible = false;
-            btnCORTE_DIARIO.Visible = false;
+            
+            btnGUARDAR.Visible = false;
 
             foreach (DataRow p in HOME.Instance().USUARIO.PERMISOS.Rows)
             {
                 if (p.Field<string>("CODIGO") == "P12")
                 {
-                    btnCARGAR.Visible = p.Field<bool>("BUSCAR");
-                    btnCORTE_DIARIO.Visible = p.Field<bool>("REGISTRAR");
+                    btnGUARDAR.Visible = p.Field<bool>("REGISTRAR");
                 }
+            }
+
+            if (HOME.Instance().USUARIO.TIPO == eTipoUsuario.ASESOR)
+            {
+                cbxSUCURSAL.Enabled = false;
+            }
+            else
+            {
+                cbxSUCURSAL.Enabled = true;
             }
         }
 
@@ -73,111 +84,191 @@ namespace PrendaSAL.Movimientos
         private void CorteDiarioForm_Load(object sender, EventArgs e)
         {
             permisos();
-            btnCORTE_DIARIO.Enabled = false;
-            //listarDiasAbiertos();
-            FECHA_CORTE = HOME.Instance().FECHA_SISTEMA;
+            cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
+            if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
+            {
+                cbxSUCURSAL.DisplayMember = "SUCURSAL";
+                cbxSUCURSAL.ValueMember = "COD_SUC";
+                cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
+            }
+            //PERSONALIZAR FORMATO
+            calendarCORTE.Colors.Today.TextColor = Color.Red;
+            calendarCORTE.Colors.DayMarker.IsBold = true;
+            calendarCORTE.Colors.DayMarker.TextColor = Color.Blue;
+            FECHA = HOME.Instance().FECHA_SISTEMA;
+            calendarCORTE.TodayDate = FECHA;
+            calendarCORTE.SelectedDate = FECHA;
+            cargarCortesDiarios();
+
         }
 
 
 
-        private void listarDiasAbiertos()
+        private void cargarCortesDiarios()
         {
-            //DIAS_ABIERTOS = dbReportes.DIAS_ABIERTOS_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC);
-            FECHA_CORTE = new DateTime();
-            lbFECHA_CORTE.Text = "N/A";
-            btnCORTE_DIARIO.Enabled = false;
+            CORTES_DIARIOS = dbCorte.getCorteDiarioBySucAnio((string)cbxSUCURSAL.SelectedValue, FECHA.Year);
+            calendarCORTE.RemoveAllMarkedDates();
+            List<DateTime> marcas = new List<DateTime>(); 
+            foreach(DataRow row in CORTES_DIARIOS.Rows)
+            {
+                marcas.Add(row.Field<DateTime>("FECHA"));
+            }
+            calendarCORTE.MarkedDates = marcas.ToArray();
+            calendarCORTE.UpdateMarkedDates();
+            btnGUARDAR.Enabled = false;
+            
         }
 
 
 
-        private void btnCARGAR_Click(object sender, EventArgs e)
+        private void calendarCORTE_DateSelected(object sender, DateRangeEventArgs e)
         {
-           
-            //if (HOME.Instance().SUCURSAL != null)
-            //{
-            //    decimal APERTURA = dbReportes.FN_CALCULAR_APERTURA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE);
-            //    CORTE_DIARIO = dbReportes.REPORTE_DIARIO_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
-            //    DataTable COMPRAS_KIL = dbReportes.COMPRAS_KIL_DIARIO(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, FECHA_CORTE);
-            //    dSReporteDiario.Clear();
-            //    dSKPM.Clear();
-            //    try
-            //    {
-            //        foreach (DataRow row in CORTE_DIARIO.Rows)
-            //        {
-            //            switch (row.Field<string>("CONCEPTO"))
-            //            {
-            //                case "PRESTAMO":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"),row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "COMPRA":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "GASTO":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), ((eTipoFactura)row.Field<int>("TIPO_DOC")).ToString() + row.Field<string>("DOCUMENTO"), "GASTOS DE OFICINA", row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "REMESA":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "FINANCIAMIENTO":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "TK: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "VENTA":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "INTERES":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"),"R/N°: "+ row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "ABONO":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-            //                case "CANCELADO":
-            //                    dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<DateTime>("FECHA"), "R/N°: " + row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"));
-            //                    break;
-                            
-            //            }
-            //        }
+            FECHA = e.Start;
+        }
 
-            //        bsReporteDiario.DataSource = dSReporteDiario.TRANSACCIONES;
-            //        // INVENTARIO COMPRA
-            //        foreach (DataRow row in COMPRAS_KIL.Rows)
-            //        {
-            //            dSKPM.KPM.AddKPMRow(row.Field<string>("KILATAJE"), row.Field<decimal>("PESO"), row.Field<decimal>("MONTO"));
-            //        }
-            //        bsKPM.DataSource = dSKPM.KPM;
 
-            //        ReportParameter[] parameters = new ReportParameter[6];
-            //        //parameters[0] = new ReportParameter("Sucursal", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("COD_SUC")+" - " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("SUCURSAL"));
-            //        //parameters[1] = new ReportParameter("DireccionSUC", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("DIRECCION_SUC"));
-            //        //parameters[2] = new ReportParameter("TelSUC", "TELEFONO: " + DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<string>("TEL_SUC"));
-            //        //parameters[3] = new ReportParameter("Fecha", DIAS_ABIERTOS.Rows[cbxCORTE.SelectedIndex].Field<DateTime>("FECHA").ToString("dd/MM/yyyy"));
-            //        //parameters[4] = new ReportParameter("APERTURA", APERTURA.ToString());
-            //        //parameters[5] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+        private void calendarCIERRE_MonthChanged(object sender, EventArgs e)
+        {
 
-            //        viewerREPORTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.CorteDiario.rdlc";
-            //        viewerREPORTE.LocalReport.DataSources.Clear();
-            //        viewerREPORTE.LocalReport.DataSources.Add(new ReportDataSource("ITEMS", bsReporteDiario));
-            //        viewerREPORTE.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubInformeKPMHandler);
-            //        viewerREPORTE.LocalReport.SetParameters(parameters);
-            //        viewerREPORTE.RefreshReport();
-            //        lbFECHA_CORTE.Text = FECHA_CORTE.Date.ToString("dd/MM/yyyy");
-            //        btnCORTE_DIARIO.Enabled = true;
+            if (calendarCORTE.DisplayMonth.Year != FECHA.Year)//CAMBIO DE AÑO
+            {
+                FECHA = calendarCORTE.DisplayMonth;
+                cargarCortesDiarios();
+            }
+            else if (calendarCORTE.DisplayMonth.Month != FECHA.Month)//CAMBIO DE MES
+            {
+                FECHA = calendarCORTE.DisplayMonth;
+            }
+            calendarCORTE.SelectedDate = FECHA;
+        }
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("ERROR al recuperar datos .... verifique que fecha inicial sea una fecha valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        FECHA_CORTE = new DateTime();
-            //        lbFECHA_CORTE.Text = "N/A";
-            //        btnCORTE_DIARIO.Enabled = false;
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Seleccione Fecha y sucursal", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    FECHA_CORTE = new DateTime();
-            //    lbFECHA_CORTE.Text = "N/A";
-            //    btnCORTE_DIARIO.Enabled = false;
-            //}
+
+        private void cbxSUCURSAL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSUCURSAL.SelectedIndex >= 0)
+            {
+                cargarCorteDiario();
+            }
+        }
+
+
+
+
+        private void calendarCORTE_ItemDoubleClick(object sender, MouseEventArgs e)
+        {
+            HOME.Instance().progress.Value = 0;
+            try
+            {
+                SELECTED = null;
+                foreach (DataRow row in CORTES_DIARIOS.Rows)
+                {
+                    if (FECHA == row.Field<DateTime>("FECHA"))
+                    {
+                        SELECTED = CorteDiario.ConvertToCorteDiario(row);
+                        if (SELECTED != null)
+                        {
+                            SELECTED.MOVIMIENTOS = dbCorte.getItemsCorteDiario(SELECTED);
+                            SELECTED.KPM = dbCorte.getKPMCorteDiario(SELECTED);
+                        }
+                        break;
+                    }
+                }
+                HOME.Instance().progress.Value = 10;
+                if (SELECTED == null)
+                {
+                    btnGUARDAR.Enabled = true;
+                    viewerREPORTE.ShowToolBar = false;
+                    NUEVO();
+                }
+                else
+                {
+                    btnGUARDAR.Enabled = false;
+                    viewerREPORTE.ShowToolBar = true;
+
+                    cargarCorteDiario();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL CARGAR REPORTE DIARIO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            HOME.Instance().progress.Value = 100;
+            HOME.Instance().progress.Value = 0;
+        }
+
+
+
+
+
+
+        private void NUEVO()
+        {
+            SELECTED = new CorteDiario();
+            SELECTED.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
+            SELECTED.FECHA = FECHA;
+            SELECTED.COD_EMPLEADO = HOME.Instance().USUARIO.COD_EMPLEADO;
+            SELECTED.SALDO_INICIAL = dbCorte.getSaldoInicial(SELECTED.COD_SUC,SELECTED.FECHA);
+            SELECTED.SALDO_FINAL = SELECTED.SALDO_INICIAL;
+            HOME.Instance().progress.Value = 20;
+            SELECTED.MOVIMIENTOS = dbCorte.getItemsCorteDiario(SELECTED);
+            HOME.Instance().progress.Value = 30;
+            SELECTED.KPM = dbCorte.getKPMCorteDiario(SELECTED);
+            HOME.Instance().progress.Value = 40;
+            cargarCorteDiario();
+
+        }
+
+
+
+
+        private void cargarCorteDiario()
+        {
+            if (SELECTED != null)
+            {
+                try
+                {
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    dSReporteDiario.Clear();
+                    dSKPM.Clear();
+                    // MOVIMIENTOS
+                    foreach (DataRow row in SELECTED.MOVIMIENTOS.Rows)
+                    {
+                        SELECTED.SALDO_FINAL = SELECTED.SALDO_FINAL + row.Field<decimal>("INGRESO") - row.Field<decimal>("EGRESO");
+                        dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<string>("RESPONSABLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"));
+                    }
+                    bsReporteDiario.DataSource = dSReporteDiario.TRANSACCIONES; 
+                    HOME.Instance().progress.Value = 75;
+                    // KPM COMPRA
+                    foreach (DataRow row in SELECTED.KPM.Rows)
+                    {
+                        dSKPM.KPM.AddKPMRow(row.Field<string>("KILATAJE"), row.Field<decimal>("PESO"), row.Field<decimal>("MONTO"));
+                    }
+                    bsKPM.DataSource = dSKPM.KPM;
+                    HOME.Instance().progress.Value = 90;
+                    ReportParameter[] parameters = new ReportParameter[7];
+                    parameters[0] = new ReportParameter("SUCURSAL", SUC.COD_SUC + "-" + SUC.SUCURSAL);
+                    parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
+                    parameters[2] = new ReportParameter("TelSUC", "TELEFONO: " + SUC.TEL);
+                    parameters[3] = new ReportParameter("FECHA", SELECTED.FECHA.ToShortDateString());
+                    parameters[4] = new ReportParameter("SALDO_INICIAL", SELECTED.SALDO_INICIAL.ToString("C2"));
+                    parameters[5] = new ReportParameter("SALDO_FINAL", SELECTED.SALDO_FINAL.ToString("C2"));
+                    parameters[6] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+
+                    viewerREPORTE.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ReporteDiario.rdlc";
+                    viewerREPORTE.LocalReport.DataSources.Clear();
+                    viewerREPORTE.LocalReport.DataSources.Add(new ReportDataSource("ITEMS", bsReporteDiario));
+                    viewerREPORTE.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(SubInformeKPMHandler);
+                    viewerREPORTE.LocalReport.SetParameters(parameters);
+                    viewerREPORTE.RefreshReport();
+
+                    btnGUARDAR.Text = "CORTE DEL " + SELECTED.FECHA.ToShortDateString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL CARGAR REPORTE DIARIO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
 
@@ -194,9 +285,9 @@ namespace PrendaSAL.Movimientos
 
         private void btnCORTE_DIARIO_Click(object sender, EventArgs e)
         {
-            if (lbFECHA_CORTE.Text != "N/A" && HOME.Instance().SUCURSAL != null)
+            if (SELECTED != null)
             {
-                DialogResult eliminar = MessageBox.Show("¿REALIZAR CORTE DEL " + FECHA_CORTE.Date.ToString("dd/MM/yyyy") + "\nAl cerrar del dia se contabilizaran las transacciones y no se podra modificar la informacion ingresada .... asegurese que los datos sean validos ", "CORTE DIARIO DEL " + FECHA_CORTE.Date.ToString("dd/MM/yyyy"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult eliminar = MessageBox.Show("¿REALIZAR CORTE DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + "\nAl cerrar del dia se contabilizaran las transacciones y no se podra modificar la informacion ingresada .... asegurese que los datos sean validos ", "CORTE DIARIO DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (eliminar == DialogResult.Yes)
                 {
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
@@ -220,24 +311,6 @@ namespace PrendaSAL.Movimientos
             
         }
 
-
-        private void calendarCIERRE_MonthChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("CAMBIO MES " + calendarCIERRE.SelectedDate.ToShortDateString());
-            calendarCIERRE.Colors.Today.IsBold =true;
-
-            calendarCIERRE.TodayDate = HOME.Instance().FECHA_SISTEMA;
-            calendarCIERRE.SelectedDate = HOME.Instance().FECHA_SISTEMA;
-
-            DateTime myVacation1 = new DateTime(2015, 10, 1);
-            DateTime myVacation2 = new DateTime(2015, 10, 17);
-            DateTime[] VacationDates = { myVacation1, myVacation2 };
-            calendarCIERRE.MarkedDates = VacationDates;
-            calendarCIERRE.Colors.DayMarker.BackColor = Color.Blue;
-        }
-
-
-        
 
 
     }
