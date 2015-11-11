@@ -34,14 +34,19 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbNUM_TOTAL = new System.Windows.Forms.Label();
-            this.btnLISTAR = new System.Windows.Forms.Button();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ESTADO_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opciones = new System.Windows.Forms.ToolStrip();
+            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
+            this.btnLISTAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).BeginInit();
+            this.opciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblCONTRATOS
@@ -57,7 +62,7 @@
             this.ARTICULO,
             this.TOTAL,
             this.ESTADO_CONTRATO});
-            this.tblCONTRATOS.Location = new System.Drawing.Point(12, 68);
+            this.tblCONTRATOS.Location = new System.Drawing.Point(13, 97);
             this.tblCONTRATOS.Name = "tblCONTRATOS";
             this.tblCONTRATOS.ReadOnly = true;
             this.tblCONTRATOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -68,7 +73,7 @@
             // cbxESTADOS
             // 
             this.cbxESTADOS.FormattingEnabled = true;
-            this.cbxESTADOS.Location = new System.Drawing.Point(103, 41);
+            this.cbxESTADOS.Location = new System.Drawing.Point(101, 66);
             this.cbxESTADOS.Name = "cbxESTADOS";
             this.cbxESTADOS.Size = new System.Drawing.Size(121, 21);
             this.cbxESTADOS.TabIndex = 1;
@@ -77,7 +82,7 @@
             // 
             this.cbxSUCURSAL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSUCURSAL.FormattingEnabled = true;
-            this.cbxSUCURSAL.Location = new System.Drawing.Point(103, 12);
+            this.cbxSUCURSAL.Location = new System.Drawing.Point(101, 37);
             this.cbxSUCURSAL.Name = "cbxSUCURSAL";
             this.cbxSUCURSAL.Size = new System.Drawing.Size(217, 21);
             this.cbxSUCURSAL.TabIndex = 87;
@@ -86,7 +91,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(24, 15);
+            this.label19.Location = new System.Drawing.Point(22, 40);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 86;
@@ -96,7 +101,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 44);
+            this.label1.Location = new System.Drawing.Point(38, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 88;
@@ -106,23 +111,11 @@
             // 
             this.lbNUM_TOTAL.AutoSize = true;
             this.lbNUM_TOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNUM_TOTAL.Location = new System.Drawing.Point(654, 44);
+            this.lbNUM_TOTAL.Location = new System.Drawing.Point(935, 458);
             this.lbNUM_TOTAL.Name = "lbNUM_TOTAL";
             this.lbNUM_TOTAL.Size = new System.Drawing.Size(94, 13);
             this.lbNUM_TOTAL.TabIndex = 89;
             this.lbNUM_TOTAL.Text = "0 CONTRATOS";
-            // 
-            // btnLISTAR
-            // 
-            this.btnLISTAR.Image = global::PrendaSAL.Properties.Resources.listar;
-            this.btnLISTAR.Location = new System.Drawing.Point(355, 12);
-            this.btnLISTAR.Name = "btnLISTAR";
-            this.btnLISTAR.Size = new System.Drawing.Size(94, 50);
-            this.btnLISTAR.TabIndex = 2;
-            this.btnLISTAR.Text = "LISTAR";
-            this.btnLISTAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnLISTAR.UseVisualStyleBackColor = true;
-            this.btnLISTAR.Click += new System.EventHandler(this.btnLISTAR_Click);
             // 
             // FECHA
             // 
@@ -134,7 +127,7 @@
             // DOCUMENTO
             // 
             this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
-            this.DOCUMENTO.HeaderText = "# CONTRATO";
+            this.DOCUMENTO.HeaderText = "CONTRATO";
             this.DOCUMENTO.Name = "DOCUMENTO";
             this.DOCUMENTO.ReadOnly = true;
             // 
@@ -168,6 +161,58 @@
             this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
             this.ESTADO_CONTRATO.ReadOnly = true;
             // 
+            // opciones
+            // 
+            this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnImprimir,
+            this.btnExportExcel,
+            this.btnAyuda});
+            this.opciones.Location = new System.Drawing.Point(0, 0);
+            this.opciones.Name = "opciones";
+            this.opciones.Size = new System.Drawing.Size(1073, 25);
+            this.opciones.TabIndex = 150;
+            this.opciones.Text = "toolStrip1";
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImprimir.Image = global::PrendaSAL.Properties.Resources.printer;
+            this.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(23, 22);
+            this.btnImprimir.ToolTipText = "Imprimir";
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnLISTAR
+            // 
+            this.btnLISTAR.Image = global::PrendaSAL.Properties.Resources.listar;
+            this.btnLISTAR.Location = new System.Drawing.Point(353, 37);
+            this.btnLISTAR.Name = "btnLISTAR";
+            this.btnLISTAR.Size = new System.Drawing.Size(94, 50);
+            this.btnLISTAR.TabIndex = 2;
+            this.btnLISTAR.Text = "CONSULTAR";
+            this.btnLISTAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLISTAR.UseVisualStyleBackColor = true;
+            this.btnLISTAR.Click += new System.EventHandler(this.btnLISTAR_Click);
+            // 
             // RContratosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -175,7 +220,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1073, 432);
+            this.ClientSize = new System.Drawing.Size(1073, 480);
+            this.Controls.Add(this.opciones);
             this.Controls.Add(this.lbNUM_TOTAL);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxSUCURSAL);
@@ -190,6 +236,8 @@
             this.Text = "REPORTE DE CONTRATOS";
             this.Load += new System.EventHandler(this.RContratosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).EndInit();
+            this.opciones.ResumeLayout(false);
+            this.opciones.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,5 +258,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn ESTADO_CONTRATO;
+        private System.Windows.Forms.ToolStrip opciones;
+        private System.Windows.Forms.ToolStripButton btnImprimir;
+        private System.Windows.Forms.ToolStripButton btnAyuda;
+        private System.Windows.Forms.ToolStripButton btnExportExcel;
     }
 }

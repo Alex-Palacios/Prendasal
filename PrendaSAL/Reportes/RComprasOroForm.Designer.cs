@@ -1,6 +1,6 @@
 ﻿namespace PrendaSAL.Reportes
 {
-    partial class ComprasOroForm
+    partial class RComprasOroForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,10 +39,10 @@
             this.cbxMESES = new System.Windows.Forms.ComboBox();
             this.txtANIO = new System.Windows.Forms.TextBox();
             this.btnGENERAR = new System.Windows.Forms.Button();
-            this.bindingReporte = new System.Windows.Forms.BindingSource(this.components);
-            this.dSComprasKilMes = new PrendaSAL.Informes.DSComprasKilMes();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReporte)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSComprasKilMes)).BeginInit();
+            this.bsComprasOro = new System.Windows.Forms.BindingSource(this.components);
+            this.dSComprasOro = new PrendaSAL.Informes.DSComprasOro();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComprasOro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSComprasOro)).BeginInit();
             this.SuspendLayout();
             // 
             // lb4
@@ -139,17 +139,17 @@
             this.btnGENERAR.UseVisualStyleBackColor = true;
             this.btnGENERAR.Click += new System.EventHandler(this.btnGENERAR_Click);
             // 
-            // bindingReporte
+            // bsComprasOro
             // 
-            this.bindingReporte.DataMember = "COMPRASKIL";
-            this.bindingReporte.DataSource = this.dSComprasKilMes;
+            this.bsComprasOro.DataMember = "COMPRAS_ORO";
+            this.bsComprasOro.DataSource = this.dSComprasOro;
             // 
-            // dSComprasKilMes
+            // dSComprasOro
             // 
-            this.dSComprasKilMes.DataSetName = "DSComprasKilMes";
-            this.dSComprasKilMes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dSComprasOro.DataSetName = "DSComprasOro";
+            this.dSComprasOro.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // ComprasOroForm
+            // RComprasOroForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -166,13 +166,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.viewerREPORTE);
             this.MaximizeBox = false;
-            this.Name = "ComprasOroForm";
+            this.Name = "RComprasOroForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "COMPRAS DE ORO Y PLATA";
             this.Load += new System.EventHandler(this.ComprasOroForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReporte)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSComprasKilMes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComprasOro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSComprasOro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,7 +189,7 @@
         private Microsoft.Reporting.WinForms.ReportViewer viewerREPORTE;
         private System.Windows.Forms.ComboBox cbxMESES;
         private System.Windows.Forms.TextBox txtANIO;
-        private System.Windows.Forms.BindingSource bindingReporte;
-        private Informes.DSComprasKilMes dSComprasKilMes;
+        private System.Windows.Forms.BindingSource bsComprasOro;
+        private Informes.DSComprasOro dSComprasOro;
     }
 }

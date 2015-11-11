@@ -447,6 +447,7 @@ namespace PrendaSAL.Movimientos
         {
             if (rdbPRORROGA.Checked && PAC.CONTRATO != null)
             {
+                PAC.TIPO = eTipoMovPac.PRORROGA;
                 PAC.MESES = 0;
                 PAC.DIAS = 0;
                 PAC.ABONO = 0;
@@ -469,6 +470,7 @@ namespace PrendaSAL.Movimientos
         {
             if (rdbABONO.Checked && PAC.CONTRATO != null)
             {
+                PAC.TIPO = eTipoMovPac.ABONO;
                 if (PAC.CONTRATO.DIAS_TRANS <= 0)
                 {
                     PAC.MESES = 0;
@@ -507,6 +509,7 @@ namespace PrendaSAL.Movimientos
         {
             if (rdbCANCELACION.Checked && PAC.CONTRATO != null)
             {
+                PAC.TIPO = eTipoMovPac.CANCELACION;
                 if (PAC.CONTRATO.DIAS_TRANS <= 0)
                 {
                     PAC.MESES = 0;
@@ -611,6 +614,10 @@ namespace PrendaSAL.Movimientos
             {
 
                 PAC.INTERES = Decimal.Round(PAC.MESES * PAC.CONTRATO.INTERES_MENSUAL + PAC.DIAS * PAC.CONTRATO.INTERES_DIARIO, 2, MidpointRounding.AwayFromZero);
+                if (PAC.CONTRATO.ESTADO_CONTRATO == eEstadoContrato.ACTIVO && PAC.INTERES < 1 && PAC.TIPO == eTipoMovPac.CANCELACION)
+                {
+                    PAC.INTERES = 1;
+                }
                 PAC.DESCUENTO = Decimal.Round(PAC.INTERES * REGLAS.DESC_INTERES/100, 2, MidpointRounding.AwayFromZero);
                 PAC.TOTAL = PAC.INTERES - PAC.DESCUENTO + PAC.ABONO;
 
@@ -669,6 +676,18 @@ namespace PrendaSAL.Movimientos
                 {
                     OK = false;
                     MessageBox.Show("INGRESE EL ABONO A CAPITAL", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return OK;
+                }
+                else if (rdbABONO.Checked && PAC.ABONO >= PAC.CONTRATO.SALDO)
+                {
+                    OK = false;
+                    MessageBox.Show("NUEVO SALDO : $0.00 - Cambie Tipo de Movimiento a CANCELACION", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return OK;
+                }
+                else if (rdbPRORROGA.Checked && PAC.ABONO >= PAC.CONTRATO.SALDO)
+                {
+                    OK = false;
+                    MessageBox.Show("NUEVO SALDO : $0.00 - Cambie Tipo de Movimiento a CANCELACION", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
             }

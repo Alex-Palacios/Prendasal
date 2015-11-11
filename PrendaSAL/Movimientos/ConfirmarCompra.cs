@@ -64,6 +64,9 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+
+
         private void GUARDAR_Click(object sender, EventArgs e)
         {
             string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");

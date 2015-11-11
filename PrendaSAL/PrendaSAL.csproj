@@ -92,6 +92,9 @@
       <HintPath>..\..\..\Code Snippets\Personalizado\DotNetBar\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="MySql.Data, Version=6.9.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
@@ -232,6 +235,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCancelados.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Informes\DSVencidosOro.cs">
+      <DependentUpon>DSVencidosOro.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\DSVencidosOro.Designer.cs">
+      <DependentUpon>DSVencidosOro.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Informes\DSListaVenc.cs">
       <DependentUpon>DSListaVenc.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -241,10 +253,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSListaVenc.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Informes\DSComprasKilMes.Designer.cs">
+    <Compile Include="Informes\DSComprasOro.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DSComprasKilMes.xsd</DependentUpon>
+      <DependentUpon>DSComprasOro.xsd</DependentUpon>
     </Compile>
     <Compile Include="Informes\DSItemFCF.cs">
       <DependentUpon>DSItemFCF.xsd</DependentUpon>
@@ -358,6 +370,18 @@
     <Compile Include="Movimientos\CorteDiarioForm.Designer.cs">
       <DependentUpon>CorteDiarioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operaciones\BuscarTraslado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\BuscarTraslado.Designer.cs">
+      <DependentUpon>BuscarTraslado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\EnviarInvForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\EnviarInvForm.Designer.cs">
+      <DependentUpon>EnviarInvForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operaciones\ListaVencidosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,35 +394,23 @@
     <Compile Include="Operaciones\CorteInvInicialForm.Designer.cs">
       <DependentUpon>CorteInvInicialForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\CustodiaForm.cs">
+    <Compile Include="Operaciones\TrasladoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\CustodiaForm.Designer.cs">
-      <DependentUpon>CustodiaForm.cs</DependentUpon>
+    <Compile Include="Operaciones\TrasladoForm.Designer.cs">
+      <DependentUpon>TrasladoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\EnviarInvForm.cs">
+    <Compile Include="Operaciones\ItemInicialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\EnviarInvForm.Designer.cs">
-      <DependentUpon>EnviarInvForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operaciones\ItemInicial.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operaciones\ItemInicial.Designer.cs">
-      <DependentUpon>ItemInicial.cs</DependentUpon>
+    <Compile Include="Operaciones\ItemInicialForm.Designer.cs">
+      <DependentUpon>ItemInicialForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Operaciones\RecibirInvForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Operaciones\RecibirInvForm.Designer.cs">
       <DependentUpon>RecibirInvForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operaciones\RemisionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operaciones\RemisionForm.Designer.cs">
-      <DependentUpon>RemisionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -408,17 +420,23 @@
     <Compile Include="Reportes\ArticuloForm.Designer.cs">
       <DependentUpon>ArticuloForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\CanceladosForm.cs">
+    <Compile Include="Reportes\RCanceladosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\CanceladosForm.Designer.cs">
-      <DependentUpon>CanceladosForm.cs</DependentUpon>
+    <Compile Include="Reportes\RCanceladosForm.Designer.cs">
+      <DependentUpon>RCanceladosForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\ComprasOroForm.cs">
+    <Compile Include="Reportes\RVencidosOroForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\ComprasOroForm.Designer.cs">
-      <DependentUpon>ComprasOroForm.cs</DependentUpon>
+    <Compile Include="Reportes\RVencidosOroForm.Designer.cs">
+      <DependentUpon>RVencidosOroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\RComprasOroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RComprasOroForm.Designer.cs">
+      <DependentUpon>RComprasOroForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\FotoArticuloForm.cs">
       <SubType>Form</SubType>
@@ -432,11 +450,11 @@
     <Compile Include="Reportes\RContratosForm.Designer.cs">
       <DependentUpon>RContratosForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\RDiarioForm.cs">
+    <Compile Include="Reportes\RTransDiariasForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\RDiarioForm.Designer.cs">
-      <DependentUpon>RDiarioForm.cs</DependentUpon>
+    <Compile Include="Reportes\RTransDiariasForm.Designer.cs">
+      <DependentUpon>RTransDiariasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\RInvResguardoForm.cs">
       <SubType>Form</SubType>
@@ -449,12 +467,6 @@
     </Compile>
     <Compile Include="Reportes\RInvVentaForm.Designer.cs">
       <DependentUpon>RInvVentaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\VencidosDiaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\VencidosDiaForm.Designer.cs">
-      <DependentUpon>VencidosDiaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ScannerPrueba.cs">
       <SubType>Form</SubType>
@@ -564,7 +576,8 @@
     <EmbeddedResource Include="Informes\KITCO.rdlc" />
     <EmbeddedResource Include="Informes\ListaVencidos.rdlc" />
     <EmbeddedResource Include="Informes\NotaRemision.rdlc" />
-    <EmbeddedResource Include="Informes\ReporteTransacciones.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteVencidosOro.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteTrans.rdlc" />
     <EmbeddedResource Include="Informes\ReciboPAC.rdlc" />
     <EmbeddedResource Include="Informes\ReporteDiario.rdlc" />
     <EmbeddedResource Include="Informes\TicketMovCash.rdlc" />
@@ -604,26 +617,26 @@
     <EmbeddedResource Include="Movimientos\CorteDiarioForm.resx">
       <DependentUpon>CorteDiarioForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\BuscarTraslado.resx">
+      <DependentUpon>BuscarTraslado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\EnviarInvForm.resx">
+      <DependentUpon>EnviarInvForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\ListaVencidosForm.resx">
       <DependentUpon>ListaVencidosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\CorteInvInicialForm.resx">
       <DependentUpon>CorteInvInicialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\CustodiaForm.resx">
-      <DependentUpon>CustodiaForm.cs</DependentUpon>
+    <EmbeddedResource Include="Operaciones\TrasladoForm.resx">
+      <DependentUpon>TrasladoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\EnviarInvForm.resx">
-      <DependentUpon>EnviarInvForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\ItemInicial.resx">
-      <DependentUpon>ItemInicial.cs</DependentUpon>
+    <EmbeddedResource Include="Operaciones\ItemInicialForm.resx">
+      <DependentUpon>ItemInicialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\RecibirInvForm.resx">
       <DependentUpon>RecibirInvForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\RemisionForm.resx">
-      <DependentUpon>RemisionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -638,11 +651,14 @@
     <EmbeddedResource Include="Reportes\ArticuloForm.resx">
       <DependentUpon>ArticuloForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\CanceladosForm.resx">
-      <DependentUpon>CanceladosForm.cs</DependentUpon>
+    <EmbeddedResource Include="Reportes\RCanceladosForm.resx">
+      <DependentUpon>RCanceladosForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\ComprasOroForm.resx">
-      <DependentUpon>ComprasOroForm.cs</DependentUpon>
+    <EmbeddedResource Include="Reportes\RVencidosOroForm.resx">
+      <DependentUpon>RVencidosOroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RComprasOroForm.resx">
+      <DependentUpon>RComprasOroForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FotoArticuloForm.resx">
       <DependentUpon>FotoArticuloForm.cs</DependentUpon>
@@ -650,17 +666,14 @@
     <EmbeddedResource Include="Reportes\RContratosForm.resx">
       <DependentUpon>RContratosForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\RDiarioForm.resx">
-      <DependentUpon>RDiarioForm.cs</DependentUpon>
+    <EmbeddedResource Include="Reportes\RTransDiariasForm.resx">
+      <DependentUpon>RTransDiariasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RInvResguardoForm.resx">
       <DependentUpon>RInvResguardoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RInvVentaForm.resx">
       <DependentUpon>RInvVentaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\VencidosDiaForm.resx">
-      <DependentUpon>VencidosDiaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScannerPrueba.resx">
       <DependentUpon>ScannerPrueba.cs</DependentUpon>
@@ -702,6 +715,17 @@
     <None Include="Informes\DSCancelados.xss">
       <DependentUpon>DSCancelados.xsd</DependentUpon>
     </None>
+    <None Include="Informes\DSVencidosOro.xsc">
+      <DependentUpon>DSVencidosOro.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSVencidosOro.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSVencidosOro.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Informes\DSVencidosOro.xss">
+      <DependentUpon>DSVencidosOro.xsd</DependentUpon>
+    </None>
     <None Include="Informes\DSListaVenc.xsc">
       <DependentUpon>DSListaVenc.xsd</DependentUpon>
     </None>
@@ -713,16 +737,16 @@
     <None Include="Informes\DSListaVenc.xss">
       <DependentUpon>DSListaVenc.xsd</DependentUpon>
     </None>
-    <None Include="Informes\DSComprasKilMes.xsc">
-      <DependentUpon>DSComprasKilMes.xsd</DependentUpon>
+    <None Include="Informes\DSComprasOro.xsc">
+      <DependentUpon>DSComprasOro.xsd</DependentUpon>
     </None>
-    <None Include="Informes\DSComprasKilMes.xsd">
+    <None Include="Informes\DSComprasOro.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSComprasKilMes.Designer.cs</LastGenOutput>
+      <LastGenOutput>DSComprasOro.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Informes\DSComprasKilMes.xss">
-      <DependentUpon>DSComprasKilMes.xsd</DependentUpon>
+    <None Include="Informes\DSComprasOro.xss">
+      <DependentUpon>DSComprasOro.xsd</DependentUpon>
     </None>
     <None Include="Informes\DSItemFCF.xsc">
       <DependentUpon>DSItemFCF.xsd</DependentUpon>
@@ -768,7 +792,7 @@
     <None Include="Informes\DSReporteDiario.xss">
       <DependentUpon>DSReporteDiario.xsd</DependentUpon>
     </None>
-    <EmbeddedResource Include="Informes\ReporteComprasKILMES.rdlc" />
+    <EmbeddedResource Include="Informes\ReporteComprasOro.rdlc" />
     <None Include="PrendaSAL_ClaveTemporal.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -1027,6 +1051,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\graficos1.jpg" />
+    <None Include="Resources\lingote.jpg" />
+    <None Include="Resources\fechas21.png" />
+    <None Include="Resources\flecha.png" />
+    <None Include="Resources\fechas2.png" />
+    <None Include="Resources\excel.jpg" />
+    <None Include="Resources\kardex.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\candado.png" />
+    <None Include="Resources\print-icon.png" />
     <None Include="Resources\dolar.png" />
     <None Include="Resources\dia.jpg" />
     <None Include="Resources\lista1.png" />

@@ -43,9 +43,9 @@
             // txtCODIGO
             // 
             this.txtCODIGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCODIGO.Location = new System.Drawing.Point(52, 29);
+            this.txtCODIGO.Location = new System.Drawing.Point(12, 29);
             this.txtCODIGO.Name = "txtCODIGO";
-            this.txtCODIGO.Size = new System.Drawing.Size(136, 23);
+            this.txtCODIGO.Size = new System.Drawing.Size(149, 23);
             this.txtCODIGO.TabIndex = 3;
             this.txtCODIGO.TextChanged += new System.EventHandler(this.txtCODIGO_TextChanged);
             // 
@@ -53,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(49, 9);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 2;
@@ -76,6 +76,7 @@
             this.tblEXISTENCIAS.MultiSelect = false;
             this.tblEXISTENCIAS.Name = "tblEXISTENCIAS";
             this.tblEXISTENCIAS.ReadOnly = true;
+            this.tblEXISTENCIAS.RowHeadersVisible = false;
             this.tblEXISTENCIAS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblEXISTENCIAS.Size = new System.Drawing.Size(799, 355);
             this.tblEXISTENCIAS.TabIndex = 0;
@@ -127,7 +128,7 @@
             // 
             // BODEGA
             // 
-            this.BODEGA.DataPropertyName = "COD_SUC";
+            this.BODEGA.DataPropertyName = "BODEGA";
             this.BODEGA.HeaderText = "BODEGA";
             this.BODEGA.Name = "BODEGA";
             this.BODEGA.ReadOnly = true;

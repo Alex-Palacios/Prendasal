@@ -34,14 +34,13 @@ namespace PrendaSAL.Operaciones
         private DBUsuario dbUser;
         private DBInventario dbInventario;
         private DataTable INVENTARIO;
-        private Inventario SELECTED;
+        private InvInicial SELECTED;
 
         public CorteInvInicialForm()
         {
             InitializeComponent();
             dbUser = new DBUsuario();
             dbInventario = new DBInventario();
-            tblInventario.AutoGenerateColumns = false;
         }
 
 
@@ -70,13 +69,14 @@ namespace PrendaSAL.Operaciones
         private void CorteInvInicialForm_Load(object sender, EventArgs e)
         {
             permisos();
+            tblInventario.AutoGenerateColumns = false;
             cargarInventarioInicial();
         }
 
 
         public void cargarInventarioInicial()
         {
-            //INVENTARIO = dbInventario.INVENTARIO_INICIAL_PRENDASAL();
+            INVENTARIO = dbInventario.getInvInicial();
             tblInventario.DataSource = INVENTARIO;
 
             btnEditar.Enabled = false;
@@ -84,26 +84,24 @@ namespace PrendaSAL.Operaciones
         }
 
 
+        private void tblInventario_DataSourceChanged(object sender, EventArgs e)
+        {
+            if (tblInventario.DataSource != null)
+            {
+                lbNUM_TOTAL.Text = tblInventario.Rows.Count + " ARTICULOS";
+            }
+            else
+            {
+                lbNUM_TOTAL.Text = "0 ARTICULOS";
+            }
+        }
+
         private void SelectedArticulo()
         {
             SELECTED = null;
             if (tblInventario.CurrentCell != null && tblInventario.SelectedRows.Count == 1)
             {
-                SELECTED = new Inventario();
-                SELECTED.ID_MOV = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<int>("ID_MOV");
-                SELECTED.TRANSACCION = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("COD_TRANS");
-                SELECTED.FECHA = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<DateTime>("FECHA_INGRESO");
-                SELECTED.LINEA = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<int?>("LINEA");
-                SELECTED.CODIGO = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("CODIGO");
-                SELECTED.CATEGORIA = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("CATEGORIA");
-                SELECTED.ARTICULO = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("ARTICULO");
-                SELECTED.DESCRIPCION = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("DESCRIPCION");
-                SELECTED.CANTIDAD = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<double>("CANTIDAD");
-                SELECTED.COSTO = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<decimal>("COSTO");
-                SELECTED.PRECIO = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<decimal>("PRECIO");
-                SELECTED.INIT_BALANCE = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<bool>("INIT_BALANCE");
-                SELECTED.COD_SUC = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<string>("COD_SUC");
-                SELECTED.DISPONIBLE = INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex].Field<bool>("DISPONIBLE");
+                SELECTED = InvInicial.ConvertToInvInicial(INVENTARIO.Rows[tblInventario.CurrentCell.RowIndex]);
 
                 btnEditar.Enabled = true;
                 btnEliminar.Enabled = true;
@@ -115,7 +113,7 @@ namespace PrendaSAL.Operaciones
 
         private void AGREGAR_ARTICULO(object sender, EventArgs e)
         {
-            ItemInicial inv = new ItemInicial();
+            ItemInicialForm inv = new ItemInicialForm();
             inv.ShowDialog();
         }
 
@@ -126,7 +124,7 @@ namespace PrendaSAL.Operaciones
             if (tblInventario.CurrentCell != null && tblInventario.SelectedRows.Count == 1)
             {
                 SelectedArticulo();
-                ItemInicial inv = new ItemInicial(SELECTED);
+                ItemInicialForm inv = new ItemInicialForm(SELECTED);
                 inv.ShowDialog();
             }
             else
@@ -142,16 +140,16 @@ namespace PrendaSAL.Operaciones
             if (tblInventario.CurrentCell != null && tblInventario.SelectedRows.Count == 1)
             {
                 SelectedArticulo();
-                DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el ARTICULO " + SELECTED.CODIGO + "\n " + SELECTED.ARTICULO + "--" + SELECTED.DESCRIPCION + " ?", "ELIMINAR ARTICULO DE INVENTARIO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el ARTICULO " + SELECTED.CODIGO + "\n " + SELECTED.COD_ITEM + "--" + SELECTED.DESCRIPCION + " ?", "ELIMINAR ARTICULO DE INVENTARIO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (eliminar == DialogResult.Yes)
                 {
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        //if (dbInventario.eliminarInvInicialPrestamoPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        //{
-                        //    cargarInventarioInicial();
-                        //}
+                        if (dbInventario.deleteInit(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            cargarInventarioInicial();
+                        }
                     }
                     else
                     {
@@ -176,6 +174,11 @@ namespace PrendaSAL.Operaciones
         }
 
         private void BUSCAR(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
         {
 
         }

@@ -291,7 +291,7 @@ namespace PrendaSAL.Informes {
             
             private global::System.Data.DataColumn columnTELEFONO;
             
-            private global::System.Data.DataColumn columnFECHA;
+            private global::System.Data.DataColumn columnFECHA_CANCELADO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -376,9 +376,9 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHAColumn {
+            public global::System.Data.DataColumn FECHA_CANCELADOColumn {
                 get {
-                    return this.columnFECHA;
+                    return this.columnFECHA_CANCELADO;
                 }
             }
             
@@ -419,7 +419,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CANCELADOSRow AddCANCELADOSRow(string SUCURSAL, string CONTRATO, string CLIENTE, string CATEGORIA, string ARTICULO, string TELEFONO, System.DateTime FECHA) {
+            public CANCELADOSRow AddCANCELADOSRow(string SUCURSAL, string CONTRATO, string CLIENTE, string CATEGORIA, string ARTICULO, string TELEFONO, System.DateTime FECHA_CANCELADO) {
                 CANCELADOSRow rowCANCELADOSRow = ((CANCELADOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SUCURSAL,
@@ -428,7 +428,7 @@ namespace PrendaSAL.Informes {
                         CATEGORIA,
                         ARTICULO,
                         TELEFONO,
-                        FECHA};
+                        FECHA_CANCELADO};
                 rowCANCELADOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCANCELADOSRow);
                 return rowCANCELADOSRow;
@@ -457,7 +457,7 @@ namespace PrendaSAL.Informes {
                 this.columnCATEGORIA = base.Columns["CATEGORIA"];
                 this.columnARTICULO = base.Columns["ARTICULO"];
                 this.columnTELEFONO = base.Columns["TELEFONO"];
-                this.columnFECHA = base.Columns["FECHA"];
+                this.columnFECHA_CANCELADO = base.Columns["FECHA_CANCELADO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -475,8 +475,8 @@ namespace PrendaSAL.Informes {
                 base.Columns.Add(this.columnARTICULO);
                 this.columnTELEFONO = new global::System.Data.DataColumn("TELEFONO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTELEFONO);
-                this.columnFECHA = new global::System.Data.DataColumn("FECHA", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHA);
+                this.columnFECHA_CANCELADO = new global::System.Data.DataColumn("FECHA_CANCELADO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHA_CANCELADO);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -715,17 +715,17 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHA {
+            public System.DateTime FECHA_CANCELADO {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableCANCELADOS.FECHAColumn]));
+                        return ((global::System.DateTime)(this[this.tableCANCELADOS.FECHA_CANCELADOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA\' de la tabla \'CANCELADOS\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA_CANCELADO\' de la tabla \'CANCELADOS\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCANCELADOS.FECHAColumn] = value;
+                    this[this.tableCANCELADOS.FECHA_CANCELADOColumn] = value;
                 }
             }
             
@@ -803,14 +803,14 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHANull() {
-                return this.IsNull(this.tableCANCELADOS.FECHAColumn);
+            public bool IsFECHA_CANCELADONull() {
+                return this.IsNull(this.tableCANCELADOS.FECHA_CANCELADOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHANull() {
-                this[this.tableCANCELADOS.FECHAColumn] = global::System.Convert.DBNull;
+            public void SetFECHA_CANCELADONull() {
+                this[this.tableCANCELADOS.FECHA_CANCELADOColumn] = global::System.Convert.DBNull;
             }
         }
         

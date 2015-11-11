@@ -1,6 +1,6 @@
 ﻿namespace PrendaSAL.Reportes
 {
-    partial class RDiarioForm
+    partial class RTransDiariasForm
     {
         /// <summary>
         /// Required designer variable.

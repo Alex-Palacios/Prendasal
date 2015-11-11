@@ -60,12 +60,14 @@ namespace PrendaSAL.Movimientos
         {
             
             btnGUARDAR.Visible = false;
+            btnELIMINAR.Visible = false;
 
             foreach (DataRow p in HOME.Instance().USUARIO.PERMISOS.Rows)
             {
                 if (p.Field<string>("CODIGO") == "P12")
                 {
-                    btnGUARDAR.Visible = p.Field<bool>("REGISTRAR");
+                    btnGUARDAR.Enabled = p.Field<bool>("REGISTRAR");
+                    btnELIMINAR.Enabled = p.Field<bool>("ELIMINAR");
                 }
             }
 
@@ -98,13 +100,13 @@ namespace PrendaSAL.Movimientos
             FECHA = HOME.Instance().FECHA_SISTEMA;
             calendarCORTE.TodayDate = FECHA;
             calendarCORTE.SelectedDate = FECHA;
-            cargarCortesDiarios();
+            listarCortesDiarios();
 
         }
 
 
 
-        private void cargarCortesDiarios()
+        private void listarCortesDiarios()
         {
             CORTES_DIARIOS = dbCorte.getCorteDiarioBySucAnio((string)cbxSUCURSAL.SelectedValue, FECHA.Year);
             calendarCORTE.RemoveAllMarkedDates();
@@ -115,7 +117,8 @@ namespace PrendaSAL.Movimientos
             }
             calendarCORTE.MarkedDates = marcas.ToArray();
             calendarCORTE.UpdateMarkedDates();
-            btnGUARDAR.Enabled = false;
+            btnGUARDAR.Visible = false;
+            btnELIMINAR.Visible = false;
             
         }
 
@@ -133,7 +136,7 @@ namespace PrendaSAL.Movimientos
             if (calendarCORTE.DisplayMonth.Year != FECHA.Year)//CAMBIO DE AÑO
             {
                 FECHA = calendarCORTE.DisplayMonth;
-                cargarCortesDiarios();
+                listarCortesDiarios();
             }
             else if (calendarCORTE.DisplayMonth.Month != FECHA.Month)//CAMBIO DE MES
             {
@@ -145,9 +148,9 @@ namespace PrendaSAL.Movimientos
 
         private void cbxSUCURSAL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxSUCURSAL.SelectedIndex >= 0)
+            if (cbxSUCURSAL.ValueMember != string.Empty && cbxSUCURSAL.SelectedIndex >= 0)
             {
-                cargarCorteDiario();
+                listarCortesDiarios();
             }
         }
 
@@ -156,7 +159,9 @@ namespace PrendaSAL.Movimientos
 
         private void calendarCORTE_ItemDoubleClick(object sender, MouseEventArgs e)
         {
+            viewerREPORTE.Clear();
             HOME.Instance().progress.Value = 0;
+            viewerREPORTE.ShowToolBar = false;
             try
             {
                 SELECTED = null;
@@ -176,16 +181,20 @@ namespace PrendaSAL.Movimientos
                 HOME.Instance().progress.Value = 10;
                 if (SELECTED == null)
                 {
-                    btnGUARDAR.Enabled = true;
+                    ACCION = eOperacion.INSERT;
+                    btnGUARDAR.Visible = true;
+                    btnELIMINAR.Visible = false;
                     viewerREPORTE.ShowToolBar = false;
                     NUEVO();
                 }
                 else
                 {
-                    btnGUARDAR.Enabled = false;
+                    ACCION = eOperacion.UPDATE;
+                    btnGUARDAR.Visible = false;
+                    btnELIMINAR.Visible = true;
                     viewerREPORTE.ShowToolBar = true;
 
-                    cargarCorteDiario();
+                    cargarCorteDiarioSelected();
                 }
             }
             catch (Exception ex)
@@ -215,15 +224,16 @@ namespace PrendaSAL.Movimientos
             HOME.Instance().progress.Value = 30;
             SELECTED.KPM = dbCorte.getKPMCorteDiario(SELECTED);
             HOME.Instance().progress.Value = 40;
-            cargarCorteDiario();
+            cargarCorteDiarioSelected();
 
         }
 
 
 
 
-        private void cargarCorteDiario()
+        private void cargarCorteDiarioSelected()
         {
+            viewerREPORTE.Clear();
             if (SELECTED != null)
             {
                 try
@@ -234,7 +244,10 @@ namespace PrendaSAL.Movimientos
                     // MOVIMIENTOS
                     foreach (DataRow row in SELECTED.MOVIMIENTOS.Rows)
                     {
-                        SELECTED.SALDO_FINAL = SELECTED.SALDO_FINAL + row.Field<decimal>("INGRESO") - row.Field<decimal>("EGRESO");
+                        if (ACCION == eOperacion.INSERT)
+                        {
+                            SELECTED.SALDO_FINAL = SELECTED.SALDO_FINAL + row.Field<decimal>("INGRESO") - row.Field<decimal>("EGRESO");
+                        }
                         dSReporteDiario.TRANSACCIONES.AddTRANSACCIONESRow(row.Field<string>("CONCEPTO"), row.Field<string>("COD_TRANS"), row.Field<string>("COD_SUC"), row.Field<DateTime>("FECHA"), row.Field<string>("DOCUMENTO"), row.Field<string>("CLIENTE"), row.Field<string>("DETALLE"), row.Field<string>("RESPONSABLE"), row.Field<decimal>("INGRESO"), row.Field<decimal>("EGRESO"));
                     }
                     bsReporteDiario.DataSource = dSReporteDiario.TRANSACCIONES; 
@@ -262,7 +275,8 @@ namespace PrendaSAL.Movimientos
                     viewerREPORTE.LocalReport.SetParameters(parameters);
                     viewerREPORTE.RefreshReport();
 
-                    btnGUARDAR.Text = "CORTE DEL " + SELECTED.FECHA.ToShortDateString();
+                    btnGUARDAR.Text = "GUARDAR CORTE DEL " + SELECTED.FECHA.ToShortDateString();
+                    btnELIMINAR.Text = "DESHACER CORTE DEL " + SELECTED.FECHA.ToShortDateString();
                 }
                 catch (Exception ex)
                 {
@@ -283,20 +297,24 @@ namespace PrendaSAL.Movimientos
 
 
 
-        private void btnCORTE_DIARIO_Click(object sender, EventArgs e)
+        private void btnGUARDAR_Click(object sender, EventArgs e)
         {
-            if (SELECTED != null)
+            if (SELECTED != null && ACCION == eOperacion.INSERT)
             {
-                DialogResult eliminar = MessageBox.Show("¿REALIZAR CORTE DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + "\nAl cerrar del dia se contabilizaran las transacciones y no se podra modificar la informacion ingresada .... asegurese que los datos sean validos ", "CORTE DIARIO DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (eliminar == DialogResult.Yes)
+                DialogResult guardar = MessageBox.Show("¿REALIZAR CORTE DIARIO DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + "\nTenga en cuenta que al cerrar del dia no se podra modificar la informacion ingresada .... asegurese que los datos sean validos ", "CORTE DIARIO DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (guardar == DialogResult.Yes)
                 {
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                     if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                     {
-                        //if (dbReportes.CERRAR_DIA_PRENDASAL(HOME.Instance().SUCURSAL.COD_SUC, FECHA_CORTE, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                        //{
-                        //    listarDiasAbiertos();
-                        //}
+                        if (dbCorte.insert(SELECTED,HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            listarCortesDiarios();
+
+                            viewerREPORTE.ShowToolBar = true;
+                            btnGUARDAR.Visible = false;
+                            btnELIMINAR.Visible = true;
+                        }
                     }
                     else
                     {
@@ -306,9 +324,41 @@ namespace PrendaSAL.Movimientos
             }
             else
             {
-                MessageBox.Show("Seleccione Fecha t sucursal", "FECHA INVALIDA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("CARGUE PRIMERO EL REPORTE", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+        }
+
+
+
+        private void btnELIMINAR_Click(object sender, EventArgs e)
+        {
+            if (SELECTED != null && ACCION == eOperacion.UPDATE)
+            {
+                DialogResult eliminar = MessageBox.Show("¿ABRIR CAJA DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + "\n", "REAPERTURAR CAJA DEL " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (eliminar == DialogResult.Yes)
+                {
+                    string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
+                    if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
+                    {
+                        if (dbCorte.delete(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            listarCortesDiarios();
+                            ACCION = eOperacion.INSERT;
+                            viewerREPORTE.ShowToolBar = false;
+                            btnGUARDAR.Visible = true;
+                            btnELIMINAR.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("CARGUE PRIMERO EL REPORTE", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 

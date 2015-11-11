@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCODIGO = new System.Windows.Forms.TextBox();
             this.tblINVENTARIO = new System.Windows.Forms.DataGridView();
-            this.ID_MOV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
             this.btnBUSCAR = new System.Windows.Forms.Button();
             this.lbNUM_TOTAL = new System.Windows.Forms.Label();
@@ -51,7 +43,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.opciones = new System.Windows.Forms.ToolStrip();
             this.btnImprimir = new System.Windows.Forms.ToolStripButton();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
+            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).BeginInit();
             this.opciones.SuspendLayout();
             this.SuspendLayout();
@@ -71,9 +70,8 @@
             this.tblINVENTARIO.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.tblINVENTARIO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblINVENTARIO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID_MOV,
             this.CATEGORIA,
-            this.CODIGO,
+            this.CONTRATO,
             this.CANTIDAD,
             this.ARTICULO,
             this.DESCRIPCION,
@@ -85,67 +83,6 @@
             this.tblINVENTARIO.Size = new System.Drawing.Size(898, 340);
             this.tblINVENTARIO.TabIndex = 4;
             this.tblINVENTARIO.DataSourceChanged += new System.EventHandler(this.tblINVENTARIO_DataSourceChanged);
-            // 
-            // ID_MOV
-            // 
-            this.ID_MOV.DataPropertyName = "ID_MOV";
-            dataGridViewCellStyle1.Format = "N0";
-            this.ID_MOV.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ID_MOV.HeaderText = "ID_MOV";
-            this.ID_MOV.Name = "ID_MOV";
-            this.ID_MOV.ReadOnly = true;
-            this.ID_MOV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID_MOV.Visible = false;
-            // 
-            // CATEGORIA
-            // 
-            this.CATEGORIA.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA.HeaderText = "CATEGORIA";
-            this.CATEGORIA.Name = "CATEGORIA";
-            this.CATEGORIA.ReadOnly = true;
-            this.CATEGORIA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CODIGO
-            // 
-            this.CODIGO.DataPropertyName = "CODIGO";
-            this.CODIGO.HeaderText = "CODIGO";
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.DataPropertyName = "CANTIDAD";
-            this.CANTIDAD.HeaderText = "CANTIDAD";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CANTIDAD.Width = 75;
-            // 
-            // ARTICULO
-            // 
-            this.ARTICULO.DataPropertyName = "ARTICULO";
-            this.ARTICULO.HeaderText = "ART/KIL";
-            this.ARTICULO.Name = "ARTICULO";
-            this.ARTICULO.ReadOnly = true;
-            this.ARTICULO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DESCRIPCION
-            // 
-            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
-            this.DESCRIPCION.HeaderText = "DESCRIPCION";
-            this.DESCRIPCION.Name = "DESCRIPCION";
-            this.DESCRIPCION.ReadOnly = true;
-            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DESCRIPCION.Width = 250;
-            // 
-            // UBICACION
-            // 
-            this.UBICACION.DataPropertyName = "UBICACION";
-            this.UBICACION.HeaderText = "UBICACION";
-            this.UBICACION.Name = "UBICACION";
-            this.UBICACION.ReadOnly = true;
-            this.UBICACION.Width = 200;
             // 
             // cbxSUCURSAL
             // 
@@ -172,7 +109,7 @@
             // 
             this.lbNUM_TOTAL.AutoSize = true;
             this.lbNUM_TOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNUM_TOTAL.Location = new System.Drawing.Point(834, 475);
+            this.lbNUM_TOTAL.Location = new System.Drawing.Point(804, 475);
             this.lbNUM_TOTAL.Name = "lbNUM_TOTAL";
             this.lbNUM_TOTAL.Size = new System.Drawing.Size(88, 13);
             this.lbNUM_TOTAL.TabIndex = 93;
@@ -221,12 +158,10 @@
             // rdbDETALLE
             // 
             this.rdbDETALLE.AutoSize = true;
-            this.rdbDETALLE.Checked = true;
             this.rdbDETALLE.Location = new System.Drawing.Point(64, 41);
             this.rdbDETALLE.Name = "rdbDETALLE";
             this.rdbDETALLE.Size = new System.Drawing.Size(14, 13);
             this.rdbDETALLE.TabIndex = 96;
-            this.rdbDETALLE.TabStop = true;
             this.rdbDETALLE.UseVisualStyleBackColor = true;
             this.rdbDETALLE.CheckedChanged += new System.EventHandler(this.rdbDETALLE_CheckedChanged);
             // 
@@ -237,7 +172,6 @@
             this.rdbCODIGO.Name = "rdbCODIGO";
             this.rdbCODIGO.Size = new System.Drawing.Size(14, 13);
             this.rdbCODIGO.TabIndex = 97;
-            this.rdbCODIGO.TabStop = true;
             this.rdbCODIGO.UseVisualStyleBackColor = true;
             this.rdbCODIGO.CheckedChanged += new System.EventHandler(this.rdbCODIGO_CheckedChanged);
             // 
@@ -264,6 +198,7 @@
             // 
             this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnImprimir,
+            this.btnExportExcel,
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
             this.opciones.Name = "opciones";
@@ -279,6 +214,17 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(23, 22);
             this.btnImprimir.ToolTipText = "Imprimir";
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnAyuda
             // 
@@ -288,6 +234,56 @@
             this.btnAyuda.Name = "btnAyuda";
             this.btnAyuda.Size = new System.Drawing.Size(23, 22);
             this.btnAyuda.ToolTipText = "Ayuda";
+            // 
+            // CATEGORIA
+            // 
+            this.CATEGORIA.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA.HeaderText = "CATEGORIA";
+            this.CATEGORIA.Name = "CATEGORIA";
+            this.CATEGORIA.ReadOnly = true;
+            this.CATEGORIA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CONTRATO
+            // 
+            this.CONTRATO.DataPropertyName = "CONTRATO";
+            this.CONTRATO.HeaderText = "CONTRATO";
+            this.CONTRATO.Name = "CONTRATO";
+            this.CONTRATO.ReadOnly = true;
+            this.CONTRATO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.DataPropertyName = "CANTIDAD";
+            this.CANTIDAD.HeaderText = "CANTIDAD";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CANTIDAD.Width = 75;
+            // 
+            // ARTICULO
+            // 
+            this.ARTICULO.DataPropertyName = "COD_ITEM";
+            this.ARTICULO.HeaderText = "ART/KIL";
+            this.ARTICULO.Name = "ARTICULO";
+            this.ARTICULO.ReadOnly = true;
+            this.ARTICULO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DESCRIPCION
+            // 
+            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
+            this.DESCRIPCION.HeaderText = "DESCRIPCION";
+            this.DESCRIPCION.Name = "DESCRIPCION";
+            this.DESCRIPCION.ReadOnly = true;
+            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DESCRIPCION.Width = 250;
+            // 
+            // UBICACION
+            // 
+            this.UBICACION.DataPropertyName = "UBICACION";
+            this.UBICACION.HeaderText = "UBICACION";
+            this.UBICACION.Name = "UBICACION";
+            this.UBICACION.ReadOnly = true;
+            this.UBICACION.Width = 200;
             // 
             // RInvResguardoForm
             // 
@@ -340,16 +336,16 @@
         private System.Windows.Forms.RadioButton rdbCODIGO;
         private System.Windows.Forms.ComboBox cbxARTICULO;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_MOV;
+        private System.Windows.Forms.ToolStrip opciones;
+        private System.Windows.Forms.ToolStripButton btnImprimir;
+        private System.Windows.Forms.ToolStripButton btnAyuda;
+        private System.Windows.Forms.ToolStripButton btnExportExcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn UBICACION;
-        private System.Windows.Forms.ToolStrip opciones;
-        private System.Windows.Forms.ToolStripButton btnImprimir;
-        private System.Windows.Forms.ToolStripButton btnAyuda;
 
     }
 }

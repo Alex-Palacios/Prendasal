@@ -20,17 +20,17 @@ namespace PrendaSAL.Informes {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DSComprasKilMes")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DSComprasOro")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DSComprasKilMes : global::System.Data.DataSet {
+    public partial class DSComprasOro : global::System.Data.DataSet {
         
-        private COMPRASKILDataTable tableCOMPRASKIL;
+        private COMPRAS_ORODataTable tableCOMPRAS_ORO;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DSComprasKilMes() {
+        public DSComprasOro() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace PrendaSAL.Informes {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DSComprasKilMes(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DSComprasOro(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace PrendaSAL.Informes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["COMPRASKIL"] != null)) {
-                    base.Tables.Add(new COMPRASKILDataTable(ds.Tables["COMPRASKIL"]));
+                if ((ds.Tables["COMPRAS_ORO"] != null)) {
+                    base.Tables.Add(new COMPRAS_ORODataTable(ds.Tables["COMPRAS_ORO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace PrendaSAL.Informes {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public COMPRASKILDataTable COMPRASKIL {
+        public COMPRAS_ORODataTable COMPRAS_ORO {
             get {
-                return this.tableCOMPRASKIL;
+                return this.tableCOMPRAS_ORO;
             }
         }
         
@@ -127,7 +127,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DSComprasKilMes cln = ((DSComprasKilMes)(base.Clone()));
+            DSComprasOro cln = ((DSComprasOro)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace PrendaSAL.Informes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["COMPRASKIL"] != null)) {
-                    base.Tables.Add(new COMPRASKILDataTable(ds.Tables["COMPRASKIL"]));
+                if ((ds.Tables["COMPRAS_ORO"] != null)) {
+                    base.Tables.Add(new COMPRAS_ORODataTable(ds.Tables["COMPRAS_ORO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableCOMPRASKIL = ((COMPRASKILDataTable)(base.Tables["COMPRASKIL"]));
+            this.tableCOMPRAS_ORO = ((COMPRAS_ORODataTable)(base.Tables["COMPRAS_ORO"]));
             if ((initTable == true)) {
-                if ((this.tableCOMPRASKIL != null)) {
-                    this.tableCOMPRASKIL.InitVars();
+                if ((this.tableCOMPRAS_ORO != null)) {
+                    this.tableCOMPRAS_ORO.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DSComprasKilMes";
+            this.DataSetName = "DSComprasOro";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/DSComprasKilMes.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableCOMPRASKIL = new COMPRASKILDataTable();
-            base.Tables.Add(this.tableCOMPRASKIL);
+            this.tableCOMPRAS_ORO = new COMPRAS_ORODataTable();
+            base.Tables.Add(this.tableCOMPRAS_ORO);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeCOMPRASKIL() {
+        private bool ShouldSerializeCOMPRAS_ORO() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DSComprasKilMes ds = new DSComprasKilMes();
+            DSComprasOro ds = new DSComprasOro();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace PrendaSAL.Informes {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void COMPRASKILRowChangeEventHandler(object sender, COMPRASKILRowChangeEvent e);
+        public delegate void COMPRAS_ORORowChangeEventHandler(object sender, COMPRAS_ORORowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class COMPRASKILDataTable : global::System.Data.TypedTableBase<COMPRASKILRow> {
+        public partial class COMPRAS_ORODataTable : global::System.Data.TypedTableBase<COMPRAS_ORORow> {
             
             private global::System.Data.DataColumn columnSUCURSAL;
             
@@ -299,8 +299,8 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILDataTable() {
-                this.TableName = "COMPRASKIL";
+            public COMPRAS_ORODataTable() {
+                this.TableName = "COMPRAS_ORO";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -308,7 +308,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal COMPRASKILDataTable(global::System.Data.DataTable table) {
+            internal COMPRAS_ORODataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -325,7 +325,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected COMPRASKILDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected COMPRAS_ORODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -413,34 +413,34 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILRow this[int index] {
+            public COMPRAS_ORORow this[int index] {
                 get {
-                    return ((COMPRASKILRow)(this.Rows[index]));
+                    return ((COMPRAS_ORORow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event COMPRASKILRowChangeEventHandler COMPRASKILRowChanging;
+            public event COMPRAS_ORORowChangeEventHandler COMPRAS_ORORowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event COMPRASKILRowChangeEventHandler COMPRASKILRowChanged;
+            public event COMPRAS_ORORowChangeEventHandler COMPRAS_ORORowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event COMPRASKILRowChangeEventHandler COMPRASKILRowDeleting;
+            public event COMPRAS_ORORowChangeEventHandler COMPRAS_ORORowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event COMPRASKILRowChangeEventHandler COMPRASKILRowDeleted;
+            public event COMPRAS_ORORowChangeEventHandler COMPRAS_ORORowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddCOMPRASKILRow(COMPRASKILRow row) {
+            public void AddCOMPRAS_ORORow(COMPRAS_ORORow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILRow AddCOMPRASKILRow(string SUCURSAL, int ID_COMPRA, string COMPRA, System.DateTime FECHA, string ARTICULO, string KILATAJE, double PESO, decimal MONTO, string RESPONSABLE) {
-                COMPRASKILRow rowCOMPRASKILRow = ((COMPRASKILRow)(this.NewRow()));
+            public COMPRAS_ORORow AddCOMPRAS_ORORow(string SUCURSAL, int ID_COMPRA, string COMPRA, System.DateTime FECHA, string ARTICULO, string KILATAJE, decimal PESO, decimal MONTO, string RESPONSABLE) {
+                COMPRAS_ORORow rowCOMPRAS_ORORow = ((COMPRAS_ORORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SUCURSAL,
                         ID_COMPRA,
@@ -451,15 +451,15 @@ namespace PrendaSAL.Informes {
                         PESO,
                         MONTO,
                         RESPONSABLE};
-                rowCOMPRASKILRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCOMPRASKILRow);
-                return rowCOMPRASKILRow;
+                rowCOMPRAS_ORORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowCOMPRAS_ORORow);
+                return rowCOMPRAS_ORORow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                COMPRASKILDataTable cln = ((COMPRASKILDataTable)(base.Clone()));
+                COMPRAS_ORODataTable cln = ((COMPRAS_ORODataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -467,7 +467,7 @@ namespace PrendaSAL.Informes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new COMPRASKILDataTable();
+                return new COMPRAS_ORODataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,7 +499,7 @@ namespace PrendaSAL.Informes {
                 base.Columns.Add(this.columnARTICULO);
                 this.columnKILATAJE = new global::System.Data.DataColumn("KILATAJE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKILATAJE);
-                this.columnPESO = new global::System.Data.DataColumn("PESO", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnPESO = new global::System.Data.DataColumn("PESO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPESO);
                 this.columnMONTO = new global::System.Data.DataColumn("MONTO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMONTO);
@@ -509,28 +509,28 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILRow NewCOMPRASKILRow() {
-                return ((COMPRASKILRow)(this.NewRow()));
+            public COMPRAS_ORORow NewCOMPRAS_ORORow() {
+                return ((COMPRAS_ORORow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new COMPRASKILRow(builder);
+                return new COMPRAS_ORORow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(COMPRASKILRow);
+                return typeof(COMPRAS_ORORow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.COMPRASKILRowChanged != null)) {
-                    this.COMPRASKILRowChanged(this, new COMPRASKILRowChangeEvent(((COMPRASKILRow)(e.Row)), e.Action));
+                if ((this.COMPRAS_ORORowChanged != null)) {
+                    this.COMPRAS_ORORowChanged(this, new COMPRAS_ORORowChangeEvent(((COMPRAS_ORORow)(e.Row)), e.Action));
                 }
             }
             
@@ -538,8 +538,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.COMPRASKILRowChanging != null)) {
-                    this.COMPRASKILRowChanging(this, new COMPRASKILRowChangeEvent(((COMPRASKILRow)(e.Row)), e.Action));
+                if ((this.COMPRAS_ORORowChanging != null)) {
+                    this.COMPRAS_ORORowChanging(this, new COMPRAS_ORORowChangeEvent(((COMPRAS_ORORow)(e.Row)), e.Action));
                 }
             }
             
@@ -547,8 +547,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.COMPRASKILRowDeleted != null)) {
-                    this.COMPRASKILRowDeleted(this, new COMPRASKILRowChangeEvent(((COMPRASKILRow)(e.Row)), e.Action));
+                if ((this.COMPRAS_ORORowDeleted != null)) {
+                    this.COMPRAS_ORORowDeleted(this, new COMPRAS_ORORowChangeEvent(((COMPRAS_ORORow)(e.Row)), e.Action));
                 }
             }
             
@@ -556,14 +556,14 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.COMPRASKILRowDeleting != null)) {
-                    this.COMPRASKILRowDeleting(this, new COMPRASKILRowChangeEvent(((COMPRASKILRow)(e.Row)), e.Action));
+                if ((this.COMPRAS_ORORowDeleting != null)) {
+                    this.COMPRAS_ORORowDeleting(this, new COMPRAS_ORORowChangeEvent(((COMPRAS_ORORow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveCOMPRASKILRow(COMPRASKILRow row) {
+            public void RemoveCOMPRAS_ORORow(COMPRAS_ORORow row) {
                 this.Rows.Remove(row);
             }
             
@@ -572,7 +572,7 @@ namespace PrendaSAL.Informes {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DSComprasKilMes ds = new DSComprasKilMes();
+                DSComprasOro ds = new DSComprasOro();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -590,7 +590,7 @@ namespace PrendaSAL.Informes {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "COMPRASKILDataTable";
+                attribute2.FixedValue = "COMPRAS_ORODataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -634,15 +634,15 @@ namespace PrendaSAL.Informes {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class COMPRASKILRow : global::System.Data.DataRow {
+        public partial class COMPRAS_ORORow : global::System.Data.DataRow {
             
-            private COMPRASKILDataTable tableCOMPRASKIL;
+            private COMPRAS_ORODataTable tableCOMPRAS_ORO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal COMPRASKILRow(global::System.Data.DataRowBuilder rb) : 
+            internal COMPRAS_ORORow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableCOMPRASKIL = ((COMPRASKILDataTable)(this.Table));
+                this.tableCOMPRAS_ORO = ((COMPRAS_ORODataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -653,11 +653,11 @@ namespace PrendaSAL.Informes {
                         return string.Empty;
                     }
                     else {
-                        return ((string)(this[this.tableCOMPRASKIL.SUCURSALColumn]));
+                        return ((string)(this[this.tableCOMPRAS_ORO.SUCURSALColumn]));
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.SUCURSALColumn] = value;
+                    this[this.tableCOMPRAS_ORO.SUCURSALColumn] = value;
                 }
             }
             
@@ -666,14 +666,14 @@ namespace PrendaSAL.Informes {
             public int ID_COMPRA {
                 get {
                     try {
-                        return ((int)(this[this.tableCOMPRASKIL.ID_COMPRAColumn]));
+                        return ((int)(this[this.tableCOMPRAS_ORO.ID_COMPRAColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ID_COMPRA\' de la tabla \'COMPRASKIL\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ID_COMPRA\' de la tabla \'COMPRAS_ORO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.ID_COMPRAColumn] = value;
+                    this[this.tableCOMPRAS_ORO.ID_COMPRAColumn] = value;
                 }
             }
             
@@ -682,14 +682,14 @@ namespace PrendaSAL.Informes {
             public string COMPRA {
                 get {
                     try {
-                        return ((string)(this[this.tableCOMPRASKIL.COMPRAColumn]));
+                        return ((string)(this[this.tableCOMPRAS_ORO.COMPRAColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COMPRA\' de la tabla \'COMPRASKIL\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COMPRA\' de la tabla \'COMPRAS_ORO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.COMPRAColumn] = value;
+                    this[this.tableCOMPRAS_ORO.COMPRAColumn] = value;
                 }
             }
             
@@ -698,14 +698,14 @@ namespace PrendaSAL.Informes {
             public System.DateTime FECHA {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableCOMPRASKIL.FECHAColumn]));
+                        return ((global::System.DateTime)(this[this.tableCOMPRAS_ORO.FECHAColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA\' de la tabla \'COMPRASKIL\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA\' de la tabla \'COMPRAS_ORO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.FECHAColumn] = value;
+                    this[this.tableCOMPRAS_ORO.FECHAColumn] = value;
                 }
             }
             
@@ -717,11 +717,11 @@ namespace PrendaSAL.Informes {
                         return string.Empty;
                     }
                     else {
-                        return ((string)(this[this.tableCOMPRASKIL.ARTICULOColumn]));
+                        return ((string)(this[this.tableCOMPRAS_ORO.ARTICULOColumn]));
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.ARTICULOColumn] = value;
+                    this[this.tableCOMPRAS_ORO.ARTICULOColumn] = value;
                 }
             }
             
@@ -733,27 +733,27 @@ namespace PrendaSAL.Informes {
                         return string.Empty;
                     }
                     else {
-                        return ((string)(this[this.tableCOMPRASKIL.KILATAJEColumn]));
+                        return ((string)(this[this.tableCOMPRAS_ORO.KILATAJEColumn]));
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.KILATAJEColumn] = value;
+                    this[this.tableCOMPRAS_ORO.KILATAJEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double PESO {
+            public decimal PESO {
                 get {
                     try {
-                        return ((double)(this[this.tableCOMPRASKIL.PESOColumn]));
+                        return ((decimal)(this[this.tableCOMPRAS_ORO.PESOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PESO\' de la tabla \'COMPRASKIL\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PESO\' de la tabla \'COMPRAS_ORO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.PESOColumn] = value;
+                    this[this.tableCOMPRAS_ORO.PESOColumn] = value;
                 }
             }
             
@@ -762,14 +762,14 @@ namespace PrendaSAL.Informes {
             public decimal MONTO {
                 get {
                     try {
-                        return ((decimal)(this[this.tableCOMPRASKIL.MONTOColumn]));
+                        return ((decimal)(this[this.tableCOMPRAS_ORO.MONTOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'MONTO\' de la tabla \'COMPRASKIL\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'MONTO\' de la tabla \'COMPRAS_ORO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.MONTOColumn] = value;
+                    this[this.tableCOMPRAS_ORO.MONTOColumn] = value;
                 }
             }
             
@@ -781,120 +781,120 @@ namespace PrendaSAL.Informes {
                         return string.Empty;
                     }
                     else {
-                        return ((string)(this[this.tableCOMPRASKIL.RESPONSABLEColumn]));
+                        return ((string)(this[this.tableCOMPRAS_ORO.RESPONSABLEColumn]));
                     }
                 }
                 set {
-                    this[this.tableCOMPRASKIL.RESPONSABLEColumn] = value;
+                    this[this.tableCOMPRAS_ORO.RESPONSABLEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSUCURSALNull() {
-                return this.IsNull(this.tableCOMPRASKIL.SUCURSALColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.SUCURSALColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSUCURSALNull() {
-                this[this.tableCOMPRASKIL.SUCURSALColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.SUCURSALColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsID_COMPRANull() {
-                return this.IsNull(this.tableCOMPRASKIL.ID_COMPRAColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.ID_COMPRAColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetID_COMPRANull() {
-                this[this.tableCOMPRASKIL.ID_COMPRAColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.ID_COMPRAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCOMPRANull() {
-                return this.IsNull(this.tableCOMPRASKIL.COMPRAColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.COMPRAColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCOMPRANull() {
-                this[this.tableCOMPRASKIL.COMPRAColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.COMPRAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFECHANull() {
-                return this.IsNull(this.tableCOMPRASKIL.FECHAColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.FECHAColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFECHANull() {
-                this[this.tableCOMPRASKIL.FECHAColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.FECHAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsARTICULONull() {
-                return this.IsNull(this.tableCOMPRASKIL.ARTICULOColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.ARTICULOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetARTICULONull() {
-                this[this.tableCOMPRASKIL.ARTICULOColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.ARTICULOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsKILATAJENull() {
-                return this.IsNull(this.tableCOMPRASKIL.KILATAJEColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.KILATAJEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetKILATAJENull() {
-                this[this.tableCOMPRASKIL.KILATAJEColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.KILATAJEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPESONull() {
-                return this.IsNull(this.tableCOMPRASKIL.PESOColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.PESOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPESONull() {
-                this[this.tableCOMPRASKIL.PESOColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.PESOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMONTONull() {
-                return this.IsNull(this.tableCOMPRASKIL.MONTOColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.MONTOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMONTONull() {
-                this[this.tableCOMPRASKIL.MONTOColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.MONTOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsRESPONSABLENull() {
-                return this.IsNull(this.tableCOMPRASKIL.RESPONSABLEColumn);
+                return this.IsNull(this.tableCOMPRAS_ORO.RESPONSABLEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRESPONSABLENull() {
-                this[this.tableCOMPRASKIL.RESPONSABLEColumn] = global::System.Convert.DBNull;
+                this[this.tableCOMPRAS_ORO.RESPONSABLEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -902,22 +902,22 @@ namespace PrendaSAL.Informes {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class COMPRASKILRowChangeEvent : global::System.EventArgs {
+        public class COMPRAS_ORORowChangeEvent : global::System.EventArgs {
             
-            private COMPRASKILRow eventRow;
+            private COMPRAS_ORORow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILRowChangeEvent(COMPRASKILRow row, global::System.Data.DataRowAction action) {
+            public COMPRAS_ORORowChangeEvent(COMPRAS_ORORow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public COMPRASKILRow Row {
+            public COMPRAS_ORORow Row {
                 get {
                     return this.eventRow;
                 }

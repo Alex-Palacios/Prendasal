@@ -12,7 +12,7 @@
   <xs:element name="DSCancelados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCancelados" msprop:Generator_UserDSName="DSCancelados">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CANCELADOS" msprop:Generator_TableClassName="CANCELADOSDataTable" msprop:Generator_TableVarName="tableCANCELADOS" msprop:Generator_TablePropName="CANCELADOS" msprop:Generator_RowDeletingName="CANCELADOSRowDeleting" msprop:Generator_RowChangingName="CANCELADOSRowChanging" msprop:Generator_RowEvHandlerName="CANCELADOSRowChangeEventHandler" msprop:Generator_RowDeletedName="CANCELADOSRowDeleted" msprop:Generator_UserTableName="CANCELADOS" msprop:Generator_RowChangedName="CANCELADOSRowChanged" msprop:Generator_RowEvArgName="CANCELADOSRowChangeEvent" msprop:Generator_RowClassName="CANCELADOSRow">
+        <xs:element name="CANCELADOS" msprop:Generator_TableClassName="CANCELADOSDataTable" msprop:Generator_TableVarName="tableCANCELADOS" msprop:Generator_RowChangedName="CANCELADOSRowChanged" msprop:Generator_TablePropName="CANCELADOS" msprop:Generator_RowDeletingName="CANCELADOSRowDeleting" msprop:Generator_RowChangingName="CANCELADOSRowChanging" msprop:Generator_RowEvHandlerName="CANCELADOSRowChangeEventHandler" msprop:Generator_RowDeletedName="CANCELADOSRowDeleted" msprop:Generator_RowClassName="CANCELADOSRow" msprop:Generator_UserTableName="CANCELADOS" msprop:Generator_RowEvArgName="CANCELADOSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUCURSAL" msprop:Generator_ColumnVarNameInTable="columnSUCURSAL" msprop:Generator_ColumnPropNameInRow="SUCURSAL" msprop:Generator_ColumnPropNameInTable="SUCURSALColumn" msprop:Generator_UserColumnName="SUCURSAL" type="xs:string" minOccurs="0" />
@@ -21,7 +21,7 @@
               <xs:element name="CATEGORIA" msprop:Generator_ColumnVarNameInTable="columnCATEGORIA" msprop:Generator_ColumnPropNameInRow="CATEGORIA" msprop:Generator_ColumnPropNameInTable="CATEGORIAColumn" msprop:Generator_UserColumnName="CATEGORIA" type="xs:string" minOccurs="0" />
               <xs:element name="ARTICULO" msprop:Generator_ColumnVarNameInTable="columnARTICULO" msprop:Generator_ColumnPropNameInRow="ARTICULO" msprop:Generator_ColumnPropNameInTable="ARTICULOColumn" msprop:Generator_UserColumnName="ARTICULO" type="xs:string" minOccurs="0" />
               <xs:element name="TELEFONO" msprop:Generator_ColumnVarNameInTable="columnTELEFONO" msprop:Generator_ColumnPropNameInRow="TELEFONO" msprop:Generator_ColumnPropNameInTable="TELEFONOColumn" msprop:Generator_UserColumnName="TELEFONO" type="xs:string" minOccurs="0" />
-              <xs:element name="FECHA" msprop:Generator_ColumnVarNameInTable="columnFECHA" msprop:Generator_ColumnPropNameInRow="FECHA" msprop:Generator_ColumnPropNameInTable="FECHAColumn" msprop:Generator_UserColumnName="FECHA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FECHA_CANCELADO" msprop:Generator_ColumnVarNameInTable="columnFECHA_CANCELADO" msprop:Generator_ColumnPropNameInRow="FECHA_CANCELADO" msprop:Generator_ColumnPropNameInTable="FECHA_CANCELADOColumn" msprop:Generator_UserColumnName="FECHA_CANCELADO" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

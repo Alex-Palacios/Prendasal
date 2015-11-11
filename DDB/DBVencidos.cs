@@ -286,6 +286,37 @@ namespace DDB
 
 
 
+        public DataTable showListaVencByFecha(DateTime fecha)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.SP_SHOW_LISTAVENC;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                MySqlParameter fecha_venc = cmd.Parameters.Add("fecha_venc", MySqlDbType.Date);
+                fecha_venc.Direction = ParameterDirection.Input;
+
+
+                fecha_venc.Value = fecha.Date;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL CONSULTAR LISTAS DE VENCIDOS\nDetalle:" +e.Message, "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos; ;
+        }
+
+
 
 
 

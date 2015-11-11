@@ -402,6 +402,12 @@ namespace PrendaSAL
             return suc;
         }
 
+
+
+
+
+
+
         
         private void ventanasCASCADA(object sender, EventArgs e)
         {
@@ -633,8 +639,8 @@ namespace PrendaSAL
 
         private void menuOperacionesEnviarInv(object sender, EventArgs e)
         {
-            Operaciones.EnviarInvForm envio;
-            envio = Operaciones.EnviarInvForm.Instance();
+            Operaciones.TrasladoForm envio;
+            envio = Operaciones.TrasladoForm.Instance();
             envio.MdiParent = this;
             envio.Show();
             if (envio.WindowState == FormWindowState.Minimized)
@@ -785,8 +791,8 @@ namespace PrendaSAL
 
         private void menuReportesCancelados(object sender, EventArgs e)
         {
-            Reportes.CanceladosForm cancelados;
-            cancelados = Reportes.CanceladosForm.Instance();
+            Reportes.RCanceladosForm cancelados;
+            cancelados = Reportes.RCanceladosForm.Instance();
             cancelados.MdiParent = this;
             cancelados.Show();
             if (cancelados.WindowState == FormWindowState.Minimized)
@@ -795,17 +801,7 @@ namespace PrendaSAL
             }
         }
 
-        private void menuReportesVencidosDia(object sender, EventArgs e)
-        {
-            Reportes.VencidosDiaForm vencidos;
-            vencidos = Reportes.VencidosDiaForm.Instance();
-            vencidos.MdiParent = this;
-            vencidos.Show();
-            if (vencidos.WindowState == FormWindowState.Minimized)
-            {
-                vencidos.WindowState = FormWindowState.Normal;
-            }
-        }
+        
 
         private void menuReportesContratos(object sender, EventArgs e)
         {
@@ -822,8 +818,8 @@ namespace PrendaSAL
 
         private void menuReportesDiario(object sender, EventArgs e)
         {
-            Reportes.RDiarioForm diario;
-            diario = Reportes.RDiarioForm.Instance();
+            Reportes.RTransDiariasForm diario;
+            diario = Reportes.RTransDiariasForm.Instance();
             diario.MdiParent = this;
             diario.Show();
             if (diario.WindowState == FormWindowState.Minimized)
@@ -836,8 +832,8 @@ namespace PrendaSAL
 
         private void menuReporteComprasORO(object sender, EventArgs e)
         {
-            Reportes.ComprasOroForm comprasOro;
-            comprasOro = Reportes.ComprasOroForm.Instance();
+            Reportes.RComprasOroForm comprasOro;
+            comprasOro = Reportes.RComprasOroForm.Instance();
             comprasOro.MdiParent = this;
             comprasOro.Show();
             if (comprasOro.WindowState == FormWindowState.Minimized)
@@ -846,7 +842,17 @@ namespace PrendaSAL
             }
         }
 
-
+        private void menuReporteVencidosORO(object sender, EventArgs e)
+        {
+            Reportes.RVencidosOroForm vencOro;
+            vencOro = Reportes.RVencidosOroForm.Instance();
+            vencOro.MdiParent = this;
+            vencOro.Show();
+            if (vencOro.WindowState == FormWindowState.Minimized)
+            {
+                vencOro.WindowState = FormWindowState.Normal;
+            }
+        }
 
         
         
@@ -1018,7 +1024,41 @@ namespace PrendaSAL
             return returnImage;
         }
 
-        
+
+
+        public void exportDataGridViewToExcel(string titulo, DataGridViewColumnCollection encabezados, DataTable datos,string nombreArchivo)
+        {
+            int columna = 1;
+            int fila = 1;
+            if (encabezados != null && datos != null)
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Workbooks.Add(true);
+
+
+                foreach (DataGridViewColumn column in encabezados)
+                {
+                    excel.Cells[fila, columna] = column.HeaderText;
+                    columna++;
+                }
+                fila++;
+                foreach (DataRow row in datos.Rows)
+                {
+                    columna = 1;
+                    foreach (DataGridViewColumn column in encabezados)
+                    {
+                        if (column.Visible)
+                        {
+                            excel.Cells[fila, columna] = row.Field<object>(column.Name);
+                            columna++;
+                        }
+                    }
+                    fila++;
+                }
+                excel.Visible = true;
+
+            }
+        }
 
         
 

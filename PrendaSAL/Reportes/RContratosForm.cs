@@ -29,15 +29,13 @@ namespace PrendaSAL.Reportes
         }
 
         //VARIABLES 
-        private DBPrestamo dbContrato;
-        private DataTable SUCURSALES;
+        private DBReporte dbReporte;
         private DataTable CONTRATOS;
 
         public RContratosForm()
         {
             InitializeComponent();
-            dbContrato = new DBPrestamo();
-            tblCONTRATOS.AutoGenerateColumns = false;
+            dbReporte = new DBReporte();
         }
 
 
@@ -57,29 +55,21 @@ namespace PrendaSAL.Reportes
 
         private void RContratosForm_Load(object sender, EventArgs e)
         {
-            SUCURSALES = HOME.Instance().datSUCURSALES.Copy();
-            if (SUCURSALES.Rows.Count == 0)
-            {
-                SUCURSALES.Columns.Add("CODIGO");
-                SUCURSALES.Columns.Add("SUCURSAL");
-                SUCURSALES.Columns.Add("ACTIVA");
-                SUCURSALES.Columns.Add("ID_RUBRO");
-            }
-            DataRow R = SUCURSALES.NewRow();
-            R.SetField<string>("CODIGO", "00");
-            R.SetField<string>("SUCURSAL", "TODAS LAS SUCURSALES");
-            R.SetField<bool>("ACTIVA", false);
-            R.SetField<int>("ID_RUBRO", -1);
-            SUCURSALES.Rows.InsertAt(R, 0);
-            cbxSUCURSAL.DataSource = SUCURSALES;
-            if (SUCURSALES.Rows.Count > 0)
+            permisos();
+            tblCONTRATOS.AutoGenerateColumns = false;
+            cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
+            if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
             {
                 cbxSUCURSAL.DisplayMember = "SUCURSAL";
-                cbxSUCURSAL.ValueMember = "CODIGO";
+                cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
+                DataRow R = ((DataTable)cbxSUCURSAL.DataSource).NewRow();
+                R.SetField<string>("COD_SUC", "00");
+                R.SetField<string>("SUCURSAL", "TODAS LAS SUCURSALES");
+                R.SetField<bool>("ACTIVA", false);
+                ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
 
-            permisos();
             cbxESTADOS.DataSource = Enum.GetValues(new eEstadoContrato().GetType());
 
         }
@@ -91,9 +81,8 @@ namespace PrendaSAL.Reportes
         {
             if (cbxSUCURSAL.SelectedIndex >= 0 && cbxESTADOS.SelectedIndex >= 0)
             {
-                //CONTRATOS = dbContrato.FIND_BY_ESTADO_CONTRATO((string)cbxSUCURSAL.SelectedValue, (eEstadoContrato)cbxESTADOS.SelectedItem);
+                CONTRATOS = dbReporte.RptContratosByEstado((string)cbxSUCURSAL.SelectedValue, (eEstadoContrato)cbxESTADOS.SelectedItem);
                 tblCONTRATOS.DataSource = CONTRATOS;
-
             }
             else
             {
@@ -110,6 +99,17 @@ namespace PrendaSAL.Reportes
             if (tblCONTRATOS.DataSource != null)
             {
                 lbNUM_TOTAL.Text = tblCONTRATOS.Rows.Count + " CONTRATOS";
+            }
+        }
+
+
+
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (CONTRATOS != null)
+            {
+                HOME.Instance().exportDataGridViewToExcel("REPORTE DE CONTRATOS", tblCONTRATOS.Columns, CONTRATOS, "ReporteContratos");
             }
         }
 

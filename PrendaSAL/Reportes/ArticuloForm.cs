@@ -20,25 +20,68 @@ namespace PrendaSAL.Reportes
 
         private DBUsuario dbUser;
         private DBInventario dbInventario;
-        private Inventario SELECTED;
+        private DBCatalogo dbCatalogo;
+        private Existencia SELECTED;
 
         private eOperacion ACCION;
 
-        public ArticuloForm(Inventario item)
+        public ArticuloForm(Existencia item)
         {
             InitializeComponent();
-            ACCION = eOperacion.UPDATE;
-            SELECTED = item;
             dbUser = new DBUsuario();
             dbInventario = new DBInventario();
+            dbCatalogo = new DBCatalogo();
+            ACCION = eOperacion.UPDATE;
+            SELECTED = item;
         }
 
 
 
         private void ArticuloForm_Load(object sender, EventArgs e)
         {
+            cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
+            if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
+            {
+                cbxSUCURSAL.DisplayMember = "SUCURSAL";
+                cbxSUCURSAL.ValueMember = "COD_SUC";
+                cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
+                DataRow R = ((DataTable)cbxSUCURSAL.DataSource).NewRow();
+                R.SetField<string>("COD_SUC", "00");
+                R.SetField<string>("SUCURSAL", "TODAS LAS SUCURSALES");
+                R.SetField<bool>("ACTIVA", false);
+                ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
+            }
+            cbxARTICULO.DataSource = dbCatalogo.showCatalogo(eCategoria.ARTICULO);
+            if (cbxARTICULO.DataSource != null && ((DataTable)cbxARTICULO.DataSource).Rows.Count > 0)
+            {
+                cbxARTICULO.DisplayMember = "COD_ITEM";
+                cbxARTICULO.ValueMember = "COD_ITEM";
+                DataRow R = ((DataTable)cbxARTICULO.DataSource).NewRow();
+                R.SetField<string>("CATEGORIA", "TODAS");
+                R.SetField<string>("COD_ITEM", "TODAS");
+                R.SetField<string>("UNIDAD_MEDIDA", "TODAS");
+                ((DataTable)cbxARTICULO.DataSource).Rows.InsertAt(R, 0);
+            }
+
             cargarItemSelected();
         }
+
+
+
+        private void cargarItemSelected()
+        {
+            if (SELECTED != null)
+            {
+                cbxSUCURSAL.SelectedValue = SELECTED.BODEGA;
+                txtCODIGO.Text = SELECTED.CODIGO;
+                txtCATEGORIA.Text = SELECTED.CATEGORIA.ToString();
+                cbxARTICULO.SelectedValue = SELECTED.COD_ITEM;
+                txtCANTIDAD.Text = SELECTED.CANTIDAD.ToString("N1");
+                txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
+                txtPRECIO.Text = SELECTED.PRECIO.ToString("C2");
+            }
+        }
+
 
 
         private void txtPRECIO_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,23 +100,20 @@ namespace PrendaSAL.Reportes
         }
 
 
-        private void cargarItemSelected()
-        {
-            if (SELECTED != null)
-            {
-                txtCATEGORIA.Text = SELECTED.CATEGORIA;
-                txtARTICULO.Text = SELECTED.ARTICULO;
-                txtUBICACION.Text = SELECTED.UBICACION;
-                txtCODIGO.Text = SELECTED.CODIGO;
-                txtCANTIDAD.Text = SELECTED.CANTIDAD.ToString("N1");
-                txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
-                txtPRECIO.Text = SELECTED.PRECIO.ToString("N2");
-            }
-        }
 
-        private void CANCELAR(object sender, EventArgs e)
+        private void txtPRECIO_Leave(object sender, EventArgs e)
         {
-            this.Close();
+            SELECTED.PRECIO = (decimal)0.00;
+            decimal valor;
+            if (Decimal.TryParse(txtPRECIO.Text, System.Globalization.NumberStyles.Currency, null, out valor))
+            {
+                SELECTED.PRECIO = Decimal.Round(valor, 2, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                MessageBox.Show("FORMATO INVALIDO", "ERROR DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            txtPRECIO.Text = SELECTED.PRECIO.ToString("C2");
         }
 
 
@@ -84,14 +124,13 @@ namespace PrendaSAL.Reportes
             bool OK = true;
             try
             {
-                
                 if (txtDESCRIPCION.Text.Trim() == string.Empty)
                 {
                     OK = false;
                     MessageBox.Show("DETALLE ARTICULO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
-                else if (txtPRECIO.Text.Trim() == string.Empty || Double.Parse(txtPRECIO.Text) < 0)
+                else if (SELECTED.PRECIO < 0)
                 {
                     OK = false;
                     MessageBox.Show("PRECIO VENTA ARTICULO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -109,23 +148,21 @@ namespace PrendaSAL.Reportes
 
 
 
-
-
         private void GUARDAR(object sender, EventArgs e)
         {
             if (validarITEM())
-            {
-                        
+            {   
                 string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
                 if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                 {
+                    SELECTED.BODEGA = (string)cbxSUCURSAL.SelectedValue;
+                    SELECTED.COD_ITEM = (string)cbxARTICULO.SelectedValue;
                     SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();
-                    SELECTED.PRECIO = Decimal.Parse(txtPRECIO.Text.Trim());
-                    //if (dbInventario.updateArticuloVentaPRENDASAL(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
-                    //{
-                    //    RInvVentaForm.Instance().recargar();
-                    //    this.Close();
-                    //}
+                    if (dbInventario.updateArticuloInv(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                    {
+                        RInvVentaForm.Instance().recargar();
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -138,9 +175,16 @@ namespace PrendaSAL.Reportes
 
 
 
+        private void CANCELAR(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
         private void btnSCAN_Click(object sender, EventArgs e)
         {
-            FotoArticuloForm foto = new FotoArticuloForm(SELECTED.ID_MOV.ToString());
+            FotoArticuloForm foto = new FotoArticuloForm(SELECTED.CODIGO.ToString());
             foto.ShowDialog();
         }
 

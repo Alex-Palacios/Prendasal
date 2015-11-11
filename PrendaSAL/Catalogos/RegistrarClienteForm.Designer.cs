@@ -265,7 +265,7 @@
             // txtDOC
             // 
             this.txtDOC.Location = new System.Drawing.Point(357, 120);
-            this.txtDOC.MaxLength = 25;
+            this.txtDOC.MaxLength = 10;
             this.txtDOC.Name = "txtDOC";
             this.txtDOC.Size = new System.Drawing.Size(156, 20);
             this.txtDOC.TabIndex = 41;
@@ -395,8 +395,9 @@
             // txtEMAIL
             // 
             this.txtEMAIL.Location = new System.Drawing.Point(122, 203);
+            this.txtEMAIL.MaxLength = 50;
             this.txtEMAIL.Name = "txtEMAIL";
-            this.txtEMAIL.Size = new System.Drawing.Size(164, 20);
+            this.txtEMAIL.Size = new System.Drawing.Size(202, 20);
             this.txtEMAIL.TabIndex = 58;
             // 
             // label14

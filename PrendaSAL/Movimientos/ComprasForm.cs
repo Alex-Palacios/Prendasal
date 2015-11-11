@@ -622,7 +622,7 @@ namespace PrendaSAL.Movimientos
                         {
                             decimal precioR = getPrecioKIL(tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString());
                             decimal cantidad = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                            decimal costoTope = Decimal.Round(precioR * cantidad, 0);
+                            decimal costoTope = Decimal.Round(precioR * cantidad, 0, MidpointRounding.AwayFromZero);
 
                             if (costoTope > 0 && valor > costoTope)
                             {
@@ -661,7 +661,7 @@ namespace PrendaSAL.Movimientos
                         }
                         else if ((eCategoria)cbxCategorias.SelectedItem == eCategoria.ORO)
                         {
-                            monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2);
+                            monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2, MidpointRounding.AwayFromZero);
                             tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
                         }
                         calcularTotales();
@@ -674,7 +674,7 @@ namespace PrendaSAL.Movimientos
                                 tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].Value = cantidad;
                                 break;
                             case eCategoria.ORO:
-                                monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2);
+                                monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2, MidpointRounding.AwayFromZero);
                                 tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
                                 break;
                         }

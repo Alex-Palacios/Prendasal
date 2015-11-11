@@ -35,7 +35,7 @@ namespace PrendaSAL.Movimientos
 
 
         private void cargarExistencias(){
-            EXISTENCIAS = dbExistencias.getExistenciasARTICULOS(HOME.Instance().SUCURSAL.COD_SUC);
+            EXISTENCIAS = dbExistencias.getExistenciasARTICULOSbySuc(HOME.Instance().SUCURSAL.COD_SUC);
             tblEXISTENCIAS.DataSource = EXISTENCIAS;
         }
 

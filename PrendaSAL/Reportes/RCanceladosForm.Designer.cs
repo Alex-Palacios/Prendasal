@@ -1,6 +1,6 @@
 ﻿namespace PrendaSAL.Reportes
 {
-    partial class CanceladosForm
+    partial class RCanceladosForm
     {
         /// <summary>
         /// Required designer variable.
@@ -166,7 +166,7 @@
             this.Name = "CanceladosForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "CONTRATOS CANCELADOS";
+            this.Text = "REPORTE DE CANCELADOS";
             this.Load += new System.EventHandler(this.CanceladosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingReporte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSCancelados)).EndInit();

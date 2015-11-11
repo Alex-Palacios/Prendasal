@@ -22,25 +22,22 @@ namespace DDB
 
 
 
-        public DataTable REPORTE_DIARIO_PRENDASAL(string suc,DateTime FechaInicio, DateTime FechaFin)
+        public DataTable RptContratosByEstado(string sucursal, eEstadoContrato estado)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_REPORTE_DIARIO";
+                string sql = "prendasal.RPT_CONTRATOS_ESTADO";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-                MySqlParameter fInicio = cmd.Parameters.Add("fechaInicio", MySqlDbType.Date);
-                fInicio.Direction = ParameterDirection.Input;
-                MySqlParameter fFin = cmd.Parameters.Add("fechaFin", MySqlDbType.Date);
-                fFin.Direction = ParameterDirection.Input;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter estado_rpt = cmd.Parameters.Add("estado_rpt", MySqlDbType.VarChar, 20);
+                estado_rpt.Direction = ParameterDirection.Input;
 
-                sucursal.Value = suc;
-                fInicio.Value = FechaInicio.Date.ToString("yyyy-MM-dd");
-                fFin.Value = FechaFin.Date.ToString("yyyy-MM-dd");
+                suc_rpt.Value = sucursal;
+                estado_rpt.Value = estado.ToString();
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -51,7 +48,121 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("NO SE PUDO CONSULTAR REPORTE DIARIO DEL "+ FechaInicio.Date.ToString("dd/MM/yyyy") + " AL " + FechaFin.Date.ToString("dd/MM/yyyy"), "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR EN CONSULTAR CONTRATOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+
+        public DataTable RptContratosCancelados(string sucursal, DateTime FechaInicio, DateTime FechaFin)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_CONTRATOS_CANCELADOS";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter fi_rpt = cmd.Parameters.Add("fi_rpt", MySqlDbType.Date);
+                fi_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter ff_rpt = cmd.Parameters.Add("ff_rpt", MySqlDbType.Date);
+                ff_rpt.Direction = ParameterDirection.Input;
+
+                suc_rpt.Value = sucursal;
+                fi_rpt.Value = FechaInicio.Date;
+                ff_rpt.Value = FechaFin.Date;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR EN CONSULTAR CONTRATOS CANCELADOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+
+
+        public DataTable RptTransDiarias(string sucursal,DateTime FechaInicio, DateTime FechaFin)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_TRANS_DIARIAS";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter fi_rpt = cmd.Parameters.Add("fi_rpt", MySqlDbType.Date);
+                fi_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter ff_rpt = cmd.Parameters.Add("ff_rpt", MySqlDbType.Date);
+                ff_rpt.Direction = ParameterDirection.Input;
+
+                suc_rpt.Value = sucursal;
+                fi_rpt.Value = FechaInicio.Date;
+                ff_rpt.Value = FechaFin.Date;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR EN CONSULTAR TRANSACCIONES", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+        public DataTable getKPMTransDiarias(string sucursal, DateTime FechaInicio, DateTime FechaFin)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.SP_KPM_TRANS_DIARIAS;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter fi_rpt = cmd.Parameters.Add("fi_rpt", MySqlDbType.Date);
+                fi_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter ff_rpt = cmd.Parameters.Add("ff_rpt", MySqlDbType.Date);
+                ff_rpt.Direction = ParameterDirection.Input;
+
+                suc_rpt.Value = sucursal;
+                fi_rpt.Value = FechaInicio.Date;
+                ff_rpt.Value = FechaFin.Date;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL OBTENER DETALLE KMP DE TRANSACCIONES", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -62,27 +173,25 @@ namespace DDB
 
 
 
-
-
-        public DataTable CONTRATOS_CANCELADOS_PRENDASAL(string suc, DateTime FechaInicio, DateTime FechaFin)
+        public DataTable RptComprasOroByMes(string sucursal, string anio,string mes)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_CONTRATOS_CANCELADOS";
+                string sql = "prendasal.RPT_COMPRAS_ORO";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter sucursal = cmd.Parameters.Add("codsuc", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-                MySqlParameter fInicio = cmd.Parameters.Add("fechaInicio", MySqlDbType.Date);
-                fInicio.Direction = ParameterDirection.Input;
-                MySqlParameter fFin = cmd.Parameters.Add("fechaFin", MySqlDbType.Date);
-                fFin.Direction = ParameterDirection.Input;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter anio_rpt = cmd.Parameters.Add("anio_rpt", MySqlDbType.Int32);
+                anio_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter mes_rpt = cmd.Parameters.Add("mes_rpt", MySqlDbType.Int32);
+                mes_rpt.Direction = ParameterDirection.Input;
 
-                sucursal.Value = suc;
-                fInicio.Value = FechaInicio.Date.ToString("yyyy-MM-dd");
-                fFin.Value = FechaFin.Date.ToString("yyyy-MM-dd");
+                suc_rpt.Value = sucursal;
+                anio_rpt.Value = anio;
+                mes_rpt.Value = mes;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -93,32 +202,33 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("NO SE PUDO CONSULTAR REPORTE DE CANCELADOS DEL " + FechaInicio.Date.ToString("dd/MM/yyyy") + " AL " + FechaFin.Date.ToString("dd/MM/yyyy"), "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR COMPRAS DE ORO Y PLATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
 
 
 
-        public DataTable COMPRAS_KILMES(string suc, string mes, string anio)
+
+
+
+
+        public DataTable RptVencidosOroByList(DateTime fecha, string lista)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_REPORTE_COMPRAS_KILMES";
+                string sql = "prendasal.RPT_VENCIDOS_ORO";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter sucursal = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-                MySqlParameter m = cmd.Parameters.Add("mes", MySqlDbType.VarChar,2);
-                m.Direction = ParameterDirection.Input;
-                MySqlParameter y = cmd.Parameters.Add("anio", MySqlDbType.VarChar, 4);
-                y.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_venc = cmd.Parameters.Add("fecha_venc", MySqlDbType.Date);
+                fecha_venc.Direction = ParameterDirection.Input;
+                MySqlParameter doc_venc = cmd.Parameters.Add("doc_venc", MySqlDbType.VarChar,20);
+                doc_venc.Direction = ParameterDirection.Input;
 
-                sucursal.Value = suc;
-                m.Value = mes;
-                y.Value = anio;
+                fecha_venc.Value = fecha.Date;
+                doc_venc.Value = lista;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -129,7 +239,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show("NO SE PUDO CONSULTAR REPORTE DE COMPRAS DE ORO Y PLATA", "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR VENCIDOS DE ORO Y PLATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }

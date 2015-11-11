@@ -42,10 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtUBICACION = new System.Windows.Forms.TextBox();
-            this.txtARTICULO = new System.Windows.Forms.TextBox();
-            this.txtCATEGORIA = new System.Windows.Forms.TextBox();
             this.btnSCAN = new System.Windows.Forms.Button();
+            this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
+            this.cbxARTICULO = new System.Windows.Forms.ComboBox();
+            this.txtCATEGORIA = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label19
@@ -61,7 +61,7 @@
             // btnCANCELAR
             // 
             this.btnCANCELAR.Image = global::PrendaSAL.Properties.Resources.cancel;
-            this.btnCANCELAR.Location = new System.Drawing.Point(368, 312);
+            this.btnCANCELAR.Location = new System.Drawing.Point(385, 312);
             this.btnCANCELAR.Name = "btnCANCELAR";
             this.btnCANCELAR.Size = new System.Drawing.Size(128, 40);
             this.btnCANCELAR.TabIndex = 104;
@@ -84,25 +84,26 @@
             // 
             // txtPRECIO
             // 
-            this.txtPRECIO.Location = new System.Drawing.Point(171, 263);
+            this.txtPRECIO.Location = new System.Drawing.Point(172, 260);
             this.txtPRECIO.Name = "txtPRECIO";
             this.txtPRECIO.Size = new System.Drawing.Size(77, 20);
             this.txtPRECIO.TabIndex = 102;
             this.txtPRECIO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPRECIO_KeyPress);
+            this.txtPRECIO.Leave += new System.EventHandler(this.txtPRECIO_Leave);
             // 
             // txtDESCRIPCION
             // 
             this.txtDESCRIPCION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDESCRIPCION.Location = new System.Drawing.Point(171, 199);
+            this.txtDESCRIPCION.Location = new System.Drawing.Point(171, 179);
             this.txtDESCRIPCION.MaxLength = 100;
             this.txtDESCRIPCION.Multiline = true;
             this.txtDESCRIPCION.Name = "txtDESCRIPCION";
-            this.txtDESCRIPCION.Size = new System.Drawing.Size(342, 42);
+            this.txtDESCRIPCION.Size = new System.Drawing.Size(342, 62);
             this.txtDESCRIPCION.TabIndex = 100;
             // 
             // txtCANTIDAD
             // 
-            this.txtCANTIDAD.Location = new System.Drawing.Point(171, 155);
+            this.txtCANTIDAD.Location = new System.Drawing.Point(172, 153);
             this.txtCANTIDAD.Name = "txtCANTIDAD";
             this.txtCANTIDAD.ReadOnly = true;
             this.txtCANTIDAD.Size = new System.Drawing.Size(77, 20);
@@ -185,30 +186,6 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 88;
             // 
-            // txtUBICACION
-            // 
-            this.txtUBICACION.Location = new System.Drawing.Point(171, 17);
-            this.txtUBICACION.Name = "txtUBICACION";
-            this.txtUBICACION.ReadOnly = true;
-            this.txtUBICACION.Size = new System.Drawing.Size(211, 20);
-            this.txtUBICACION.TabIndex = 106;
-            // 
-            // txtARTICULO
-            // 
-            this.txtARTICULO.Location = new System.Drawing.Point(171, 121);
-            this.txtARTICULO.Name = "txtARTICULO";
-            this.txtARTICULO.ReadOnly = true;
-            this.txtARTICULO.Size = new System.Drawing.Size(122, 20);
-            this.txtARTICULO.TabIndex = 107;
-            // 
-            // txtCATEGORIA
-            // 
-            this.txtCATEGORIA.Location = new System.Drawing.Point(171, 88);
-            this.txtCATEGORIA.Name = "txtCATEGORIA";
-            this.txtCATEGORIA.ReadOnly = true;
-            this.txtCATEGORIA.Size = new System.Drawing.Size(151, 20);
-            this.txtCATEGORIA.TabIndex = 108;
-            // 
             // btnSCAN
             // 
             this.btnSCAN.BackgroundImage = global::PrendaSAL.Properties.Resources.fotos;
@@ -220,6 +197,32 @@
             this.btnSCAN.UseVisualStyleBackColor = true;
             this.btnSCAN.Click += new System.EventHandler(this.btnSCAN_Click);
             // 
+            // cbxSUCURSAL
+            // 
+            this.cbxSUCURSAL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSUCURSAL.FormattingEnabled = true;
+            this.cbxSUCURSAL.Location = new System.Drawing.Point(171, 17);
+            this.cbxSUCURSAL.Name = "cbxSUCURSAL";
+            this.cbxSUCURSAL.Size = new System.Drawing.Size(211, 21);
+            this.cbxSUCURSAL.TabIndex = 111;
+            // 
+            // cbxARTICULO
+            // 
+            this.cbxARTICULO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxARTICULO.FormattingEnabled = true;
+            this.cbxARTICULO.Location = new System.Drawing.Point(171, 124);
+            this.cbxARTICULO.Name = "cbxARTICULO";
+            this.cbxARTICULO.Size = new System.Drawing.Size(122, 21);
+            this.cbxARTICULO.TabIndex = 113;
+            // 
+            // txtCATEGORIA
+            // 
+            this.txtCATEGORIA.Location = new System.Drawing.Point(171, 88);
+            this.txtCATEGORIA.Name = "txtCATEGORIA";
+            this.txtCATEGORIA.ReadOnly = true;
+            this.txtCATEGORIA.Size = new System.Drawing.Size(122, 20);
+            this.txtCATEGORIA.TabIndex = 114;
+            // 
             // ArticuloForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -228,10 +231,10 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(604, 369);
-            this.Controls.Add(this.btnSCAN);
             this.Controls.Add(this.txtCATEGORIA);
-            this.Controls.Add(this.txtARTICULO);
-            this.Controls.Add(this.txtUBICACION);
+            this.Controls.Add(this.cbxARTICULO);
+            this.Controls.Add(this.cbxSUCURSAL);
+            this.Controls.Add(this.btnSCAN);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.btnCANCELAR);
             this.Controls.Add(this.btnGUARDAR);
@@ -274,9 +277,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtUBICACION;
-        private System.Windows.Forms.TextBox txtARTICULO;
-        private System.Windows.Forms.TextBox txtCATEGORIA;
         private System.Windows.Forms.Button btnSCAN;
+        private System.Windows.Forms.ComboBox cbxSUCURSAL;
+        private System.Windows.Forms.ComboBox cbxARTICULO;
+        private System.Windows.Forms.TextBox txtCATEGORIA;
     }
 }

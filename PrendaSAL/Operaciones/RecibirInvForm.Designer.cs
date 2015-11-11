@@ -104,12 +104,11 @@
             // 
             this.tabControlEnvio.Controls.Add(this.pagCustodia);
             this.tabControlEnvio.Controls.Add(this.pagRemision);
-            this.tabControlEnvio.Location = new System.Drawing.Point(3, 12);
+            this.tabControlEnvio.Location = new System.Drawing.Point(4, 7);
             this.tabControlEnvio.Name = "tabControlEnvio";
             this.tabControlEnvio.SelectedIndex = 0;
             this.tabControlEnvio.Size = new System.Drawing.Size(894, 534);
-            this.tabControlEnvio.TabIndex = 1;
-            this.tabControlEnvio.SelectedIndexChanged += new System.EventHandler(this.tabControlEnvio_SelectedIndexChanged);
+            this.tabControlEnvio.TabIndex = 2;
             // 
             // pagCustodia
             // 
@@ -298,7 +297,6 @@
             this.tblCustodia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblCustodia.Size = new System.Drawing.Size(857, 306);
             this.tblCustodia.TabIndex = 145;
-            this.tblCustodia.DataSourceChanged += new System.EventHandler(this.tblCustodia_DataSourceChanged);
             // 
             // ID_MOV
             // 
@@ -410,7 +408,6 @@
             this.txtNUMERO_Custodia.Size = new System.Drawing.Size(129, 30);
             this.txtNUMERO_Custodia.TabIndex = 139;
             this.txtNUMERO_Custodia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNUMERO_Custodia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNUMERO_Custodia_KeyPress);
             // 
             // label5
             // 
@@ -446,7 +443,6 @@
             this.btnRECIBIR_CUSTODIA.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRECIBIR_CUSTODIA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRECIBIR_CUSTODIA.UseVisualStyleBackColor = true;
-            this.btnRECIBIR_CUSTODIA.Click += new System.EventHandler(this.RECIBIR_CUSTODIA);
             // 
             // pagRemision
             // 
@@ -633,7 +629,6 @@
             this.tblInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblInventario.Size = new System.Drawing.Size(857, 306);
             this.tblInventario.TabIndex = 166;
-            this.tblInventario.DataSourceChanged += new System.EventHandler(this.tblInventario_DataSourceChanged);
             // 
             // ID_MOV_RM
             // 
@@ -746,7 +741,6 @@
             this.txtNUMERO_Remision.Size = new System.Drawing.Size(129, 30);
             this.txtNUMERO_Remision.TabIndex = 160;
             this.txtNUMERO_Remision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNUMERO_Remision.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNUMERO_Remision_KeyPress);
             // 
             // label16
             // 
@@ -774,15 +768,14 @@
             // 
             this.btnRECIBIR_REMISION.Enabled = false;
             this.btnRECIBIR_REMISION.Image = global::PrendaSAL.Properties.Resources.recibir;
-            this.btnRECIBIR_REMISION.Location = new System.Drawing.Point(800, 16);
+            this.btnRECIBIR_REMISION.Location = new System.Drawing.Point(791, 16);
             this.btnRECIBIR_REMISION.Name = "btnRECIBIR_REMISION";
-            this.btnRECIBIR_REMISION.Size = new System.Drawing.Size(73, 63);
+            this.btnRECIBIR_REMISION.Size = new System.Drawing.Size(82, 63);
             this.btnRECIBIR_REMISION.TabIndex = 157;
             this.btnRECIBIR_REMISION.Text = "Recibir";
             this.btnRECIBIR_REMISION.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRECIBIR_REMISION.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRECIBIR_REMISION.UseVisualStyleBackColor = true;
-            this.btnRECIBIR_REMISION.Click += new System.EventHandler(this.RECIBIR_REMISION);
             // 
             // RecibirInvForm
             // 
@@ -814,8 +807,11 @@
 
         private System.Windows.Forms.TabControl tabControlEnvio;
         private System.Windows.Forms.TabPage pagCustodia;
-        private System.Windows.Forms.Button btnRECIBIR_CUSTODIA;
-        private System.Windows.Forms.TabPage pagRemision;
+        private System.Windows.Forms.TextBox txtESTADO_Custodia;
+        private System.Windows.Forms.TextBox txtRecibe_Custodia;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbARTICULOS_CUSTODIA;
         private System.Windows.Forms.TextBox txtTraslada_Custodia;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbxSUC_ORG_Custodia;
@@ -839,8 +835,11 @@
         private System.Windows.Forms.TextBox txtNUMERO_Custodia;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbARTICULOS_CUSTODIA;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnRECIBIR_CUSTODIA;
+        private System.Windows.Forms.TabPage pagRemision;
+        private System.Windows.Forms.TextBox txtESTADO_Remision;
+        private System.Windows.Forms.TextBox txtRecibe_Remision;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbARTICULOS_REMISION;
         private System.Windows.Forms.TextBox txtTraslada_Remision;
@@ -852,6 +851,12 @@
         private System.Windows.Forms.ComboBox cbxTIPODOC_Remision;
         private System.Windows.Forms.Label lbTOTAL_REMISION;
         private System.Windows.Forms.DataGridView tblInventario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_MOV_RM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO_RM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD_RM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO_RM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION_RM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
         private System.Windows.Forms.TextBox txtEnvia_Remision;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
@@ -861,17 +866,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnRECIBIR_REMISION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_MOV_RM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO_RM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD_RM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO_RM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION_RM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
-        private System.Windows.Forms.TextBox txtRecibe_Custodia;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtRecibe_Remision;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtESTADO_Custodia;
-        private System.Windows.Forms.TextBox txtESTADO_Remision;
+
     }
 }

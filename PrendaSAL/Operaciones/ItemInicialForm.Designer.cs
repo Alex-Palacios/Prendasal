@@ -1,6 +1,6 @@
 ﻿namespace PrendaSAL.Operaciones
 {
-    partial class ItemInicial
+    partial class ItemInicialForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCODIGO = new System.Windows.Forms.TextBox();
-            this.cbxCATEGORIA = new System.Windows.Forms.ComboBox();
             this.cbxITEM = new System.Windows.Forms.ComboBox();
             this.txtCANTIDAD = new System.Windows.Forms.TextBox();
             this.txtDESCRIPCION = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@
             this.btnGUARDAR = new System.Windows.Forms.Button();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.txtCATEGORIA = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -82,21 +82,21 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(63, 129);
+            this.label4.Location = new System.Drawing.Point(53, 124);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "KIL/ART";
+            this.label4.Text = "ARTICULO";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(42, 163);
+            this.label5.Location = new System.Drawing.Point(48, 163);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "PESO/CANT";
+            this.label5.Text = "CANTIDAD";
             // 
             // label6
             // 
@@ -112,7 +112,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(69, 269);
+            this.label7.Location = new System.Drawing.Point(69, 262);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 6;
@@ -122,7 +122,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(69, 312);
+            this.label8.Location = new System.Drawing.Point(70, 305);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 7;
@@ -136,15 +136,6 @@
             this.txtCODIGO.Name = "txtCODIGO";
             this.txtCODIGO.Size = new System.Drawing.Size(211, 20);
             this.txtCODIGO.TabIndex = 8;
-            // 
-            // cbxCATEGORIA
-            // 
-            this.cbxCATEGORIA.FormattingEnabled = true;
-            this.cbxCATEGORIA.Location = new System.Drawing.Point(159, 90);
-            this.cbxCATEGORIA.Name = "cbxCATEGORIA";
-            this.cbxCATEGORIA.Size = new System.Drawing.Size(121, 21);
-            this.cbxCATEGORIA.TabIndex = 9;
-            this.cbxCATEGORIA.SelectedIndexChanged += new System.EventHandler(this.cbxCATEGORIA_SelectedIndexChanged);
             // 
             // cbxITEM
             // 
@@ -161,6 +152,7 @@
             this.txtCANTIDAD.Size = new System.Drawing.Size(77, 20);
             this.txtCANTIDAD.TabIndex = 11;
             this.txtCANTIDAD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCANTIDAD_KeyPress);
+            this.txtCANTIDAD.Leave += new System.EventHandler(this.txtCANTIDAD_Leave);
             // 
             // txtDESCRIPCION
             // 
@@ -179,6 +171,7 @@
             this.txtCOSTO.Size = new System.Drawing.Size(77, 20);
             this.txtCOSTO.TabIndex = 13;
             this.txtCOSTO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCOSTO_KeyPress);
+            this.txtCOSTO.Leave += new System.EventHandler(this.txtCOSTO_Leave);
             // 
             // txtPRECIO
             // 
@@ -187,6 +180,7 @@
             this.txtPRECIO.Size = new System.Drawing.Size(77, 20);
             this.txtPRECIO.TabIndex = 14;
             this.txtPRECIO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPRECIO_KeyPress);
+            this.txtPRECIO.Leave += new System.EventHandler(this.txtPRECIO_Leave);
             // 
             // btnCANCELAR
             // 
@@ -231,7 +225,15 @@
             this.label19.TabIndex = 86;
             this.label19.Text = "UBICACION";
             // 
-            // ItemInicial
+            // txtCATEGORIA
+            // 
+            this.txtCATEGORIA.Location = new System.Drawing.Point(159, 90);
+            this.txtCATEGORIA.Name = "txtCATEGORIA";
+            this.txtCATEGORIA.ReadOnly = true;
+            this.txtCATEGORIA.Size = new System.Drawing.Size(121, 20);
+            this.txtCATEGORIA.TabIndex = 88;
+            // 
+            // ItemInicialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -239,6 +241,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(554, 402);
+            this.Controls.Add(this.txtCATEGORIA);
             this.Controls.Add(this.cbxSUCURSAL);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.btnCANCELAR);
@@ -248,7 +251,6 @@
             this.Controls.Add(this.txtDESCRIPCION);
             this.Controls.Add(this.txtCANTIDAD);
             this.Controls.Add(this.cbxITEM);
-            this.Controls.Add(this.cbxCATEGORIA);
             this.Controls.Add(this.txtCODIGO);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -260,7 +262,7 @@
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
-            this.Name = "ItemInicial";
+            this.Name = "ItemInicialForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ARTICULO";
@@ -281,7 +283,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCODIGO;
-        private System.Windows.Forms.ComboBox cbxCATEGORIA;
         private System.Windows.Forms.ComboBox cbxITEM;
         private System.Windows.Forms.TextBox txtCANTIDAD;
         private System.Windows.Forms.TextBox txtDESCRIPCION;
@@ -291,5 +292,6 @@
         private System.Windows.Forms.Button btnGUARDAR;
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtCATEGORIA;
     }
 }

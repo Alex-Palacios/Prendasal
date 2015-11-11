@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.btnGUARDAR = new System.Windows.Forms.Button();
             this.viewerREPORTE = new Microsoft.Reporting.WinForms.ReportViewer();
             this.bsKPM = new System.Windows.Forms.BindingSource(this.components);
             this.dSKPM = new PrendaSAL.Informes.DSKPM();
@@ -39,26 +38,13 @@
             this.label19 = new System.Windows.Forms.Label();
             this.bsReporteDiario = new System.Windows.Forms.BindingSource(this.components);
             this.dSReporteDiario = new PrendaSAL.Informes.DSReporteDiario();
+            this.btnELIMINAR = new System.Windows.Forms.Button();
+            this.btnGUARDAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bsKPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSKPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsReporteDiario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSReporteDiario)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnGUARDAR
-            // 
-            this.btnGUARDAR.BackgroundImage = global::PrendaSAL.Properties.Resources.lock_key;
-            this.btnGUARDAR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGUARDAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGUARDAR.Location = new System.Drawing.Point(894, 377);
-            this.btnGUARDAR.Name = "btnGUARDAR";
-            this.btnGUARDAR.Size = new System.Drawing.Size(130, 119);
-            this.btnGUARDAR.TabIndex = 4;
-            this.btnGUARDAR.Text = "CORTE DEL FECHA";
-            this.btnGUARDAR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGUARDAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGUARDAR.UseVisualStyleBackColor = true;
-            this.btnGUARDAR.Click += new System.EventHandler(this.btnCORTE_DIARIO_Click);
             // 
             // viewerREPORTE
             // 
@@ -160,6 +146,36 @@
             this.dSReporteDiario.DataSetName = "DSReporteDiario";
             this.dSReporteDiario.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // btnELIMINAR
+            // 
+            this.btnELIMINAR.BackgroundImage = global::PrendaSAL.Properties.Resources.delete;
+            this.btnELIMINAR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnELIMINAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnELIMINAR.Location = new System.Drawing.Point(890, 478);
+            this.btnELIMINAR.Name = "btnELIMINAR";
+            this.btnELIMINAR.Size = new System.Drawing.Size(130, 41);
+            this.btnELIMINAR.TabIndex = 87;
+            this.btnELIMINAR.Text = "DESHACER CORTE DEL FECHA";
+            this.btnELIMINAR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnELIMINAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnELIMINAR.UseVisualStyleBackColor = true;
+            this.btnELIMINAR.Click += new System.EventHandler(this.btnELIMINAR_Click);
+            // 
+            // btnGUARDAR
+            // 
+            this.btnGUARDAR.BackgroundImage = global::PrendaSAL.Properties.Resources.candado1;
+            this.btnGUARDAR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGUARDAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGUARDAR.Location = new System.Drawing.Point(890, 335);
+            this.btnGUARDAR.Name = "btnGUARDAR";
+            this.btnGUARDAR.Size = new System.Drawing.Size(130, 137);
+            this.btnGUARDAR.TabIndex = 4;
+            this.btnGUARDAR.Text = "GUARDAR CORTE DEL FECHA";
+            this.btnGUARDAR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGUARDAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGUARDAR.UseVisualStyleBackColor = true;
+            this.btnGUARDAR.Click += new System.EventHandler(this.btnGUARDAR_Click);
+            // 
             // CorteDiarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -168,6 +184,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1066, 545);
+            this.Controls.Add(this.btnELIMINAR);
             this.Controls.Add(this.cbxSUCURSAL);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.calendarCORTE);
@@ -199,6 +216,7 @@
         private DevComponents.Editors.DateTimeAdv.MonthCalendarAdv calendarCORTE;
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnELIMINAR;
 
     }
 }

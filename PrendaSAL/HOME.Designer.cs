@@ -32,13 +32,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
             this.styleForm = new DevComponents.DotNetBar.StyleManager(this.components);
             this.MENU_PRINCIPAL = new DevComponents.DotNetBar.RibbonControl();
+            this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
+            this.grupoReportesGerenciales = new DevComponents.DotNetBar.RibbonBar();
+            this.btnRptTransSuc = new DevComponents.DotNetBar.ButtonItem();
+            this.grupoReportesConta = new DevComponents.DotNetBar.RibbonBar();
+            this.btnReportesCompras = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptVencidos = new DevComponents.DotNetBar.ButtonItem();
+            this.grupoReporteVarios = new DevComponents.DotNetBar.RibbonBar();
+            this.btnReporteContratos = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMenuReportesCancelados = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReporteTransDiarias = new DevComponents.DotNetBar.ButtonItem();
+            this.grupoReportesInventario = new DevComponents.DotNetBar.RibbonBar();
+            this.btnReporteResguardo = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReporteEnVenta = new DevComponents.DotNetBar.ButtonItem();
+            this.btnReporteKardex = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel7 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.btnMenuCierreVencidos = new DevComponents.DotNetBar.ButtonItem();
             this.grupoOperacionesInventario = new DevComponents.DotNetBar.RibbonBar();
-            this.btnMenuRecibirInv = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMenuEnviarInv = new DevComponents.DotNetBar.ButtonItem();
             this.btnInventarioInicial = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMenuEnviarInv = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMenuRecibirInv = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel3 = new DevComponents.DotNetBar.RibbonPanel();
             this.grupoConfigConexion = new DevComponents.DotNetBar.RibbonBar();
             this.btnConfigConexionDB = new DevComponents.DotNetBar.ButtonItem();
@@ -49,17 +63,10 @@
             this.grupoConfigAdmin = new DevComponents.DotNetBar.RibbonBar();
             this.btnConfigPrecios = new DevComponents.DotNetBar.ButtonItem();
             this.btnConfigReglas = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
-            this.grupoReportesConta = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReportesCompras = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteTransDiarias = new DevComponents.DotNetBar.ButtonItem();
-            this.grupoReporteVarios = new DevComponents.DotNetBar.RibbonBar();
-            this.btnVencidosDia = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMenuReportesCancelados = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteContratos = new DevComponents.DotNetBar.ButtonItem();
-            this.grupoReportesInventario = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReporteResguardo = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteEnVenta = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonPanel6 = new DevComponents.DotNetBar.RibbonPanel();
+            this.grupoAyudaInfo = new DevComponents.DotNetBar.RibbonBar();
+            this.btnMenuManualUsuario = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMenuAcercaDe = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.btnCorteDiario = new DevComponents.DotNetBar.ButtonX();
             this.grupoCajaChica = new DevComponents.DotNetBar.RibbonBar();
@@ -78,10 +85,6 @@
             this.btnMenuClientes = new DevComponents.DotNetBar.ButtonItem();
             this.btnMenuAMIGO = new DevComponents.DotNetBar.ButtonItem();
             this.btnMenuVIP = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonPanel6 = new DevComponents.DotNetBar.RibbonPanel();
-            this.grupoAyudaInfo = new DevComponents.DotNetBar.RibbonBar();
-            this.btnMenuManualUsuario = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMenuAcercaDe = new DevComponents.DotNetBar.ButtonItem();
             this.moduloCATALOGOS = new DevComponents.DotNetBar.RibbonTabItem();
             this.moduloMOVIMIENTOS = new DevComponents.DotNetBar.RibbonTabItem();
             this.moduloOPERACIONES = new DevComponents.DotNetBar.RibbonTabItem();
@@ -111,12 +114,12 @@
             this.cascadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paraleloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MENU_PRINCIPAL.SuspendLayout();
+            this.ribbonPanel4.SuspendLayout();
             this.ribbonPanel7.SuspendLayout();
             this.ribbonPanel3.SuspendLayout();
-            this.ribbonPanel4.SuspendLayout();
+            this.ribbonPanel6.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
-            this.ribbonPanel6.SuspendLayout();
             this.STATUS_BAR.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,12 +135,12 @@
             this.MENU_PRINCIPAL.BackgroundStyle.Class = "";
             this.MENU_PRINCIPAL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MENU_PRINCIPAL.CaptionVisible = true;
-            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel2);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel4);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel7);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel3);
-            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel1);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel6);
+            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel2);
+            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel1);
             resources.ApplyResources(this.MENU_PRINCIPAL, "MENU_PRINCIPAL");
             this.MENU_PRINCIPAL.EnableQatPlacement = false;
             this.MENU_PRINCIPAL.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -157,6 +160,259 @@
             this.menuVista});
             this.MENU_PRINCIPAL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MENU_PRINCIPAL.TabGroupHeight = 14;
+            // 
+            // ribbonPanel4
+            // 
+            this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel4.Controls.Add(this.grupoReportesGerenciales);
+            this.ribbonPanel4.Controls.Add(this.grupoReportesConta);
+            this.ribbonPanel4.Controls.Add(this.grupoReporteVarios);
+            this.ribbonPanel4.Controls.Add(this.grupoReportesInventario);
+            resources.ApplyResources(this.ribbonPanel4, "ribbonPanel4");
+            this.ribbonPanel4.Name = "ribbonPanel4";
+            // 
+            // 
+            // 
+            this.ribbonPanel4.Style.Class = "";
+            this.ribbonPanel4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel4.StyleMouseDown.Class = "";
+            this.ribbonPanel4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanel4.StyleMouseOver.Class = "";
+            this.ribbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // grupoReportesGerenciales
+            // 
+            this.grupoReportesGerenciales.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.grupoReportesGerenciales.BackgroundMouseOverStyle.Class = "";
+            this.grupoReportesGerenciales.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesGerenciales.BackgroundStyle.Class = "";
+            this.grupoReportesGerenciales.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoReportesGerenciales.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoReportesGerenciales, "grupoReportesGerenciales");
+            this.grupoReportesGerenciales.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnRptTransSuc});
+            this.grupoReportesGerenciales.Name = "grupoReportesGerenciales";
+            this.grupoReportesGerenciales.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.grupoReportesGerenciales.TitleStyle.Class = "";
+            this.grupoReportesGerenciales.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesGerenciales.TitleStyleMouseOver.Class = "";
+            this.grupoReportesGerenciales.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnRptTransSuc
+            // 
+            this.btnRptTransSuc.Image = global::PrendaSAL.Properties.Resources.graficos1;
+            this.btnRptTransSuc.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptTransSuc.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptTransSuc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptTransSuc.Name = "btnRptTransSuc";
+            this.btnRptTransSuc.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptTransSuc, "btnRptTransSuc");
+            // 
+            // grupoReportesConta
+            // 
+            this.grupoReportesConta.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.grupoReportesConta.BackgroundMouseOverStyle.Class = "";
+            this.grupoReportesConta.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesConta.BackgroundStyle.Class = "";
+            this.grupoReportesConta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoReportesConta.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoReportesConta, "grupoReportesConta");
+            this.grupoReportesConta.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnReportesCompras,
+            this.btnRptVencidos});
+            this.grupoReportesConta.Name = "grupoReportesConta";
+            this.grupoReportesConta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.grupoReportesConta.TitleStyle.Class = "";
+            this.grupoReportesConta.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesConta.TitleStyleMouseOver.Class = "";
+            this.grupoReportesConta.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnReportesCompras
+            // 
+            this.btnReportesCompras.Image = global::PrendaSAL.Properties.Resources.comprasdeloro;
+            this.btnReportesCompras.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnReportesCompras.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnReportesCompras.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReportesCompras.Name = "btnReportesCompras";
+            this.btnReportesCompras.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReportesCompras, "btnReportesCompras");
+            this.btnReportesCompras.Click += new System.EventHandler(this.menuReporteComprasORO);
+            // 
+            // btnRptVencidos
+            // 
+            this.btnRptVencidos.Image = global::PrendaSAL.Properties.Resources.lingote;
+            this.btnRptVencidos.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptVencidos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptVencidos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptVencidos.Name = "btnRptVencidos";
+            this.btnRptVencidos.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptVencidos, "btnRptVencidos");
+            this.btnRptVencidos.Click += new System.EventHandler(this.menuReporteVencidosORO);
+            // 
+            // grupoReporteVarios
+            // 
+            this.grupoReporteVarios.AutoOverflowEnabled = true;
+            this.grupoReporteVarios.AutoSizeItems = false;
+            // 
+            // 
+            // 
+            this.grupoReporteVarios.BackgroundMouseOverStyle.Class = "";
+            this.grupoReporteVarios.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReporteVarios.BackgroundStyle.Class = "";
+            this.grupoReporteVarios.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoReporteVarios.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoReporteVarios, "grupoReporteVarios");
+            this.grupoReporteVarios.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnReporteContratos,
+            this.btnMenuReportesCancelados,
+            this.btnReporteTransDiarias});
+            this.grupoReporteVarios.Name = "grupoReporteVarios";
+            this.grupoReporteVarios.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.grupoReporteVarios.TitleStyle.Class = "";
+            this.grupoReporteVarios.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReporteVarios.TitleStyleMouseOver.Class = "";
+            this.grupoReporteVarios.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnReporteContratos
+            // 
+            this.btnReporteContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnReporteContratos.Image = global::PrendaSAL.Properties.Resources.contratos2;
+            this.btnReporteContratos.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnReporteContratos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnReporteContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReporteContratos.Name = "btnReporteContratos";
+            this.btnReporteContratos.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReporteContratos, "btnReporteContratos");
+            this.btnReporteContratos.Click += new System.EventHandler(this.menuReportesContratos);
+            // 
+            // btnMenuReportesCancelados
+            // 
+            this.btnMenuReportesCancelados.Image = global::PrendaSAL.Properties.Resources.canceado;
+            this.btnMenuReportesCancelados.ImageFixedSize = new System.Drawing.Size(100, 60);
+            this.btnMenuReportesCancelados.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuReportesCancelados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuReportesCancelados.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.btnMenuReportesCancelados.Name = "btnMenuReportesCancelados";
+            this.btnMenuReportesCancelados.Stretch = true;
+            this.btnMenuReportesCancelados.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuReportesCancelados, "btnMenuReportesCancelados");
+            this.btnMenuReportesCancelados.Click += new System.EventHandler(this.menuReportesCancelados);
+            // 
+            // btnReporteTransDiarias
+            // 
+            this.btnReporteTransDiarias.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnReporteTransDiarias.FixedSize = new System.Drawing.Size(80, 80);
+            this.btnReporteTransDiarias.Image = global::PrendaSAL.Properties.Resources.reporte3;
+            this.btnReporteTransDiarias.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnReporteTransDiarias.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnReporteTransDiarias.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReporteTransDiarias.Name = "btnReporteTransDiarias";
+            this.btnReporteTransDiarias.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReporteTransDiarias, "btnReporteTransDiarias");
+            this.btnReporteTransDiarias.Click += new System.EventHandler(this.menuReportesDiario);
+            // 
+            // grupoReportesInventario
+            // 
+            this.grupoReportesInventario.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.grupoReportesInventario.BackgroundMouseOverStyle.Class = "";
+            this.grupoReportesInventario.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesInventario.BackgroundStyle.Class = "";
+            this.grupoReportesInventario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoReportesInventario.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoReportesInventario, "grupoReportesInventario");
+            this.grupoReportesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnReporteResguardo,
+            this.btnReporteEnVenta,
+            this.btnReporteKardex});
+            this.grupoReportesInventario.Name = "grupoReportesInventario";
+            this.grupoReportesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            // 
+            // 
+            // 
+            this.grupoReportesInventario.TitleStyle.Class = "";
+            this.grupoReportesInventario.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grupoReportesInventario.TitleStyleMouseOver.Class = "";
+            this.grupoReportesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // btnReporteResguardo
+            // 
+            this.btnReporteResguardo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnReporteResguardo.Image = global::PrendaSAL.Properties.Resources.caja;
+            this.btnReporteResguardo.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnReporteResguardo.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnReporteResguardo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReporteResguardo.Name = "btnReporteResguardo";
+            this.btnReporteResguardo.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReporteResguardo, "btnReporteResguardo");
+            this.btnReporteResguardo.Click += new System.EventHandler(this.menuReportesInventarioResguardo);
+            // 
+            // btnReporteEnVenta
+            // 
+            this.btnReporteEnVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnReporteEnVenta.Image = global::PrendaSAL.Properties.Resources.electro1;
+            this.btnReporteEnVenta.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnReporteEnVenta.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnReporteEnVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReporteEnVenta.Name = "btnReporteEnVenta";
+            this.btnReporteEnVenta.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReporteEnVenta, "btnReporteEnVenta");
+            this.btnReporteEnVenta.Click += new System.EventHandler(this.menuReportesInventarioVenta);
+            // 
+            // btnReporteKardex
+            // 
+            this.btnReporteKardex.Image = global::PrendaSAL.Properties.Resources.kardex;
+            this.btnReporteKardex.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnReporteKardex.Name = "btnReporteKardex";
+            this.btnReporteKardex.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnReporteKardex, "btnReporteKardex");
             // 
             // ribbonPanel7
             // 
@@ -238,9 +494,9 @@
             this.grupoOperacionesInventario.ContainerControlProcessDialogKey = true;
             resources.ApplyResources(this.grupoOperacionesInventario, "grupoOperacionesInventario");
             this.grupoOperacionesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMenuRecibirInv,
+            this.btnInventarioInicial,
             this.btnMenuEnviarInv,
-            this.btnInventarioInicial});
+            this.btnMenuRecibirInv});
             this.grupoOperacionesInventario.Name = "grupoOperacionesInventario";
             this.grupoOperacionesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
@@ -254,16 +510,17 @@
             this.grupoOperacionesInventario.TitleStyleMouseOver.Class = "";
             this.grupoOperacionesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnMenuRecibirInv
+            // btnInventarioInicial
             // 
-            this.btnMenuRecibirInv.Image = global::PrendaSAL.Properties.Resources.entregainv;
-            this.btnMenuRecibirInv.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnMenuRecibirInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuRecibirInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuRecibirInv.Name = "btnMenuRecibirInv";
-            this.btnMenuRecibirInv.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuRecibirInv, "btnMenuRecibirInv");
-            this.btnMenuRecibirInv.Click += new System.EventHandler(this.menuOperacionesRecibirInv);
+            this.btnInventarioInicial.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnInventarioInicial.Image = global::PrendaSAL.Properties.Resources.lista;
+            this.btnInventarioInicial.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnInventarioInicial.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnInventarioInicial.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnInventarioInicial.Name = "btnInventarioInicial";
+            this.btnInventarioInicial.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnInventarioInicial, "btnInventarioInicial");
+            this.btnInventarioInicial.Click += new System.EventHandler(this.menuOperacionesCorteInv);
             // 
             // btnMenuEnviarInv
             // 
@@ -277,17 +534,16 @@
             resources.ApplyResources(this.btnMenuEnviarInv, "btnMenuEnviarInv");
             this.btnMenuEnviarInv.Click += new System.EventHandler(this.menuOperacionesEnviarInv);
             // 
-            // btnInventarioInicial
+            // btnMenuRecibirInv
             // 
-            this.btnInventarioInicial.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnInventarioInicial.Image = global::PrendaSAL.Properties.Resources.lista;
-            this.btnInventarioInicial.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnInventarioInicial.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnInventarioInicial.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnInventarioInicial.Name = "btnInventarioInicial";
-            this.btnInventarioInicial.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnInventarioInicial, "btnInventarioInicial");
-            this.btnInventarioInicial.Click += new System.EventHandler(this.menuOperacionesCorteInv);
+            this.btnMenuRecibirInv.Image = global::PrendaSAL.Properties.Resources.entregainv;
+            this.btnMenuRecibirInv.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnMenuRecibirInv.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuRecibirInv.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuRecibirInv.Name = "btnMenuRecibirInv";
+            this.btnMenuRecibirInv.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuRecibirInv, "btnMenuRecibirInv");
+            this.btnMenuRecibirInv.Click += new System.EventHandler(this.menuOperacionesRecibirInv);
             // 
             // ribbonPanel3
             // 
@@ -456,208 +712,81 @@
             resources.ApplyResources(this.btnConfigReglas, "btnConfigReglas");
             this.btnConfigReglas.Click += new System.EventHandler(this.menuConfiguracionReglasNegocio);
             // 
-            // ribbonPanel4
+            // ribbonPanel6
             // 
-            this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel4.Controls.Add(this.grupoReportesConta);
-            this.ribbonPanel4.Controls.Add(this.grupoReporteVarios);
-            this.ribbonPanel4.Controls.Add(this.grupoReportesInventario);
-            resources.ApplyResources(this.ribbonPanel4, "ribbonPanel4");
-            this.ribbonPanel4.Name = "ribbonPanel4";
+            this.ribbonPanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonPanel6.Controls.Add(this.grupoAyudaInfo);
+            resources.ApplyResources(this.ribbonPanel6, "ribbonPanel6");
+            this.ribbonPanel6.Name = "ribbonPanel6";
             // 
             // 
             // 
-            this.ribbonPanel4.Style.Class = "";
-            this.ribbonPanel4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel6.Style.Class = "";
+            this.ribbonPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.ribbonPanel4.StyleMouseDown.Class = "";
-            this.ribbonPanel4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel6.StyleMouseDown.Class = "";
+            this.ribbonPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.ribbonPanel4.StyleMouseOver.Class = "";
-            this.ribbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanel6.StyleMouseOver.Class = "";
+            this.ribbonPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // grupoReportesConta
+            // grupoAyudaInfo
             // 
-            this.grupoReportesConta.AutoOverflowEnabled = true;
+            this.grupoAyudaInfo.AutoOverflowEnabled = true;
             // 
             // 
             // 
-            this.grupoReportesConta.BackgroundMouseOverStyle.Class = "";
-            this.grupoReportesConta.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoAyudaInfo.BackgroundMouseOverStyle.Class = "";
+            this.grupoAyudaInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.grupoReportesConta.BackgroundStyle.Class = "";
-            this.grupoReportesConta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grupoReportesConta.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.grupoReportesConta, "grupoReportesConta");
-            this.grupoReportesConta.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnReportesCompras,
-            this.btnReporteTransDiarias});
-            this.grupoReportesConta.Name = "grupoReportesConta";
-            this.grupoReportesConta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.grupoAyudaInfo.BackgroundStyle.Class = "";
+            this.grupoAyudaInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoAyudaInfo.ContainerControlProcessDialogKey = true;
+            resources.ApplyResources(this.grupoAyudaInfo, "grupoAyudaInfo");
+            this.grupoAyudaInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnMenuManualUsuario,
+            this.btnMenuAcercaDe});
+            this.grupoAyudaInfo.Name = "grupoAyudaInfo";
+            this.grupoAyudaInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
             // 
             // 
-            this.grupoReportesConta.TitleStyle.Class = "";
-            this.grupoReportesConta.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoAyudaInfo.TitleStyle.Class = "";
+            this.grupoAyudaInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.grupoReportesConta.TitleStyleMouseOver.Class = "";
-            this.grupoReportesConta.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grupoAyudaInfo.TitleStyleMouseOver.Class = "";
+            this.grupoAyudaInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnReportesCompras
+            // btnMenuManualUsuario
             // 
-            this.btnReportesCompras.Image = global::PrendaSAL.Properties.Resources.comprasdeloro;
-            this.btnReportesCompras.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReportesCompras.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReportesCompras.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReportesCompras.Name = "btnReportesCompras";
-            this.btnReportesCompras.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReportesCompras, "btnReportesCompras");
-            this.btnReportesCompras.Click += new System.EventHandler(this.menuReporteComprasORO);
+            this.btnMenuManualUsuario.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnMenuManualUsuario.Image = global::PrendaSAL.Properties.Resources.manual1;
+            this.btnMenuManualUsuario.ImageFixedSize = new System.Drawing.Size(80, 64);
+            this.btnMenuManualUsuario.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuManualUsuario.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuManualUsuario.Name = "btnMenuManualUsuario";
+            this.btnMenuManualUsuario.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuManualUsuario, "btnMenuManualUsuario");
             // 
-            // btnReporteTransDiarias
+            // btnMenuAcercaDe
             // 
-            this.btnReporteTransDiarias.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteTransDiarias.FixedSize = new System.Drawing.Size(80, 80);
-            this.btnReporteTransDiarias.Image = global::PrendaSAL.Properties.Resources.reporte3;
-            this.btnReporteTransDiarias.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteTransDiarias.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteTransDiarias.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteTransDiarias.Name = "btnReporteTransDiarias";
-            this.btnReporteTransDiarias.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteTransDiarias, "btnReporteTransDiarias");
-            this.btnReporteTransDiarias.Click += new System.EventHandler(this.menuReportesDiario);
-            // 
-            // grupoReporteVarios
-            // 
-            this.grupoReporteVarios.AutoOverflowEnabled = true;
-            this.grupoReporteVarios.AutoSizeItems = false;
-            // 
-            // 
-            // 
-            this.grupoReporteVarios.BackgroundMouseOverStyle.Class = "";
-            this.grupoReporteVarios.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoReporteVarios.BackgroundStyle.Class = "";
-            this.grupoReporteVarios.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grupoReporteVarios.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.grupoReporteVarios, "grupoReporteVarios");
-            this.grupoReporteVarios.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnVencidosDia,
-            this.btnMenuReportesCancelados,
-            this.btnReporteContratos});
-            this.grupoReporteVarios.Name = "grupoReporteVarios";
-            this.grupoReporteVarios.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            // 
-            // 
-            // 
-            this.grupoReporteVarios.TitleStyle.Class = "";
-            this.grupoReporteVarios.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoReporteVarios.TitleStyleMouseOver.Class = "";
-            this.grupoReporteVarios.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnVencidosDia
-            // 
-            this.btnVencidosDia.Image = global::PrendaSAL.Properties.Resources.dia;
-            this.btnVencidosDia.ImageFixedSize = new System.Drawing.Size(70, 64);
-            this.btnVencidosDia.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnVencidosDia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnVencidosDia.Name = "btnVencidosDia";
-            this.btnVencidosDia.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnVencidosDia, "btnVencidosDia");
-            this.btnVencidosDia.Click += new System.EventHandler(this.menuReportesVencidosDia);
-            // 
-            // btnMenuReportesCancelados
-            // 
-            this.btnMenuReportesCancelados.Image = global::PrendaSAL.Properties.Resources.canceado;
-            this.btnMenuReportesCancelados.ImageFixedSize = new System.Drawing.Size(100, 60);
-            this.btnMenuReportesCancelados.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuReportesCancelados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuReportesCancelados.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.btnMenuReportesCancelados.Name = "btnMenuReportesCancelados";
-            this.btnMenuReportesCancelados.Stretch = true;
-            this.btnMenuReportesCancelados.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuReportesCancelados, "btnMenuReportesCancelados");
-            this.btnMenuReportesCancelados.Click += new System.EventHandler(this.menuReportesCancelados);
-            // 
-            // btnReporteContratos
-            // 
-            this.btnReporteContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteContratos.Image = global::PrendaSAL.Properties.Resources.contratos2;
-            this.btnReporteContratos.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteContratos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteContratos.Name = "btnReporteContratos";
-            this.btnReporteContratos.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteContratos, "btnReporteContratos");
-            this.btnReporteContratos.Click += new System.EventHandler(this.menuReportesContratos);
-            // 
-            // grupoReportesInventario
-            // 
-            this.grupoReportesInventario.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.grupoReportesInventario.BackgroundMouseOverStyle.Class = "";
-            this.grupoReportesInventario.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoReportesInventario.BackgroundStyle.Class = "";
-            this.grupoReportesInventario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grupoReportesInventario.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.grupoReportesInventario, "grupoReportesInventario");
-            this.grupoReportesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnReporteResguardo,
-            this.btnReporteEnVenta});
-            this.grupoReportesInventario.Name = "grupoReportesInventario";
-            this.grupoReportesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            // 
-            // 
-            // 
-            this.grupoReportesInventario.TitleStyle.Class = "";
-            this.grupoReportesInventario.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoReportesInventario.TitleStyleMouseOver.Class = "";
-            this.grupoReportesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnReporteResguardo
-            // 
-            this.btnReporteResguardo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteResguardo.Image = global::PrendaSAL.Properties.Resources.caja;
-            this.btnReporteResguardo.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteResguardo.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteResguardo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteResguardo.Name = "btnReporteResguardo";
-            this.btnReporteResguardo.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteResguardo, "btnReporteResguardo");
-            this.btnReporteResguardo.Click += new System.EventHandler(this.menuReportesInventarioResguardo);
-            // 
-            // btnReporteEnVenta
-            // 
-            this.btnReporteEnVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteEnVenta.Image = global::PrendaSAL.Properties.Resources.electro1;
-            this.btnReporteEnVenta.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteEnVenta.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteEnVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteEnVenta.Name = "btnReporteEnVenta";
-            this.btnReporteEnVenta.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteEnVenta, "btnReporteEnVenta");
-            this.btnReporteEnVenta.Click += new System.EventHandler(this.menuReportesInventarioVenta);
+            this.btnMenuAcercaDe.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnMenuAcercaDe.Image = global::PrendaSAL.Properties.Resources.info2;
+            this.btnMenuAcercaDe.ImageFixedSize = new System.Drawing.Size(80, 64);
+            this.btnMenuAcercaDe.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnMenuAcercaDe.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMenuAcercaDe.Name = "btnMenuAcercaDe";
+            this.btnMenuAcercaDe.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnMenuAcercaDe, "btnMenuAcercaDe");
+            this.btnMenuAcercaDe.Click += new System.EventHandler(this.btnMenuAcercaDe_Click);
             // 
             // ribbonPanel2
             // 
@@ -982,82 +1111,6 @@
             resources.ApplyResources(this.btnMenuVIP, "btnMenuVIP");
             this.btnMenuVIP.Click += new System.EventHandler(this.menuCatalogosClientesVIP);
             // 
-            // ribbonPanel6
-            // 
-            this.ribbonPanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonPanel6.Controls.Add(this.grupoAyudaInfo);
-            resources.ApplyResources(this.ribbonPanel6, "ribbonPanel6");
-            this.ribbonPanel6.Name = "ribbonPanel6";
-            // 
-            // 
-            // 
-            this.ribbonPanel6.Style.Class = "";
-            this.ribbonPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel6.StyleMouseDown.Class = "";
-            this.ribbonPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanel6.StyleMouseOver.Class = "";
-            this.ribbonPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // grupoAyudaInfo
-            // 
-            this.grupoAyudaInfo.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.grupoAyudaInfo.BackgroundMouseOverStyle.Class = "";
-            this.grupoAyudaInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoAyudaInfo.BackgroundStyle.Class = "";
-            this.grupoAyudaInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grupoAyudaInfo.ContainerControlProcessDialogKey = true;
-            resources.ApplyResources(this.grupoAyudaInfo, "grupoAyudaInfo");
-            this.grupoAyudaInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnMenuManualUsuario,
-            this.btnMenuAcercaDe});
-            this.grupoAyudaInfo.Name = "grupoAyudaInfo";
-            this.grupoAyudaInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            // 
-            // 
-            // 
-            this.grupoAyudaInfo.TitleStyle.Class = "";
-            this.grupoAyudaInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grupoAyudaInfo.TitleStyleMouseOver.Class = "";
-            this.grupoAyudaInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // btnMenuManualUsuario
-            // 
-            this.btnMenuManualUsuario.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnMenuManualUsuario.Image = global::PrendaSAL.Properties.Resources.manual1;
-            this.btnMenuManualUsuario.ImageFixedSize = new System.Drawing.Size(80, 64);
-            this.btnMenuManualUsuario.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuManualUsuario.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuManualUsuario.Name = "btnMenuManualUsuario";
-            this.btnMenuManualUsuario.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuManualUsuario, "btnMenuManualUsuario");
-            // 
-            // btnMenuAcercaDe
-            // 
-            this.btnMenuAcercaDe.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnMenuAcercaDe.Image = global::PrendaSAL.Properties.Resources.info2;
-            this.btnMenuAcercaDe.ImageFixedSize = new System.Drawing.Size(80, 64);
-            this.btnMenuAcercaDe.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuAcercaDe.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuAcercaDe.Name = "btnMenuAcercaDe";
-            this.btnMenuAcercaDe.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuAcercaDe, "btnMenuAcercaDe");
-            this.btnMenuAcercaDe.Click += new System.EventHandler(this.btnMenuAcercaDe_Click);
-            // 
             // moduloCATALOGOS
             // 
             this.moduloCATALOGOS.Name = "moduloCATALOGOS";
@@ -1066,7 +1119,6 @@
             // 
             // moduloMOVIMIENTOS
             // 
-            this.moduloMOVIMIENTOS.Checked = true;
             this.moduloMOVIMIENTOS.Name = "moduloMOVIMIENTOS";
             this.moduloMOVIMIENTOS.Panel = this.ribbonPanel2;
             resources.ApplyResources(this.moduloMOVIMIENTOS, "moduloMOVIMIENTOS");
@@ -1079,6 +1131,7 @@
             // 
             // moduloREPORTES
             // 
+            this.moduloREPORTES.Checked = true;
             this.moduloREPORTES.Name = "moduloREPORTES";
             this.moduloREPORTES.Panel = this.ribbonPanel4;
             resources.ApplyResources(this.moduloREPORTES, "moduloREPORTES");
@@ -1298,12 +1351,12 @@
             this.Load += new System.EventHandler(this.HOME_Load);
             this.MENU_PRINCIPAL.ResumeLayout(false);
             this.MENU_PRINCIPAL.PerformLayout();
+            this.ribbonPanel4.ResumeLayout(false);
             this.ribbonPanel7.ResumeLayout(false);
             this.ribbonPanel3.ResumeLayout(false);
-            this.ribbonPanel4.ResumeLayout(false);
+            this.ribbonPanel6.ResumeLayout(false);
             this.ribbonPanel2.ResumeLayout(false);
             this.ribbonPanel1.ResumeLayout(false);
-            this.ribbonPanel6.ResumeLayout(false);
             this.STATUS_BAR.ResumeLayout(false);
             this.STATUS_BAR.PerformLayout();
             this.ResumeLayout(false);
@@ -1386,12 +1439,15 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
         private DevComponents.DotNetBar.ButtonItem btnMenuCierreVencidos;
         private DevComponents.DotNetBar.ButtonItem btnMenuReportesCancelados;
-        private DevComponents.DotNetBar.ButtonItem btnVencidosDia;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem paraleloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem minimizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarTodasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cascadaToolStripMenuItem;
+        private DevComponents.DotNetBar.ButtonItem btnRptVencidos;
+        private DevComponents.DotNetBar.RibbonBar grupoReportesGerenciales;
+        private DevComponents.DotNetBar.ButtonItem btnRptTransSuc;
         private DevComponents.DotNetBar.ButtonItem btnReporteTransDiarias;
+        private DevComponents.DotNetBar.ButtonItem btnReporteKardex;
     }
 }

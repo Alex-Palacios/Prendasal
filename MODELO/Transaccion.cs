@@ -188,6 +188,20 @@ namespace MODELO
 
 
 
+
+    public enum eTipoTraslado
+    {
+        CUSTODIA_VALORES = 1,
+        NOTA_REMISION,
+    }
+
+
+    public enum eEstadoTraslado
+    {
+        PENDIENTE = 1,
+        RECIBIDO,
+    }
+
     public class Transaccion
     {
         public Transaccion()

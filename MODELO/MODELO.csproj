@@ -56,7 +56,7 @@
     <Compile Include="CorteDiario.cs" />
     <Compile Include="Gasto.cs" />
     <Compile Include="Images.cs" />
-    <Compile Include="Inventario.cs" />
+    <Compile Include="Kardex.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="MovCash.cs" />
     <Compile Include="Prestamo.cs" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="DSComprasKilMes" targetNamespace="http://tempuri.org/DSComprasKilMes.xsd" xmlns:mstns="http://tempuri.org/DSComprasKilMes.xsd" xmlns="http://tempuri.org/DSComprasKilMes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DSComprasOro" targetNamespace="http://tempuri.org/DSComprasKilMes.xsd" xmlns:mstns="http://tempuri.org/DSComprasKilMes.xsd" xmlns="http://tempuri.org/DSComprasKilMes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DSComprasKilMes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSComprasKilMes" msprop:Generator_UserDSName="DSComprasKilMes">
+  <xs:element name="DSComprasOro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSComprasOro" msprop:Generator_UserDSName="DSComprasOro">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="COMPRASKIL" msprop:Generator_TableClassName="COMPRASKILDataTable" msprop:Generator_TableVarName="tableCOMPRASKIL" msprop:Generator_RowChangedName="COMPRASKILRowChanged" msprop:Generator_TablePropName="COMPRASKIL" msprop:Generator_RowDeletingName="COMPRASKILRowDeleting" msprop:Generator_RowChangingName="COMPRASKILRowChanging" msprop:Generator_RowEvHandlerName="COMPRASKILRowChangeEventHandler" msprop:Generator_RowDeletedName="COMPRASKILRowDeleted" msprop:Generator_RowClassName="COMPRASKILRow" msprop:Generator_UserTableName="COMPRASKIL" msprop:Generator_RowEvArgName="COMPRASKILRowChangeEvent">
+        <xs:element name="COMPRAS_ORO" msprop:Generator_TableClassName="COMPRAS_ORODataTable" msprop:Generator_TableVarName="tableCOMPRAS_ORO" msprop:Generator_TablePropName="COMPRAS_ORO" msprop:Generator_RowDeletingName="COMPRAS_ORORowDeleting" msprop:Generator_RowChangingName="COMPRAS_ORORowChanging" msprop:Generator_RowEvHandlerName="COMPRAS_ORORowChangeEventHandler" msprop:Generator_RowDeletedName="COMPRAS_ORORowDeleted" msprop:Generator_UserTableName="COMPRAS_ORO" msprop:Generator_RowChangedName="COMPRAS_ORORowChanged" msprop:Generator_RowEvArgName="COMPRAS_ORORowChangeEvent" msprop:Generator_RowClassName="COMPRAS_ORORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUCURSAL" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SUCURSAL" msprop:Generator_ColumnVarNameInTable="columnSUCURSAL" msprop:Generator_ColumnPropNameInTable="SUCURSALColumn" msprop:Generator_UserColumnName="SUCURSAL" type="xs:string" minOccurs="0" />
@@ -21,9 +21,9 @@
               <xs:element name="FECHA" msprop:Generator_ColumnVarNameInTable="columnFECHA" msprop:Generator_ColumnPropNameInRow="FECHA" msprop:Generator_ColumnPropNameInTable="FECHAColumn" msprop:Generator_UserColumnName="FECHA" type="xs:dateTime" minOccurs="0" />
               <xs:element name="ARTICULO" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="ARTICULO" msprop:Generator_ColumnVarNameInTable="columnARTICULO" msprop:Generator_ColumnPropNameInTable="ARTICULOColumn" msprop:Generator_UserColumnName="ARTICULO" type="xs:string" minOccurs="0" />
               <xs:element name="KILATAJE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="KILATAJE" msprop:Generator_ColumnVarNameInTable="columnKILATAJE" msprop:Generator_ColumnPropNameInTable="KILATAJEColumn" msprop:Generator_UserColumnName="KILATAJE" type="xs:string" minOccurs="0" />
-              <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:double" minOccurs="0" />
+              <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:decimal" minOccurs="0" />
               <xs:element name="MONTO" msprop:Generator_ColumnVarNameInTable="columnMONTO" msprop:Generator_ColumnPropNameInRow="MONTO" msprop:Generator_ColumnPropNameInTable="MONTOColumn" msprop:Generator_UserColumnName="MONTO" type="xs:decimal" minOccurs="0" />
-              <xs:element name="RESPONSABLE" msprop:Generator_ColumnVarNameInTable="columnRESPONSABLE" msprop:Generator_ColumnPropNameInRow="RESPONSABLE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="RESPONSABLEColumn" msprop:Generator_UserColumnName="RESPONSABLE" type="xs:string" minOccurs="0" />
+              <xs:element name="RESPONSABLE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="RESPONSABLE" msprop:Generator_ColumnVarNameInTable="columnRESPONSABLE" msprop:Generator_ColumnPropNameInTable="RESPONSABLEColumn" msprop:Generator_UserColumnName="RESPONSABLE" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

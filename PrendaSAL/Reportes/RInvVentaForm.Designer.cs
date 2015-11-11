@@ -31,8 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rdbCODIGO = new System.Windows.Forms.RadioButton();
             this.rdbDETALLE = new System.Windows.Forms.RadioButton();
-            this.cbxCATEGORIA = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.lbNUM_TOTAL = new System.Windows.Forms.Label();
             this.btnBUSCAR = new System.Windows.Forms.Button();
             this.cbxARTICULO = new System.Windows.Forms.ComboBox();
@@ -41,10 +39,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtCODIGO = new System.Windows.Forms.TextBox();
             this.tblINVENTARIO = new System.Windows.Forms.DataGridView();
-            this.ID_MOV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +51,7 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnImprimir = new System.Windows.Forms.ToolStripButton();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).BeginInit();
             this.opciones.SuspendLayout();
@@ -72,7 +70,6 @@
             // rdbDETALLE
             // 
             this.rdbDETALLE.AutoSize = true;
-            this.rdbDETALLE.Checked = true;
             this.rdbDETALLE.Location = new System.Drawing.Point(47, 31);
             this.rdbDETALLE.Name = "rdbDETALLE";
             this.rdbDETALLE.Size = new System.Drawing.Size(14, 13);
@@ -80,26 +77,6 @@
             this.rdbDETALLE.TabStop = true;
             this.rdbDETALLE.UseVisualStyleBackColor = true;
             this.rdbDETALLE.CheckedChanged += new System.EventHandler(this.rdbDETALLE_CheckedChanged);
-            // 
-            // cbxCATEGORIA
-            // 
-            this.cbxCATEGORIA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCATEGORIA.FormattingEnabled = true;
-            this.cbxCATEGORIA.Location = new System.Drawing.Point(490, 31);
-            this.cbxCATEGORIA.Name = "cbxCATEGORIA";
-            this.cbxCATEGORIA.Size = new System.Drawing.Size(145, 21);
-            this.cbxCATEGORIA.TabIndex = 108;
-            this.cbxCATEGORIA.SelectedIndexChanged += new System.EventHandler(this.cbxCATEGORIA_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(406, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
-            this.label3.TabIndex = 107;
-            this.label3.Text = "CATEGORIA";
             // 
             // lbNUM_TOTAL
             // 
@@ -115,7 +92,7 @@
             // 
             this.btnBUSCAR.Image = global::PrendaSAL.Properties.Resources.search;
             this.btnBUSCAR.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBUSCAR.Location = new System.Drawing.Point(784, 50);
+            this.btnBUSCAR.Location = new System.Drawing.Point(820, 41);
             this.btnBUSCAR.Name = "btnBUSCAR";
             this.btnBUSCAR.Size = new System.Drawing.Size(88, 64);
             this.btnBUSCAR.TabIndex = 105;
@@ -127,7 +104,7 @@
             // 
             this.cbxARTICULO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxARTICULO.FormattingEnabled = true;
-            this.cbxARTICULO.Location = new System.Drawing.Point(727, 28);
+            this.cbxARTICULO.Location = new System.Drawing.Point(495, 28);
             this.cbxARTICULO.Name = "cbxARTICULO";
             this.cbxARTICULO.Size = new System.Drawing.Size(145, 21);
             this.cbxARTICULO.TabIndex = 104;
@@ -136,7 +113,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(652, 34);
+            this.label2.Location = new System.Drawing.Point(420, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 103;
@@ -176,10 +153,9 @@
             this.tblINVENTARIO.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.tblINVENTARIO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblINVENTARIO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID_MOV,
-            this.CATEGORIA,
             this.CODIGO,
             this.CANTIDAD,
+            this.CATEGORIA,
             this.ARTICULO,
             this.DESCRIPCION,
             this.PRECIO,
@@ -189,29 +165,10 @@
             this.tblINVENTARIO.Name = "tblINVENTARIO";
             this.tblINVENTARIO.ReadOnly = true;
             this.tblINVENTARIO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblINVENTARIO.Size = new System.Drawing.Size(898, 329);
+            this.tblINVENTARIO.Size = new System.Drawing.Size(927, 329);
             this.tblINVENTARIO.TabIndex = 98;
             this.tblINVENTARIO.DataSourceChanged += new System.EventHandler(this.tblINVENTARIO_DataSourceChanged);
             this.tblINVENTARIO.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblINVENTARIO_CellClick);
-            // 
-            // ID_MOV
-            // 
-            this.ID_MOV.DataPropertyName = "ID_MOV";
-            dataGridViewCellStyle1.Format = "N0";
-            this.ID_MOV.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ID_MOV.HeaderText = "ID_MOV";
-            this.ID_MOV.Name = "ID_MOV";
-            this.ID_MOV.ReadOnly = true;
-            this.ID_MOV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID_MOV.Visible = false;
-            // 
-            // CATEGORIA
-            // 
-            this.CATEGORIA.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA.HeaderText = "CATEGORIA";
-            this.CATEGORIA.Name = "CATEGORIA";
-            this.CATEGORIA.ReadOnly = true;
-            this.CATEGORIA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CODIGO
             // 
@@ -220,6 +177,7 @@
             this.CODIGO.Name = "CODIGO";
             this.CODIGO.ReadOnly = true;
             this.CODIGO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CODIGO.Width = 150;
             // 
             // CANTIDAD
             // 
@@ -228,11 +186,20 @@
             this.CANTIDAD.Name = "CANTIDAD";
             this.CANTIDAD.ReadOnly = true;
             this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CANTIDAD.Width = 75;
+            this.CANTIDAD.Width = 70;
+            // 
+            // CATEGORIA
+            // 
+            this.CATEGORIA.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA.HeaderText = "CATEGORIA";
+            this.CATEGORIA.Name = "CATEGORIA";
+            this.CATEGORIA.ReadOnly = true;
+            this.CATEGORIA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CATEGORIA.Width = 80;
             // 
             // ARTICULO
             // 
-            this.ARTICULO.DataPropertyName = "ARTICULO";
+            this.ARTICULO.DataPropertyName = "COD_ITEM";
             this.ARTICULO.HeaderText = "ARTICULO";
             this.ARTICULO.Name = "ARTICULO";
             this.ARTICULO.ReadOnly = true;
@@ -250,6 +217,8 @@
             // PRECIO
             // 
             this.PRECIO.DataPropertyName = "PRECIO";
+            dataGridViewCellStyle1.Format = "C2";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle1;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             this.PRECIO.ReadOnly = true;
@@ -280,13 +249,13 @@
             this.btnEditar,
             this.toolStripSeparator1,
             this.btnImprimir,
+            this.btnExportExcel,
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
             this.opciones.Name = "opciones";
-            this.opciones.Size = new System.Drawing.Size(924, 25);
+            this.opciones.Size = new System.Drawing.Size(964, 25);
             this.opciones.TabIndex = 150;
             this.opciones.Text = "toolStrip1";
-            this.opciones.Click += new System.EventHandler(this.EDITAR_ARTICULO);
             // 
             // btnEditar
             // 
@@ -312,6 +281,16 @@
             this.btnImprimir.Size = new System.Drawing.Size(23, 22);
             this.btnImprimir.ToolTipText = "Imprimir";
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
             // btnAyuda
             // 
             this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -328,12 +307,10 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(924, 477);
+            this.ClientSize = new System.Drawing.Size(964, 477);
             this.Controls.Add(this.opciones);
             this.Controls.Add(this.rdbCODIGO);
             this.Controls.Add(this.rdbDETALLE);
-            this.Controls.Add(this.cbxCATEGORIA);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lbNUM_TOTAL);
             this.Controls.Add(this.btnBUSCAR);
             this.Controls.Add(this.cbxARTICULO);
@@ -347,7 +324,7 @@
             this.Name = "RInvVentaForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "INVENTARIO PARA LA VENTA";
+            this.Text = "ARTICULOS PARA LA VENTA";
             this.Load += new System.EventHandler(this.RInvVentaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).EndInit();
             this.opciones.ResumeLayout(false);
@@ -361,8 +338,6 @@
 
         private System.Windows.Forms.RadioButton rdbCODIGO;
         private System.Windows.Forms.RadioButton rdbDETALLE;
-        private System.Windows.Forms.ComboBox cbxCATEGORIA;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbNUM_TOTAL;
         private System.Windows.Forms.Button btnBUSCAR;
         private System.Windows.Forms.ComboBox cbxARTICULO;
@@ -372,19 +347,19 @@
         private System.Windows.Forms.TextBox txtCODIGO;
         private System.Windows.Forms.DataGridView tblINVENTARIO;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_MOV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UBICACION;
         private System.Windows.Forms.ToolStrip opciones;
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnImprimir;
         private System.Windows.Forms.ToolStripButton btnAyuda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UBICACION;
+        private System.Windows.Forms.ToolStripButton btnExportExcel;
 
     }
 }

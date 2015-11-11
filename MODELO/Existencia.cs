@@ -17,7 +17,11 @@ namespace MODELO
         public string DESCRIPCION;
         public decimal CANTIDAD;
         public decimal PRECIO;
-        public string COD_SUC;
+        public string BODEGA;
+
+        public string UBICACION;
+        public DateTime FECHA;
+        public decimal COSTO;
 
 
         public Existencia()
@@ -37,7 +41,9 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DESCRIPCION")) { exist.DESCRIPCION = dr.Field<string>("DESCRIPCION"); }
                 if (dr.Table.Columns.Contains("CANTIDAD")) { exist.CANTIDAD = dr.Field<decimal>("CANTIDAD"); }
                 if (dr.Table.Columns.Contains("PRECIO")) { exist.PRECIO = dr.Field<decimal>("PRECIO"); }
-                if (dr.Table.Columns.Contains("COD_SUC")) { exist.COD_SUC = dr.Field<string>("COD_SUC"); }
+                if (dr.Table.Columns.Contains("BODEGA")) { exist.BODEGA = dr.Field<string>("BODEGA"); }
+
+                if (dr.Table.Columns.Contains("UBICACION")) { exist.UBICACION = dr.Field<string>("UBICACION"); }
                 
             }
             return exist;
