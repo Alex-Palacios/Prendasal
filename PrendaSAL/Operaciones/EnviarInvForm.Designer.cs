@@ -28,19 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabDETALLE = new System.Windows.Forms.TabControl();
             this.pagCUSTODIA = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NIVEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCUSTODIA = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CONTRATO_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ckALLCVC = new System.Windows.Forms.CheckBox();
+            this.ckALLCVP = new System.Windows.Forms.CheckBox();
+            this.tblCUSTODIA_COMPRAS = new System.Windows.Forms.DataGridView();
+            this.tblCUSTODIA_PRESTAMOS = new System.Windows.Forms.DataGridView();
             this.pagREMISION = new System.Windows.Forms.TabPage();
             this.ckALLRM = new System.Windows.Forms.CheckBox();
             this.tblREMISION = new System.Windows.Forms.DataGridView();
@@ -51,11 +46,18 @@
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbTOTAL_RM = new System.Windows.Forms.Label();
-            this.btnOK_RM = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.CKCVP = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CONTRATO_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CKCVC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CONTRATO_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NIVEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabDETALLE.SuspendLayout();
             this.pagCUSTODIA.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA_COMPRAS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA_PRESTAMOS)).BeginInit();
             this.pagREMISION.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblREMISION)).BeginInit();
             this.SuspendLayout();
@@ -73,8 +75,10 @@
             // pagCUSTODIA
             // 
             this.pagCUSTODIA.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pagCUSTODIA.Controls.Add(this.dataGridView1);
-            this.pagCUSTODIA.Controls.Add(this.tblCUSTODIA);
+            this.pagCUSTODIA.Controls.Add(this.ckALLCVC);
+            this.pagCUSTODIA.Controls.Add(this.ckALLCVP);
+            this.pagCUSTODIA.Controls.Add(this.tblCUSTODIA_COMPRAS);
+            this.pagCUSTODIA.Controls.Add(this.tblCUSTODIA_PRESTAMOS);
             this.pagCUSTODIA.Location = new System.Drawing.Point(4, 22);
             this.pagCUSTODIA.Name = "pagCUSTODIA";
             this.pagCUSTODIA.Padding = new System.Windows.Forms.Padding(3);
@@ -82,91 +86,62 @@
             this.pagCUSTODIA.TabIndex = 0;
             this.pagCUSTODIA.Text = "CUSTODIA DE VALORES";
             // 
-            // dataGridView1
+            // ckALLCVC
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn4,
+            this.ckALLCVC.AutoSize = true;
+            this.ckALLCVC.Location = new System.Drawing.Point(319, 9);
+            this.ckALLCVC.Name = "ckALLCVC";
+            this.ckALLCVC.Size = new System.Drawing.Size(15, 14);
+            this.ckALLCVC.TabIndex = 147;
+            this.ckALLCVC.UseVisualStyleBackColor = true;
+            this.ckALLCVC.CheckedChanged += new System.EventHandler(this.ckALLCVC_CheckedChanged);
+            // 
+            // ckALLCVP
+            // 
+            this.ckALLCVP.AutoSize = true;
+            this.ckALLCVP.Location = new System.Drawing.Point(8, 9);
+            this.ckALLCVP.Name = "ckALLCVP";
+            this.ckALLCVP.Size = new System.Drawing.Size(15, 14);
+            this.ckALLCVP.TabIndex = 146;
+            this.ckALLCVP.UseVisualStyleBackColor = true;
+            this.ckALLCVP.CheckedChanged += new System.EventHandler(this.ckALLCVP_CheckedChanged);
+            // 
+            // tblCUSTODIA_COMPRAS
+            // 
+            this.tblCUSTODIA_COMPRAS.AllowUserToAddRows = false;
+            this.tblCUSTODIA_COMPRAS.AllowUserToDeleteRows = false;
+            this.tblCUSTODIA_COMPRAS.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tblCUSTODIA_COMPRAS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCUSTODIA_COMPRAS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CKCVC,
+            this.CONTRATO_COMPRA,
             this.CATEGORIA_COMPRA,
             this.NIVEL});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 180);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(736, 164);
-            this.dataGridView1.TabIndex = 123;
+            this.tblCUSTODIA_COMPRAS.Location = new System.Drawing.Point(310, 6);
+            this.tblCUSTODIA_COMPRAS.Name = "tblCUSTODIA_COMPRAS";
+            this.tblCUSTODIA_COMPRAS.RowHeadersVisible = false;
+            this.tblCUSTODIA_COMPRAS.Size = new System.Drawing.Size(348, 361);
+            this.tblCUSTODIA_COMPRAS.TabIndex = 123;
+            this.tblCUSTODIA_COMPRAS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblCUSTODIA_COMPRAS_CellFormatting);
+            this.tblCUSTODIA_COMPRAS.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCUSTODIA_COMPRAS_CellValueChanged);
             // 
-            // dataGridViewTextBoxColumn2
+            // tblCUSTODIA_PRESTAMOS
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NUMC";
-            this.dataGridViewTextBoxColumn2.HeaderText = "#";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "CONTRATO_COMPRA";
-            this.dataGridViewTextBoxColumn4.HeaderText = "COMPRA";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // CATEGORIA_COMPRA
-            // 
-            this.CATEGORIA_COMPRA.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA_COMPRA.HeaderText = "CATEGORIA";
-            this.CATEGORIA_COMPRA.Name = "CATEGORIA_COMPRA";
-            this.CATEGORIA_COMPRA.ReadOnly = true;
-            // 
-            // NIVEL
-            // 
-            this.NIVEL.DataPropertyName = "NIVEL";
-            this.NIVEL.HeaderText = "NIVEL";
-            this.NIVEL.Name = "NIVEL";
-            this.NIVEL.ReadOnly = true;
-            // 
-            // tblCUSTODIA
-            // 
-            this.tblCUSTODIA.AllowUserToAddRows = false;
-            this.tblCUSTODIA.AllowUserToDeleteRows = false;
-            this.tblCUSTODIA.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tblCUSTODIA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCUSTODIA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.tblCUSTODIA_PRESTAMOS.AllowUserToAddRows = false;
+            this.tblCUSTODIA_PRESTAMOS.AllowUserToDeleteRows = false;
+            this.tblCUSTODIA_PRESTAMOS.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tblCUSTODIA_PRESTAMOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCUSTODIA_PRESTAMOS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CKCVP,
             this.CONTRATO_PRESTAMO,
             this.CATEGORIA_PRESTAMO});
-            this.tblCUSTODIA.Location = new System.Drawing.Point(3, 3);
-            this.tblCUSTODIA.Name = "tblCUSTODIA";
-            this.tblCUSTODIA.ReadOnly = true;
-            this.tblCUSTODIA.RowHeadersVisible = false;
-            this.tblCUSTODIA.Size = new System.Drawing.Size(739, 171);
-            this.tblCUSTODIA.TabIndex = 122;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "NUMC";
-            this.dataGridViewTextBoxColumn1.HeaderText = "#";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 25;
-            // 
-            // CONTRATO_PRESTAMO
-            // 
-            this.CONTRATO_PRESTAMO.DataPropertyName = "DOCUMENTO";
-            this.CONTRATO_PRESTAMO.HeaderText = "CONTRATO";
-            this.CONTRATO_PRESTAMO.Name = "CONTRATO_PRESTAMO";
-            this.CONTRATO_PRESTAMO.ReadOnly = true;
-            // 
-            // CATEGORIA_PRESTAMO
-            // 
-            this.CATEGORIA_PRESTAMO.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA_PRESTAMO.HeaderText = "CATEGORIA";
-            this.CATEGORIA_PRESTAMO.Name = "CATEGORIA_PRESTAMO";
-            this.CATEGORIA_PRESTAMO.ReadOnly = true;
+            this.tblCUSTODIA_PRESTAMOS.Location = new System.Drawing.Point(2, 6);
+            this.tblCUSTODIA_PRESTAMOS.MultiSelect = false;
+            this.tblCUSTODIA_PRESTAMOS.Name = "tblCUSTODIA_PRESTAMOS";
+            this.tblCUSTODIA_PRESTAMOS.RowHeadersVisible = false;
+            this.tblCUSTODIA_PRESTAMOS.Size = new System.Drawing.Size(252, 361);
+            this.tblCUSTODIA_PRESTAMOS.TabIndex = 122;
+            this.tblCUSTODIA_PRESTAMOS.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCUSTODIA_PRESTAMOS_CellValueChanged);
             // 
             // pagREMISION
             // 
@@ -188,7 +163,7 @@
             this.ckALLRM.Size = new System.Drawing.Size(15, 14);
             this.ckALLRM.TabIndex = 145;
             this.ckALLRM.UseVisualStyleBackColor = true;
-            this.ckALLRM.CheckedChanged += new System.EventHandler(this.ckALL_CheckedChanged);
+            this.ckALLRM.CheckedChanged += new System.EventHandler(this.ckALLRM_CheckedChanged);
             // 
             // tblREMISION
             // 
@@ -205,13 +180,14 @@
             this.PRECIO});
             this.tblREMISION.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblREMISION.Location = new System.Drawing.Point(3, 3);
+            this.tblREMISION.MultiSelect = false;
             this.tblREMISION.Name = "tblREMISION";
             this.tblREMISION.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tblREMISION.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tblREMISION.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tblREMISION.Size = new System.Drawing.Size(880, 367);
             this.tblREMISION.TabIndex = 121;
             this.tblREMISION.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblREMISION_CellValueChanged);
@@ -257,8 +233,8 @@
             // PRECIO
             // 
             this.PRECIO.DataPropertyName = "PRECIO";
-            dataGridViewCellStyle5.Format = "C2";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "C2";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle1;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -274,15 +250,66 @@
             this.lbTOTAL_RM.TabIndex = 145;
             this.lbTOTAL_RM.Text = "label1";
             // 
-            // btnOK_RM
+            // btnOK
             // 
-            this.btnOK_RM.Location = new System.Drawing.Point(762, 420);
-            this.btnOK_RM.Name = "btnOK_RM";
-            this.btnOK_RM.Size = new System.Drawing.Size(115, 23);
-            this.btnOK_RM.TabIndex = 146;
-            this.btnOK_RM.Text = "OK";
-            this.btnOK_RM.UseVisualStyleBackColor = true;
-            this.btnOK_RM.Click += new System.EventHandler(this.btnOK_RM_Click);
+            this.btnOK.Location = new System.Drawing.Point(762, 420);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(115, 23);
+            this.btnOK.TabIndex = 146;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // CKCVP
+            // 
+            this.CKCVP.DataPropertyName = "CKCVP";
+            this.CKCVP.HeaderText = "";
+            this.CKCVP.Name = "CKCVP";
+            this.CKCVP.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CKCVP.Width = 25;
+            // 
+            // CONTRATO_PRESTAMO
+            // 
+            this.CONTRATO_PRESTAMO.DataPropertyName = "CONTRATO";
+            this.CONTRATO_PRESTAMO.HeaderText = "CONTRATO";
+            this.CONTRATO_PRESTAMO.Name = "CONTRATO_PRESTAMO";
+            this.CONTRATO_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CATEGORIA_PRESTAMO
+            // 
+            this.CATEGORIA_PRESTAMO.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA_PRESTAMO.HeaderText = "CATEGORIA";
+            this.CATEGORIA_PRESTAMO.Name = "CATEGORIA_PRESTAMO";
+            this.CATEGORIA_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CKCVC
+            // 
+            this.CKCVC.DataPropertyName = "CKCVC";
+            this.CKCVC.HeaderText = "";
+            this.CKCVC.Name = "CKCVC";
+            this.CKCVC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CKCVC.Width = 25;
+            // 
+            // CONTRATO_COMPRA
+            // 
+            this.CONTRATO_COMPRA.DataPropertyName = "CONTRATO";
+            this.CONTRATO_COMPRA.HeaderText = "COMPRA";
+            this.CONTRATO_COMPRA.Name = "CONTRATO_COMPRA";
+            this.CONTRATO_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CATEGORIA_COMPRA
+            // 
+            this.CATEGORIA_COMPRA.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA_COMPRA.HeaderText = "CATEGORIA";
+            this.CATEGORIA_COMPRA.Name = "CATEGORIA_COMPRA";
+            this.CATEGORIA_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NIVEL
+            // 
+            this.NIVEL.DataPropertyName = "NIVEL";
+            this.NIVEL.HeaderText = "MAYOREO";
+            this.NIVEL.Name = "NIVEL";
+            this.NIVEL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // EnviarInvForm
             // 
@@ -290,7 +317,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(903, 460);
-            this.Controls.Add(this.btnOK_RM);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lbTOTAL_RM);
             this.Controls.Add(this.tabDETALLE);
             this.MaximizeBox = false;
@@ -299,8 +326,9 @@
             this.Load += new System.EventHandler(this.EnviarInvForm_Load);
             this.tabDETALLE.ResumeLayout(false);
             this.pagCUSTODIA.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA)).EndInit();
+            this.pagCUSTODIA.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA_COMPRAS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA_PRESTAMOS)).EndInit();
             this.pagREMISION.ResumeLayout(false);
             this.pagREMISION.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblREMISION)).EndInit();
@@ -313,15 +341,8 @@
 
         private System.Windows.Forms.TabControl tabDETALLE;
         private System.Windows.Forms.TabPage pagCUSTODIA;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA_COMPRA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NIVEL;
-        private System.Windows.Forms.DataGridView tblCUSTODIA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO_PRESTAMO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA_PRESTAMO;
+        private System.Windows.Forms.DataGridView tblCUSTODIA_COMPRAS;
+        private System.Windows.Forms.DataGridView tblCUSTODIA_PRESTAMOS;
         private System.Windows.Forms.TabPage pagREMISION;
         private System.Windows.Forms.DataGridView tblREMISION;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CKRM;
@@ -332,6 +353,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
         private System.Windows.Forms.CheckBox ckALLRM;
         private System.Windows.Forms.Label lbTOTAL_RM;
-        private System.Windows.Forms.Button btnOK_RM;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.CheckBox ckALLCVC;
+        private System.Windows.Forms.CheckBox ckALLCVP;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CKCVC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO_COMPRA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA_COMPRA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NIVEL;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CKCVP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO_PRESTAMO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA_PRESTAMO;
     }
 }

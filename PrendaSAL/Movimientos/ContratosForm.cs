@@ -445,18 +445,24 @@ namespace PrendaSAL.Movimientos
 
         private void cbxTIPOPRESTAMO_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tblITEMS.Rows.Clear();
+            txtTOTAL.ReadOnly = false;
+            if (ACCION == eOperacion.INSERT || ACCION == eOperacion.UPDATE)
+            {
+                PRESTAMO.ITEMS_PRESTAMO.Clear();
+                if ((eTipoPrestamo)cbxTIPOPRESTAMO.SelectedItem == eTipoPrestamo.PRENDARIO)
+                {
+                    txtTOTAL.ReadOnly = true;
+                }
+            }
             if ((eTipoPrestamo)cbxTIPOPRESTAMO.SelectedItem == eTipoPrestamo.PRENDARIO)
             {
                 btnADD.Enabled = true;
                 btnDEL.Enabled = true;
-                txtTOTAL.ReadOnly = true;
             }
             else
             {
                 btnADD.Enabled = false;
                 btnDEL.Enabled = false;
-                txtTOTAL.ReadOnly = false;
             }
             calcularTotales();
         }
@@ -884,8 +890,18 @@ namespace PrendaSAL.Movimientos
 
         private void calcularTotales()
         {
-            PRESTAMO.TOTAL = PRESTAMO.ITEMS_PRESTAMO.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
-            
+            if (PRESTAMO.TIPO != eTipoPrestamo.MUTUO)
+            {
+                switch (ACCION)
+                {
+                    case eOperacion.INSERT:
+                        PRESTAMO.TOTAL = PRESTAMO.ITEMS_PRESTAMO.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
+                        break;
+                    case eOperacion.UPDATE:
+                        PRESTAMO.TOTAL = PRESTAMO.ITEMS_PRESTAMO.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
+                        break;
+                }
+            }
             txtTOTAL.Text = PRESTAMO.TOTAL.ToString("C2");
             txtINTERES_MENSUAL.Text = PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2");
             txtINTERES_DIARIO.Text = PRESTAMO.INTERES_DIARIO_INIT.ToString("C4");
@@ -1108,6 +1124,20 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+        public void buscarCargarContrato(string contrato)
+        {
+            if (buscarContrato(contrato))
+            {
+                MessageBox.Show("CONTRATO # " + PRESTAMO.DOCUMENTO + " CARGADO", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("CONTRATO NO ENCONTRADO", "NO ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
         public bool buscarContrato(string documento)
         {
             bool OK = false;
@@ -1141,6 +1171,19 @@ namespace PrendaSAL.Movimientos
 
 
 
+        private void btnEstadoCuenta_Click(object sender, EventArgs e)
+        {
+            Reportes.REstadoCuentaForm EC;
+            EC = Reportes.REstadoCuentaForm.Instance(this.Name);
+            EC.StartPosition = FormStartPosition.CenterParent;
+            EC.ShowDialog(this);
+            if (EC.WindowState == FormWindowState.Minimized)
+            {
+                EC.WindowState = FormWindowState.Normal;
+            }
+        }
+
+
         private void IMPRIMIR(object sender, EventArgs e)
         {
             if (PRESTAMO != null)
@@ -1157,7 +1200,7 @@ namespace PrendaSAL.Movimientos
             {
                 Sucursal SUC = HOME.Instance().getSucursal(PRESTAMO.COD_SUC).Copy();
 
-                ReportParameter[] parameters = new ReportParameter[17];
+                ReportParameter[] parameters = new ReportParameter[18];
                 parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
                 parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION + " ,"+SUC.DEPTO);
                 parameters[2] = new ReportParameter("CONTRATO", PRESTAMO.DOCUMENTO);
@@ -1165,7 +1208,7 @@ namespace PrendaSAL.Movimientos
                 parameters[4] = new ReportParameter("EdadCLI", PRESTAMO.EDAD + "");
                 parameters[5] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
                 parameters[6] = new ReportParameter("NitCLI", PRESTAMO.NIT);
-                parameters[7] = new ReportParameter("DireccionCLI", PRESTAMO.DIRECCION_CLI + " " + PRESTAMO.DOMICILIO_CLI + " ," + PRESTAMO.DEPTO_CLI);
+                parameters[7] = new ReportParameter("DireccionCLI", PRESTAMO.DIRECCION_CLI + ", " + PRESTAMO.DOMICILIO_CLI + ", " + PRESTAMO.DEPTO_CLI);
                 parameters[8] = new ReportParameter("TOTAL", PRESTAMO.TOTAL.ToString("C2"));
                 parameters[9] = new ReportParameter("TASA", PRESTAMO.TASA_MENSUAL +"");
                 parameters[10] = new ReportParameter("INTERES", PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2"));
@@ -1175,6 +1218,7 @@ namespace PrendaSAL.Movimientos
                 parameters[14] = new ReportParameter("ANIO", PRESTAMO.FECHA.Date.ToString("yyyy"));
                 parameters[15] = new ReportParameter("PLAZO", HOME.Instance().convertirNumeroLetra(PRESTAMO.PLAZO_VENC).ToLower());
                 parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                parameters[17] = new ReportParameter("FechaPrimerPago", PRESTAMO.FECHA_VENC_INIT.ToShortDateString() + "");
 
                 viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoPrestamo2.rdlc";
                 viewerCONTRATO.LocalReport.SetParameters(parameters);
@@ -1278,18 +1322,7 @@ namespace PrendaSAL.Movimientos
 
         }
 
-
-
-        private void btnContratosVigentes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
-       
-
-
+        
 
 
 

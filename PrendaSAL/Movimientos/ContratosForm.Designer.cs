@@ -106,10 +106,10 @@
             this.numPLAZO = new System.Windows.Forms.NumericUpDown();
             this.numTASA = new System.Windows.Forms.NumericUpDown();
             this.viewerCONTRATO = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.btnContratosVigentes = new System.Windows.Forms.Button();
-            this.btnPrecios = new System.Windows.Forms.Button();
             this.bindingKITCO = new System.Windows.Forms.BindingSource(this.components);
             this.dSKITCO = new PrendaSAL.Informes.DSKITCO();
+            this.btnEstadoCuenta = new System.Windows.Forms.Button();
+            this.btnPrecios = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.grbCLIENTE.SuspendLayout();
             this.grbCONTRATO.SuspendLayout();
@@ -411,7 +411,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(31, 13);
             this.label17.TabIndex = 32;
-            this.label17.Text = "EXP";
+            this.label17.Text = "EXT";
             // 
             // label16
             // 
@@ -913,16 +913,26 @@
             this.viewerCONTRATO.Visible = false;
             this.viewerCONTRATO.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
             // 
-            // btnContratosVigentes
+            // bindingKITCO
             // 
-            this.btnContratosVigentes.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
-            this.btnContratosVigentes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnContratosVigentes.Location = new System.Drawing.Point(891, 31);
-            this.btnContratosVigentes.Name = "btnContratosVigentes";
-            this.btnContratosVigentes.Size = new System.Drawing.Size(162, 151);
-            this.btnContratosVigentes.TabIndex = 91;
-            this.btnContratosVigentes.UseVisualStyleBackColor = true;
-            this.btnContratosVigentes.Click += new System.EventHandler(this.btnContratosVigentes_Click);
+            this.bindingKITCO.DataMember = "KITCO";
+            this.bindingKITCO.DataSource = this.dSKITCO;
+            // 
+            // dSKITCO
+            // 
+            this.dSKITCO.DataSetName = "DSKITCO";
+            this.dSKITCO.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // btnEstadoCuenta
+            // 
+            this.btnEstadoCuenta.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
+            this.btnEstadoCuenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEstadoCuenta.Location = new System.Drawing.Point(891, 31);
+            this.btnEstadoCuenta.Name = "btnEstadoCuenta";
+            this.btnEstadoCuenta.Size = new System.Drawing.Size(162, 151);
+            this.btnEstadoCuenta.TabIndex = 91;
+            this.btnEstadoCuenta.UseVisualStyleBackColor = true;
+            this.btnEstadoCuenta.Click += new System.EventHandler(this.btnEstadoCuenta_Click);
             // 
             // btnPrecios
             // 
@@ -935,16 +945,6 @@
             this.btnPrecios.UseVisualStyleBackColor = true;
             this.btnPrecios.Click += new System.EventHandler(this.btnPrecios_Click);
             // 
-            // bindingKITCO
-            // 
-            this.bindingKITCO.DataMember = "KITCO";
-            this.bindingKITCO.DataSource = this.dSKITCO;
-            // 
-            // dSKITCO
-            // 
-            this.dSKITCO.DataSetName = "DSKITCO";
-            this.dSKITCO.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // ContratosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -953,7 +953,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1067, 561);
-            this.Controls.Add(this.btnContratosVigentes);
+            this.Controls.Add(this.btnEstadoCuenta);
             this.Controls.Add(this.viewerCONTRATO);
             this.Controls.Add(this.grbREGLAS);
             this.Controls.Add(this.txtINTERES_DIARIO);
@@ -1056,7 +1056,7 @@
         private System.Windows.Forms.Label label1;
         private Microsoft.Reporting.WinForms.ReportViewer viewerCONTRATO;
         private System.Windows.Forms.ToolStripButton btnAnular;
-        private System.Windows.Forms.Button btnContratosVigentes;
+        private System.Windows.Forms.Button btnEstadoCuenta;
         private System.Windows.Forms.ToolStripButton btnPrintKITCO;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.BindingSource bindingKITCO;

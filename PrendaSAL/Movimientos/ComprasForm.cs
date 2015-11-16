@@ -161,6 +161,8 @@ namespace PrendaSAL.Movimientos
             txtNOTA.Text = string.Empty;
         }
 
+
+
         private void NUEVO(object sender, EventArgs e)
         {
             ACCION = eOperacion.INSERT;
@@ -917,7 +919,6 @@ namespace PrendaSAL.Movimientos
 
         private void BUSCAR(object sender, EventArgs e)
         {
-            ACCION = eOperacion.SEARCH;
             string numCONT = Controles.InputBox("COMPRA #: ", "BUSCAR");
             if (numCONT != "")
             {

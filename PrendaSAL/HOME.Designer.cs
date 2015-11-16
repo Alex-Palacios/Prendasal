@@ -34,18 +34,19 @@
             this.MENU_PRINCIPAL = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.grupoReportesGerenciales = new DevComponents.DotNetBar.RibbonBar();
-            this.btnRptTransSuc = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptConsolidado = new DevComponents.DotNetBar.ButtonItem();
             this.grupoReportesConta = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReportesCompras = new DevComponents.DotNetBar.ButtonItem();
-            this.btnRptVencidos = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptComprasORO = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptVencidosORO = new DevComponents.DotNetBar.ButtonItem();
             this.grupoReporteVarios = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReporteContratos = new DevComponents.DotNetBar.ButtonItem();
-            this.btnMenuReportesCancelados = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteTransDiarias = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptContratos = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptCancelados = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptTransDiarias = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptEstadoCuenta = new DevComponents.DotNetBar.ButtonItem();
             this.grupoReportesInventario = new DevComponents.DotNetBar.RibbonBar();
-            this.btnReporteResguardo = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteEnVenta = new DevComponents.DotNetBar.ButtonItem();
-            this.btnReporteKardex = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptInvCustodia = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptInvVenta = new DevComponents.DotNetBar.ButtonItem();
+            this.btnRptKardex = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel7 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.btnMenuCierreVencidos = new DevComponents.DotNetBar.ButtonItem();
@@ -202,7 +203,7 @@
             this.grupoReportesGerenciales.ContainerControlProcessDialogKey = true;
             resources.ApplyResources(this.grupoReportesGerenciales, "grupoReportesGerenciales");
             this.grupoReportesGerenciales.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnRptTransSuc});
+            this.btnRptConsolidado});
             this.grupoReportesGerenciales.Name = "grupoReportesGerenciales";
             this.grupoReportesGerenciales.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
@@ -216,15 +217,16 @@
             this.grupoReportesGerenciales.TitleStyleMouseOver.Class = "";
             this.grupoReportesGerenciales.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnRptTransSuc
+            // btnRptConsolidado
             // 
-            this.btnRptTransSuc.Image = global::PrendaSAL.Properties.Resources.graficos1;
-            this.btnRptTransSuc.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnRptTransSuc.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnRptTransSuc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRptTransSuc.Name = "btnRptTransSuc";
-            this.btnRptTransSuc.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnRptTransSuc, "btnRptTransSuc");
+            this.btnRptConsolidado.Image = global::PrendaSAL.Properties.Resources.graficos1;
+            this.btnRptConsolidado.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptConsolidado.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptConsolidado.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptConsolidado.Name = "btnRptConsolidado";
+            this.btnRptConsolidado.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptConsolidado, "btnRptConsolidado");
+            this.btnRptConsolidado.Click += new System.EventHandler(this.menuReportesConsolidado);
             // 
             // grupoReportesConta
             // 
@@ -242,8 +244,8 @@
             this.grupoReportesConta.ContainerControlProcessDialogKey = true;
             resources.ApplyResources(this.grupoReportesConta, "grupoReportesConta");
             this.grupoReportesConta.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnReportesCompras,
-            this.btnRptVencidos});
+            this.btnRptComprasORO,
+            this.btnRptVencidosORO});
             this.grupoReportesConta.Name = "grupoReportesConta";
             this.grupoReportesConta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
@@ -257,27 +259,27 @@
             this.grupoReportesConta.TitleStyleMouseOver.Class = "";
             this.grupoReportesConta.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnReportesCompras
+            // btnRptComprasORO
             // 
-            this.btnReportesCompras.Image = global::PrendaSAL.Properties.Resources.comprasdeloro;
-            this.btnReportesCompras.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReportesCompras.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReportesCompras.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReportesCompras.Name = "btnReportesCompras";
-            this.btnReportesCompras.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReportesCompras, "btnReportesCompras");
-            this.btnReportesCompras.Click += new System.EventHandler(this.menuReporteComprasORO);
+            this.btnRptComprasORO.Image = global::PrendaSAL.Properties.Resources.comprasdeloro;
+            this.btnRptComprasORO.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptComprasORO.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptComprasORO.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptComprasORO.Name = "btnRptComprasORO";
+            this.btnRptComprasORO.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptComprasORO, "btnRptComprasORO");
+            this.btnRptComprasORO.Click += new System.EventHandler(this.menuReporteComprasORO);
             // 
-            // btnRptVencidos
+            // btnRptVencidosORO
             // 
-            this.btnRptVencidos.Image = global::PrendaSAL.Properties.Resources.lingote;
-            this.btnRptVencidos.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnRptVencidos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnRptVencidos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRptVencidos.Name = "btnRptVencidos";
-            this.btnRptVencidos.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnRptVencidos, "btnRptVencidos");
-            this.btnRptVencidos.Click += new System.EventHandler(this.menuReporteVencidosORO);
+            this.btnRptVencidosORO.Image = global::PrendaSAL.Properties.Resources.lingote;
+            this.btnRptVencidosORO.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptVencidosORO.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptVencidosORO.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptVencidosORO.Name = "btnRptVencidosORO";
+            this.btnRptVencidosORO.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptVencidosORO, "btnRptVencidosORO");
+            this.btnRptVencidosORO.Click += new System.EventHandler(this.menuReporteVencidosORO);
             // 
             // grupoReporteVarios
             // 
@@ -296,9 +298,10 @@
             this.grupoReporteVarios.ContainerControlProcessDialogKey = true;
             resources.ApplyResources(this.grupoReporteVarios, "grupoReporteVarios");
             this.grupoReporteVarios.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnReporteContratos,
-            this.btnMenuReportesCancelados,
-            this.btnReporteTransDiarias});
+            this.btnRptContratos,
+            this.btnRptCancelados,
+            this.btnRptTransDiarias,
+            this.btnRptEstadoCuenta});
             this.grupoReporteVarios.Name = "grupoReporteVarios";
             this.grupoReporteVarios.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
@@ -312,43 +315,54 @@
             this.grupoReporteVarios.TitleStyleMouseOver.Class = "";
             this.grupoReporteVarios.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnReporteContratos
+            // btnRptContratos
             // 
-            this.btnReporteContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteContratos.Image = global::PrendaSAL.Properties.Resources.contratos2;
-            this.btnReporteContratos.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteContratos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteContratos.Name = "btnReporteContratos";
-            this.btnReporteContratos.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteContratos, "btnReporteContratos");
-            this.btnReporteContratos.Click += new System.EventHandler(this.menuReportesContratos);
+            this.btnRptContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnRptContratos.Image = global::PrendaSAL.Properties.Resources.contratos2;
+            this.btnRptContratos.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptContratos.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptContratos.Name = "btnRptContratos";
+            this.btnRptContratos.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptContratos, "btnRptContratos");
+            this.btnRptContratos.Click += new System.EventHandler(this.menuReportesContratos);
             // 
-            // btnMenuReportesCancelados
+            // btnRptCancelados
             // 
-            this.btnMenuReportesCancelados.Image = global::PrendaSAL.Properties.Resources.canceado;
-            this.btnMenuReportesCancelados.ImageFixedSize = new System.Drawing.Size(100, 60);
-            this.btnMenuReportesCancelados.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnMenuReportesCancelados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuReportesCancelados.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.btnMenuReportesCancelados.Name = "btnMenuReportesCancelados";
-            this.btnMenuReportesCancelados.Stretch = true;
-            this.btnMenuReportesCancelados.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnMenuReportesCancelados, "btnMenuReportesCancelados");
-            this.btnMenuReportesCancelados.Click += new System.EventHandler(this.menuReportesCancelados);
+            this.btnRptCancelados.Image = global::PrendaSAL.Properties.Resources.canceado;
+            this.btnRptCancelados.ImageFixedSize = new System.Drawing.Size(100, 60);
+            this.btnRptCancelados.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptCancelados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptCancelados.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.btnRptCancelados.Name = "btnRptCancelados";
+            this.btnRptCancelados.Stretch = true;
+            this.btnRptCancelados.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptCancelados, "btnRptCancelados");
+            this.btnRptCancelados.Click += new System.EventHandler(this.menuReportesCancelados);
             // 
-            // btnReporteTransDiarias
+            // btnRptTransDiarias
             // 
-            this.btnReporteTransDiarias.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteTransDiarias.FixedSize = new System.Drawing.Size(80, 80);
-            this.btnReporteTransDiarias.Image = global::PrendaSAL.Properties.Resources.reporte3;
-            this.btnReporteTransDiarias.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteTransDiarias.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteTransDiarias.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteTransDiarias.Name = "btnReporteTransDiarias";
-            this.btnReporteTransDiarias.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteTransDiarias, "btnReporteTransDiarias");
-            this.btnReporteTransDiarias.Click += new System.EventHandler(this.menuReportesDiario);
+            this.btnRptTransDiarias.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnRptTransDiarias.FixedSize = new System.Drawing.Size(80, 80);
+            this.btnRptTransDiarias.Image = global::PrendaSAL.Properties.Resources.reporte3;
+            this.btnRptTransDiarias.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptTransDiarias.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptTransDiarias.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptTransDiarias.Name = "btnRptTransDiarias";
+            this.btnRptTransDiarias.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptTransDiarias, "btnRptTransDiarias");
+            this.btnRptTransDiarias.Click += new System.EventHandler(this.menuReportesDiario);
+            // 
+            // btnRptEstadoCuenta
+            // 
+            this.btnRptEstadoCuenta.Image = global::PrendaSAL.Properties.Resources.estadocuenta2;
+            this.btnRptEstadoCuenta.ImageFixedSize = new System.Drawing.Size(70, 64);
+            this.btnRptEstadoCuenta.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptEstadoCuenta.Name = "btnRptEstadoCuenta";
+            this.btnRptEstadoCuenta.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptEstadoCuenta, "btnRptEstadoCuenta");
+            this.btnRptEstadoCuenta.Click += new System.EventHandler(this.menuReportesEstadoCuenta);
             // 
             // grupoReportesInventario
             // 
@@ -366,9 +380,9 @@
             this.grupoReportesInventario.ContainerControlProcessDialogKey = true;
             resources.ApplyResources(this.grupoReportesInventario, "grupoReportesInventario");
             this.grupoReportesInventario.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnReporteResguardo,
-            this.btnReporteEnVenta,
-            this.btnReporteKardex});
+            this.btnRptInvCustodia,
+            this.btnRptInvVenta,
+            this.btnRptKardex});
             this.grupoReportesInventario.Name = "grupoReportesInventario";
             this.grupoReportesInventario.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             // 
@@ -382,37 +396,37 @@
             this.grupoReportesInventario.TitleStyleMouseOver.Class = "";
             this.grupoReportesInventario.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnReporteResguardo
+            // btnRptInvCustodia
             // 
-            this.btnReporteResguardo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteResguardo.Image = global::PrendaSAL.Properties.Resources.caja;
-            this.btnReporteResguardo.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteResguardo.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteResguardo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteResguardo.Name = "btnReporteResguardo";
-            this.btnReporteResguardo.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteResguardo, "btnReporteResguardo");
-            this.btnReporteResguardo.Click += new System.EventHandler(this.menuReportesInventarioResguardo);
+            this.btnRptInvCustodia.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnRptInvCustodia.Image = global::PrendaSAL.Properties.Resources.caja;
+            this.btnRptInvCustodia.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptInvCustodia.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptInvCustodia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptInvCustodia.Name = "btnRptInvCustodia";
+            this.btnRptInvCustodia.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptInvCustodia, "btnRptInvCustodia");
+            this.btnRptInvCustodia.Click += new System.EventHandler(this.menuReportesInventarioResguardo);
             // 
-            // btnReporteEnVenta
+            // btnRptInvVenta
             // 
-            this.btnReporteEnVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnReporteEnVenta.Image = global::PrendaSAL.Properties.Resources.electro1;
-            this.btnReporteEnVenta.ImageFixedSize = new System.Drawing.Size(64, 64);
-            this.btnReporteEnVenta.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
-            this.btnReporteEnVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteEnVenta.Name = "btnReporteEnVenta";
-            this.btnReporteEnVenta.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteEnVenta, "btnReporteEnVenta");
-            this.btnReporteEnVenta.Click += new System.EventHandler(this.menuReportesInventarioVenta);
+            this.btnRptInvVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btnRptInvVenta.Image = global::PrendaSAL.Properties.Resources.electro1;
+            this.btnRptInvVenta.ImageFixedSize = new System.Drawing.Size(64, 64);
+            this.btnRptInvVenta.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
+            this.btnRptInvVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptInvVenta.Name = "btnRptInvVenta";
+            this.btnRptInvVenta.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptInvVenta, "btnRptInvVenta");
+            this.btnRptInvVenta.Click += new System.EventHandler(this.menuReportesInventarioVenta);
             // 
-            // btnReporteKardex
+            // btnRptKardex
             // 
-            this.btnReporteKardex.Image = global::PrendaSAL.Properties.Resources.kardex;
-            this.btnReporteKardex.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnReporteKardex.Name = "btnReporteKardex";
-            this.btnReporteKardex.SubItemsExpandWidth = 14;
-            resources.ApplyResources(this.btnReporteKardex, "btnReporteKardex");
+            this.btnRptKardex.Image = global::PrendaSAL.Properties.Resources.kardex;
+            this.btnRptKardex.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnRptKardex.Name = "btnRptKardex";
+            this.btnRptKardex.SubItemsExpandWidth = 14;
+            resources.ApplyResources(this.btnRptKardex, "btnRptKardex");
             // 
             // ribbonPanel7
             // 
@@ -1422,10 +1436,10 @@
         private DevComponents.DotNetBar.ButtonItem btnMenuRecibirInv;
         private DevComponents.DotNetBar.ButtonItem btnMenuEnviarInv;
         private DevComponents.DotNetBar.RibbonBar grupoReportesInventario;
-        private DevComponents.DotNetBar.ButtonItem btnReporteResguardo;
-        private DevComponents.DotNetBar.ButtonItem btnReporteEnVenta;
+        private DevComponents.DotNetBar.ButtonItem btnRptInvCustodia;
+        private DevComponents.DotNetBar.ButtonItem btnRptInvVenta;
         private DevComponents.DotNetBar.RibbonBar grupoReporteVarios;
-        private DevComponents.DotNetBar.ButtonItem btnReporteContratos;
+        private DevComponents.DotNetBar.ButtonItem btnRptContratos;
         private DevComponents.DotNetBar.ButtonItem btnConfigSucursales;
         private DevComponents.DotNetBar.RibbonBar grupoCatalogos;
         private DevComponents.DotNetBar.ButtonItem btnMenuCatalogoProductos;
@@ -1435,19 +1449,20 @@
         private DevComponents.DotNetBar.ButtonItem btnConfigUsuarios;
         private DevComponents.DotNetBar.ButtonItem btnConfigPermisos;
         private DevComponents.DotNetBar.RibbonBar grupoReportesConta;
-        private DevComponents.DotNetBar.ButtonItem btnReportesCompras;
+        private DevComponents.DotNetBar.ButtonItem btnRptComprasORO;
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
         private DevComponents.DotNetBar.ButtonItem btnMenuCierreVencidos;
-        private DevComponents.DotNetBar.ButtonItem btnMenuReportesCancelados;
+        private DevComponents.DotNetBar.ButtonItem btnRptCancelados;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem paraleloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem minimizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarTodasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cascadaToolStripMenuItem;
-        private DevComponents.DotNetBar.ButtonItem btnRptVencidos;
+        private DevComponents.DotNetBar.ButtonItem btnRptVencidosORO;
         private DevComponents.DotNetBar.RibbonBar grupoReportesGerenciales;
-        private DevComponents.DotNetBar.ButtonItem btnRptTransSuc;
-        private DevComponents.DotNetBar.ButtonItem btnReporteTransDiarias;
-        private DevComponents.DotNetBar.ButtonItem btnReporteKardex;
+        private DevComponents.DotNetBar.ButtonItem btnRptConsolidado;
+        private DevComponents.DotNetBar.ButtonItem btnRptTransDiarias;
+        private DevComponents.DotNetBar.ButtonItem btnRptKardex;
+        private DevComponents.DotNetBar.ButtonItem btnRptEstadoCuenta;
     }
 }

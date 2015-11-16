@@ -48,14 +48,20 @@
             // 
             // viewerREPORTE
             // 
+            this.viewerREPORTE.KeepSessionAlive = false;
             reportDataSource1.Name = "DSI";
             reportDataSource1.Value = null;
             this.viewerREPORTE.LocalReport.DataSources.Add(reportDataSource1);
+            this.viewerREPORTE.LocalReport.DisplayName = "ReporteDiario";
             this.viewerREPORTE.LocalReport.ReportEmbeddedResource = "";
             this.viewerREPORTE.Location = new System.Drawing.Point(0, 2);
             this.viewerREPORTE.Name = "viewerREPORTE";
+            this.viewerREPORTE.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
             this.viewerREPORTE.Size = new System.Drawing.Size(833, 541);
             this.viewerREPORTE.TabIndex = 20;
+            this.viewerREPORTE.WaitControlDisplayAfter = 20;
+            this.viewerREPORTE.ReportExport += new Microsoft.Reporting.WinForms.ExportEventHandler(this.viewerREPORTE_ReportExport);
+            this.viewerREPORTE.Drillthrough += new Microsoft.Reporting.WinForms.DrillthroughEventHandler(this.viewerREPORTE_Drillthrough);
             // 
             // bsKPM
             // 

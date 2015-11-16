@@ -124,15 +124,15 @@
   <data name="grupoReportesGerenciales.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="btnRptTransSuc.Text" xml:space="preserve">
-    <value>Resumen Trans</value>
+  <data name="btnRptConsolidado.Text" xml:space="preserve">
+    <value>Consolidado</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="grupoReportesGerenciales.Location" type="System.Drawing.Point, System.Drawing">
-    <value>696, 0</value>
+    <value>773, 0</value>
   </data>
   <data name="grupoReportesGerenciales.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 106</value>
+    <value>267, 106</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="grupoReportesGerenciales.TabIndex" type="System.Int32, mscorlib">
@@ -156,17 +156,17 @@
   <data name="grupoReportesConta.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="btnReportesCompras.Text" xml:space="preserve">
+  <data name="btnRptComprasORO.Text" xml:space="preserve">
     <value>Compras</value>
   </data>
-  <data name="btnRptVencidos.Text" xml:space="preserve">
+  <data name="btnRptVencidosORO.Text" xml:space="preserve">
     <value>Vencidos</value>
   </data>
   <data name="grupoReportesConta.Location" type="System.Drawing.Point, System.Drawing">
-    <value>510, 0</value>
+    <value>601, 0</value>
   </data>
   <data name="grupoReportesConta.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 106</value>
+    <value>172, 106</value>
   </data>
   <data name="grupoReportesConta.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -189,20 +189,23 @@
   <data name="grupoReporteVarios.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="btnReporteContratos.Text" xml:space="preserve">
+  <data name="btnRptContratos.Text" xml:space="preserve">
     <value>Contratos</value>
   </data>
-  <data name="btnMenuReportesCancelados.Text" xml:space="preserve">
-    <value>Reporte Cancelados</value>
+  <data name="btnRptCancelados.Text" xml:space="preserve">
+    <value>Cancelados</value>
   </data>
-  <data name="btnReporteTransDiarias.Text" xml:space="preserve">
+  <data name="btnRptTransDiarias.Text" xml:space="preserve">
     <value>Transacciones</value>
   </data>
+  <data name="btnRptEstadoCuenta.Text" xml:space="preserve">
+    <value>Estado Cuenta</value>
+  </data>
   <data name="grupoReporteVarios.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 0</value>
+    <value>239, 0</value>
   </data>
   <data name="grupoReporteVarios.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 106</value>
+    <value>362, 106</value>
   </data>
   <data name="grupoReporteVarios.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -225,20 +228,20 @@
   <data name="grupoReportesInventario.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="btnReporteResguardo.Text" xml:space="preserve">
+  <data name="btnRptInvCustodia.Text" xml:space="preserve">
     <value>Resguardo</value>
   </data>
-  <data name="btnReporteEnVenta.Text" xml:space="preserve">
+  <data name="btnRptInvVenta.Text" xml:space="preserve">
     <value>En Venta</value>
   </data>
-  <data name="btnReporteKardex.Text" xml:space="preserve">
+  <data name="btnRptKardex.Text" xml:space="preserve">
     <value>KARDEX</value>
   </data>
   <data name="grupoReportesInventario.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
   </data>
   <data name="grupoReportesInventario.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 106</value>
+    <value>236, 106</value>
   </data>
   <data name="grupoReportesInventario.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1173,58 +1176,64 @@
   <data name="&gt;&gt;styleForm.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.StyleManager, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnRptTransSuc.Name" xml:space="preserve">
-    <value>btnRptTransSuc</value>
+  <data name="&gt;&gt;btnRptConsolidado.Name" xml:space="preserve">
+    <value>btnRptConsolidado</value>
   </data>
-  <data name="&gt;&gt;btnRptTransSuc.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptConsolidado.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReportesCompras.Name" xml:space="preserve">
-    <value>btnReportesCompras</value>
+  <data name="&gt;&gt;btnRptComprasORO.Name" xml:space="preserve">
+    <value>btnRptComprasORO</value>
   </data>
-  <data name="&gt;&gt;btnReportesCompras.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptComprasORO.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnRptVencidos.Name" xml:space="preserve">
-    <value>btnRptVencidos</value>
+  <data name="&gt;&gt;btnRptVencidosORO.Name" xml:space="preserve">
+    <value>btnRptVencidosORO</value>
   </data>
-  <data name="&gt;&gt;btnRptVencidos.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptVencidosORO.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReporteContratos.Name" xml:space="preserve">
-    <value>btnReporteContratos</value>
+  <data name="&gt;&gt;btnRptContratos.Name" xml:space="preserve">
+    <value>btnRptContratos</value>
   </data>
-  <data name="&gt;&gt;btnReporteContratos.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptContratos.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnMenuReportesCancelados.Name" xml:space="preserve">
-    <value>btnMenuReportesCancelados</value>
+  <data name="&gt;&gt;btnRptCancelados.Name" xml:space="preserve">
+    <value>btnRptCancelados</value>
   </data>
-  <data name="&gt;&gt;btnMenuReportesCancelados.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptCancelados.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReporteTransDiarias.Name" xml:space="preserve">
-    <value>btnReporteTransDiarias</value>
+  <data name="&gt;&gt;btnRptTransDiarias.Name" xml:space="preserve">
+    <value>btnRptTransDiarias</value>
   </data>
-  <data name="&gt;&gt;btnReporteTransDiarias.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptTransDiarias.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReporteResguardo.Name" xml:space="preserve">
-    <value>btnReporteResguardo</value>
+  <data name="&gt;&gt;btnRptEstadoCuenta.Name" xml:space="preserve">
+    <value>btnRptEstadoCuenta</value>
   </data>
-  <data name="&gt;&gt;btnReporteResguardo.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptEstadoCuenta.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReporteEnVenta.Name" xml:space="preserve">
-    <value>btnReporteEnVenta</value>
+  <data name="&gt;&gt;btnRptInvCustodia.Name" xml:space="preserve">
+    <value>btnRptInvCustodia</value>
   </data>
-  <data name="&gt;&gt;btnReporteEnVenta.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptInvCustodia.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnReporteKardex.Name" xml:space="preserve">
-    <value>btnReporteKardex</value>
+  <data name="&gt;&gt;btnRptInvVenta.Name" xml:space="preserve">
+    <value>btnRptInvVenta</value>
   </data>
-  <data name="&gt;&gt;btnReporteKardex.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRptInvVenta.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptKardex.Name" xml:space="preserve">
+    <value>btnRptKardex</value>
+  </data>
+  <data name="&gt;&gt;btnRptKardex.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
   <data name="&gt;&gt;btnMenuCierreVencidos.Name" xml:space="preserve">

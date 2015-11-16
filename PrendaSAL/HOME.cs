@@ -161,11 +161,11 @@ namespace PrendaSAL
             btnInventarioInicial.Visible = false;
             //MODULO REPORTES
             moduloREPORTES.Visible = false;
-            btnReporteResguardo.Visible = false;
-            btnReporteEnVenta.Visible = false;
-            btnReporteTransDiarias.Visible = false;
-            btnReporteContratos.Visible = false;
-            btnReportesCompras.Visible = false;
+            btnRptInvCustodia.Visible = false;
+            btnRptInvVenta.Visible = false;
+            btnRptTransDiarias.Visible = false;
+            btnRptContratos.Visible = false;
+            btnRptComprasORO.Visible = false;
             //MODULO CONFIGURACION
             moduloCONFIG.Visible = false;
             btnConfigPrecios.Visible = false;
@@ -264,19 +264,19 @@ namespace PrendaSAL
                         switch (p.Field<string>("MENU"))
                         {
                             case "Resguardo":
-                                btnReporteResguardo.Visible = p.Field<bool>("ACCESO");
+                                btnRptInvCustodia.Visible = p.Field<bool>("ACCESO");
                                 break;
                             case "En Venta":
-                                btnReporteEnVenta.Visible = p.Field<bool>("ACCESO");
+                                btnRptInvVenta.Visible = p.Field<bool>("ACCESO");
                                 break;
                             case "Transacciones":
-                                btnReporteTransDiarias.Visible = p.Field<bool>("ACCESO");
+                                btnRptTransDiarias.Visible = p.Field<bool>("ACCESO");
                                 break;
                             case "Contratos":
-                                btnReporteContratos.Visible = p.Field<bool>("ACCESO");
+                                btnRptContratos.Visible = p.Field<bool>("ACCESO");
                                 break;
                             case "Compras":
-                                btnReportesCompras.Visible = p.Field<bool>("ACCESO");
+                                btnRptComprasORO.Visible = p.Field<bool>("ACCESO");
                                 break;
                         }
                         break;
@@ -322,10 +322,10 @@ namespace PrendaSAL
             grupoCajaChica.Visible = (btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible);
             moduloOPERACIONES.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
             grupoOperacionesInventario.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
-            moduloREPORTES.Visible = (btnReporteResguardo.Visible  || btnReporteEnVenta.Visible || btnReporteTransDiarias.Visible || btnReporteContratos.Visible);
-            grupoReportesInventario.Visible = (btnReporteResguardo.Visible || btnReporteEnVenta.Visible);
-            grupoReporteVarios.Visible = btnReporteContratos.Visible;
-            grupoReportesConta.Visible = btnReporteTransDiarias.Visible || btnReportesCompras.Visible;
+            moduloREPORTES.Visible = (btnRptInvCustodia.Visible  || btnRptInvVenta.Visible || btnRptTransDiarias.Visible || btnRptContratos.Visible);
+            grupoReportesInventario.Visible = (btnRptInvCustodia.Visible || btnRptInvVenta.Visible);
+            grupoReporteVarios.Visible = btnRptContratos.Visible;
+            grupoReportesConta.Visible = btnRptTransDiarias.Visible || btnRptComprasORO.Visible;
             moduloCONFIG.Visible = (btnConfigPrecios.Visible || btnConfigReglas.Visible || btnConfigConexionDB.Visible || btnConfigSucursales.Visible || btnConfigMiCuenta.Visible || btnConfigUsuarios.Visible || btnConfigPermisos.Visible);
             grupoConfigAdmin.Visible = (btnConfigPrecios.Visible || btnConfigReglas.Visible);
             grupoConfigConexion.Visible = (btnConfigConexionDB.Visible || btnConfigSucursales.Visible || btnConfigMiCuenta.Visible || btnConfigUsuarios.Visible || btnConfigPermisos.Visible);
@@ -760,6 +760,10 @@ namespace PrendaSAL
             }
         }
 
+
+
+
+
         // MENU REPORTES
         private void menuReportesInventarioResguardo(object sender, EventArgs e)
         {
@@ -789,6 +793,20 @@ namespace PrendaSAL
         }
 
 
+
+
+        private void menuReportesContratos(object sender, EventArgs e)
+        {
+            Reportes.RContratosForm contratos;
+            contratos = Reportes.RContratosForm.Instance();
+            contratos.MdiParent = this;
+            contratos.Show();
+            if (contratos.WindowState == FormWindowState.Minimized)
+            {
+                contratos.WindowState = FormWindowState.Normal;
+            }
+        }
+
         private void menuReportesCancelados(object sender, EventArgs e)
         {
             Reportes.RCanceladosForm cancelados;
@@ -803,18 +821,6 @@ namespace PrendaSAL
 
         
 
-        private void menuReportesContratos(object sender, EventArgs e)
-        {
-            Reportes.RContratosForm contratos;
-            contratos = Reportes.RContratosForm.Instance();
-            contratos.MdiParent = this;
-            contratos.Show();
-            if (contratos.WindowState == FormWindowState.Minimized)
-            {
-                contratos.WindowState = FormWindowState.Normal;
-            }
-        }
-
 
         private void menuReportesDiario(object sender, EventArgs e)
         {
@@ -825,6 +831,18 @@ namespace PrendaSAL
             if (diario.WindowState == FormWindowState.Minimized)
             {
                 diario.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void menuReportesEstadoCuenta(object sender, EventArgs e)
+        {
+            Reportes.REstadoCuentaForm estado;
+            estado = Reportes.REstadoCuentaForm.Instance();
+            estado.MdiParent = this;
+            estado.Show();
+            if (estado.WindowState == FormWindowState.Minimized)
+            {
+                estado.WindowState = FormWindowState.Normal;
             }
         }
 
@@ -854,7 +872,24 @@ namespace PrendaSAL
             }
         }
 
-        
+
+        private void menuReportesConsolidado(object sender, EventArgs e)
+        {
+            Reportes.RConsolidadoForm consolidado;
+            consolidado = Reportes.RConsolidadoForm.Instance();
+            consolidado.MdiParent = this;
+            consolidado.Show();
+            if (consolidado.WindowState == FormWindowState.Minimized)
+            {
+                consolidado.WindowState = FormWindowState.Normal;
+            }
+        }
+
+
+
+
+
+
         
         //MENU AYUDA
         private void btnMenuAcercaDe_Click(object sender, EventArgs e)
@@ -1059,6 +1094,7 @@ namespace PrendaSAL
 
             }
         }
+
 
         
 

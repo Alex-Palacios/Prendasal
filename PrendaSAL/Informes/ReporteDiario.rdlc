@@ -671,7 +671,6 @@
                   <CellContents>
                     <Textbox Name="DOCUMENTO1">
                       <DataElementStyle>Element</DataElementStyle>
-                      <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
@@ -689,6 +688,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
@@ -1265,6 +1278,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1837,6 +1864,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2405,6 +2446,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2973,6 +3028,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3542,6 +3611,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -4112,6 +4195,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
@@ -4691,6 +4788,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -5259,6 +5370,20 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DOCUMENTO1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Drillthrough>
+                              <ReportName>InformeFicticio.rdcl</ReportName>
+                              <Parameters>
+                                <Parameter Name="TRANS">
+                                  <Value>=Fields!COD_TRANS.Value</Value>
+                                </Parameter>
+                              </Parameters>
+                            </Drillthrough>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>

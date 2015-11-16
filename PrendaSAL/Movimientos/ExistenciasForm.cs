@@ -45,7 +45,10 @@ namespace PrendaSAL.Movimientos
         {
             if (txtCODIGO.Text.Trim() != string.Empty)
             {
-                EXISTENCIAS.DefaultView.RowFilter = "CODIGO LIKE '" + txtCODIGO.Text.Trim() + "%'";
+                if (EXISTENCIAS.Rows.Count > 0)
+                {
+                    EXISTENCIAS.DefaultView.RowFilter = "CODIGO LIKE '" + txtCODIGO.Text.Trim() + "%'";
+                }
                 tblEXISTENCIAS.DataSource = EXISTENCIAS.DefaultView;
             }
             else
@@ -64,6 +67,9 @@ namespace PrendaSAL.Movimientos
                 tblEXISTENCIAS.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
+
+
+
 
         private void tblEXISTENCIAS_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

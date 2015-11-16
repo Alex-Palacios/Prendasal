@@ -66,8 +66,8 @@ namespace PrendaSAL.Movimientos
             {
                 if (p.Field<string>("CODIGO") == "P12")
                 {
-                    btnGUARDAR.Enabled = p.Field<bool>("REGISTRAR");
-                    btnELIMINAR.Enabled = p.Field<bool>("ELIMINAR");
+                    btnGUARDAR.Visible = p.Field<bool>("REGISTRAR");
+                    btnELIMINAR.Visible = p.Field<bool>("ELIMINAR");
                 }
             }
 
@@ -97,11 +97,10 @@ namespace PrendaSAL.Movimientos
             calendarCORTE.Colors.Today.TextColor = Color.Red;
             calendarCORTE.Colors.DayMarker.IsBold = true;
             calendarCORTE.Colors.DayMarker.TextColor = Color.Blue;
-            FECHA = HOME.Instance().FECHA_SISTEMA;
-            calendarCORTE.TodayDate = FECHA;
-            calendarCORTE.SelectedDate = FECHA;
             listarCortesDiarios();
-
+            FECHA = HOME.Instance().FECHA_SISTEMA;
+            calendarCORTE.DisplayMonth = FECHA;
+            calendarCORTE.SelectedDate = FECHA;
         }
 
 
@@ -359,6 +358,25 @@ namespace PrendaSAL.Movimientos
             {
                 MessageBox.Show("CARGUE PRIMERO EL REPORTE", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void viewerREPORTE_ReportExport(object sender, ReportExportEventArgs e)
+        {
+            
+        }
+
+        private void viewerREPORTE_Drillthrough(object sender, DrillthroughEventArgs e)
+        {
+            LocalReport r = (LocalReport)e.Report;
+            foreach (ReportParameter param in r.OriginalParametersToDrillthrough)
+            {
+                if (param.Name == "TRANS")
+                {
+                    string contrato = param.Values[0];
+                    MessageBox.Show("A SELECCIONADO CONTRATO #"+contrato);
+                }
+            }
+            e.Cancel = true;
         }
 
 

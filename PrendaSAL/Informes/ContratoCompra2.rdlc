@@ -333,9 +333,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>3.50187cm</Top>
+        <Top>3.9252cm</Top>
         <Left>0.71279cm</Left>
-        <Height>9.49799cm</Height>
+        <Height>9.07466cm</Height>
         <Width>20.20062cm</Width>
         <Style>
           <Border>
@@ -357,6 +357,20 @@
                 <Value>=Parameters!FechaImp.Value</Value>
                 <Style>
                   <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                  <Format>hh:mm tt</Format>
+                  <Language>es-SV</Language>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -834,8 +848,8 @@
         <rd:DefaultName>Textbox8</rd:DefaultName>
         <Top>0.80285cm</Top>
         <Left>0.74806cm</Left>
-        <Height>2.69902cm</Height>
-        <Width>14.98297cm</Width>
+        <Height>3.12235cm</Height>
+        <Width>17.1261cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -887,9 +901,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>12.69118cm</Top>
+        <Top>12.79701cm</Top>
         <Left>0.74806cm</Left>
-        <Height>0.96724cm</Height>
+        <Height>0.86141cm</Height>
         <Width>20.16535cm</Width>
         <ZIndex>6</ZIndex>
         <Style>

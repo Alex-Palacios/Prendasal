@@ -34,8 +34,8 @@ namespace PrendaSAL.Movimientos
 
         //VARIABLES
         private DBPRENDASAL dbPrendasal;
-        private DBUsuario dbUser;
         private DBPrestamo dbPrestamo;
+        private DBUsuario dbUser;
         private DBVencidos dbVencidos;
         private DBPac dbPAC;
 
@@ -83,6 +83,7 @@ namespace PrendaSAL.Movimientos
                     btnEliminar.Visible = p.Field<bool>("ELIMINAR");
                     btnLog.Visible = p.Field<bool>("LOG");
                     btnReimprimir.Visible = p.Field<bool>("REIMPRIMIR");
+                    btnHistorialPAC.Visible = p.Field<bool>("REIMPRIMIR");
                 }
             }
 
@@ -150,6 +151,8 @@ namespace PrendaSAL.Movimientos
             txtINT_DIARIO.Text = string.Empty;
             tblHistorialPAC.DataSource = null;
             lbCAPITAL.Text = string.Empty;
+
+            btnHistorialPAC.Enabled = false;
             
         }
 
@@ -203,6 +206,7 @@ namespace PrendaSAL.Movimientos
             btnEliminar.Enabled = false;
             btnLog.Enabled = false;
             btnReimprimir.Enabled = false;
+            btnHistorialPAC.Enabled = false;
 
             txtNUM_CONTRATO.SelectAll();
 
@@ -259,14 +263,7 @@ namespace PrendaSAL.Movimientos
                         break;
                 }
                 txtEstadoCONT.Text = PAC.CONTRATO.ESTADO_CONTRATO.ToString();
-                if (PAC.CONTRATO.TIPO == eTipoPrestamo.PRENDARIO)
-                {
-                    lbARTICULO.Text = PAC.CONTRATO.ARTICULO;
-                }
-                else
-                {
-                    lbARTICULO.Text = "PRESTAMO POR MUTUO ACUERDO";
-                }
+                lbARTICULO.Text = PAC.CONTRATO.ARTICULO;
                 
                 lbTOTAL_CTO.Text = PAC.CONTRATO.TOTAL.ToString("C2");
                 lbSALDO.Text = PAC.CONTRATO.SALDO.ToString("C2");
@@ -291,6 +288,7 @@ namespace PrendaSAL.Movimientos
                 btnEliminar.Enabled = false;
                 btnLog.Enabled = false;
                 btnReimprimir.Enabled = false;
+                btnHistorialPAC.Enabled = true;
             }
         }
 
@@ -344,7 +342,6 @@ namespace PrendaSAL.Movimientos
                 else
                 {
                     MessageBox.Show("CONTRATO NO EXISTE", "NO ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    NUEVO(null, null);
                 }
                 txtNUM_CONTRATO.SelectAll();
                 e.Handled = true;
@@ -353,18 +350,31 @@ namespace PrendaSAL.Movimientos
 
 
 
+        public void buscarCargarContrato(string contrato)
+        {
+            if (buscarContrato(contrato))
+            {
+                cargarDatosContrato();
+                MessageBox.Show("CONTRATO # " + PAC.CONTRATO.DOCUMENTO + " CARGADO", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("CONTRATO NO EXISTE", "NO ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
         private bool buscarContrato(string numcontrato)
         {
+            NUEVO(null, null);
             bool OK = false;
             PAC.CONTRATO = Prestamo.ConvertToPrestamo(dbPrestamo.getContratoByDoc(numcontrato));
             if (PAC.CONTRATO != null)
             {
                 PAC.ID_PRESTAMO = PAC.CONTRATO.ID_PRESTAMO;
-                PAC.CONTRATO.ITEMS_PRESTAMO = dbPrestamo.getItemsPrestamo(PAC.CONTRATO);
                 PAC.CONTRATO.HISTORIAL_PAC = dbPAC.getHistorialPAC(PAC.CONTRATO);
-                OK = true; 
+                OK = true;
             }
             else
             {
@@ -434,7 +444,7 @@ namespace PrendaSAL.Movimientos
                 {
                     case eOperacion.INSERT:
                         PAC.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
-                        PAC.RECIBO = dbPrestamo.nextContratoPrestamo(PAC.COD_SUC);
+                        PAC.RECIBO = dbPAC.nextReciboPAC(PAC.COD_SUC);
                         txtRECIBO.Text = PAC.RECIBO;
                         break;
                 }
@@ -845,6 +855,17 @@ namespace PrendaSAL.Movimientos
 
 
 
+        private void btnEstadoCuenta_Click(object sender, EventArgs e)
+        {
+            Reportes.REstadoCuentaForm EC;
+            EC = Reportes.REstadoCuentaForm.Instance(this.Name);
+            EC.StartPosition = FormStartPosition.CenterParent;
+            EC.ShowDialog(this);
+            if (EC.WindowState == FormWindowState.Minimized)
+            {
+                EC.WindowState = FormWindowState.Normal;
+            }
+        }
 
 
 
@@ -1108,6 +1129,56 @@ namespace PrendaSAL.Movimientos
 
 
 
+        private void btnHistorialPAC_Click(object sender, EventArgs e)
+        {
+            if (PAC != null && PAC.CONTRATO != null)
+            {
+               //IMPRIMIR HISTORIAL CONTRATO
+                viewerRECIBO.Clear();
+                dSHistorialPAC.Clear();
+                try
+                {
+                    int id = 0;
+                    foreach (DataRow row in PAC.CONTRATO.HISTORIAL_PAC.Rows)
+                    {
+                        id++;
+                        Pac actual = Pac.ConvertToPAC(row);
+                        actual.CONTRATO = PAC.CONTRATO.Copy();
+                        dSHistorialPAC.HISTORIAL.AddHISTORIALRow(id, actual.FECHA, actual.DOCUMENTO, actual.TIPO.ToString(), actual.MESES, actual.DIAS, actual.INTERES,actual.DESCUENTO, actual.ABONO, actual.TOTAL, actual.DESDE, actual.HASTA, actual.PROXIMO_PAGO);
+                    }
+                    bsHistorialPAC.DataSource = dSHistorialPAC.HISTORIAL;
+
+                    ReportParameter[] parameters = new ReportParameter[12];
+                    parameters[0] = new ReportParameter("CONTRATO", PAC.CONTRATO.DOCUMENTO);
+                    parameters[1] = new ReportParameter("FECHA", PAC.CONTRATO.FECHA.ToShortDateString());
+                    parameters[2] = new ReportParameter("CLIENTE", PAC.CONTRATO.CLIENTE);
+                    parameters[3] = new ReportParameter("DUI", PAC.CONTRATO.DUI);
+                    parameters[4] = new ReportParameter("ARTICULO", PAC.CONTRATO.ARTICULO);
+                    parameters[5] = new ReportParameter("PRESTAMO", PAC.CONTRATO.TOTAL.ToString("C2"));
+                    parameters[6] = new ReportParameter("ESTADO", PAC.CONTRATO.ESTADO_CONTRATO.ToString());
+                    parameters[7] = new ReportParameter("SALDO", PAC.CONTRATO.SALDO.ToString("C2"));
+                    parameters[8] = new ReportParameter("INTERES", PAC.CONTRATO.INTERES_MENSUAL.ToString("C2"));
+                    parameters[9] = new ReportParameter("DIARIO", PAC.CONTRATO.INTERES_DIARIO.ToString("C2"));
+                    parameters[10] = new ReportParameter("VENCIMIENTO", PAC.CONTRATO.FECHA_VENC.ToShortDateString());
+                    parameters[11] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToShortDateString());
+
+
+                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.RptHistorialPAC.rdlc";
+                    viewerRECIBO.LocalReport.DataSources.Add(new ReportDataSource("HISTORIAL", bsHistorialPAC));
+                    viewerRECIBO.LocalReport.SetParameters(parameters);
+                    viewerRECIBO.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR AL GENERAR HISTORIAL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("NO HA CARGADO CONTRATO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 
@@ -1130,6 +1201,8 @@ namespace PrendaSAL.Movimientos
 
         }
 
+       
+        
 
 
 

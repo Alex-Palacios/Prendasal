@@ -8,9 +8,6 @@ namespace MODELO
 {
 
     using System.Data;
-    using System.Windows.Forms;
-
-    
 
     public class Cliente
     {
@@ -85,6 +82,12 @@ namespace MODELO
             return cli;
         }
 
+
+        public Cliente Copy()
+        {
+            Cliente copy = (Cliente)this.MemberwiseClone();
+            return copy;
+        }
 
 
 

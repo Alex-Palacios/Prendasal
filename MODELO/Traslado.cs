@@ -41,6 +41,15 @@ namespace MODELO
             REMISION.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
             REMISION.Columns.Add("PRECIO").DataType = System.Type.GetType("System.Decimal");
             REMISION.Columns.Add("ID_DET_PRESTAMO").DataType = System.Type.GetType("System.Int32");
+
+
+            CUSTODIA = new DataTable();
+            CUSTODIA.Columns.Add("TRANS").DataType = System.Type.GetType("System.String");
+            CUSTODIA.Columns.Add("CONTRATO").DataType = System.Type.GetType("System.String");
+            CUSTODIA.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
+            CUSTODIA.Columns.Add("NIVEL").DataType = System.Type.GetType("System.Int64");
+            CUSTODIA.Columns.Add("ID").DataType = System.Type.GetType("System.Int32");
+
         }
 
 

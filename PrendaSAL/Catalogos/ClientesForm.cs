@@ -208,25 +208,7 @@ namespace PrendaSAL.Catalogos
 
 
 
-        private void btnLog_Click(object sender, EventArgs e)
-        {
-            if (tblCLIENTES.SelectedRows.Count == 1)
-            {
-                cargarSelected();
-                string codigo = SELECTED.COD_CLIENTE;
-                //DataTable log = dbPrendasal.GET_LOG_CLIENTE(SELECTED.CODIGO , HOME.Instance().SISTEMA);
-                //if (log.Rows.Count > 0)
-                //{
-                //    Controles.ShowLogDialog("LOG CLIENTE :" + SELECTED.CODIGO, log);
-                //}
-            }
-        }
-
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
 
 
         private void tblCLIENTES_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -271,6 +253,10 @@ namespace PrendaSAL.Catalogos
                         Movimientos.VentasForm.Instance().cargarDatosCliente(SELECTED);
                         this.Close();
                         break;
+                    case "REstadoCuentaForm":
+                        Reportes.REstadoCuentaForm.Instance().cargarDatosCliente(SELECTED);
+                        this.Close();
+                        break;
                 }
             }
         }
@@ -278,6 +264,24 @@ namespace PrendaSAL.Catalogos
 
 
 
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            if (tblCLIENTES.SelectedRows.Count == 1)
+            {
+                cargarSelected();
+                string codigo = SELECTED.COD_CLIENTE;
+                //DataTable log = dbPrendasal.GET_LOG_CLIENTE(SELECTED.CODIGO , HOME.Instance().SISTEMA);
+                //if (log.Rows.Count > 0)
+                //{
+                //    Controles.ShowLogDialog("LOG CLIENTE :" + SELECTED.CODIGO, log);
+                //}
+            }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 

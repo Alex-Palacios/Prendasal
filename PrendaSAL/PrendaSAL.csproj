@@ -27,8 +27,8 @@
     <ProductName>PRENDASAL</ProductName>
     <PublisherName>GRUPO D´DICARK S.A de C.V</PublisherName>
     <SuiteName>SISTEMA PRENDASAL</SuiteName>
-    <ApplicationRevision>41</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -235,6 +235,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCancelados.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Informes\DSEstadoCuenta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSEstadoCuenta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Informes\DSHistorialPAC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSHistorialPAC.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Informes\DSVencidosOro.cs">
       <DependentUpon>DSVencidosOro.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -426,6 +436,18 @@
     <Compile Include="Reportes\RCanceladosForm.Designer.cs">
       <DependentUpon>RCanceladosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RConsolidadoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RConsolidadoForm.Designer.cs">
+      <DependentUpon>RConsolidadoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\REstadoCuentaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\REstadoCuentaForm.Designer.cs">
+      <DependentUpon>REstadoCuentaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\RVencidosOroForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -566,6 +588,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Informes\ContratoCompra2.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo2.rdlc" />
+    <EmbeddedResource Include="Informes\RptHistorialPAC.rdlc" />
+    <EmbeddedResource Include="Informes\RptEstadoCuenta.rdlc" />
     <EmbeddedResource Include="Informes\KPM.rdlc" />
     <EmbeddedResource Include="Informes\ContratoCompra1.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo1.rdlc" />
@@ -654,6 +678,9 @@
     <EmbeddedResource Include="Reportes\RCanceladosForm.resx">
       <DependentUpon>RCanceladosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\REstadoCuentaForm.resx">
+      <DependentUpon>REstadoCuentaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RVencidosOroForm.resx">
       <DependentUpon>RVencidosOroForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -714,6 +741,28 @@
     </None>
     <None Include="Informes\DSCancelados.xss">
       <DependentUpon>DSCancelados.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSEstadoCuenta.xsc">
+      <DependentUpon>DSEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSEstadoCuenta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSEstadoCuenta.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Informes\DSEstadoCuenta.xss">
+      <DependentUpon>DSEstadoCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSHistorialPAC.xsc">
+      <DependentUpon>DSHistorialPAC.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSHistorialPAC.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSHistorialPAC.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Informes\DSHistorialPAC.xss">
+      <DependentUpon>DSHistorialPAC.xsd</DependentUpon>
     </None>
     <None Include="Informes\DSVencidosOro.xsc">
       <DependentUpon>DSVencidosOro.xsd</DependentUpon>
@@ -1051,6 +1100,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\printer1.png" />
+    <None Include="Resources\cargar_catalogo.png" />
+    <None Include="Resources\estadocuenta1.jpg" />
+    <None Include="Resources\estadocuenta2.jpg" />
     <None Include="Resources\graficos1.jpg" />
     <None Include="Resources\lingote.jpg" />
     <None Include="Resources\fechas21.png" />

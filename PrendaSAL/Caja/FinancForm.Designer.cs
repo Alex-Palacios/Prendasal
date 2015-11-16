@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnRecibir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnLog = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.lbTOTAL = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tblFinanc = new System.Windows.Forms.DataGridView();
-            this.btnRecibir = new System.Windows.Forms.ToolStripButton();
-            this.btnLog = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.NUM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,21 +59,51 @@
             this.btnAyuda});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(904, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(921, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnRecibir
+            // 
+            this.btnRecibir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRecibir.Image = global::PrendaSAL.Properties.Resources.candado;
+            this.btnRecibir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRecibir.Name = "btnRecibir";
+            this.btnRecibir.Size = new System.Drawing.Size(23, 22);
+            this.btnRecibir.ToolTipText = "Nueva";
+            this.btnRecibir.Click += new System.EventHandler(this.RECIBIR);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // btnLog
+            // 
+            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
+            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(23, 22);
+            this.btnLog.ToolTipText = "Log";
+            this.btnLog.Click += new System.EventHandler(this.LOG);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
+            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
+            // 
             // lbTOTAL
             // 
             this.lbTOTAL.AutoSize = true;
             this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTOTAL.Location = new System.Drawing.Point(766, 328);
+            this.lbTOTAL.Location = new System.Drawing.Point(572, 329);
             this.lbTOTAL.Name = "lbTOTAL";
             this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
             this.lbTOTAL.TabIndex = 120;
@@ -84,7 +114,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(633, 328);
+            this.label4.Location = new System.Drawing.Point(427, 324);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 23);
             this.label4.TabIndex = 119;
@@ -111,40 +141,10 @@
             this.tblFinanc.ReadOnly = true;
             this.tblFinanc.RowHeadersVisible = false;
             this.tblFinanc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblFinanc.Size = new System.Drawing.Size(900, 295);
+            this.tblFinanc.Size = new System.Drawing.Size(905, 295);
             this.tblFinanc.TabIndex = 118;
             this.tblFinanc.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblFinanc_CellFormatting);
             this.tblFinanc.SelectionChanged += new System.EventHandler(this.tblFinanc_SelectionChanged);
-            // 
-            // btnRecibir
-            // 
-            this.btnRecibir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRecibir.Image = global::PrendaSAL.Properties.Resources.candado;
-            this.btnRecibir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRecibir.Name = "btnRecibir";
-            this.btnRecibir.Size = new System.Drawing.Size(23, 22);
-            this.btnRecibir.ToolTipText = "Nueva";
-            this.btnRecibir.Click += new System.EventHandler(this.RECIBIR);
-            // 
-            // btnLog
-            // 
-            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
-            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(23, 22);
-            this.btnLog.ToolTipText = "Log";
-            this.btnLog.Click += new System.EventHandler(this.LOG);
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
-            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
             // 
             // NUM
             // 
@@ -157,9 +157,9 @@
             // FECHA
             // 
             this.FECHA.DataPropertyName = "FECHA";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.FECHA.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.FECHA.DefaultCellStyle = dataGridViewCellStyle2;
             this.FECHA.HeaderText = "FECHA";
             this.FECHA.Name = "FECHA";
             this.FECHA.ReadOnly = true;
@@ -232,7 +232,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(904, 361);
+            this.ClientSize = new System.Drawing.Size(921, 361);
             this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tblFinanc);

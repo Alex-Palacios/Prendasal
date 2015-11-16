@@ -245,5 +245,37 @@ namespace DDB
         }
 
 
+
+
+
+        public DataTable RptEstadoCuenta(string cliente)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_ESTADO_CUENTA";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter cli_rpt = cmd.Parameters.Add("cli_rpt", MySqlDbType.VarChar, 15);
+                cli_rpt.Direction = ParameterDirection.Input;
+
+                cli_rpt.Value = cliente;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR ESTADO DE CUENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
     }
 }

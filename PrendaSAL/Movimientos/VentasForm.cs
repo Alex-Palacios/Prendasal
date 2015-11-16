@@ -33,7 +33,6 @@ namespace PrendaSAL.Movimientos
 
         //VARIABLES
         private DBPRENDASAL dbPrendasal;
-        private DBUsuario dbUser;
         private DBCliente dbCliente;
         private DBVenta dbVenta;
         private DBCatalogo dbCatalogo;
@@ -50,7 +49,6 @@ namespace PrendaSAL.Movimientos
         {
             InitializeComponent();
             dbPrendasal = new DBPRENDASAL();
-            dbUser = new DBUsuario();
             dbCliente = new DBCliente();
             dbVenta = new DBVenta();
             dbCatalogo = new DBCatalogo();
@@ -399,11 +397,10 @@ namespace PrendaSAL.Movimientos
         }
 
 
-        public bool addItemVenta(Existencia exist)
+        public void addItemVenta(Existencia exist)
         {
-            bool OK = false;
             VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
-            return OK;
+            calcularTotales();
         }
 
 
@@ -739,7 +736,6 @@ namespace PrendaSAL.Movimientos
 
         private void BUSCAR(object sender, EventArgs e)
         {
-            ACCION = eOperacion.SEARCH;
             string numVENT = Controles.InputBox("VENTA #: ", "BUSCAR");
             if (numVENT != "")
             {
