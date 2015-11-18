@@ -118,7 +118,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DOMICILIO_CLI")) { prestamo.DOMICILIO_CLI = dr.Field<string>("DOMICILIO_CLI"); }
                 if (dr.Table.Columns.Contains("DIRECCION_CLI")) { prestamo.DIRECCION_CLI = dr.Field<string>("DIRECCION_CLI"); }
 
-                if (dr.Table.Columns.Contains("DIAS_TRANS")) { prestamo.DIAS_TRANS = dr.Field<Int64>("DIAS_TRANS"); }
+                if (dr.Table.Columns.Contains("DIAS_TRANS")) { prestamo.DIAS_TRANS = dr.Field<int>("DIAS_TRANS"); }
                 if (dr.Table.Columns.Contains("ESTADO_CONTRATO")) { prestamo.ESTADO_CONTRATO = (eEstadoContrato)Enum.Parse(typeof(eEstadoContrato), dr.Field<string>("ESTADO_CONTRATO")); }
 
             }

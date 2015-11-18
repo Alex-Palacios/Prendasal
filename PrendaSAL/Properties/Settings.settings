@@ -12,10 +12,10 @@
       <Value Profile="(Default)">prendasal</Value>
     </Setting>
     <Setting Name="USERDB" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">sanluisPS</Value>
+      <Value Profile="(Default)">prendasal</Value>
     </Setting>
     <Setting Name="PASSWORD" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">prend@SAL</Value>
+      <Value Profile="(Default)">prendasal</Value>
     </Setting>
     <Setting Name="SISTEMA" Type="System.String" Scope="Application">
       <Value Profile="(Default)">PRENDASAL</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">01</Value>
     </Setting>
     <Setting Name="SERVER" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ddicark.c7mugzs4nwtm.us-east-1.rds.amazonaws.com</Value>
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="PERIODO_INTERES" Type="MODELO.GlobalPeriodoInteres" Scope="Application">
       <Value Profile="(Default)">DIARIO</Value>
