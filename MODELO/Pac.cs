@@ -32,8 +32,6 @@ namespace MODELO
         public decimal DESCUENTO;
         public decimal ABONO;
         public decimal TOTAL;
-        public decimal IVA;
-        public decimal IVA_DESC;
         public eNIVEL NIVEL;
         public eEstado ESTADO;
         public bool INIT_BALANCE;
@@ -73,8 +71,6 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DESCUENTO")) { pac.DESCUENTO = dr.Field<decimal>("DESCUENTO"); }
                 if (dr.Table.Columns.Contains("ABONO")) { pac.ABONO = dr.Field<decimal>("ABONO"); }
                 if (dr.Table.Columns.Contains("TOTAL")) { pac.TOTAL = dr.Field<decimal>("TOTAL"); }
-                if (dr.Table.Columns.Contains("IVA")) { pac.IVA = dr.Field<decimal>("IVA"); }
-                if (dr.Table.Columns.Contains("IVA_DESC")) { pac.IVA_DESC = dr.Field<decimal>("IVA_DESC"); }
                 if (dr.Table.Columns.Contains("NIVEL")) { pac.NIVEL = (eNIVEL)dr.Field<int>("NIVEL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { pac.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { pac.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
@@ -132,6 +128,24 @@ namespace MODELO
                 return Decimal.Round(this.NUEVO_SALDO * this.CONTRATO.TASA_MENSUAL/100,2,MidpointRounding.AwayFromZero);
             }
         }
+
+
+        public decimal IVA
+        {
+            get
+            {
+                return Decimal.Round(this.INTERES - (this.INTERES*100/(100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            }
+        }
+
+        public decimal IVA_DESC
+        {
+            get
+            {
+                return Decimal.Round(this.DESCUENTO - (this.DESCUENTO*100/(100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            }
+        }
+
 
         
 

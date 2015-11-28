@@ -45,7 +45,7 @@ namespace PrendaSAL.Movimientos
                 lbMENSUAL.Text = PRESTAMO.TASA_MENSUAL + " %";
                 lbINTERES.Text = PRESTAMO.INTERES_MENSUAL.ToString("C2");
                 lbPLAZO.Text = PRESTAMO.PLAZO_CONTRATO + " DIAS";
-                lbFECHA_VENC.Text = PRESTAMO.FECHA_VENC.ToString("dd/MM/yyyy");
+                lbFECHA_VENC.Text = PRESTAMO.FECHA_VENC_INIT.ToString("dd/MM/yyyy");
                 lbNIVEL.Text = PRESTAMO.NIVEL.ToString();
                 switch (PRESTAMO.NIVEL)
                 {

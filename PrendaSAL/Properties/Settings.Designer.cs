@@ -103,14 +103,5 @@ namespace PrendaSAL.Properties {
                 return ((global::MODELO.GlobalPeriodoInteres)(this["PERIODO_INTERES"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("13")]
-        public decimal IVA {
-            get {
-                return ((decimal)(this["IVA"]));
-            }
-        }
     }
 }

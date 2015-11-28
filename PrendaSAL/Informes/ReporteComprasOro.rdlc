@@ -953,6 +953,7 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
+                  <rd:Selected>true</rd:Selected>
                 </CellContents>
               </TablixHeader>
               <TablixMembers>
@@ -1051,7 +1052,7 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!SUCURSAL.Value</Value>
+                  <Value>=CByte(Fields!COD_SUC.Value)</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixMembers>
@@ -1225,6 +1226,10 @@
         </Field>
         <Field Name="RESPONSABLE">
           <DataField>RESPONSABLE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_SUC">
+          <DataField>COD_SUC</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

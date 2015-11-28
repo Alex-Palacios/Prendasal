@@ -277,5 +277,61 @@ namespace DDB
         }
 
 
+
+
+
+
+
+
+        public DataTable RptConsolidado(string anio,string meses,string sucursales,bool prestamos,bool compras,bool ventas,bool intereses,bool abonos)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_CONSOLIDADO_TRANS";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter anio_rpt = cmd.Parameters.Add("anio_rpt", MySqlDbType.VarChar, 4);
+                anio_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter meses_rpt = cmd.Parameters.Add("meses_rpt", MySqlDbType.VarChar, 100);
+                meses_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar,100);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter prestamo_rpt = cmd.Parameters.Add("prestamo_rpt", MySqlDbType.Bit);
+                prestamo_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter compra_rpt = cmd.Parameters.Add("compra_rpt", MySqlDbType.Bit);
+                compra_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter venta_rpt = cmd.Parameters.Add("venta_rpt", MySqlDbType.Bit);
+                venta_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter interes_rpt = cmd.Parameters.Add("interes_rpt", MySqlDbType.Bit);
+                interes_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter abono_rpt = cmd.Parameters.Add("abono_rpt", MySqlDbType.Bit);
+                abono_rpt.Direction = ParameterDirection.Input;
+
+                anio_rpt.Value = anio;
+                meses_rpt.Value = meses;
+                suc_rpt.Value = sucursales;
+                prestamo_rpt.Value = prestamos;
+                compra_rpt.Value = compras;
+                venta_rpt.Value = ventas;
+                interes_rpt.Value = intereses;
+                abono_rpt.Value = abonos;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR REPORTE CONSOLIDADO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
     }
 }

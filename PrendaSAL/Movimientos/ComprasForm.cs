@@ -1049,7 +1049,7 @@ namespace PrendaSAL.Movimientos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Detalle: \n"+ex.Message , "ERROR AL IMPRIMIR CONTRATO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Detalle: \n"+ex.Message , "ERROR AL IMPRIMIR CONTRATO DE COMPRA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }

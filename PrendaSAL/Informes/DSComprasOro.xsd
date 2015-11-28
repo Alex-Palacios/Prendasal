@@ -12,7 +12,7 @@
   <xs:element name="DSComprasOro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSComprasOro" msprop:Generator_UserDSName="DSComprasOro">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="COMPRAS_ORO" msprop:Generator_TableClassName="COMPRAS_ORODataTable" msprop:Generator_TableVarName="tableCOMPRAS_ORO" msprop:Generator_TablePropName="COMPRAS_ORO" msprop:Generator_RowDeletingName="COMPRAS_ORORowDeleting" msprop:Generator_RowChangingName="COMPRAS_ORORowChanging" msprop:Generator_RowEvHandlerName="COMPRAS_ORORowChangeEventHandler" msprop:Generator_RowDeletedName="COMPRAS_ORORowDeleted" msprop:Generator_UserTableName="COMPRAS_ORO" msprop:Generator_RowChangedName="COMPRAS_ORORowChanged" msprop:Generator_RowEvArgName="COMPRAS_ORORowChangeEvent" msprop:Generator_RowClassName="COMPRAS_ORORow">
+        <xs:element name="COMPRAS_ORO" msprop:Generator_TableClassName="COMPRAS_ORODataTable" msprop:Generator_TableVarName="tableCOMPRAS_ORO" msprop:Generator_RowChangedName="COMPRAS_ORORowChanged" msprop:Generator_TablePropName="COMPRAS_ORO" msprop:Generator_RowDeletingName="COMPRAS_ORORowDeleting" msprop:Generator_RowChangingName="COMPRAS_ORORowChanging" msprop:Generator_RowEvHandlerName="COMPRAS_ORORowChangeEventHandler" msprop:Generator_RowDeletedName="COMPRAS_ORORowDeleted" msprop:Generator_RowClassName="COMPRAS_ORORow" msprop:Generator_UserTableName="COMPRAS_ORO" msprop:Generator_RowEvArgName="COMPRAS_ORORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUCURSAL" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SUCURSAL" msprop:Generator_ColumnVarNameInTable="columnSUCURSAL" msprop:Generator_ColumnPropNameInTable="SUCURSALColumn" msprop:Generator_UserColumnName="SUCURSAL" type="xs:string" minOccurs="0" />
@@ -24,6 +24,7 @@
               <xs:element name="PESO" msprop:Generator_ColumnVarNameInTable="columnPESO" msprop:Generator_ColumnPropNameInRow="PESO" msprop:Generator_ColumnPropNameInTable="PESOColumn" msprop:Generator_UserColumnName="PESO" type="xs:decimal" minOccurs="0" />
               <xs:element name="MONTO" msprop:Generator_ColumnVarNameInTable="columnMONTO" msprop:Generator_ColumnPropNameInRow="MONTO" msprop:Generator_ColumnPropNameInTable="MONTOColumn" msprop:Generator_UserColumnName="MONTO" type="xs:decimal" minOccurs="0" />
               <xs:element name="RESPONSABLE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="RESPONSABLE" msprop:Generator_ColumnVarNameInTable="columnRESPONSABLE" msprop:Generator_ColumnPropNameInTable="RESPONSABLEColumn" msprop:Generator_UserColumnName="RESPONSABLE" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_SUC" msprop:Generator_ColumnVarNameInTable="columnCOD_SUC" msprop:Generator_ColumnPropNameInRow="COD_SUC" msprop:Generator_ColumnPropNameInTable="COD_SUCColumn" msprop:Generator_UserColumnName="COD_SUC" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

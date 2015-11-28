@@ -793,7 +793,17 @@ namespace PrendaSAL
         }
 
 
-
+        private void menuReportesKARDEX(object sender, EventArgs e)
+        {
+            Reportes.RKardexForm kardex;
+            kardex = Reportes.RKardexForm.Instance();
+            kardex.MdiParent = this;
+            kardex.Show();
+            if (kardex.WindowState == FormWindowState.Minimized)
+            {
+                kardex.WindowState = FormWindowState.Normal;
+            }
+        }
 
         private void menuReportesContratos(object sender, EventArgs e)
         {
@@ -1094,6 +1104,8 @@ namespace PrendaSAL
 
             }
         }
+
+        
 
 
         

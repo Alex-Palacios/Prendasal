@@ -960,45 +960,53 @@ namespace PrendaSAL.Movimientos
             viewerRECIBO.Clear();
             if (SELECTED != null && SELECTED.INTERES <= 0)
             {
-                Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
-                //IMPRIMIR RECIBO
-                ReportParameter[] parameters = new ReportParameter[19];
-                parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);
-                parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
-                parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
-                parameters[3] = new ReportParameter("NumRECIBO", SELECTED.RECIBO);
-                parameters[4] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-                parameters[5] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
-                parameters[6] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
-                parameters[7] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
-                parameters[8] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
-                parameters[9] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
-                parameters[10] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
-                parameters[11] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
-                parameters[12] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
-                parameters[13] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE);
-                parameters[14] = new ReportParameter("FechaPago", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
-                parameters[15] = new ReportParameter("NumCONTRATO", SELECTED.CONTRATO.DOCUMENTO);
-                parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
-                if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+                try
                 {
-                    parameters[17] = new ReportParameter("PeriodoPagado", "Prorroga:(" + SELECTED.MESES + " Meses - " + SELECTED.DIAS + " Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    //IMPRIMIR RECIBO
+                    ReportParameter[] parameters = new ReportParameter[19];
+                    parameters[0] = new ReportParameter("Sucursal", SUC.SUCURSAL);
+                    parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION);
+                    parameters[2] = new ReportParameter("TelSUC", "TEL: " + SUC.TEL);
+                    parameters[3] = new ReportParameter("NumRECIBO", SELECTED.RECIBO);
+                    parameters[4] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                    parameters[5] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
+                    parameters[6] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
+                    parameters[7] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
+                    parameters[8] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
+                    parameters[9] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
+                    parameters[10] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
+                    parameters[11] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
+                    parameters[12] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
+                    parameters[13] = new ReportParameter("EMPLEADO", SELECTED.RESPONSABLE);
+                    parameters[14] = new ReportParameter("FechaPago", SELECTED.FECHA.Date.ToString("dd/MM/yyyy"));
+                    parameters[15] = new ReportParameter("NumCONTRATO", SELECTED.CONTRATO.DOCUMENTO);
+                    parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                    if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+                    {
+                        parameters[17] = new ReportParameter("PeriodoPagado", "Prorroga:(" + SELECTED.MESES + " Meses - " + SELECTED.DIAS + " Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+                    }
+                    else
+                    {
+                        parameters[17] = new ReportParameter("PeriodoPagado", "------------");
+                    }
+                    if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
+                    {
+                        parameters[18] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
+                    }
+                    else
+                    {
+                        parameters[18] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+                    }
+                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ReciboPAC.rdlc";
+                    viewerRECIBO.LocalReport.SetParameters(parameters);
+                    viewerRECIBO.RefreshReport();
                 }
-                else
+                catch (Exception ex)
                 {
-                    parameters[17] = new ReportParameter("PeriodoPagado", "------------");
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR RECIBO PAC", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
-                {
-                    parameters[18] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
-                }
-                else
-                {
-                    parameters[18] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
-                }
-                viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ReciboPAC.rdlc";
-                viewerRECIBO.LocalReport.SetParameters(parameters);
-                viewerRECIBO.RefreshReport();
+               
             }
         }
 
@@ -1011,63 +1019,70 @@ namespace PrendaSAL.Movimientos
             viewerRECIBO.Clear();
             if (SELECTED != null && SELECTED.INTERES > 0)
             {
-                Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
-                dSItemFCF.Clear();
-                dSItemFCF.ITEM.AddITEMRow("", SELECTED.MESES + " Meses " + SELECTED.DIAS + " Dias " + " INTERES Cto #" + SELECTED.CONTRATO.DOCUMENTO, SELECTED.INTERES);
-                if (SELECTED.DESCUENTO > 0)
+                try
                 {
-                    dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO APLICADO S/INTERES ", -SELECTED.DESCUENTO);
-                }
-                else
-                {
-                    dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                }
-                if (SELECTED.ABONO > 0)
-                {
-                    dSItemFCF.ITEM.AddITEMRow("", "ABONO A CAPITAL:  " + SELECTED.ABONO, Decimal.Zero);
-                }
-                else
-                {
-                    dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                }
-                switch(SELECTED.TIPO)
-                {
-                    case eTipoMovPac.CANCELACION:
-                        dSItemFCF.ITEM.AddITEMRow("", eTipoMovPac.CANCELACION.ToString(), Decimal.Zero);
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    dSItemFCF.Clear();
+                    dSItemFCF.ITEM.AddITEMRow("", SELECTED.MESES + " Meses " + SELECTED.DIAS + " Dias " + " INTERES Cto #" + SELECTED.CONTRATO.DOCUMENTO, SELECTED.INTERES);
+                    if (SELECTED.DESCUENTO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO APLICADO S/INTERES ", -SELECTED.DESCUENTO);
+                    }
+                    else
+                    {
                         dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                        break;
-                    case eTipoMovPac.ABONO:
-                        dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
+                    }
+                    if (SELECTED.ABONO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "ABONO A CAPITAL:  " + SELECTED.ABONO, Decimal.Zero);
+                    }
+                    else
+                    {
                         dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                        break;
-                    case eTipoMovPac.PRORROGA:
-                        dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
-                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                        break;
+                    }
+                    switch (SELECTED.TIPO)
+                    {
+                        case eTipoMovPac.CANCELACION:
+                            dSItemFCF.ITEM.AddITEMRow("", eTipoMovPac.CANCELACION.ToString(), Decimal.Zero);
+                            dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                        case eTipoMovPac.ABONO:
+                            dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
+                            dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                        case eTipoMovPac.PRORROGA:
+                            dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
+                            dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                    }
+                    bindingFCF.DataSource = dSItemFCF.ITEM;
+
+                    ReportParameter[] parameters = new ReportParameter[8];
+                    parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
+                    parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                    parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[5] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[6] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
+
+                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
+                    viewerRECIBO.LocalReport.DataSources.Clear();
+                    viewerRECIBO.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
+                    viewerRECIBO.LocalReport.SetParameters(parameters);
+                    viewerRECIBO.RefreshReport();
                 }
-                bindingFCF.DataSource = dSItemFCF.ITEM;
-
-                ReportParameter[] parameters = new ReportParameter[8];
-                parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
-                parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-                parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                parameters[5] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                parameters[6] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
-
-                viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
-                viewerRECIBO.LocalReport.DataSources.Clear();
-                viewerRECIBO.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
-                viewerRECIBO.LocalReport.SetParameters(parameters);
-                viewerRECIBO.RefreshReport();
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR FACTURA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 DialogResult detalle = MessageBox.Show("IMPRIMIR DETALLE AL REVERSO DE LA FACTURA?", "IMPRIMIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (detalle == DialogResult.Yes)
                 {
                     ImprimirReversoFactura();
                 }
+                
             }
         }
 
@@ -1081,39 +1096,47 @@ namespace PrendaSAL.Movimientos
         {
             //IMPRIMIR DETALLE AL REVERSO DE LA FACTURA
             viewerRECIBO.Clear();
-            ReportParameter[] parameters = new ReportParameter[13];
-            parameters[0] = new ReportParameter("numRECIBO", SELECTED.RECIBO);
-            parameters[1] = new ReportParameter("CONTRATO", SELECTED.CONTRATO.DOCUMENTO);
-            parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-            parameters[3] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
-            parameters[4] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
-            parameters[5] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
-            parameters[6] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
-            parameters[7] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
-            parameters[8] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
-            parameters[9] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
-            parameters[10] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
-            if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+            try
             {
-                parameters[11] = new ReportParameter("PeriodoPagado", "Prorroga:("+SELECTED.MESES+" Meses - "+SELECTED.DIAS+" Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+                ReportParameter[] parameters = new ReportParameter[13];
+                parameters[0] = new ReportParameter("numRECIBO", SELECTED.RECIBO);
+                parameters[1] = new ReportParameter("CONTRATO", SELECTED.CONTRATO.DOCUMENTO);
+                parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                parameters[3] = new ReportParameter("ARTICULO", SELECTED.CONTRATO.ARTICULO);
+                parameters[4] = new ReportParameter("SaldoActual", SELECTED.SALDO_ANTERIOR.ToString("C2"));
+                parameters[5] = new ReportParameter("Interes", SELECTED.INTERES.ToString("C2"));
+                parameters[6] = new ReportParameter("Descuento", SELECTED.DESCUENTO.ToString("C2"));
+                parameters[7] = new ReportParameter("Abono", SELECTED.ABONO.ToString("C2"));
+                parameters[8] = new ReportParameter("Total", SELECTED.TOTAL.ToString("C2"));
+                parameters[9] = new ReportParameter("NuevoSaldo", SELECTED.NUEVO_SALDO.ToString("C2"));
+                parameters[10] = new ReportParameter("NuevoInteres", SELECTED.NUEVO_INTERES.ToString("C2"));
+                if ((SELECTED.MESES + SELECTED.DIAS) > 0)
+                {
+                    parameters[11] = new ReportParameter("PeriodoPagado", "Prorroga:(" + SELECTED.MESES + " Meses - " + SELECTED.DIAS + " Dias) Del " + SELECTED.DESDE.Date.ToString("dd/MM/yyyy") + " al " + SELECTED.HASTA.Date.ToString("dd/MM/yyyy"));
+                }
+                else
+                {
+                    parameters[11] = new ReportParameter("PeriodoPagado", "------------");
+                }
+                if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
+                {
+                    parameters[12] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
+                }
+                else
+                {
+                    parameters[12] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+                }
+
+
+                viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Reverse.rdlc";
+                viewerRECIBO.LocalReport.SetParameters(parameters);
+                viewerRECIBO.RefreshReport();
             }
-            else
+            catch (Exception ex)
             {
-                parameters[11] = new ReportParameter("PeriodoPagado", "------------");
-            }
-            if (SELECTED.TIPO == eTipoMovPac.CANCELACION)
-            {
-                parameters[12] = new ReportParameter("ProximoPago", SELECTED.TIPO.ToString());
-            }
-            else
-            {
-                parameters[12] = new ReportParameter("ProximoPago", SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"));
+                MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR DETALLE LA REVERSO DE FACTURA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-
-            viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Reverse.rdlc";
-            viewerRECIBO.LocalReport.SetParameters(parameters);
-            viewerRECIBO.RefreshReport();
         }
 
 

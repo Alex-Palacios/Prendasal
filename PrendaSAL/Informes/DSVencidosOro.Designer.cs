@@ -301,6 +301,8 @@ namespace PrendaSAL.Informes {
             
             private global::System.Data.DataColumn columnSALDO;
             
+            private global::System.Data.DataColumn columnCOD_SUC;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public VENCIDOS_ORODataTable() {
@@ -424,6 +426,14 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn COD_SUCColumn {
+                get {
+                    return this.columnCOD_SUC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -459,7 +469,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VENCIDOS_ORORow AddVENCIDOS_ORORow(string SUCURSAL, int ID_PRESTAMO, string CONTRATO, System.DateTime FECHA_CONTRATO, string ARTICULO, string KILATAJE, decimal PESO, decimal MONTO, string RESPONSABLE, decimal PRESTAMO, decimal SALDO) {
+            public VENCIDOS_ORORow AddVENCIDOS_ORORow(string SUCURSAL, int ID_PRESTAMO, string CONTRATO, System.DateTime FECHA_CONTRATO, string ARTICULO, string KILATAJE, decimal PESO, decimal MONTO, string RESPONSABLE, decimal PRESTAMO, decimal SALDO, string COD_SUC) {
                 VENCIDOS_ORORow rowVENCIDOS_ORORow = ((VENCIDOS_ORORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SUCURSAL,
@@ -472,7 +482,8 @@ namespace PrendaSAL.Informes {
                         MONTO,
                         RESPONSABLE,
                         PRESTAMO,
-                        SALDO};
+                        SALDO,
+                        COD_SUC};
                 rowVENCIDOS_ORORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVENCIDOS_ORORow);
                 return rowVENCIDOS_ORORow;
@@ -506,6 +517,7 @@ namespace PrendaSAL.Informes {
                 this.columnRESPONSABLE = base.Columns["RESPONSABLE"];
                 this.columnPRESTAMO = base.Columns["PRESTAMO"];
                 this.columnSALDO = base.Columns["SALDO"];
+                this.columnCOD_SUC = base.Columns["COD_SUC"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -533,6 +545,8 @@ namespace PrendaSAL.Informes {
                 base.Columns.Add(this.columnPRESTAMO);
                 this.columnSALDO = new global::System.Data.DataColumn("SALDO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSALDO);
+                this.columnCOD_SUC = new global::System.Data.DataColumn("COD_SUC", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOD_SUC);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -851,6 +865,22 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string COD_SUC {
+                get {
+                    try {
+                        return ((string)(this[this.tableVENCIDOS_ORO.COD_SUCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COD_SUC\' de la tabla \'VENCIDOS_ORO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVENCIDOS_ORO.COD_SUCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSUCURSALNull() {
                 return this.IsNull(this.tableVENCIDOS_ORO.SUCURSALColumn);
             }
@@ -979,6 +1009,18 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSALDONull() {
                 this[this.tableVENCIDOS_ORO.SALDOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCOD_SUCNull() {
+                return this.IsNull(this.tableVENCIDOS_ORO.COD_SUCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCOD_SUCNull() {
+                this[this.tableVENCIDOS_ORO.COD_SUCColumn] = global::System.Convert.DBNull;
             }
         }
         

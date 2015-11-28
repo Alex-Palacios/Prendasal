@@ -35,7 +35,14 @@
             this.ckALLCVC = new System.Windows.Forms.CheckBox();
             this.ckALLCVP = new System.Windows.Forms.CheckBox();
             this.tblCUSTODIA_COMPRAS = new System.Windows.Forms.DataGridView();
+            this.CKCVC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CONTRATO_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NIVEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCUSTODIA_PRESTAMOS = new System.Windows.Forms.DataGridView();
+            this.CKCVP = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CONTRATO_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pagREMISION = new System.Windows.Forms.TabPage();
             this.ckALLRM = new System.Windows.Forms.CheckBox();
             this.tblREMISION = new System.Windows.Forms.DataGridView();
@@ -47,13 +54,6 @@
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbTOTAL_RM = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.CKCVP = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CONTRATO_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CKCVC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CONTRATO_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NIVEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabDETALLE.SuspendLayout();
             this.pagCUSTODIA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCUSTODIA_COMPRAS)).BeginInit();
@@ -125,6 +125,35 @@
             this.tblCUSTODIA_COMPRAS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblCUSTODIA_COMPRAS_CellFormatting);
             this.tblCUSTODIA_COMPRAS.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCUSTODIA_COMPRAS_CellValueChanged);
             // 
+            // CKCVC
+            // 
+            this.CKCVC.DataPropertyName = "CKCVC";
+            this.CKCVC.HeaderText = "";
+            this.CKCVC.Name = "CKCVC";
+            this.CKCVC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CKCVC.Width = 25;
+            // 
+            // CONTRATO_COMPRA
+            // 
+            this.CONTRATO_COMPRA.DataPropertyName = "CONTRATO";
+            this.CONTRATO_COMPRA.HeaderText = "COMPRA";
+            this.CONTRATO_COMPRA.Name = "CONTRATO_COMPRA";
+            this.CONTRATO_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CATEGORIA_COMPRA
+            // 
+            this.CATEGORIA_COMPRA.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA_COMPRA.HeaderText = "CATEGORIA";
+            this.CATEGORIA_COMPRA.Name = "CATEGORIA_COMPRA";
+            this.CATEGORIA_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NIVEL
+            // 
+            this.NIVEL.DataPropertyName = "NIVEL";
+            this.NIVEL.HeaderText = "MAYOREO";
+            this.NIVEL.Name = "NIVEL";
+            this.NIVEL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // tblCUSTODIA_PRESTAMOS
             // 
             this.tblCUSTODIA_PRESTAMOS.AllowUserToAddRows = false;
@@ -142,6 +171,28 @@
             this.tblCUSTODIA_PRESTAMOS.Size = new System.Drawing.Size(252, 361);
             this.tblCUSTODIA_PRESTAMOS.TabIndex = 122;
             this.tblCUSTODIA_PRESTAMOS.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCUSTODIA_PRESTAMOS_CellValueChanged);
+            // 
+            // CKCVP
+            // 
+            this.CKCVP.DataPropertyName = "CKCVP";
+            this.CKCVP.HeaderText = "";
+            this.CKCVP.Name = "CKCVP";
+            this.CKCVP.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CKCVP.Width = 25;
+            // 
+            // CONTRATO_PRESTAMO
+            // 
+            this.CONTRATO_PRESTAMO.DataPropertyName = "CONTRATO";
+            this.CONTRATO_PRESTAMO.HeaderText = "CONTRATO";
+            this.CONTRATO_PRESTAMO.Name = "CONTRATO_PRESTAMO";
+            this.CONTRATO_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CATEGORIA_PRESTAMO
+            // 
+            this.CATEGORIA_PRESTAMO.DataPropertyName = "CATEGORIA";
+            this.CATEGORIA_PRESTAMO.HeaderText = "CATEGORIA";
+            this.CATEGORIA_PRESTAMO.Name = "CATEGORIA_PRESTAMO";
+            this.CATEGORIA_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // pagREMISION
             // 
@@ -260,61 +311,10 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // CKCVP
-            // 
-            this.CKCVP.DataPropertyName = "CKCVP";
-            this.CKCVP.HeaderText = "";
-            this.CKCVP.Name = "CKCVP";
-            this.CKCVP.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CKCVP.Width = 25;
-            // 
-            // CONTRATO_PRESTAMO
-            // 
-            this.CONTRATO_PRESTAMO.DataPropertyName = "CONTRATO";
-            this.CONTRATO_PRESTAMO.HeaderText = "CONTRATO";
-            this.CONTRATO_PRESTAMO.Name = "CONTRATO_PRESTAMO";
-            this.CONTRATO_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CATEGORIA_PRESTAMO
-            // 
-            this.CATEGORIA_PRESTAMO.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA_PRESTAMO.HeaderText = "CATEGORIA";
-            this.CATEGORIA_PRESTAMO.Name = "CATEGORIA_PRESTAMO";
-            this.CATEGORIA_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CKCVC
-            // 
-            this.CKCVC.DataPropertyName = "CKCVC";
-            this.CKCVC.HeaderText = "";
-            this.CKCVC.Name = "CKCVC";
-            this.CKCVC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CKCVC.Width = 25;
-            // 
-            // CONTRATO_COMPRA
-            // 
-            this.CONTRATO_COMPRA.DataPropertyName = "CONTRATO";
-            this.CONTRATO_COMPRA.HeaderText = "COMPRA";
-            this.CONTRATO_COMPRA.Name = "CONTRATO_COMPRA";
-            this.CONTRATO_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CATEGORIA_COMPRA
-            // 
-            this.CATEGORIA_COMPRA.DataPropertyName = "CATEGORIA";
-            this.CATEGORIA_COMPRA.HeaderText = "CATEGORIA";
-            this.CATEGORIA_COMPRA.Name = "CATEGORIA_COMPRA";
-            this.CATEGORIA_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // NIVEL
-            // 
-            this.NIVEL.DataPropertyName = "NIVEL";
-            this.NIVEL.HeaderText = "MAYOREO";
-            this.NIVEL.Name = "NIVEL";
-            this.NIVEL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // EnviarInvForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(903, 460);
             this.Controls.Add(this.btnOK);

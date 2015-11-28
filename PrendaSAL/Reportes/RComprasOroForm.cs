@@ -129,7 +129,7 @@ namespace PrendaSAL.Reportes
                     foreach (DataRow row in COMPRAS_ORO.Rows)
                     {
                         Sucursal SUC = HOME.Instance().getSucursal(row.Field<string>("COD_SUC")).Copy();
-                        dSComprasOro.COMPRAS_ORO.AddCOMPRAS_ORORow(SUC.SUCURSAL, row.Field<int>("ID_COMPRA"), row.Field<string>("DOCUMENTO"), row.Field<DateTime>("FECHA"), row.Field<string>("ARTICULO"), row.Field<string>("COD_ITEM"), row.Field<decimal>("CANTIDAD"), row.Field<decimal>("MONTO"), row.Field<string>("RESPONSABLE"));
+                        dSComprasOro.COMPRAS_ORO.AddCOMPRAS_ORORow(SUC.SUCURSAL, row.Field<int>("ID_COMPRA"), row.Field<string>("DOCUMENTO"), row.Field<DateTime>("FECHA"), row.Field<string>("ARTICULO"), row.Field<string>("COD_ITEM"), row.Field<decimal>("CANTIDAD"), row.Field<decimal>("MONTO"), row.Field<string>("RESPONSABLE"), row.Field<string>("COD_SUC"));
                     }
                     bsComprasOro.DataSource = dSComprasOro.COMPRAS_ORO;
 

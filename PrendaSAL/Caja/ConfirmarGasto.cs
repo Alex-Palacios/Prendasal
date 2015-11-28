@@ -140,15 +140,7 @@ namespace PrendaSAL.Caja
             SELECTED.FECHA = dateGasto.Value;
             SELECTED.DESCRIPCION = txtDESCRIPCION.Text;
             SELECTED.NOTA = txtNOTA.Text;
-            switch (SELECTED.TIPO_DOC)
-            {
-                case eTipoFactura.CCF:
-                    SELECTED.IVA = Decimal.Round(SELECTED.TOTAL * Properties.Settings.Default.IVA / 100, 2,MidpointRounding.AwayFromZero);
-                    break;
-                case eTipoFactura.FCF:
-                    SELECTED.IVA = 0;
-                    break;
-            }
+            
             switch (ACCION)
             {
                 case eOperacion.INSERT:

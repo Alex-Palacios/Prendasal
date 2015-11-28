@@ -29,8 +29,5 @@
     <Setting Name="PERIODO_INTERES" Type="MODELO.GlobalPeriodoInteres" Scope="Application">
       <Value Profile="(Default)">DIARIO</Value>
     </Setting>
-    <Setting Name="IVA" Type="System.Decimal" Scope="Application">
-      <Value Profile="(Default)">13</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

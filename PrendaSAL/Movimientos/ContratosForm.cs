@@ -446,15 +446,16 @@ namespace PrendaSAL.Movimientos
         private void cbxTIPOPRESTAMO_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtTOTAL.ReadOnly = false;
+            PRESTAMO.TIPO = (eTipoPrestamo)cbxTIPOPRESTAMO.SelectedItem;
             if (ACCION == eOperacion.INSERT || ACCION == eOperacion.UPDATE)
             {
                 PRESTAMO.ITEMS_PRESTAMO.Clear();
-                if ((eTipoPrestamo)cbxTIPOPRESTAMO.SelectedItem == eTipoPrestamo.PRENDARIO)
+                if (PRESTAMO.TIPO == eTipoPrestamo.PRENDARIO)
                 {
                     txtTOTAL.ReadOnly = true;
                 }
             }
-            if ((eTipoPrestamo)cbxTIPOPRESTAMO.SelectedItem == eTipoPrestamo.PRENDARIO)
+            if (PRESTAMO.TIPO == eTipoPrestamo.PRENDARIO)
             {
                 btnADD.Enabled = true;
                 btnDEL.Enabled = true;
@@ -464,6 +465,7 @@ namespace PrendaSAL.Movimientos
                 btnADD.Enabled = false;
                 btnDEL.Enabled = false;
             }
+            
             calcularTotales();
         }
 
@@ -1198,31 +1200,39 @@ namespace PrendaSAL.Movimientos
             viewerCONTRATO.Clear();
             if (PRESTAMO != null)
             {
-                Sucursal SUC = HOME.Instance().getSucursal(PRESTAMO.COD_SUC).Copy();
+                try
+                {
+                    Sucursal SUC = HOME.Instance().getSucursal(PRESTAMO.COD_SUC).Copy();
 
-                ReportParameter[] parameters = new ReportParameter[18];
-                parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
-                parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION + " ,"+SUC.DEPTO);
-                parameters[2] = new ReportParameter("CONTRATO", PRESTAMO.DOCUMENTO);
-                parameters[3] = new ReportParameter("CLIENTE", PRESTAMO.CLIENTE);
-                parameters[4] = new ReportParameter("EdadCLI", PRESTAMO.EDAD + "");
-                parameters[5] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
-                parameters[6] = new ReportParameter("NitCLI", PRESTAMO.NIT);
-                parameters[7] = new ReportParameter("DireccionCLI", PRESTAMO.DIRECCION_CLI + ", " + PRESTAMO.DOMICILIO_CLI + ", " + PRESTAMO.DEPTO_CLI);
-                parameters[8] = new ReportParameter("TOTAL", PRESTAMO.TOTAL.ToString("C2"));
-                parameters[9] = new ReportParameter("TASA", PRESTAMO.TASA_MENSUAL +"");
-                parameters[10] = new ReportParameter("INTERES", PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2"));
-                parameters[11] = new ReportParameter("GARANTIA", PRESTAMO.ARTICULO);
-                parameters[12] = new ReportParameter("DIAS", PRESTAMO.FECHA.Date.ToString("dd"));
-                parameters[13] = new ReportParameter("MES", PRESTAMO.FECHA.Date.ToString("MMMM").ToUpper());
-                parameters[14] = new ReportParameter("ANIO", PRESTAMO.FECHA.Date.ToString("yyyy"));
-                parameters[15] = new ReportParameter("PLAZO", HOME.Instance().convertirNumeroLetra(PRESTAMO.PLAZO_VENC).ToLower());
-                parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
-                parameters[17] = new ReportParameter("FechaPrimerPago", PRESTAMO.FECHA_VENC_INIT.ToShortDateString() + "");
+                    ReportParameter[] parameters = new ReportParameter[18];
+                    parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[1] = new ReportParameter("DireccionSUC", SUC.DIRECCION + " ," + SUC.DEPTO);
+                    parameters[2] = new ReportParameter("CONTRATO", PRESTAMO.DOCUMENTO);
+                    parameters[3] = new ReportParameter("CLIENTE", PRESTAMO.CLIENTE);
+                    parameters[4] = new ReportParameter("EdadCLI", PRESTAMO.EDAD + "");
+                    parameters[5] = new ReportParameter("DocCLI", ((eTipoDocCliente)cbxBuscarPorCLI.SelectedItem).ToString() + ": " + txtDocCLI.Text);
+                    parameters[6] = new ReportParameter("NitCLI", PRESTAMO.NIT);
+                    parameters[7] = new ReportParameter("DireccionCLI", PRESTAMO.DIRECCION_CLI + ", " + PRESTAMO.DOMICILIO_CLI + ", " + PRESTAMO.DEPTO_CLI);
+                    parameters[8] = new ReportParameter("TOTAL", PRESTAMO.TOTAL.ToString("C2"));
+                    parameters[9] = new ReportParameter("TASA", PRESTAMO.TASA_MENSUAL + "");
+                    parameters[10] = new ReportParameter("INTERES", PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2"));
+                    parameters[11] = new ReportParameter("GARANTIA", PRESTAMO.ARTICULO);
+                    parameters[12] = new ReportParameter("DIAS", PRESTAMO.FECHA.Date.ToString("dd"));
+                    parameters[13] = new ReportParameter("MES", PRESTAMO.FECHA.Date.ToString("MMMM").ToUpper());
+                    parameters[14] = new ReportParameter("ANIO", PRESTAMO.FECHA.Date.ToString("yyyy"));
+                    parameters[15] = new ReportParameter("PLAZO", HOME.Instance().convertirNumeroLetra(PRESTAMO.PLAZO_VENC).ToLower());
+                    parameters[16] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                    parameters[17] = new ReportParameter("FechaPrimerPago", PRESTAMO.FECHA_VENC_INIT.ToShortDateString() + "");
 
-                viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoPrestamo2.rdlc";
-                viewerCONTRATO.LocalReport.SetParameters(parameters);
-                viewerCONTRATO.RefreshReport();
+                    viewerCONTRATO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ContratoPrestamo2.rdlc";
+                    viewerCONTRATO.LocalReport.SetParameters(parameters);
+                    viewerCONTRATO.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR CONTRATO DE PRESTAMO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                    
             }
         }
 

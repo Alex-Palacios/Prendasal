@@ -1245,6 +1245,7 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
+                  <rd:Selected>true</rd:Selected>
                 </CellContents>
               </TablixHeader>
               <TablixMembers>
@@ -1343,7 +1344,7 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!SUCURSAL.Value</Value>
+                  <Value>=CByte(Fields!COD_SUC.Value)</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixMembers>
@@ -1436,7 +1437,6 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0cm</Top>
           <Left>1.95666cm</Left>
           <Height>0.5cm</Height>
           <Width>15.67468cm</Width>
@@ -1527,6 +1527,10 @@
         <Field Name="SALDO">
           <DataField>SALDO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="COD_SUC">
+          <DataField>COD_SUC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

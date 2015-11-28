@@ -427,6 +427,7 @@
             this.btnRptKardex.Name = "btnRptKardex";
             this.btnRptKardex.SubItemsExpandWidth = 14;
             resources.ApplyResources(this.btnRptKardex, "btnRptKardex");
+            this.btnRptKardex.Click += new System.EventHandler(this.menuReportesKARDEX);
             // 
             // ribbonPanel7
             // 
@@ -1351,8 +1352,8 @@
             // 
             // HOME
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             resources.ApplyResources(this, "$this");
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(205)))), ((int)(((byte)(214)))));
             this.Controls.Add(this.STATUS_BAR);

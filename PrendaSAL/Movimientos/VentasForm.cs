@@ -844,44 +844,53 @@ namespace PrendaSAL.Movimientos
             viewerFACTURA.Clear();
             if (SELECTED != null)
             {
-                dSItemFCF.Clear();
-                foreach(DataRow row in VENTA.ITEMS_VENTA.Rows)
+                try
                 {
-                   dSItemFCF.ITEM.AddITEMRow(row.Field<decimal>("CANTIDAD").ToString(),row.Field<string>("DESCRIPCION"), row.Field<decimal>("MONTO"));
-                }
-                //RELLENAR ESPACIOS SIN OCUPAR
-                for(int i = 1; i <= 5 ; i++){
-                    if (i > VENTA.ITEMS_VENTA.Rows.Count)
+                    dSItemFCF.Clear();
+                    foreach (DataRow row in VENTA.ITEMS_VENTA.Rows)
                     {
-                        dSItemFCF.ITEM.AddITEMRow("", "",Decimal.Zero);
+                        dSItemFCF.ITEM.AddITEMRow(row.Field<decimal>("CANTIDAD").ToString(), row.Field<string>("DESCRIPCION"), row.Field<decimal>("MONTO"));
                     }
-                }
-                //AGREGAR LINEA DESCUENTO
-                if (SELECTED.DESCUENTO > 0)
-                {
-                    dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO S/VENTA", -SELECTED.DESCUENTO);
-                }
-                else
-                {
-                    dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
-                }
-                bindingFCF.DataSource = dSItemFCF.ITEM;
+                    //RELLENAR ESPACIOS SIN OCUPAR
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        if (i > VENTA.ITEMS_VENTA.Rows.Count)
+                        {
+                            dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                        }
+                    }
+                    //AGREGAR LINEA DESCUENTO
+                    if (SELECTED.DESCUENTO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO S/VENTA", -SELECTED.DESCUENTO);
+                    }
+                    else
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                    }
+                    bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                ReportParameter[] parameters = new ReportParameter[8];
-                parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
-                parameters[1] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
-                parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                parameters[5] = new ReportParameter("SUMAS", SELECTED.SUMAS.ToString("C2"));
-                parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
-                parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
+                    ReportParameter[] parameters = new ReportParameter[8];
+                    parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
+                    parameters[1] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
+                    parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[5] = new ReportParameter("SUMAS", SELECTED.SUMAS.ToString("C2"));
+                    parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                    parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
 
-                viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
-                viewerFACTURA.LocalReport.DataSources.Clear();
-                viewerFACTURA.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
-                viewerFACTURA.LocalReport.SetParameters(parameters);
-                viewerFACTURA.RefreshReport();
+                    viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
+                    viewerFACTURA.LocalReport.DataSources.Clear();
+                    viewerFACTURA.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
+                    viewerFACTURA.LocalReport.SetParameters(parameters);
+                    viewerFACTURA.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR FACTURA DE VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
 

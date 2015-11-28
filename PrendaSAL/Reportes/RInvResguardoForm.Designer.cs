@@ -48,7 +48,7 @@
             this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).BeginInit();
@@ -73,7 +73,7 @@
             this.CATEGORIA,
             this.CONTRATO,
             this.CANTIDAD,
-            this.ARTICULO,
+            this.COD_ITEM,
             this.DESCRIPCION,
             this.UBICACION});
             this.tblINVENTARIO.Location = new System.Drawing.Point(24, 132);
@@ -260,13 +260,13 @@
             this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CANTIDAD.Width = 75;
             // 
-            // ARTICULO
+            // COD_ITEM
             // 
-            this.ARTICULO.DataPropertyName = "COD_ITEM";
-            this.ARTICULO.HeaderText = "ART/KIL";
-            this.ARTICULO.Name = "ARTICULO";
-            this.ARTICULO.ReadOnly = true;
-            this.ARTICULO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.COD_ITEM.DataPropertyName = "COD_ITEM";
+            this.COD_ITEM.HeaderText = "ART/KIL";
+            this.COD_ITEM.Name = "COD_ITEM";
+            this.COD_ITEM.ReadOnly = true;
+            this.COD_ITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DESCRIPCION
             // 
@@ -343,7 +343,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
         private System.Windows.Forms.DataGridViewTextBoxColumn CONTRATO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_ITEM;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn UBICACION;
 

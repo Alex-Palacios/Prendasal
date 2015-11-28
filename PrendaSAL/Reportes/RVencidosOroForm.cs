@@ -101,7 +101,7 @@ namespace PrendaSAL.Reportes
                     foreach (DataRow row in VENCIDOS_ORO.Rows)
                     {
                         Sucursal SUC = HOME.Instance().getSucursal(row.Field<string>("COD_SUC")).Copy();
-                        dSVencidosOro.VENCIDOS_ORO.AddVENCIDOS_ORORow(SUC.SUCURSAL + " - LISTA #" + row.Field<string>("LISTA") + " - " + row.Field<DateTime>("FECHA_VENC").ToShortDateString(), row.Field<int>("ID_PRESTAMO"), row.Field<string>("CONTRATO"), row.Field<DateTime>("FECHA_CONTRATO"), row.Field<string>("ARTICULO"), row.Field<string>("COD_ITEM"), row.Field<decimal>("CANTIDAD"), row.Field<decimal>("MONTO"), row.Field<string>("RESPONSABLE"), row.Field<decimal>("TOTAL"), row.Field<decimal>("SALDO"));
+                        dSVencidosOro.VENCIDOS_ORO.AddVENCIDOS_ORORow(SUC.SUCURSAL + " - LISTA #" + row.Field<string>("LISTA") + " - " + row.Field<DateTime>("FECHA_VENC").ToShortDateString(), row.Field<int>("ID_PRESTAMO"), row.Field<string>("CONTRATO"), row.Field<DateTime>("FECHA_CONTRATO"), row.Field<string>("ARTICULO"), row.Field<string>("COD_ITEM"), row.Field<decimal>("CANTIDAD"), row.Field<decimal>("MONTO"), row.Field<string>("RESPONSABLE"), row.Field<decimal>("TOTAL"), row.Field<decimal>("SALDO"), row.Field<string>("COD_SUC"));
                     }
                     bsVencidosOro.DataSource = dSVencidosOro.VENCIDOS_ORO;
 

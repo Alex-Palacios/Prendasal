@@ -235,6 +235,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCancelados.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Informes\DSComprasOro.cs">
+      <DependentUpon>DSComprasOro.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\DSConsolidado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSConsolidado.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Informes\DSEstadoCuenta.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -448,6 +457,12 @@
     <Compile Include="Reportes\REstadoCuentaForm.Designer.cs">
       <DependentUpon>REstadoCuentaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RKardexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RKardexForm.Designer.cs">
+      <DependentUpon>RKardexForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\RVencidosOroForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -588,6 +603,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Informes\ContratoCompra2.rdlc" />
     <EmbeddedResource Include="Informes\ContratoPrestamo2.rdlc" />
+    <EmbeddedResource Include="Informes\RptConsolidado.rdlc" />
     <EmbeddedResource Include="Informes\RptHistorialPAC.rdlc" />
     <EmbeddedResource Include="Informes\RptEstadoCuenta.rdlc" />
     <EmbeddedResource Include="Informes\KPM.rdlc" />
@@ -678,8 +694,14 @@
     <EmbeddedResource Include="Reportes\RCanceladosForm.resx">
       <DependentUpon>RCanceladosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RConsolidadoForm.resx">
+      <DependentUpon>RConsolidadoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\REstadoCuentaForm.resx">
       <DependentUpon>REstadoCuentaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RKardexForm.resx">
+      <DependentUpon>RKardexForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RVencidosOroForm.resx">
       <DependentUpon>RVencidosOroForm.cs</DependentUpon>
@@ -741,6 +763,17 @@
     </None>
     <None Include="Informes\DSCancelados.xss">
       <DependentUpon>DSCancelados.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSConsolidado.xsc">
+      <DependentUpon>DSConsolidado.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSConsolidado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSConsolidado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Informes\DSConsolidado.xss">
+      <DependentUpon>DSConsolidado.xsd</DependentUpon>
     </None>
     <None Include="Informes\DSEstadoCuenta.xsc">
       <DependentUpon>DSEstadoCuenta.xsd</DependentUpon>
@@ -1100,6 +1133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\chart2.png" />
     <None Include="Resources\print.png" />
     <None Include="Resources\printer1.png" />
     <None Include="Resources\cargar_catalogo.png" />
@@ -1205,9 +1239,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Inventario\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ClientDoc">
       <Visible>False</Visible>

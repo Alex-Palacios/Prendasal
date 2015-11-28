@@ -70,8 +70,6 @@ namespace PrendaSAL.Movimientos
             string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
             if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
             {
-                VENTA.IVA = Decimal.Round(VENTA.SUMAS * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
-                VENTA.IVA_DESC = Decimal.Round(VENTA.DESCUENTO * Properties.Settings.Default.IVA / 100, 2, MidpointRounding.AwayFromZero);
                 switch (ACCION)
                 {
                     case eOperacion.INSERT:

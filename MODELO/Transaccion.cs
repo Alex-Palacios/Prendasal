@@ -202,6 +202,26 @@ namespace MODELO
         RECIBIDO,
     }
 
+
+
+    public enum eMESES
+    {
+        ENERO = 1,
+        FEBRERO,
+        MARZO,
+        ABRIL,
+        MAYO,
+        JUNIO,
+        JULIO,
+        AGOSTO,
+        SEPTIEMBRE,
+        OCTUBRE,
+        NOVIEMBRE,
+        DICIEMBRE
+    }
+
+
+
     public class Transaccion
     {
         public Transaccion()

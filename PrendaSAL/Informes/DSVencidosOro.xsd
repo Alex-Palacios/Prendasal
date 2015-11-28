@@ -12,7 +12,7 @@
   <xs:element name="DSVencidosOro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSVencidosOro" msprop:Generator_UserDSName="DSVencidosOro">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="VENCIDOS_ORO" msprop:Generator_TableClassName="VENCIDOS_ORODataTable" msprop:Generator_TableVarName="tableVENCIDOS_ORO" msprop:Generator_TablePropName="VENCIDOS_ORO" msprop:Generator_RowDeletingName="VENCIDOS_ORORowDeleting" msprop:Generator_RowChangingName="VENCIDOS_ORORowChanging" msprop:Generator_RowEvHandlerName="VENCIDOS_ORORowChangeEventHandler" msprop:Generator_RowDeletedName="VENCIDOS_ORORowDeleted" msprop:Generator_UserTableName="VENCIDOS_ORO" msprop:Generator_RowChangedName="VENCIDOS_ORORowChanged" msprop:Generator_RowEvArgName="VENCIDOS_ORORowChangeEvent" msprop:Generator_RowClassName="VENCIDOS_ORORow">
+        <xs:element name="VENCIDOS_ORO" msprop:Generator_TableClassName="VENCIDOS_ORODataTable" msprop:Generator_TableVarName="tableVENCIDOS_ORO" msprop:Generator_RowChangedName="VENCIDOS_ORORowChanged" msprop:Generator_TablePropName="VENCIDOS_ORO" msprop:Generator_RowDeletingName="VENCIDOS_ORORowDeleting" msprop:Generator_RowChangingName="VENCIDOS_ORORowChanging" msprop:Generator_RowEvHandlerName="VENCIDOS_ORORowChangeEventHandler" msprop:Generator_RowDeletedName="VENCIDOS_ORORowDeleted" msprop:Generator_RowClassName="VENCIDOS_ORORow" msprop:Generator_UserTableName="VENCIDOS_ORO" msprop:Generator_RowEvArgName="VENCIDOS_ORORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUCURSAL" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SUCURSAL" msprop:Generator_ColumnVarNameInTable="columnSUCURSAL" msprop:Generator_ColumnPropNameInTable="SUCURSALColumn" msprop:Generator_UserColumnName="SUCURSAL" type="xs:string" minOccurs="0" />
@@ -26,6 +26,7 @@
               <xs:element name="RESPONSABLE" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="RESPONSABLE" msprop:Generator_ColumnVarNameInTable="columnRESPONSABLE" msprop:Generator_ColumnPropNameInTable="RESPONSABLEColumn" msprop:Generator_UserColumnName="RESPONSABLE" type="xs:string" minOccurs="0" />
               <xs:element name="PRESTAMO" msprop:Generator_ColumnVarNameInTable="columnPRESTAMO" msprop:Generator_ColumnPropNameInRow="PRESTAMO" msprop:Generator_ColumnPropNameInTable="PRESTAMOColumn" msprop:Generator_UserColumnName="PRESTAMO" type="xs:decimal" minOccurs="0" />
               <xs:element name="SALDO" msprop:Generator_ColumnVarNameInTable="columnSALDO" msprop:Generator_ColumnPropNameInRow="SALDO" msprop:Generator_ColumnPropNameInTable="SALDOColumn" msprop:Generator_UserColumnName="SALDO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COD_SUC" msprop:Generator_ColumnVarNameInTable="columnCOD_SUC" msprop:Generator_ColumnPropNameInRow="COD_SUC" msprop:Generator_ColumnPropNameInTable="COD_SUCColumn" msprop:Generator_UserColumnName="COD_SUC" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

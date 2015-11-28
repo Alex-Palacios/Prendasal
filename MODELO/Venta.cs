@@ -24,8 +24,6 @@ namespace MODELO
         public eTipoPago TIPO_PAGO;
         public decimal DESCUENTO;
         public decimal TOTAL;
-        public decimal IVA;
-        public decimal IVA_DESC;
         public eCategoria CATEGORIA;
         public eNIVEL NIVEL;
         public eEstado ESTADO;
@@ -84,8 +82,6 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("TIPO_PAGO")) { venta.TIPO_PAGO = (eTipoPago)dr.Field<int>("TIPO_PAGO"); }
                 if (dr.Table.Columns.Contains("DESCUENTO")) { venta.DESCUENTO = dr.Field<decimal>("DESCUENTO"); }
                 if (dr.Table.Columns.Contains("TOTAL")) { venta.TOTAL = dr.Field<decimal>("TOTAL"); }
-                if (dr.Table.Columns.Contains("IVA")) { venta.IVA = dr.Field<decimal>("IVA"); }
-                if (dr.Table.Columns.Contains("IVA_DESC")) { venta.IVA_DESC = dr.Field<decimal>("IVA_DESC"); }
                 if (dr.Table.Columns.Contains("CATEGORIA")) { venta.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
                 if (dr.Table.Columns.Contains("NIVEL")) { venta.NIVEL = (eNIVEL)dr.Field<int>("NIVEL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { venta.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
@@ -130,6 +126,22 @@ namespace MODELO
             }
         }
 
+
+        public decimal IVA
+        {
+            get
+            {
+                return Decimal.Round(this.TOTAL - (this.TOTAL * 100 / (100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            }
+        }
+
+        public decimal IVA_DESC
+        {
+            get
+            {
+                return Decimal.Round(this.DESCUENTO - (this.DESCUENTO * 100 / (100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            }
+        }
         
     }
 }
