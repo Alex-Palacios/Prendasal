@@ -451,6 +451,10 @@ namespace PrendaSAL.Movimientos
                 R.SetField<string>("UNIDAD_MEDIDA", "-----");
                 CATALOGO.Rows.InsertAt(R, 0);
 
+                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DataSource = CATALOGO;
+                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DisplayMember = "COD_ITEM";
+                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).ValueMember = "COD_ITEM";
+
                 switch (COMPRA.CATEGORIA)
                 {
                     case eCategoria.ORO:
@@ -942,6 +946,7 @@ namespace PrendaSAL.Movimientos
             SELECTED = Compra.ConvertToCompra(dbCompra.getCompraByDoc(documento));
             if (SELECTED != null)
             {
+                ACCION = eOperacion.SEARCH;
                 SELECTED.ITEMS_COMPRA = dbCompra.getItemsCompra(SELECTED);
                 COMPRA = SELECTED.Copy();
                 cargarDatosCliente(null);

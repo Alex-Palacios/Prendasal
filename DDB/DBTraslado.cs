@@ -26,24 +26,16 @@ namespace DDB
         private string buildItemsTraslado(Traslado traslado)
         {
             string items = "";
-            switch (traslado.TIPO)
+            foreach (DataRow row in traslado.DETALLE_TRASLADO.Rows)
             {
-                case eTipoTraslado.CUSTODIA_VALORES:
-                    foreach (DataRow row in traslado.CUSTODIA.Rows)
-                    {
-                        items = items + row.Field<Int32>("ID_DET_PRESTAMO") + ">"
-                                    + row.Field<string>("CODIGO") + "&";
-                    }
-                    break;
-                case eTipoTraslado.NOTA_REMISION:
-                    foreach (DataRow row in traslado.REMISION.Rows)
-                    {
-                        items = items + null + ">"
-                                    + row.Field<string>("CODIGO") + "&";
-                    }
-                    break;
+                items = items + row.Field<int>("TIPO") + ">"
+                            + row.Field<string>("CODIGO") + ">"
+                            + row.Field<decimal>("CANTIDAD") + ">"
+                            + row.Field<string>("COD_ITEM") + ">"
+                            + row.Field<string>("DESCRIPCION") + ">"
+                            + row.Field<decimal>("PRECIO") + ">"
+                            + row.Field<bool>("RECIBIDO") + "&";
             }
-            
             return items;
         }
 
@@ -224,8 +216,58 @@ namespace DDB
 
 
 
+        public bool recibir(Traslado traslado, string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_RECIBIR_TRASLADO";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-        public DataRow getTrasladoByDocTipo(string documento,eTipoTraslado tipo)
+
+                MySqlParameter idtraslado = cmd.Parameters.Add("idtraslado", MySqlDbType.Int32);
+                idtraslado.Direction = ParameterDirection.Input;
+                MySqlParameter responsable_recibe = cmd.Parameters.Add("responsable_recibe", MySqlDbType.VarChar, 100);
+                responsable_recibe.Direction = ParameterDirection.Input;
+                MySqlParameter nota_traslado = cmd.Parameters.Add("nota_traslado", MySqlDbType.VarChar, 100);
+                nota_traslado.Direction = ParameterDirection.Input;
+                MySqlParameter items_traslado = cmd.Parameters.Add("items_traslado", MySqlDbType.LongText);
+                items_traslado.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+
+                idtraslado.Value = traslado.ID_TRASLADO;
+                responsable_recibe.Value = traslado.RECIBE;
+                nota_traslado.Value = traslado.NOTA;
+
+                items_traslado.Value = buildItemsTraslado(traslado);
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("TRASLADO RECIBIDO CORRECTAMENTE", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL RECIBIR TRASLADO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+        public DataRow getTrasladoByDocTipo(eTipoTraslado tipo,string documento)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
@@ -304,18 +346,9 @@ namespace DDB
             DataTable datos = new DataTable();
             try
             {
-                string sql = string.Empty;
-                switch (traslado.TIPO)
-                {
-                    case eTipoTraslado.CUSTODIA_VALORES:
-                        sql = "prendasal.SP_GET_ITEMS_CUSTODIA";
-                        break;
-                    case eTipoTraslado.NOTA_REMISION:
-                        sql = "prendasal.SP_GET_ITEMS_REMISION";
-                        break;
-                }
+                string sql =  "prendasal.SP_GET_ITEMS_TRASLADO";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 MySqlParameter idtraslado = cmd.Parameters.Add("idtraslado", MySqlDbType.Int32);
                 idtraslado.Direction = ParameterDirection.Input;
@@ -336,6 +369,75 @@ namespace DDB
             return datos;
         }
 
+
+
+
+
+
+
+
+        public DataTable getExistenciasBySuc(string codsuc)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.SP_TRASLADO_EXISTENCIA;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
+                sucursal.Direction = ParameterDirection.Input;
+
+                sucursal.Value = codsuc;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ARTICULOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+        public DataTable getCustodiaBySuc(eTipoDetalleTraslado tipoT, string codsuc)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.SP_TRASLADO_CUSTODIA_VALORES";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter tipo = cmd.Parameters.Add("tipo", MySqlDbType.Int32);
+                tipo.Direction = ParameterDirection.Input;
+                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
+                sucursal.Direction = ParameterDirection.Input;
+
+                tipo.Value = (int)tipoT;
+                sucursal.Value = codsuc;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR VALORES EN CUSTODIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return datos;
+        }
 
 
 

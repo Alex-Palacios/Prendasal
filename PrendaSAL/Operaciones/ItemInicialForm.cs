@@ -109,6 +109,7 @@ namespace PrendaSAL.Operaciones
                 txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
                 txtCOSTO.Text = SELECTED.COSTO.ToString("N2");
                 txtPRECIO.Text = SELECTED.PRECIO.ToString("N2");
+                txtNOTA.Text = SELECTED.NOTA;
             }
         }
 
@@ -288,6 +289,7 @@ namespace PrendaSAL.Operaciones
             SELECTED.CODIGO = txtCODIGO.Text.Trim();
             SELECTED.COD_ITEM = (string)cbxITEM.SelectedValue;
             SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();
+            SELECTED.NOTA = txtNOTA.Text.Trim();
             switch (ACCION)
             {
                 case eOperacion.INSERT:

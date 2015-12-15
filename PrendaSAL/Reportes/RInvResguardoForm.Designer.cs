@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCODIGO = new System.Windows.Forms.TextBox();
             this.tblINVENTARIO = new System.Windows.Forms.DataGridView();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,6 @@
             this.cbxARTICULO = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.opciones = new System.Windows.Forms.ToolStrip();
-            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
             this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +79,7 @@
             this.tblINVENTARIO.Location = new System.Drawing.Point(24, 132);
             this.tblINVENTARIO.Name = "tblINVENTARIO";
             this.tblINVENTARIO.ReadOnly = true;
+            this.tblINVENTARIO.RowHeadersVisible = false;
             this.tblINVENTARIO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblINVENTARIO.Size = new System.Drawing.Size(898, 340);
             this.tblINVENTARIO.TabIndex = 4;
@@ -197,7 +198,6 @@
             // opciones
             // 
             this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnImprimir,
             this.btnExportExcel,
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
@@ -205,16 +205,6 @@
             this.opciones.Size = new System.Drawing.Size(939, 25);
             this.opciones.TabIndex = 149;
             this.opciones.Text = "toolStrip1";
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImprimir.Image = global::PrendaSAL.Properties.Resources.printer;
-            this.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnImprimir.ToolTipText = "Imprimir";
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnExportExcel
             // 
@@ -254,6 +244,8 @@
             // CANTIDAD
             // 
             this.CANTIDAD.DataPropertyName = "CANTIDAD";
+            dataGridViewCellStyle2.Format = "N1";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle2;
             this.CANTIDAD.HeaderText = "CANTIDAD";
             this.CANTIDAD.Name = "CANTIDAD";
             this.CANTIDAD.ReadOnly = true;
@@ -337,7 +329,6 @@
         private System.Windows.Forms.ComboBox cbxARTICULO;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStrip opciones;
-        private System.Windows.Forms.ToolStripButton btnImprimir;
         private System.Windows.Forms.ToolStripButton btnAyuda;
         private System.Windows.Forms.ToolStripButton btnExportExcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;

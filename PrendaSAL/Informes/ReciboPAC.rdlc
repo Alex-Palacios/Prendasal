@@ -547,6 +547,20 @@
                   <FontSize>7pt</FontSize>
                 </Style>
               </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                  <Format>hh:mm tt</Format>
+                  <Language>es-SV</Language>
+                </Style>
+              </TextRun>
             </TextRuns>
             <Style>
               <TextAlign>Left</TextAlign>

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,6 +51,7 @@
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.grbCONTRATO = new System.Windows.Forms.GroupBox();
+            this.lbVENCIDO = new System.Windows.Forms.Label();
             this.btnReactivar = new System.Windows.Forms.Button();
             this.lbTOTAL_CTO = new System.Windows.Forms.Label();
             this.lbARTICULO = new System.Windows.Forms.Label();
@@ -77,10 +78,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbNIVEL = new System.Windows.Forms.Label();
             this.grbHISTORIAL = new System.Windows.Forms.GroupBox();
+            this.btnHistorialPAC = new System.Windows.Forms.Button();
             this.lbCAPITAL = new System.Windows.Forms.Label();
             this.lbSALDO = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tblHistorialPAC = new System.Windows.Forms.DataGridView();
+            this.CORRELATIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MESES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.INTERES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ABONO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbABONO = new System.Windows.Forms.GroupBox();
             this.txtNOTA = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label2 = new System.Windows.Forms.Label();
@@ -111,17 +123,6 @@
             this.dSItemFCF = new PrendaSAL.Informes.DSItemFCF();
             this.btnEstadoCuenta = new System.Windows.Forms.Button();
             this.txtBitacora = new System.Windows.Forms.RichTextBox();
-            this.btnHistorialPAC = new System.Windows.Forms.Button();
-            this.CORRELATIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MOVIMIENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MESES = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.INTERES = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ABONO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsHistorialPAC = new System.Windows.Forms.BindingSource(this.components);
             this.dSHistorialPAC = new PrendaSAL.Informes.DSHistorialPAC();
             this.toolStrip1.SuspendLayout();
@@ -263,6 +264,7 @@
             // 
             // grbCONTRATO
             // 
+            this.grbCONTRATO.Controls.Add(this.lbVENCIDO);
             this.grbCONTRATO.Controls.Add(this.btnReactivar);
             this.grbCONTRATO.Controls.Add(this.lbTOTAL_CTO);
             this.grbCONTRATO.Controls.Add(this.lbARTICULO);
@@ -293,6 +295,17 @@
             this.grbCONTRATO.Size = new System.Drawing.Size(860, 158);
             this.grbCONTRATO.TabIndex = 2;
             this.grbCONTRATO.TabStop = false;
+            // 
+            // lbVENCIDO
+            // 
+            this.lbVENCIDO.AutoSize = true;
+            this.lbVENCIDO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVENCIDO.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbVENCIDO.Location = new System.Drawing.Point(28, 135);
+            this.lbVENCIDO.Name = "lbVENCIDO";
+            this.lbVENCIDO.Size = new System.Drawing.Size(81, 13);
+            this.lbVENCIDO.TabIndex = 79;
+            this.lbVENCIDO.Text = "VENCIDO EL";
             // 
             // btnReactivar
             // 
@@ -561,6 +574,16 @@
             this.grbHISTORIAL.TabStop = false;
             this.grbHISTORIAL.Text = "HISTORIAL CONTRATO";
             // 
+            // btnHistorialPAC
+            // 
+            this.btnHistorialPAC.Image = global::PrendaSAL.Properties.Resources.print;
+            this.btnHistorialPAC.Location = new System.Drawing.Point(831, 14);
+            this.btnHistorialPAC.Name = "btnHistorialPAC";
+            this.btnHistorialPAC.Size = new System.Drawing.Size(34, 35);
+            this.btnHistorialPAC.TabIndex = 75;
+            this.btnHistorialPAC.UseVisualStyleBackColor = true;
+            this.btnHistorialPAC.Click += new System.EventHandler(this.btnHistorialPAC_Click);
+            // 
             // lbCAPITAL
             // 
             this.lbCAPITAL.Location = new System.Drawing.Point(588, 180);
@@ -619,6 +642,110 @@
             this.tblHistorialPAC.TabIndex = 0;
             this.tblHistorialPAC.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblHistorialA_CellClick);
             this.tblHistorialPAC.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblHistorialA_CellFormatting);
+            // 
+            // CORRELATIVO
+            // 
+            this.CORRELATIVO.HeaderText = "#";
+            this.CORRELATIVO.Name = "CORRELATIVO";
+            this.CORRELATIVO.ReadOnly = true;
+            this.CORRELATIVO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CORRELATIVO.Width = 30;
+            // 
+            // FECHA
+            // 
+            this.FECHA.DataPropertyName = "FECHA";
+            this.FECHA.HeaderText = "FECHA";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.ReadOnly = true;
+            this.FECHA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FECHA.Width = 80;
+            // 
+            // DOCUMENTO
+            // 
+            this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DOCUMENTO.HeaderText = "REFERENCIA";
+            this.DOCUMENTO.Name = "DOCUMENTO";
+            this.DOCUMENTO.ReadOnly = true;
+            this.DOCUMENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MOVIMIENTO
+            // 
+            this.MOVIMIENTO.DataPropertyName = "TIPO";
+            this.MOVIMIENTO.HeaderText = "MOVIMIENTO";
+            this.MOVIMIENTO.Name = "MOVIMIENTO";
+            this.MOVIMIENTO.ReadOnly = true;
+            this.MOVIMIENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MESES
+            // 
+            this.MESES.DataPropertyName = "MESES";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.MESES.DefaultCellStyle = dataGridViewCellStyle2;
+            this.MESES.HeaderText = "MESES";
+            this.MESES.Name = "MESES";
+            this.MESES.ReadOnly = true;
+            this.MESES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.MESES.Width = 60;
+            // 
+            // DIAS
+            // 
+            this.DIAS.DataPropertyName = "DIAS";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DIAS.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DIAS.HeaderText = "DIAS";
+            this.DIAS.Name = "DIAS";
+            this.DIAS.ReadOnly = true;
+            this.DIAS.Width = 50;
+            // 
+            // INTERES
+            // 
+            this.INTERES.DataPropertyName = "INTERES";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            this.INTERES.DefaultCellStyle = dataGridViewCellStyle4;
+            this.INTERES.HeaderText = "INTERES";
+            this.INTERES.Name = "INTERES";
+            this.INTERES.ReadOnly = true;
+            this.INTERES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.INTERES.Width = 85;
+            // 
+            // DESCUENTO
+            // 
+            this.DESCUENTO.DataPropertyName = "DESCUENTO";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "C2";
+            this.DESCUENTO.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DESCUENTO.HeaderText = "DESCUENTO";
+            this.DESCUENTO.Name = "DESCUENTO";
+            this.DESCUENTO.ReadOnly = true;
+            this.DESCUENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DESCUENTO.Width = 85;
+            // 
+            // ABONO
+            // 
+            this.ABONO.DataPropertyName = "ABONO";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "C2";
+            this.ABONO.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ABONO.HeaderText = "ABONO";
+            this.ABONO.Name = "ABONO";
+            this.ABONO.ReadOnly = true;
+            this.ABONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ABONO.Width = 85;
+            // 
+            // TOTAL
+            // 
+            this.TOTAL.DataPropertyName = "TOTAL";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "C2";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TOTAL.HeaderText = "TOTAL";
+            this.TOTAL.Name = "TOTAL";
+            this.TOTAL.ReadOnly = true;
+            this.TOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TOTAL.Width = 85;
             // 
             // grbABONO
             // 
@@ -951,120 +1078,6 @@
             this.txtBitacora.TabIndex = 93;
             this.txtBitacora.Text = "";
             // 
-            // btnHistorialPAC
-            // 
-            this.btnHistorialPAC.Image = global::PrendaSAL.Properties.Resources.print;
-            this.btnHistorialPAC.Location = new System.Drawing.Point(831, 14);
-            this.btnHistorialPAC.Name = "btnHistorialPAC";
-            this.btnHistorialPAC.Size = new System.Drawing.Size(34, 35);
-            this.btnHistorialPAC.TabIndex = 75;
-            this.btnHistorialPAC.UseVisualStyleBackColor = true;
-            this.btnHistorialPAC.Click += new System.EventHandler(this.btnHistorialPAC_Click);
-            // 
-            // CORRELATIVO
-            // 
-            this.CORRELATIVO.HeaderText = "#";
-            this.CORRELATIVO.Name = "CORRELATIVO";
-            this.CORRELATIVO.ReadOnly = true;
-            this.CORRELATIVO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CORRELATIVO.Width = 30;
-            // 
-            // FECHA
-            // 
-            this.FECHA.DataPropertyName = "FECHA";
-            this.FECHA.HeaderText = "FECHA";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.ReadOnly = true;
-            this.FECHA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FECHA.Width = 80;
-            // 
-            // DOCUMENTO
-            // 
-            this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DOCUMENTO.HeaderText = "REFERENCIA";
-            this.DOCUMENTO.Name = "DOCUMENTO";
-            this.DOCUMENTO.ReadOnly = true;
-            this.DOCUMENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // MOVIMIENTO
-            // 
-            this.MOVIMIENTO.DataPropertyName = "TIPO";
-            this.MOVIMIENTO.HeaderText = "MOVIMIENTO";
-            this.MOVIMIENTO.Name = "MOVIMIENTO";
-            this.MOVIMIENTO.ReadOnly = true;
-            this.MOVIMIENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // MESES
-            // 
-            this.MESES.DataPropertyName = "MESES";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.MESES.DefaultCellStyle = dataGridViewCellStyle2;
-            this.MESES.HeaderText = "MESES";
-            this.MESES.Name = "MESES";
-            this.MESES.ReadOnly = true;
-            this.MESES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.MESES.Width = 60;
-            // 
-            // DIAS
-            // 
-            this.DIAS.DataPropertyName = "DIAS";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DIAS.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DIAS.HeaderText = "DIAS";
-            this.DIAS.Name = "DIAS";
-            this.DIAS.ReadOnly = true;
-            this.DIAS.Width = 50;
-            // 
-            // INTERES
-            // 
-            this.INTERES.DataPropertyName = "INTERES";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "C2";
-            this.INTERES.DefaultCellStyle = dataGridViewCellStyle4;
-            this.INTERES.HeaderText = "INTERES";
-            this.INTERES.Name = "INTERES";
-            this.INTERES.ReadOnly = true;
-            this.INTERES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.INTERES.Width = 85;
-            // 
-            // DESCUENTO
-            // 
-            this.DESCUENTO.DataPropertyName = "DESCUENTO";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C2";
-            this.DESCUENTO.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DESCUENTO.HeaderText = "DESCUENTO";
-            this.DESCUENTO.Name = "DESCUENTO";
-            this.DESCUENTO.ReadOnly = true;
-            this.DESCUENTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DESCUENTO.Width = 85;
-            // 
-            // ABONO
-            // 
-            this.ABONO.DataPropertyName = "ABONO";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "C2";
-            this.ABONO.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ABONO.HeaderText = "ABONO";
-            this.ABONO.Name = "ABONO";
-            this.ABONO.ReadOnly = true;
-            this.ABONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ABONO.Width = 85;
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.DataPropertyName = "TOTAL";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "C2";
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle7;
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.Name = "TOTAL";
-            this.TOTAL.ReadOnly = true;
-            this.TOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TOTAL.Width = 85;
-            // 
             // bsHistorialPAC
             // 
             this.bsHistorialPAC.DataMember = "HISTORIAL";
@@ -1206,6 +1219,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.BindingSource bsHistorialPAC;
         private Informes.DSHistorialPAC dSHistorialPAC;
+        private System.Windows.Forms.Label lbVENCIDO;
 
 
     }

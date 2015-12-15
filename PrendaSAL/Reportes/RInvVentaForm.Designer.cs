@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rdbCODIGO = new System.Windows.Forms.RadioButton();
             this.rdbDETALLE = new System.Windows.Forms.RadioButton();
             this.lbNUM_TOTAL = new System.Windows.Forms.Label();
@@ -39,13 +40,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtCODIGO = new System.Windows.Forms.TextBox();
             this.tblINVENTARIO = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.opciones = new System.Windows.Forms.ToolStrip();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
-            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +47,12 @@
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.opciones = new System.Windows.Forms.ToolStrip();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).BeginInit();
             this.opciones.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             // rdbDETALLE
             // 
             this.rdbDETALLE.AutoSize = true;
-            this.rdbDETALLE.Location = new System.Drawing.Point(47, 31);
+            this.rdbDETALLE.Location = new System.Drawing.Point(47, 36);
             this.rdbDETALLE.Name = "rdbDETALLE";
             this.rdbDETALLE.Size = new System.Drawing.Size(14, 13);
             this.rdbDETALLE.TabIndex = 109;
@@ -104,7 +104,7 @@
             // 
             this.cbxARTICULO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxARTICULO.FormattingEnabled = true;
-            this.cbxARTICULO.Location = new System.Drawing.Point(495, 28);
+            this.cbxARTICULO.Location = new System.Drawing.Point(495, 33);
             this.cbxARTICULO.Name = "cbxARTICULO";
             this.cbxARTICULO.Size = new System.Drawing.Size(145, 21);
             this.cbxARTICULO.TabIndex = 104;
@@ -113,7 +113,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(420, 31);
+            this.label2.Location = new System.Drawing.Point(420, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 103;
@@ -123,7 +123,7 @@
             // 
             this.cbxSUCURSAL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSUCURSAL.FormattingEnabled = true;
-            this.cbxSUCURSAL.Location = new System.Drawing.Point(164, 28);
+            this.cbxSUCURSAL.Location = new System.Drawing.Point(164, 33);
             this.cbxSUCURSAL.Name = "cbxSUCURSAL";
             this.cbxSUCURSAL.Size = new System.Drawing.Size(217, 21);
             this.cbxSUCURSAL.TabIndex = 102;
@@ -132,7 +132,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(89, 31);
+            this.label19.Location = new System.Drawing.Point(89, 36);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 101;
@@ -164,78 +164,12 @@
             this.tblINVENTARIO.MultiSelect = false;
             this.tblINVENTARIO.Name = "tblINVENTARIO";
             this.tblINVENTARIO.ReadOnly = true;
+            this.tblINVENTARIO.RowHeadersVisible = false;
             this.tblINVENTARIO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblINVENTARIO.Size = new System.Drawing.Size(927, 329);
             this.tblINVENTARIO.TabIndex = 98;
             this.tblINVENTARIO.DataSourceChanged += new System.EventHandler(this.tblINVENTARIO_DataSourceChanged);
             this.tblINVENTARIO.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblINVENTARIO_CellClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 17);
-            this.label1.TabIndex = 99;
-            this.label1.Text = "CODIGO";
-            // 
-            // opciones
-            // 
-            this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEditar,
-            this.toolStripSeparator1,
-            this.btnImprimir,
-            this.btnExportExcel,
-            this.btnAyuda});
-            this.opciones.Location = new System.Drawing.Point(0, 0);
-            this.opciones.Name = "opciones";
-            this.opciones.Size = new System.Drawing.Size(964, 25);
-            this.opciones.TabIndex = 150;
-            this.opciones.Text = "toolStrip1";
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(23, 22);
-            this.btnEditar.ToolTipText = "Guardar";
-            this.btnEditar.Click += new System.EventHandler(this.EDITAR_ARTICULO);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImprimir.Image = global::PrendaSAL.Properties.Resources.printer;
-            this.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnImprimir.ToolTipText = "Imprimir";
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
-            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
-            this.btnExportExcel.Text = "toolStripButton1";
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
             // 
             // CODIGO
             // 
@@ -249,6 +183,8 @@
             // CANTIDAD
             // 
             this.CANTIDAD.DataPropertyName = "CANTIDAD";
+            dataGridViewCellStyle1.Format = "N1";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle1;
             this.CANTIDAD.HeaderText = "CANTIDAD";
             this.CANTIDAD.Name = "CANTIDAD";
             this.CANTIDAD.ReadOnly = true;
@@ -284,8 +220,8 @@
             // PRECIO
             // 
             this.PRECIO.DataPropertyName = "PRECIO";
-            dataGridViewCellStyle1.Format = "C2";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "C2";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle2;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             this.PRECIO.ReadOnly = true;
@@ -299,6 +235,63 @@
             this.UBICACION.Name = "UBICACION";
             this.UBICACION.ReadOnly = true;
             this.UBICACION.Width = 200;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(89, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 17);
+            this.label1.TabIndex = 99;
+            this.label1.Text = "CODIGO";
+            // 
+            // opciones
+            // 
+            this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEditar,
+            this.toolStripSeparator1,
+            this.btnExportExcel,
+            this.btnAyuda});
+            this.opciones.Location = new System.Drawing.Point(0, 0);
+            this.opciones.Name = "opciones";
+            this.opciones.Size = new System.Drawing.Size(964, 25);
+            this.opciones.TabIndex = 150;
+            this.opciones.Text = "toolStrip1";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(23, 22);
+            this.btnEditar.ToolTipText = "Guardar";
+            this.btnEditar.Click += new System.EventHandler(this.EDITAR_ARTICULO);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
             // 
             // RInvVentaForm
             // 
@@ -350,7 +343,6 @@
         private System.Windows.Forms.ToolStrip opciones;
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnImprimir;
         private System.Windows.Forms.ToolStripButton btnAyuda;
         private System.Windows.Forms.ToolStripButton btnExportExcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;

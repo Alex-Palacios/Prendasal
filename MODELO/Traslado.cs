@@ -28,27 +28,22 @@ namespace MODELO
         //VARIABLES AUX
         public string DE;
         public string HACIA;
-        public DataTable REMISION;
-        public DataTable CUSTODIA;
+        public DataTable DETALLE_TRASLADO;
 
         public Traslado()
         {
             //DATOS POR DEFECTO
-            REMISION = new DataTable();
-            REMISION.Columns.Add("CODIGO").DataType = System.Type.GetType("System.String");
-            REMISION.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
-            REMISION.Columns.Add("COD_ITEM").DataType = System.Type.GetType("System.String");
-            REMISION.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
-            REMISION.Columns.Add("PRECIO").DataType = System.Type.GetType("System.Decimal");
-            REMISION.Columns.Add("ID_DET_PRESTAMO").DataType = System.Type.GetType("System.Int32");
+            DETALLE_TRASLADO = new DataTable();
+            DETALLE_TRASLADO.Columns.Add("TIPO").DataType = System.Type.GetType("System.Int32");
+            DETALLE_TRASLADO.Columns.Add("CODIGO").DataType = System.Type.GetType("System.String");
+            DETALLE_TRASLADO.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
+            DETALLE_TRASLADO.Columns.Add("COD_ITEM").DataType = System.Type.GetType("System.String");
+            DETALLE_TRASLADO.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
+            DETALLE_TRASLADO.Columns.Add("PRECIO").DataType = System.Type.GetType("System.Decimal");
+            DETALLE_TRASLADO.Columns.Add("RECIBIDO").DataType = System.Type.GetType("System.Boolean");
 
 
-            CUSTODIA = new DataTable();
-            CUSTODIA.Columns.Add("TRANS").DataType = System.Type.GetType("System.String");
-            CUSTODIA.Columns.Add("CONTRATO").DataType = System.Type.GetType("System.String");
-            CUSTODIA.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
-            CUSTODIA.Columns.Add("NIVEL").DataType = System.Type.GetType("System.Int64");
-            CUSTODIA.Columns.Add("ID").DataType = System.Type.GetType("System.Int32");
+            
 
         }
 
@@ -57,27 +52,27 @@ namespace MODELO
 
         public static Traslado ConvertToTraslado(DataRow dr)
         {
-            Traslado translado = null;
+            Traslado traslado = null;
             if (dr != null)
             {
-                translado = new Traslado();
-                if (dr.Table.Columns.Contains("ID_TRASLADO")) { translado.ID_TRASLADO = dr.Field<int>("ID_TRASLADO"); }
-                if (dr.Table.Columns.Contains("FECHA")) { translado.FECHA = dr.Field<DateTime>("FECHA"); }
-                if (dr.Table.Columns.Contains("TIPO")) { translado.TIPO = (eTipoTraslado)dr.Field<int>("TIPO"); }
-                if (dr.Table.Columns.Contains("DOCUMENTO")) { translado.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
-                if (dr.Table.Columns.Contains("SUC_ENVIA")) { translado.SUC_ENVIA = dr.Field<string>("SUC_ENVIA"); }
-                if (dr.Table.Columns.Contains("SUC_DEST")) { translado.SUC_DEST = dr.Field<string>("SUC_DEST"); }
-                if (dr.Table.Columns.Contains("ENVIA")) { translado.ENVIA = dr.Field<string>("ENVIA"); }
-                if (dr.Table.Columns.Contains("TRASLADA")) { translado.TRASLADA = dr.Field<string>("TRASLADA"); }
-                if (dr.Table.Columns.Contains("RECIBE")) { translado.RECIBE = dr.Field<string>("RECIBE"); }
-                if (dr.Table.Columns.Contains("RECIBIDO")) { translado.RECIBIDO = dr.Field<bool>("RECIBIDO"); }
-                if (dr.Table.Columns.Contains("NOTA")) { translado.NOTA = dr.Field<string>("NOTA"); }
+                traslado = new Traslado();
+                if (dr.Table.Columns.Contains("ID_TRASLADO")) { traslado.ID_TRASLADO = dr.Field<int>("ID_TRASLADO"); }
+                if (dr.Table.Columns.Contains("FECHA")) { traslado.FECHA = dr.Field<DateTime>("FECHA"); }
+                if (dr.Table.Columns.Contains("TIPO")) { traslado.TIPO = (eTipoTraslado)dr.Field<int>("TIPO"); }
+                if (dr.Table.Columns.Contains("DOCUMENTO")) { traslado.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
+                if (dr.Table.Columns.Contains("SUC_ENVIA")) { traslado.SUC_ENVIA = dr.Field<string>("SUC_ENVIA"); }
+                if (dr.Table.Columns.Contains("SUC_DEST")) { traslado.SUC_DEST = dr.Field<string>("SUC_DEST"); }
+                if (dr.Table.Columns.Contains("ENVIA")) { traslado.ENVIA = dr.Field<string>("ENVIA"); }
+                if (dr.Table.Columns.Contains("TRASLADA")) { traslado.TRASLADA = dr.Field<string>("TRASLADA"); }
+                if (dr.Table.Columns.Contains("RECIBE")) { traslado.RECIBE = dr.Field<string>("RECIBE"); }
+                if (dr.Table.Columns.Contains("RECIBIDO")) { traslado.RECIBIDO = dr.Field<bool>("RECIBIDO"); }
+                if (dr.Table.Columns.Contains("NOTA")) { traslado.NOTA = dr.Field<string>("NOTA"); }
 
-                if (dr.Table.Columns.Contains("DE")) { translado.DE = dr.Field<string>("DE"); }
-                if (dr.Table.Columns.Contains("HACIA")) { translado.HACIA = dr.Field<string>("HACIA"); }
+                if (dr.Table.Columns.Contains("DE")) { traslado.DE = dr.Field<string>("DE"); }
+                if (dr.Table.Columns.Contains("HACIA")) { traslado.HACIA = dr.Field<string>("HACIA"); }
 
             }
-            return translado;
+            return traslado;
 
         }
 
@@ -86,8 +81,7 @@ namespace MODELO
         public Traslado Copy()
         {
             Traslado copy = (Traslado)this.MemberwiseClone();
-            copy.REMISION = this.REMISION.Copy();
-            copy.CUSTODIA = this.CUSTODIA.Copy();
+            copy.DETALLE_TRASLADO = this.DETALLE_TRASLADO.Copy();
             return copy;
         }
 
@@ -105,5 +99,29 @@ namespace MODELO
                 }
             }
         }
+
+
+
+        public DataTable CUSTODIA_PRESTAMOS
+        {
+            get
+            {
+                DataTable DETALLE = this.DETALLE_TRASLADO.Copy();
+                DETALLE.DefaultView.RowFilter = "TIPO = "+ (int) eTipoDetalleTraslado.PRESTAMO;
+                return DETALLE.DefaultView.Table;
+            }
+        }
+
+        public DataTable CUSTODIA_COMPRAS
+        {
+            get
+            {
+                DataTable DETALLE = this.DETALLE_TRASLADO.Copy();
+                DETALLE.DefaultView.RowFilter = "TIPO = " + (int)eTipoDetalleTraslado.COMPRA;
+                return DETALLE.DefaultView.Table;
+            }
+        }
+
+
     }
 }

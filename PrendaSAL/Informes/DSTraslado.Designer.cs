@@ -20,17 +20,17 @@ namespace PrendaSAL.Informes {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("ArticuloMov")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DSTraslado")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class ArticuloMov : global::System.Data.DataSet {
+    public partial class DSTraslado : global::System.Data.DataSet {
         
-        private ARTICULO_MOVDataTable tableARTICULO_MOV;
+        private TRASLADODataTable tableTRASLADO;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public ArticuloMov() {
+        public DSTraslado() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace PrendaSAL.Informes {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected ArticuloMov(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DSTraslado(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace PrendaSAL.Informes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["ARTICULO_MOV"] != null)) {
-                    base.Tables.Add(new ARTICULO_MOVDataTable(ds.Tables["ARTICULO_MOV"]));
+                if ((ds.Tables["TRASLADO"] != null)) {
+                    base.Tables.Add(new TRASLADODataTable(ds.Tables["TRASLADO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace PrendaSAL.Informes {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ARTICULO_MOVDataTable ARTICULO_MOV {
+        public TRASLADODataTable TRASLADO {
             get {
-                return this.tableARTICULO_MOV;
+                return this.tableTRASLADO;
             }
         }
         
@@ -127,7 +127,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            ArticuloMov cln = ((ArticuloMov)(base.Clone()));
+            DSTraslado cln = ((DSTraslado)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace PrendaSAL.Informes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["ARTICULO_MOV"] != null)) {
-                    base.Tables.Add(new ARTICULO_MOVDataTable(ds.Tables["ARTICULO_MOV"]));
+                if ((ds.Tables["TRASLADO"] != null)) {
+                    base.Tables.Add(new TRASLADODataTable(ds.Tables["TRASLADO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableARTICULO_MOV = ((ARTICULO_MOVDataTable)(base.Tables["ARTICULO_MOV"]));
+            this.tableTRASLADO = ((TRASLADODataTable)(base.Tables["TRASLADO"]));
             if ((initTable == true)) {
-                if ((this.tableARTICULO_MOV != null)) {
-                    this.tableARTICULO_MOV.InitVars();
+                if ((this.tableTRASLADO != null)) {
+                    this.tableTRASLADO.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "ArticuloMov";
+            this.DataSetName = "DSTraslado";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/ArticuloMov.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableARTICULO_MOV = new ARTICULO_MOVDataTable();
-            base.Tables.Add(this.tableARTICULO_MOV);
+            this.tableTRASLADO = new TRASLADODataTable();
+            base.Tables.Add(this.tableTRASLADO);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeARTICULO_MOV() {
+        private bool ShouldSerializeTRASLADO() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace PrendaSAL.Informes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            ArticuloMov ds = new ArticuloMov();
+            DSTraslado ds = new DSTraslado();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,31 +270,31 @@ namespace PrendaSAL.Informes {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void ARTICULO_MOVRowChangeEventHandler(object sender, ARTICULO_MOVRowChangeEvent e);
+        public delegate void TRASLADORowChangeEventHandler(object sender, TRASLADORowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ARTICULO_MOVDataTable : global::System.Data.TypedTableBase<ARTICULO_MOVRow> {
+        public partial class TRASLADODataTable : global::System.Data.TypedTableBase<TRASLADORow> {
+            
+            private global::System.Data.DataColumn columnTIPO;
             
             private global::System.Data.DataColumn columnCODIGO;
             
-            private global::System.Data.DataColumn columnCATEGORIA;
-            
-            private global::System.Data.DataColumn columnARTICULO;
-            
             private global::System.Data.DataColumn columnCANTIDAD;
             
-            private global::System.Data.DataColumn columnDETALLE;
+            private global::System.Data.DataColumn columnCOD_ITEM;
+            
+            private global::System.Data.DataColumn columnDESCRIPCION;
             
             private global::System.Data.DataColumn columnPRECIO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVDataTable() {
-                this.TableName = "ARTICULO_MOV";
+            public TRASLADODataTable() {
+                this.TableName = "TRASLADO";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -302,7 +302,7 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ARTICULO_MOVDataTable(global::System.Data.DataTable table) {
+            internal TRASLADODataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -319,9 +319,17 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected ARTICULO_MOVDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TRASLADODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TIPOColumn {
+                get {
+                    return this.columnTIPO;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -329,22 +337,6 @@ namespace PrendaSAL.Informes {
             public global::System.Data.DataColumn CODIGOColumn {
                 get {
                     return this.columnCODIGO;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CATEGORIAColumn {
-                get {
-                    return this.columnCATEGORIA;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ARTICULOColumn {
-                get {
-                    return this.columnARTICULO;
                 }
             }
             
@@ -358,9 +350,17 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DETALLEColumn {
+            public global::System.Data.DataColumn COD_ITEMColumn {
                 get {
-                    return this.columnDETALLE;
+                    return this.columnCOD_ITEM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DESCRIPCIONColumn {
+                get {
+                    return this.columnDESCRIPCION;
                 }
             }
             
@@ -383,50 +383,50 @@ namespace PrendaSAL.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVRow this[int index] {
+            public TRASLADORow this[int index] {
                 get {
-                    return ((ARTICULO_MOVRow)(this.Rows[index]));
+                    return ((TRASLADORow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ARTICULO_MOVRowChangeEventHandler ARTICULO_MOVRowChanging;
+            public event TRASLADORowChangeEventHandler TRASLADORowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ARTICULO_MOVRowChangeEventHandler ARTICULO_MOVRowChanged;
+            public event TRASLADORowChangeEventHandler TRASLADORowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ARTICULO_MOVRowChangeEventHandler ARTICULO_MOVRowDeleting;
+            public event TRASLADORowChangeEventHandler TRASLADORowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ARTICULO_MOVRowChangeEventHandler ARTICULO_MOVRowDeleted;
+            public event TRASLADORowChangeEventHandler TRASLADORowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddARTICULO_MOVRow(ARTICULO_MOVRow row) {
+            public void AddTRASLADORow(TRASLADORow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVRow AddARTICULO_MOVRow(string CODIGO, string CATEGORIA, string ARTICULO, double CANTIDAD, string DETALLE, decimal PRECIO) {
-                ARTICULO_MOVRow rowARTICULO_MOVRow = ((ARTICULO_MOVRow)(this.NewRow()));
+            public TRASLADORow AddTRASLADORow(int TIPO, string CODIGO, decimal CANTIDAD, string COD_ITEM, string DESCRIPCION, decimal PRECIO) {
+                TRASLADORow rowTRASLADORow = ((TRASLADORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        TIPO,
                         CODIGO,
-                        CATEGORIA,
-                        ARTICULO,
                         CANTIDAD,
-                        DETALLE,
+                        COD_ITEM,
+                        DESCRIPCION,
                         PRECIO};
-                rowARTICULO_MOVRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowARTICULO_MOVRow);
-                return rowARTICULO_MOVRow;
+                rowTRASLADORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTRASLADORow);
+                return rowTRASLADORow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ARTICULO_MOVDataTable cln = ((ARTICULO_MOVDataTable)(base.Clone()));
+                TRASLADODataTable cln = ((TRASLADODataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -434,61 +434,61 @@ namespace PrendaSAL.Informes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ARTICULO_MOVDataTable();
+                return new TRASLADODataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnTIPO = base.Columns["TIPO"];
                 this.columnCODIGO = base.Columns["CODIGO"];
-                this.columnCATEGORIA = base.Columns["CATEGORIA"];
-                this.columnARTICULO = base.Columns["ARTICULO"];
                 this.columnCANTIDAD = base.Columns["CANTIDAD"];
-                this.columnDETALLE = base.Columns["DETALLE"];
+                this.columnCOD_ITEM = base.Columns["COD_ITEM"];
+                this.columnDESCRIPCION = base.Columns["DESCRIPCION"];
                 this.columnPRECIO = base.Columns["PRECIO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnTIPO = new global::System.Data.DataColumn("TIPO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTIPO);
                 this.columnCODIGO = new global::System.Data.DataColumn("CODIGO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCODIGO);
-                this.columnCATEGORIA = new global::System.Data.DataColumn("CATEGORIA", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCATEGORIA);
-                this.columnARTICULO = new global::System.Data.DataColumn("ARTICULO", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnARTICULO);
-                this.columnCANTIDAD = new global::System.Data.DataColumn("CANTIDAD", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnCANTIDAD = new global::System.Data.DataColumn("CANTIDAD", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCANTIDAD);
-                this.columnDETALLE = new global::System.Data.DataColumn("DETALLE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDETALLE);
+                this.columnCOD_ITEM = new global::System.Data.DataColumn("COD_ITEM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOD_ITEM);
+                this.columnDESCRIPCION = new global::System.Data.DataColumn("DESCRIPCION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDESCRIPCION);
                 this.columnPRECIO = new global::System.Data.DataColumn("PRECIO", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPRECIO);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVRow NewARTICULO_MOVRow() {
-                return ((ARTICULO_MOVRow)(this.NewRow()));
+            public TRASLADORow NewTRASLADORow() {
+                return ((TRASLADORow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ARTICULO_MOVRow(builder);
+                return new TRASLADORow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ARTICULO_MOVRow);
+                return typeof(TRASLADORow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ARTICULO_MOVRowChanged != null)) {
-                    this.ARTICULO_MOVRowChanged(this, new ARTICULO_MOVRowChangeEvent(((ARTICULO_MOVRow)(e.Row)), e.Action));
+                if ((this.TRASLADORowChanged != null)) {
+                    this.TRASLADORowChanged(this, new TRASLADORowChangeEvent(((TRASLADORow)(e.Row)), e.Action));
                 }
             }
             
@@ -496,8 +496,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ARTICULO_MOVRowChanging != null)) {
-                    this.ARTICULO_MOVRowChanging(this, new ARTICULO_MOVRowChangeEvent(((ARTICULO_MOVRow)(e.Row)), e.Action));
+                if ((this.TRASLADORowChanging != null)) {
+                    this.TRASLADORowChanging(this, new TRASLADORowChangeEvent(((TRASLADORow)(e.Row)), e.Action));
                 }
             }
             
@@ -505,8 +505,8 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ARTICULO_MOVRowDeleted != null)) {
-                    this.ARTICULO_MOVRowDeleted(this, new ARTICULO_MOVRowChangeEvent(((ARTICULO_MOVRow)(e.Row)), e.Action));
+                if ((this.TRASLADORowDeleted != null)) {
+                    this.TRASLADORowDeleted(this, new TRASLADORowChangeEvent(((TRASLADORow)(e.Row)), e.Action));
                 }
             }
             
@@ -514,14 +514,14 @@ namespace PrendaSAL.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ARTICULO_MOVRowDeleting != null)) {
-                    this.ARTICULO_MOVRowDeleting(this, new ARTICULO_MOVRowChangeEvent(((ARTICULO_MOVRow)(e.Row)), e.Action));
+                if ((this.TRASLADORowDeleting != null)) {
+                    this.TRASLADORowDeleting(this, new TRASLADORowChangeEvent(((TRASLADORow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveARTICULO_MOVRow(ARTICULO_MOVRow row) {
+            public void RemoveTRASLADORow(TRASLADORow row) {
                 this.Rows.Remove(row);
             }
             
@@ -530,7 +530,7 @@ namespace PrendaSAL.Informes {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ArticuloMov ds = new ArticuloMov();
+                DSTraslado ds = new DSTraslado();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -548,7 +548,7 @@ namespace PrendaSAL.Informes {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ARTICULO_MOVDataTable";
+                attribute2.FixedValue = "TRASLADODataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -592,15 +592,31 @@ namespace PrendaSAL.Informes {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ARTICULO_MOVRow : global::System.Data.DataRow {
+        public partial class TRASLADORow : global::System.Data.DataRow {
             
-            private ARTICULO_MOVDataTable tableARTICULO_MOV;
+            private TRASLADODataTable tableTRASLADO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ARTICULO_MOVRow(global::System.Data.DataRowBuilder rb) : 
+            internal TRASLADORow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableARTICULO_MOV = ((ARTICULO_MOVDataTable)(this.Table));
+                this.tableTRASLADO = ((TRASLADODataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TIPO {
+                get {
+                    try {
+                        return ((int)(this[this.tableTRASLADO.TIPOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TIPO\' de la tabla \'TRASLADO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTRASLADO.TIPOColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -608,78 +624,62 @@ namespace PrendaSAL.Informes {
             public string CODIGO {
                 get {
                     try {
-                        return ((string)(this[this.tableARTICULO_MOV.CODIGOColumn]));
+                        return ((string)(this[this.tableTRASLADO.CODIGOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CODIGO\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CODIGO\' de la tabla \'TRASLADO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARTICULO_MOV.CODIGOColumn] = value;
+                    this[this.tableTRASLADO.CODIGOColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CATEGORIA {
+            public decimal CANTIDAD {
                 get {
                     try {
-                        return ((string)(this[this.tableARTICULO_MOV.CATEGORIAColumn]));
+                        return ((decimal)(this[this.tableTRASLADO.CANTIDADColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CATEGORIA\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CANTIDAD\' de la tabla \'TRASLADO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARTICULO_MOV.CATEGORIAColumn] = value;
+                    this[this.tableTRASLADO.CANTIDADColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ARTICULO {
+            public string COD_ITEM {
                 get {
                     try {
-                        return ((string)(this[this.tableARTICULO_MOV.ARTICULOColumn]));
+                        return ((string)(this[this.tableTRASLADO.COD_ITEMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ARTICULO\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COD_ITEM\' de la tabla \'TRASLADO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARTICULO_MOV.ARTICULOColumn] = value;
+                    this[this.tableTRASLADO.COD_ITEMColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double CANTIDAD {
+            public string DESCRIPCION {
                 get {
                     try {
-                        return ((double)(this[this.tableARTICULO_MOV.CANTIDADColumn]));
+                        return ((string)(this[this.tableTRASLADO.DESCRIPCIONColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CANTIDAD\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DESCRIPCION\' de la tabla \'TRASLADO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARTICULO_MOV.CANTIDADColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DETALLE {
-                get {
-                    try {
-                        return ((string)(this[this.tableARTICULO_MOV.DETALLEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DETALLE\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableARTICULO_MOV.DETALLEColumn] = value;
+                    this[this.tableTRASLADO.DESCRIPCIONColumn] = value;
                 }
             }
             
@@ -688,87 +688,87 @@ namespace PrendaSAL.Informes {
             public decimal PRECIO {
                 get {
                     try {
-                        return ((decimal)(this[this.tableARTICULO_MOV.PRECIOColumn]));
+                        return ((decimal)(this[this.tableTRASLADO.PRECIOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PRECIO\' de la tabla \'ARTICULO_MOV\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PRECIO\' de la tabla \'TRASLADO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARTICULO_MOV.PRECIOColumn] = value;
+                    this[this.tableTRASLADO.PRECIOColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTIPONull() {
+                return this.IsNull(this.tableTRASLADO.TIPOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTIPONull() {
+                this[this.tableTRASLADO.TIPOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCODIGONull() {
-                return this.IsNull(this.tableARTICULO_MOV.CODIGOColumn);
+                return this.IsNull(this.tableTRASLADO.CODIGOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCODIGONull() {
-                this[this.tableARTICULO_MOV.CODIGOColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCATEGORIANull() {
-                return this.IsNull(this.tableARTICULO_MOV.CATEGORIAColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCATEGORIANull() {
-                this[this.tableARTICULO_MOV.CATEGORIAColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsARTICULONull() {
-                return this.IsNull(this.tableARTICULO_MOV.ARTICULOColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetARTICULONull() {
-                this[this.tableARTICULO_MOV.ARTICULOColumn] = global::System.Convert.DBNull;
+                this[this.tableTRASLADO.CODIGOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCANTIDADNull() {
-                return this.IsNull(this.tableARTICULO_MOV.CANTIDADColumn);
+                return this.IsNull(this.tableTRASLADO.CANTIDADColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCANTIDADNull() {
-                this[this.tableARTICULO_MOV.CANTIDADColumn] = global::System.Convert.DBNull;
+                this[this.tableTRASLADO.CANTIDADColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDETALLENull() {
-                return this.IsNull(this.tableARTICULO_MOV.DETALLEColumn);
+            public bool IsCOD_ITEMNull() {
+                return this.IsNull(this.tableTRASLADO.COD_ITEMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDETALLENull() {
-                this[this.tableARTICULO_MOV.DETALLEColumn] = global::System.Convert.DBNull;
+            public void SetCOD_ITEMNull() {
+                this[this.tableTRASLADO.COD_ITEMColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDESCRIPCIONNull() {
+                return this.IsNull(this.tableTRASLADO.DESCRIPCIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDESCRIPCIONNull() {
+                this[this.tableTRASLADO.DESCRIPCIONColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPRECIONull() {
-                return this.IsNull(this.tableARTICULO_MOV.PRECIOColumn);
+                return this.IsNull(this.tableTRASLADO.PRECIOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPRECIONull() {
-                this[this.tableARTICULO_MOV.PRECIOColumn] = global::System.Convert.DBNull;
+                this[this.tableTRASLADO.PRECIOColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -776,22 +776,22 @@ namespace PrendaSAL.Informes {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class ARTICULO_MOVRowChangeEvent : global::System.EventArgs {
+        public class TRASLADORowChangeEvent : global::System.EventArgs {
             
-            private ARTICULO_MOVRow eventRow;
+            private TRASLADORow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVRowChangeEvent(ARTICULO_MOVRow row, global::System.Data.DataRowAction action) {
+            public TRASLADORowChangeEvent(TRASLADORow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ARTICULO_MOVRow Row {
+            public TRASLADORow Row {
                 get {
                     return this.eventRow;
                 }

@@ -21,6 +21,7 @@ namespace MODELO
         public decimal COSTO;
         public decimal PRECIO;
         public bool INIT_BALANCE;
+        public string NOTA;
 
         public eCategoria CATEGORIA;
 
@@ -47,6 +48,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("COSTO")) { inv.COSTO = dr.Field<decimal>("COSTO"); }
                 if (dr.Table.Columns.Contains("PRECIO")) { inv.PRECIO = dr.Field<decimal>("PRECIO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { inv.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
+                if (dr.Table.Columns.Contains("NOTA")) { inv.NOTA = dr.Field<string>("NOTA"); }
 
                 if (dr.Table.Columns.Contains("CATEGORIA")) { inv.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
 

@@ -195,6 +195,14 @@ namespace MODELO
         NOTA_REMISION,
     }
 
+    public enum eTipoDetalleTraslado
+    {
+        ARTICULO = 1,
+        COMPRA,
+        PRESTAMO
+    }
+
+    
 
     public enum eEstadoTraslado
     {

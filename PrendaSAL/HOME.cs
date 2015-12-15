@@ -16,7 +16,6 @@ namespace PrendaSAL
 {
     using DDB;
     using MODELO;
-
     public partial class HOME : Office2007Form
     {
         //PARA MANTENER UNA INSTANCIA UNICA DE LA CLASE//
@@ -403,6 +402,23 @@ namespace PrendaSAL
         }
 
 
+        public DataTable getSucursalesException(string codsuc)
+        {
+            DataTable SUCURSALES = datSUCURSALES.Copy();
+            if (SUCURSALES != null)
+            {
+                foreach (DataRow row in SUCURSALES.Rows)
+                {
+                    if (row.Field<string>("COD_SUC") == codsuc)
+                    {
+                        SUCURSALES.Rows.Remove(row);
+                        break;
+                    }
+                }
+            }
+            return SUCURSALES;
+        }
+
 
 
 
@@ -627,8 +643,8 @@ namespace PrendaSAL
 
         private void menuOperacionesRecibirInv(object sender, EventArgs e)
         {
-            Operaciones.RecibirInvForm recepcion;
-            recepcion = Operaciones.RecibirInvForm.Instance();
+            Operaciones.RecibirTrasladoForm recepcion;
+            recepcion = Operaciones.RecibirTrasladoForm.Instance();
             recepcion.MdiParent = this;
             recepcion.Show();
             if (recepcion.WindowState == FormWindowState.Minimized)
@@ -639,8 +655,8 @@ namespace PrendaSAL
 
         private void menuOperacionesEnviarInv(object sender, EventArgs e)
         {
-            Operaciones.TrasladoForm envio;
-            envio = Operaciones.TrasladoForm.Instance();
+            Operaciones.EnviarTrasladoForm envio;
+            envio = Operaciones.EnviarTrasladoForm.Instance();
             envio.MdiParent = this;
             envio.Show();
             if (envio.WindowState == FormWindowState.Minimized)
@@ -1077,37 +1093,64 @@ namespace PrendaSAL
             int fila = 1;
             if (encabezados != null && datos != null)
             {
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Workbooks.Add(true);
-
-
-                foreach (DataGridViewColumn column in encabezados)
+                try
                 {
-                    excel.Cells[fila, columna] = column.HeaderText;
-                    columna++;
-                }
-                fila++;
-                foreach (DataRow row in datos.Rows)
-                {
-                    columna = 1;
+                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                    excel.Workbooks.Add(true);
+                    
                     foreach (DataGridViewColumn column in encabezados)
                     {
-                        if (column.Visible)
-                        {
-                            excel.Cells[fila, columna] = row.Field<object>(column.Name);
-                            columna++;
-                        }
+                        excel.Cells[fila, columna] = column.HeaderText;
+                        excel.ActiveCell.Font.Bold = true;
+                        excel.ActiveCell.EntireColumn.NumberFormat = convertFormatExcel(column.DefaultCellStyle.Format);
+                        excel.ActiveCell.get_Offset(0, 1).Activate();
+                        columna++;
                     }
                     fila++;
+                    foreach (DataRow row in datos.Rows)
+                    {
+                        columna = 1;
+                        foreach (DataGridViewColumn column in encabezados)
+                        {
+                            if (column.Visible)
+                            {
+                                excel.Cells[fila, columna] = row.Field<object>(column.Name);
+                                columna++;
+                            }
+                        }
+                        fila++;
+                    }
+                    excel.Visible = true;
                 }
-                excel.Visible = true;
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR AL GENERAR ARCHIVO EXCEL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        
 
 
+        private string convertFormatExcel(string formatDataGrid)
+        {
+            string formato = string.Empty;
+            switch (formatDataGrid)
+            {
+                case "N0":
+                    formato = "#,##0";
+                    break;
+                case "N1":
+                    formato = "#,##0.0";
+                    break;
+                case "C2":
+                    formato = "$#,##0.00_);[Red]($#,##0.00)";
+                    break;
+                default:
+                    formato = "@";
+                    break;
+            }
+            return formato;
+        }
         
 
 

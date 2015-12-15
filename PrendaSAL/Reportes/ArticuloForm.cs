@@ -79,6 +79,7 @@ namespace PrendaSAL.Reportes
                 txtCANTIDAD.Text = SELECTED.CANTIDAD.ToString("N1");
                 txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
                 txtPRECIO.Text = SELECTED.PRECIO.ToString("C2");
+                txtNOTA.Text = SELECTED.NOTA;
             }
         }
 
@@ -158,6 +159,7 @@ namespace PrendaSAL.Reportes
                     SELECTED.BODEGA = (string)cbxSUCURSAL.SelectedValue;
                     SELECTED.COD_ITEM = (string)cbxARTICULO.SelectedValue;
                     SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();
+                    SELECTED.NOTA = txtNOTA.Text.Trim();
                     if (dbInventario.updateArticuloInv(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                     {
                         RInvVentaForm.Instance().recargar();

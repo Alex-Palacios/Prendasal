@@ -50,6 +50,8 @@ namespace DDB
                 costo_inv.Direction = ParameterDirection.Input;
                 MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
                 precio_inv.Direction = ParameterDirection.Input;
+                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 100);
+                nota_inv.Direction = ParameterDirection.Input;
 
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
@@ -66,6 +68,7 @@ namespace DDB
                 cantidad_inv.Value = inv.CANTIDAD;
                 costo_inv.Value = inv.COSTO;
                 precio_inv.Value = inv.PRECIO;
+                nota_inv.Value = inv.NOTA;
 
                 suc.Value = sucursal;
                 emp.Value = empleado;
@@ -108,6 +111,8 @@ namespace DDB
                 costo_inv.Direction = ParameterDirection.Input;
                 MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
                 precio_inv.Direction = ParameterDirection.Input;
+                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 100);
+                nota_inv.Direction = ParameterDirection.Input;
 
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
@@ -124,6 +129,7 @@ namespace DDB
                 cantidad_inv.Value = inv.CANTIDAD;
                 costo_inv.Value = inv.COSTO;
                 precio_inv.Value = inv.PRECIO;
+                nota_inv.Value = inv.NOTA;
 
                 suc.Value = sucursal;
                 emp.Value = empleado;
@@ -249,6 +255,8 @@ namespace DDB
                 descrip_inv.Direction = ParameterDirection.Input;
                 MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
                 precio_inv.Direction = ParameterDirection.Input;
+                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 100);
+                nota_inv.Direction = ParameterDirection.Input;
 
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
                 suc.Direction = ParameterDirection.Input;
@@ -262,6 +270,7 @@ namespace DDB
                 item_inv.Value = exist.COD_ITEM;
                 descrip_inv.Value = exist.DESCRIPCION;
                 precio_inv.Value = exist.PRECIO;
+                nota_inv.Value = exist.NOTA;
 
                 suc.Value = sucursal;
                 emp.Value = empleado;
@@ -277,6 +286,10 @@ namespace DDB
             }
             return OK;
         }
+
+
+
+
 
         public DataTable getExistenciasORO()
         {
@@ -428,6 +441,8 @@ namespace DDB
 
 
 
+
+
         // INVENTARIO EN CUSTODIA DE VALORES
 
         public DataTable getInvCustodia(string sucursal, string categoria, string articulo)
@@ -512,34 +527,6 @@ namespace DDB
 
 
 
-        public DataTable getCustodiaBySuc(string codsuc)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "prendasal.SP_GET_CUSTODIA";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
-
-                sucursal.Value = codsuc;
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR VALORES EN CUSTODIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return datos;
-        }
 
 
 

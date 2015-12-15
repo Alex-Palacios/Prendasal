@@ -18,6 +18,7 @@ namespace MODELO
         public decimal CANTIDAD;
         public decimal PRECIO;
         public string BODEGA;
+        public string NOTA;
 
         public string UBICACION;
         public DateTime FECHA;
@@ -41,6 +42,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DESCRIPCION")) { exist.DESCRIPCION = dr.Field<string>("DESCRIPCION"); }
                 if (dr.Table.Columns.Contains("CANTIDAD")) { exist.CANTIDAD = dr.Field<decimal>("CANTIDAD"); }
                 if (dr.Table.Columns.Contains("PRECIO")) { exist.PRECIO = dr.Field<decimal>("PRECIO"); }
+                if (dr.Table.Columns.Contains("NOTA")) { exist.NOTA = dr.Field<string>("NOTA"); }
                 if (dr.Table.Columns.Contains("BODEGA")) { exist.BODEGA = dr.Field<string>("BODEGA"); }
 
                 if (dr.Table.Columns.Contains("UBICACION")) { exist.UBICACION = dr.Field<string>("UBICACION"); }

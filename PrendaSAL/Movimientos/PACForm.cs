@@ -151,6 +151,8 @@ namespace PrendaSAL.Movimientos
             txtINT_DIARIO.Text = string.Empty;
             tblHistorialPAC.DataSource = null;
             lbCAPITAL.Text = string.Empty;
+            lbVENCIDO.Text = string.Empty;
+            
 
             btnHistorialPAC.Enabled = false;
             
@@ -255,6 +257,8 @@ namespace PrendaSAL.Movimientos
                         txtEstadoCONT.ForeColor = Color.Red;
                         grbABONO.Enabled = false;
                         btnReactivar.Enabled = true;
+                        lbVENCIDO.ForeColor = Color.DarkRed;
+                        lbVENCIDO.Text = PAC.CONTRATO.VENCIDO;
                         break;
                     default:
                         txtEstadoCONT.ForeColor = Color.DarkRed;

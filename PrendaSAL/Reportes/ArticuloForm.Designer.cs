@@ -46,6 +46,8 @@
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
             this.cbxARTICULO = new System.Windows.Forms.ComboBox();
             this.txtCATEGORIA = new System.Windows.Forms.TextBox();
+            this.txtNOTA = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label19
@@ -61,7 +63,7 @@
             // btnCANCELAR
             // 
             this.btnCANCELAR.Image = global::PrendaSAL.Properties.Resources.cancel;
-            this.btnCANCELAR.Location = new System.Drawing.Point(385, 312);
+            this.btnCANCELAR.Location = new System.Drawing.Point(385, 366);
             this.btnCANCELAR.Name = "btnCANCELAR";
             this.btnCANCELAR.Size = new System.Drawing.Size(128, 40);
             this.btnCANCELAR.TabIndex = 104;
@@ -73,7 +75,7 @@
             // btnGUARDAR
             // 
             this.btnGUARDAR.Image = global::PrendaSAL.Properties.Resources.Save_32x32;
-            this.btnGUARDAR.Location = new System.Drawing.Point(64, 312);
+            this.btnGUARDAR.Location = new System.Drawing.Point(64, 366);
             this.btnGUARDAR.Name = "btnGUARDAR";
             this.btnGUARDAR.Size = new System.Drawing.Size(128, 40);
             this.btnGUARDAR.TabIndex = 103;
@@ -223,6 +225,26 @@
             this.txtCATEGORIA.Size = new System.Drawing.Size(122, 20);
             this.txtCATEGORIA.TabIndex = 114;
             // 
+            // txtNOTA
+            // 
+            this.txtNOTA.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNOTA.Location = new System.Drawing.Point(173, 291);
+            this.txtNOTA.MaxLength = 100;
+            this.txtNOTA.Multiline = true;
+            this.txtNOTA.Name = "txtNOTA";
+            this.txtNOTA.Size = new System.Drawing.Size(342, 48);
+            this.txtNOTA.TabIndex = 116;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(91, 294);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.TabIndex = 115;
+            this.label7.Text = "NOTA";
+            // 
             // ArticuloForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -230,7 +252,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(604, 369);
+            this.ClientSize = new System.Drawing.Size(604, 418);
+            this.Controls.Add(this.txtNOTA);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtCATEGORIA);
             this.Controls.Add(this.cbxARTICULO);
             this.Controls.Add(this.cbxSUCURSAL);
@@ -281,5 +305,7 @@
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
         private System.Windows.Forms.ComboBox cbxARTICULO;
         private System.Windows.Forms.TextBox txtCATEGORIA;
+        private System.Windows.Forms.TextBox txtNOTA;
+        private System.Windows.Forms.Label label7;
     }
 }

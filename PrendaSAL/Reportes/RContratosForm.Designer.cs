@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             this.tblCONTRATOS = new System.Windows.Forms.DataGridView();
-            this.cbxESTADOS = new System.Windows.Forms.ComboBox();
-            this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbNUM_TOTAL = new System.Windows.Forms.Label();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ESTADO_CONTRATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbxESTADOS = new System.Windows.Forms.ComboBox();
+            this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbNUM_TOTAL = new System.Windows.Forms.Label();
             this.opciones = new System.Windows.Forms.ToolStrip();
-            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.btnLISTAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).BeginInit();
             this.opciones.SuspendLayout();
@@ -69,6 +68,50 @@
             this.tblCONTRATOS.Size = new System.Drawing.Size(1049, 352);
             this.tblCONTRATOS.TabIndex = 0;
             this.tblCONTRATOS.DataSourceChanged += new System.EventHandler(this.tblCONTRATOS_DataSourceChanged);
+            // 
+            // FECHA
+            // 
+            this.FECHA.DataPropertyName = "FECHA";
+            this.FECHA.HeaderText = "FECHA";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.ReadOnly = true;
+            // 
+            // DOCUMENTO
+            // 
+            this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
+            this.DOCUMENTO.HeaderText = "CONTRATO";
+            this.DOCUMENTO.Name = "DOCUMENTO";
+            this.DOCUMENTO.ReadOnly = true;
+            // 
+            // CLIENTE
+            // 
+            this.CLIENTE.DataPropertyName = "CLIENTE";
+            this.CLIENTE.HeaderText = "CLIENTE";
+            this.CLIENTE.Name = "CLIENTE";
+            this.CLIENTE.ReadOnly = true;
+            this.CLIENTE.Width = 300;
+            // 
+            // ARTICULO
+            // 
+            this.ARTICULO.DataPropertyName = "ARTICULO";
+            this.ARTICULO.HeaderText = "ARTICULO/PRENDA";
+            this.ARTICULO.Name = "ARTICULO";
+            this.ARTICULO.ReadOnly = true;
+            this.ARTICULO.Width = 300;
+            // 
+            // TOTAL
+            // 
+            this.TOTAL.DataPropertyName = "TOTAL";
+            this.TOTAL.HeaderText = "TOTAL";
+            this.TOTAL.Name = "TOTAL";
+            this.TOTAL.ReadOnly = true;
+            // 
+            // ESTADO_CONTRATO
+            // 
+            this.ESTADO_CONTRATO.DataPropertyName = "ESTADO_CONTRATO";
+            this.ESTADO_CONTRATO.HeaderText = "ESTADO";
+            this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
+            this.ESTADO_CONTRATO.ReadOnly = true;
             // 
             // cbxESTADOS
             // 
@@ -117,54 +160,9 @@
             this.lbNUM_TOTAL.TabIndex = 89;
             this.lbNUM_TOTAL.Text = "0 CONTRATOS";
             // 
-            // FECHA
-            // 
-            this.FECHA.DataPropertyName = "FECHA";
-            this.FECHA.HeaderText = "FECHA";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.ReadOnly = true;
-            // 
-            // DOCUMENTO
-            // 
-            this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
-            this.DOCUMENTO.HeaderText = "CONTRATO";
-            this.DOCUMENTO.Name = "DOCUMENTO";
-            this.DOCUMENTO.ReadOnly = true;
-            // 
-            // CLIENTE
-            // 
-            this.CLIENTE.DataPropertyName = "CLIENTE";
-            this.CLIENTE.HeaderText = "CLIENTE";
-            this.CLIENTE.Name = "CLIENTE";
-            this.CLIENTE.ReadOnly = true;
-            this.CLIENTE.Width = 300;
-            // 
-            // ARTICULO
-            // 
-            this.ARTICULO.DataPropertyName = "ARTICULO";
-            this.ARTICULO.HeaderText = "ARTICULO/PRENDA";
-            this.ARTICULO.Name = "ARTICULO";
-            this.ARTICULO.ReadOnly = true;
-            this.ARTICULO.Width = 300;
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.DataPropertyName = "TOTAL";
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.Name = "TOTAL";
-            this.TOTAL.ReadOnly = true;
-            // 
-            // ESTADO_CONTRATO
-            // 
-            this.ESTADO_CONTRATO.DataPropertyName = "ESTADO_CONTRATO";
-            this.ESTADO_CONTRATO.HeaderText = "ESTADO";
-            this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
-            this.ESTADO_CONTRATO.ReadOnly = true;
-            // 
             // opciones
             // 
             this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnImprimir,
             this.btnExportExcel,
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
@@ -172,24 +170,6 @@
             this.opciones.Size = new System.Drawing.Size(1073, 25);
             this.opciones.TabIndex = 150;
             this.opciones.Text = "toolStrip1";
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnImprimir.Image = global::PrendaSAL.Properties.Resources.printer;
-            this.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnImprimir.ToolTipText = "Imprimir";
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
             // 
             // btnExportExcel
             // 
@@ -200,6 +180,15 @@
             this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
             this.btnExportExcel.Text = "toolStripButton1";
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
             // 
             // btnLISTAR
             // 
@@ -259,7 +248,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn ESTADO_CONTRATO;
         private System.Windows.Forms.ToolStrip opciones;
-        private System.Windows.Forms.ToolStripButton btnImprimir;
         private System.Windows.Forms.ToolStripButton btnAyuda;
         private System.Windows.Forms.ToolStripButton btnExportExcel;
     }

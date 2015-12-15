@@ -221,14 +221,23 @@
     <Compile Include="HOME.Designer.cs">
       <DependentUpon>HOME.cs</DependentUpon>
     </Compile>
-    <Compile Include="Informes\ArticuloMov.cs">
-      <DependentUpon>ArticuloMov.xsd</DependentUpon>
+    <Compile Include="Informes\DSCustodia.cs">
+      <DependentUpon>DSCustodia.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Informes\ArticuloMov.Designer.cs">
+    <Compile Include="Informes\DSCustodia.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ArticuloMov.xsd</DependentUpon>
+      <DependentUpon>DSCustodia.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Informes\DSTraslado.cs">
+      <DependentUpon>DSTraslado.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\DSTraslado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTraslado.xsd</DependentUpon>
     </Compile>
     <Compile Include="Informes\DSCancelados.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -389,17 +398,11 @@
     <Compile Include="Movimientos\CorteDiarioForm.Designer.cs">
       <DependentUpon>CorteDiarioForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\BuscarTraslado.cs">
+    <Compile Include="Operaciones\ListarTrasladoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\BuscarTraslado.Designer.cs">
-      <DependentUpon>BuscarTraslado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operaciones\EnviarInvForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operaciones\EnviarInvForm.Designer.cs">
-      <DependentUpon>EnviarInvForm.cs</DependentUpon>
+    <Compile Include="Operaciones\ListarTrasladoForm.Designer.cs">
+      <DependentUpon>ListarTrasladoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Operaciones\ListaVencidosForm.cs">
       <SubType>Form</SubType>
@@ -413,11 +416,11 @@
     <Compile Include="Operaciones\CorteInvInicialForm.Designer.cs">
       <DependentUpon>CorteInvInicialForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\TrasladoForm.cs">
+    <Compile Include="Operaciones\EnviarTrasladoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\TrasladoForm.Designer.cs">
-      <DependentUpon>TrasladoForm.cs</DependentUpon>
+    <Compile Include="Operaciones\EnviarTrasladoForm.Designer.cs">
+      <DependentUpon>EnviarTrasladoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Operaciones\ItemInicialForm.cs">
       <SubType>Form</SubType>
@@ -425,11 +428,11 @@
     <Compile Include="Operaciones\ItemInicialForm.Designer.cs">
       <DependentUpon>ItemInicialForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operaciones\RecibirInvForm.cs">
+    <Compile Include="Operaciones\RecibirTrasladoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operaciones\RecibirInvForm.Designer.cs">
-      <DependentUpon>RecibirInvForm.cs</DependentUpon>
+    <Compile Include="Operaciones\RecibirTrasladoForm.Designer.cs">
+      <DependentUpon>RecibirTrasladoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -657,11 +660,8 @@
     <EmbeddedResource Include="Movimientos\CorteDiarioForm.resx">
       <DependentUpon>CorteDiarioForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\BuscarTraslado.resx">
-      <DependentUpon>BuscarTraslado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\EnviarInvForm.resx">
-      <DependentUpon>EnviarInvForm.cs</DependentUpon>
+    <EmbeddedResource Include="Operaciones\ListarTrasladoForm.resx">
+      <DependentUpon>ListarTrasladoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\ListaVencidosForm.resx">
       <DependentUpon>ListaVencidosForm.cs</DependentUpon>
@@ -669,14 +669,14 @@
     <EmbeddedResource Include="Operaciones\CorteInvInicialForm.resx">
       <DependentUpon>CorteInvInicialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\TrasladoForm.resx">
-      <DependentUpon>TrasladoForm.cs</DependentUpon>
+    <EmbeddedResource Include="Operaciones\EnviarTrasladoForm.resx">
+      <DependentUpon>EnviarTrasladoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\ItemInicialForm.resx">
       <DependentUpon>ItemInicialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operaciones\RecibirInvForm.resx">
-      <DependentUpon>RecibirInvForm.cs</DependentUpon>
+    <EmbeddedResource Include="Operaciones\RecibirTrasladoForm.resx">
+      <DependentUpon>RecibirTrasladoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -742,16 +742,27 @@
     <EmbeddedResource Include="Movimientos\VentasForm.resx">
       <DependentUpon>VentasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Informes\ArticuloMov.xsc">
-      <DependentUpon>ArticuloMov.xsd</DependentUpon>
+    <None Include="Informes\DSCustodia.xsc">
+      <DependentUpon>DSCustodia.xsd</DependentUpon>
     </None>
-    <None Include="Informes\ArticuloMov.xsd">
+    <None Include="Informes\DSCustodia.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ArticuloMov.Designer.cs</LastGenOutput>
+      <LastGenOutput>DSCustodia.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Informes\ArticuloMov.xss">
-      <DependentUpon>ArticuloMov.xsd</DependentUpon>
+    <None Include="Informes\DSCustodia.xss">
+      <DependentUpon>DSCustodia.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSTraslado.xsc">
+      <DependentUpon>DSTraslado.xsd</DependentUpon>
+    </None>
+    <None Include="Informes\DSTraslado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSTraslado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Informes\DSTraslado.xss">
+      <DependentUpon>DSTraslado.xsd</DependentUpon>
     </None>
     <None Include="Informes\DSCancelados.xsc">
       <DependentUpon>DSCancelados.xsd</DependentUpon>

@@ -759,6 +759,7 @@ namespace PrendaSAL.Movimientos
             SELECTED = Venta.ConvertToVenta(dbVenta.getVentaByNumVenta(documento));
             if (SELECTED != null)
             {
+                ACCION = eOperacion.SEARCH;
                 SELECTED.ITEMS_VENTA = dbVenta.getItemsVenta(SELECTED);
                 VENTA = SELECTED.Copy();
                 cargarDatosCliente(null);

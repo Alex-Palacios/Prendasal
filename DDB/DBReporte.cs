@@ -333,5 +333,50 @@ namespace DDB
         }
 
 
+
+
+        
+
+
+        public DataTable RptKARDEX(string codigo,DateTime? inicio,DateTime? fin,string categoria , string articulo)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_KARDEX";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter codigo_rpt = cmd.Parameters.Add("codigo_rpt", MySqlDbType.VarChar, 25);
+                codigo_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter finicio_rpt = cmd.Parameters.Add("finicio_rpt", MySqlDbType.Date);
+                finicio_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter ffin_rpt = cmd.Parameters.Add("ffin_rpt", MySqlDbType.Date);
+                ffin_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter categoria_rpt = cmd.Parameters.Add("categoria_rpt", MySqlDbType.VarChar, 25);
+                categoria_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter item_rpt = cmd.Parameters.Add("item_rpt", MySqlDbType.VarChar, 25);
+                item_rpt.Direction = ParameterDirection.Input;
+
+                codigo_rpt.Value = codigo;
+                finicio_rpt.Value = inicio;
+                ffin_rpt.Value = fin;
+                categoria_rpt.Value = categoria;
+                item_rpt.Value = articulo;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR KARDEX", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
     }
 }

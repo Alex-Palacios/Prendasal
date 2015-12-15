@@ -36,6 +36,7 @@ namespace MODELO
         public eEstado ESTADO;
         public bool INIT_BALANCE;
         public string NOTA;
+        public string VENCIDO;
         
 
         //VARIBLES AUXILIARES
@@ -102,6 +103,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("ESTADO")) { prestamo.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { prestamo.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
                 if (dr.Table.Columns.Contains("NOTA")) { prestamo.NOTA = dr.Field<string>("NOTA"); }
+                if (dr.Table.Columns.Contains("VENCIDO")) { prestamo.VENCIDO = dr.Field<string>("VENCIDO"); }
 
                 if (dr.Table.Columns.Contains("RESPONSABLE")) { prestamo.RESPONSABLE = dr.Field<string>("RESPONSABLE"); }
                 if (dr.Table.Columns.Contains("ARTICULO")) { prestamo.ARTICULO = dr.Field<string>("ARTICULO"); }

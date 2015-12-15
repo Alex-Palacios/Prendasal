@@ -1018,6 +1018,7 @@ namespace PrendaSAL.Movimientos
             txtTOTAL.Focus();
             if (validarPrestamo())
             {
+                PRESTAMO.NOTA = txtNOTA.Text;
                 ConfirmarContrato confirmar = new ConfirmarContrato(PRESTAMO, ACCION);
                 confirmar.ShowDialog();
             }
