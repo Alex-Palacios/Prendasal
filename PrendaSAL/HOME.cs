@@ -162,9 +162,14 @@ namespace PrendaSAL
             moduloREPORTES.Visible = false;
             btnRptInvCustodia.Visible = false;
             btnRptInvVenta.Visible = false;
+            btnRptKardex.Visible = false;
             btnRptTransDiarias.Visible = false;
+            btnRptCancelados.Visible = false;
             btnRptContratos.Visible = false;
+            btnRptEstadoCuenta.Visible = false;
             btnRptComprasORO.Visible = false;
+            btnRptVencidosORO.Visible = false;
+            btnRptConsolidado.Visible = false;
             //MODULO CONFIGURACION
             moduloCONFIG.Visible = false;
             btnConfigPrecios.Visible = false;
@@ -277,7 +282,23 @@ namespace PrendaSAL
                             case "Compras":
                                 btnRptComprasORO.Visible = p.Field<bool>("ACCESO");
                                 break;
+                            case "Vencidos":
+                                btnRptVencidosORO.Visible = p.Field<bool>("ACCESO");
+                                break;
+                            case "Kardex":
+                                btnRptKardex.Visible = p.Field<bool>("ACCESO");
+                                break;
+                            case "Cancelados":
+                                btnRptCancelados.Visible = p.Field<bool>("ACCESO");
+                                break;
+                            case "Consolidado":
+                                btnRptConsolidado.Visible = p.Field<bool>("ACCESO");
+                                break;
+                            case "Estado Cuenta":
+                                btnRptEstadoCuenta.Visible = p.Field<bool>("ACCESO");
+                                break;
                         }
+                        
                         break;
 
                     //MODULO CONFIGURACION
@@ -321,10 +342,11 @@ namespace PrendaSAL
             grupoCajaChica.Visible = (btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible);
             moduloOPERACIONES.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
             grupoOperacionesInventario.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
-            moduloREPORTES.Visible = (btnRptInvCustodia.Visible  || btnRptInvVenta.Visible || btnRptTransDiarias.Visible || btnRptContratos.Visible);
-            grupoReportesInventario.Visible = (btnRptInvCustodia.Visible || btnRptInvVenta.Visible);
-            grupoReporteVarios.Visible = btnRptContratos.Visible;
-            grupoReportesConta.Visible = btnRptTransDiarias.Visible || btnRptComprasORO.Visible;
+            moduloREPORTES.Visible = (btnRptInvCustodia.Visible  || btnRptInvVenta.Visible || btnRptTransDiarias.Visible || btnRptContratos.Visible || btnRptComprasORO.Visible || btnRptKardex.Visible || btnRptCancelados.Visible || btnRptEstadoCuenta.Visible || btnRptVencidosORO.Visible || btnRptConsolidado.Visible);
+            grupoReportesInventario.Visible = (btnRptInvCustodia.Visible || btnRptInvVenta.Visible || btnRptKardex.Visible);
+            grupoReporteVarios.Visible = btnRptContratos.Visible || btnRptTransDiarias.Visible || btnRptCancelados.Visible || btnRptEstadoCuenta.Visible;
+            grupoReportesConta.Visible =  btnRptComprasORO.Visible || btnRptVencidosORO.Visible;
+            grupoReportesGerenciales.Visible = btnRptConsolidado.Visible;
             moduloCONFIG.Visible = (btnConfigPrecios.Visible || btnConfigReglas.Visible || btnConfigConexionDB.Visible || btnConfigSucursales.Visible || btnConfigMiCuenta.Visible || btnConfigUsuarios.Visible || btnConfigPermisos.Visible);
             grupoConfigAdmin.Visible = (btnConfigPrecios.Visible || btnConfigReglas.Visible);
             grupoConfigConexion.Visible = (btnConfigConexionDB.Visible || btnConfigSucursales.Visible || btnConfigMiCuenta.Visible || btnConfigUsuarios.Visible || btnConfigPermisos.Visible);

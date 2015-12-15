@@ -74,7 +74,7 @@ namespace PrendaSAL.Operaciones
                     btnBuscar.Visible = p.Field<bool>("BUSCAR");
                     btnLog.Visible = p.Field<bool>("LOG");
                     btnReimprimir.Visible = p.Field<bool>("REIMPRIMIR");
-                    btnLISTAR.Visible = p.Field<bool>("REGISTRAR");
+                    btnLISTAR.Visible = p.Field<bool>("BUSCAR");
                 }
             }
 

@@ -116,8 +116,8 @@ namespace PrendaSAL.Movimientos
             }
             calendarCORTE.MarkedDates = marcas.ToArray();
             calendarCORTE.UpdateMarkedDates();
-            btnGUARDAR.Visible = false;
-            btnELIMINAR.Visible = false;
+            btnGUARDAR.Enabled = false;
+            btnELIMINAR.Enabled = false;
             
         }
 
@@ -181,16 +181,16 @@ namespace PrendaSAL.Movimientos
                 if (SELECTED == null)
                 {
                     ACCION = eOperacion.INSERT;
-                    btnGUARDAR.Visible = true;
-                    btnELIMINAR.Visible = false;
+                    btnGUARDAR.Enabled = true;
+                    btnELIMINAR.Enabled = false;
                     viewerREPORTE.ShowToolBar = false;
                     NUEVO();
                 }
                 else
                 {
                     ACCION = eOperacion.UPDATE;
-                    btnGUARDAR.Visible = false;
-                    btnELIMINAR.Visible = true;
+                    btnGUARDAR.Enabled = false;
+                    btnELIMINAR.Enabled = true;
                     viewerREPORTE.ShowToolBar = true;
 
                     cargarCorteDiarioSelected();
@@ -311,8 +311,8 @@ namespace PrendaSAL.Movimientos
                             listarCortesDiarios();
 
                             viewerREPORTE.ShowToolBar = true;
-                            btnGUARDAR.Visible = false;
-                            btnELIMINAR.Visible = true;
+                            btnGUARDAR.Enabled = false;
+                            btnELIMINAR.Enabled = true;
                         }
                     }
                     else
@@ -344,8 +344,8 @@ namespace PrendaSAL.Movimientos
                             listarCortesDiarios();
                             ACCION = eOperacion.INSERT;
                             viewerREPORTE.ShowToolBar = false;
-                            btnGUARDAR.Visible = true;
-                            btnELIMINAR.Visible = false;
+                            btnGUARDAR.Enabled = true;
+                            btnELIMINAR.Enabled = false;
                         }
                     }
                     else
