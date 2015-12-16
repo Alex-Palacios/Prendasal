@@ -52,7 +52,7 @@ namespace PrendaSAL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("prendasal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("sanluisPS")]
         public string USERDB {
             get {
                 return ((string)(this["USERDB"]));
@@ -61,7 +61,7 @@ namespace PrendaSAL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("prendasal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("prend@SAL")]
         public string PASSWORD {
             get {
                 return ((string)(this["PASSWORD"]));
@@ -88,7 +88,7 @@ namespace PrendaSAL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ddicark.c7mugzs4nwtm.us-east-1.rds.amazonaws.com")]
         public string SERVER {
             get {
                 return ((string)(this["SERVER"]));

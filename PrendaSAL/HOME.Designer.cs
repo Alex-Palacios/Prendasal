@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
-            this.styleForm = new DevComponents.DotNetBar.StyleManager(this.components);
+            this.styleForm = new DevComponents.DotNetBar.StyleManager();
             this.MENU_PRINCIPAL = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
             this.grupoReportesGerenciales = new DevComponents.DotNetBar.RibbonBar();
@@ -136,12 +135,12 @@
             this.MENU_PRINCIPAL.BackgroundStyle.Class = "";
             this.MENU_PRINCIPAL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MENU_PRINCIPAL.CaptionVisible = true;
+            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel1);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel4);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel7);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel3);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel6);
             this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel2);
-            this.MENU_PRINCIPAL.Controls.Add(this.ribbonPanel1);
             resources.ApplyResources(this.MENU_PRINCIPAL, "MENU_PRINCIPAL");
             this.MENU_PRINCIPAL.EnableQatPlacement = false;
             this.MENU_PRINCIPAL.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -1128,6 +1127,7 @@
             // 
             // moduloCATALOGOS
             // 
+            this.moduloCATALOGOS.Checked = true;
             this.moduloCATALOGOS.Name = "moduloCATALOGOS";
             this.moduloCATALOGOS.Panel = this.ribbonPanel1;
             resources.ApplyResources(this.moduloCATALOGOS, "moduloCATALOGOS");
@@ -1146,7 +1146,6 @@
             // 
             // moduloREPORTES
             // 
-            this.moduloREPORTES.Checked = true;
             this.moduloREPORTES.Name = "moduloREPORTES";
             this.moduloREPORTES.Panel = this.ribbonPanel4;
             resources.ApplyResources(this.moduloREPORTES, "moduloREPORTES");
