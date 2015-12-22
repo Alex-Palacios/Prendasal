@@ -75,6 +75,7 @@ namespace PrendaSAL.Movimientos
                 if (p.Field<string>("CODIGO") == "P5")
                 {
                     btnNuevo.Visible = p.Field<bool>("REGISTRAR");
+                    btnGuardar.Visible = p.Field<bool>("REGISTRAR") || p.Field<bool>("ACTUALIZAR");
                     btnEditar.Visible = p.Field<bool>("ACTUALIZAR");
                     btnAnular.Visible = p.Field<bool>("ANULAR");
                     btnEliminar.Visible = p.Field<bool>("ELIMINAR");

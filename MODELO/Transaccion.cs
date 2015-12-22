@@ -61,7 +61,8 @@ namespace MODELO
         ADMIN = 1,
         GERENTE,
         CONTADOR,
-        ASESOR
+        ASESOR,
+        SUPERVISOR
     }
 
     public enum GlobalPeriodoInteres

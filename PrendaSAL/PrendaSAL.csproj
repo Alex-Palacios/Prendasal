@@ -27,7 +27,7 @@
     <ProductName>PRENDASAL</ProductName>
     <PublisherName>GRUPO D´DICARK S.A de C.V</PublisherName>
     <SuiteName>SISTEMA PRENDASAL</SuiteName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
