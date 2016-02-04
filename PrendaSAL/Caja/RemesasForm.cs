@@ -297,6 +297,26 @@ namespace PrendaSAL.Caja
 
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int anio = 0;
+            string anioString = Controles.InputBox("AÑO", "CONSULTAR REMESAS");
+            if (anioString != string.Empty && Int32.TryParse(anioString, out anio))
+            {
+                REMESAS = dbRemesa.getRemesasBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, anio);
+                tblRemesas.DataSource = REMESAS;
+                calcularTotales();
+            }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (REMESAS != null)
+            {
+                HOME.Instance().exportDataGridViewToExcel("REMESAS", tblRemesas.Columns, REMESAS, "Remesas");
+            }
+        }
+
 
     }
 }

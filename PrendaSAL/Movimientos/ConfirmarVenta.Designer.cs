@@ -44,14 +44,18 @@
             this.GUARDAR = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lbNIVEL = new System.Windows.Forms.Label();
+            this.lbSUBTOTAL = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbCESC = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbDESCUENTO
             // 
             this.lbDESCUENTO.AutoSize = true;
             this.lbDESCUENTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDESCUENTO.ForeColor = System.Drawing.Color.Teal;
-            this.lbDESCUENTO.Location = new System.Drawing.Point(118, 156);
+            this.lbDESCUENTO.ForeColor = System.Drawing.Color.Crimson;
+            this.lbDESCUENTO.Location = new System.Drawing.Point(118, 141);
             this.lbDESCUENTO.Name = "lbDESCUENTO";
             this.lbDESCUENTO.Size = new System.Drawing.Size(39, 13);
             this.lbDESCUENTO.TabIndex = 106;
@@ -72,7 +76,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 120);
+            this.label6.Location = new System.Drawing.Point(51, 120);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 17);
             this.label6.TabIndex = 104;
@@ -82,7 +86,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 152);
+            this.label4.Location = new System.Drawing.Point(12, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 17);
             this.label4.TabIndex = 103;
@@ -91,11 +95,11 @@
             // lbTOTAL
             // 
             this.lbTOTAL.AutoSize = true;
-            this.lbTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTOTAL.ForeColor = System.Drawing.Color.Green;
-            this.lbTOTAL.Location = new System.Drawing.Point(118, 184);
+            this.lbTOTAL.Location = new System.Drawing.Point(118, 214);
             this.lbTOTAL.Name = "lbTOTAL";
-            this.lbTOTAL.Size = new System.Drawing.Size(49, 17);
+            this.lbTOTAL.Size = new System.Drawing.Size(54, 20);
             this.lbTOTAL.TabIndex = 102;
             this.lbTOTAL.Text = "$0.00";
             // 
@@ -130,7 +134,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(14, 184);
+            this.label5.Location = new System.Drawing.Point(51, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 96;
@@ -194,7 +198,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(118, 230);
+            this.label7.Location = new System.Drawing.Point(118, 254);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 17);
             this.label7.TabIndex = 107;
@@ -204,11 +208,53 @@
             // 
             this.lbNIVEL.AutoSize = true;
             this.lbNIVEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNIVEL.Location = new System.Drawing.Point(202, 230);
+            this.lbNIVEL.Location = new System.Drawing.Point(201, 254);
             this.lbNIVEL.Name = "lbNIVEL";
             this.lbNIVEL.Size = new System.Drawing.Size(59, 17);
             this.lbNIVEL.TabIndex = 108;
             this.lbNIVEL.Text = "VENTA";
+            // 
+            // lbSUBTOTAL
+            // 
+            this.lbSUBTOTAL.AutoSize = true;
+            this.lbSUBTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSUBTOTAL.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lbSUBTOTAL.Location = new System.Drawing.Point(118, 164);
+            this.lbSUBTOTAL.Name = "lbSUBTOTAL";
+            this.lbSUBTOTAL.Size = new System.Drawing.Size(39, 13);
+            this.lbSUBTOTAL.TabIndex = 110;
+            this.lbSUBTOTAL.Text = "$0.00";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(22, 164);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 17);
+            this.label9.TabIndex = 109;
+            this.label9.Text = "SUBTOTAL";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(64, 181);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 17);
+            this.label8.TabIndex = 111;
+            this.label8.Text = "CESC";
+            // 
+            // lbCESC
+            // 
+            this.lbCESC.AutoSize = true;
+            this.lbCESC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCESC.ForeColor = System.Drawing.Color.Red;
+            this.lbCESC.Location = new System.Drawing.Point(118, 185);
+            this.lbCESC.Name = "lbCESC";
+            this.lbCESC.Size = new System.Drawing.Size(39, 13);
+            this.lbCESC.TabIndex = 112;
+            this.lbCESC.Text = "$0.00";
             // 
             // ConfirmarVenta
             // 
@@ -218,6 +264,10 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(309, 337);
+            this.Controls.Add(this.lbCESC);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lbSUBTOTAL);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.lbNIVEL);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lbDESCUENTO);
@@ -263,5 +313,9 @@
         private System.Windows.Forms.Button GUARDAR;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbNIVEL;
+        private System.Windows.Forms.Label lbSUBTOTAL;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbCESC;
     }
 }

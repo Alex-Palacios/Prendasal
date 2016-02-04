@@ -168,7 +168,8 @@ namespace MODELO
     public enum eTipoFactura
     {
         FCF,
-        CCF
+        CCF,
+        RC
     }
 
 

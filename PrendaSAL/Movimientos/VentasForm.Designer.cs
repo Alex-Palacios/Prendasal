@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -84,20 +84,26 @@
             this.lbSUMAS = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDESCUENTO = new System.Windows.Forms.TextBox();
             this.txtTOTAL = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grbDETALLE = new System.Windows.Forms.GroupBox();
             this.tblITEMS = new System.Windows.Forms.DataGridView();
-            this.viewerFACTURA = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.bindingFCF = new System.Windows.Forms.BindingSource(this.components);
-            this.dSItemFCF = new PrendaSAL.Informes.DSItemFCF();
             this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewerFACTURA = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.bindingFCF = new System.Windows.Forms.BindingSource(this.components);
+            this.dSItemFCF = new PrendaSAL.Informes.DSItemFCF();
+            this.ckCESC = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbDESCUENTO = new System.Windows.Forms.Label();
+            this.lbSUBTOTAL = new System.Windows.Forms.Label();
+            this.lbCESC = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             this.grbVENTA.SuspendLayout();
@@ -126,7 +132,7 @@
             this.btnAyuda});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1079, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1010, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -248,9 +254,9 @@
             // 
             this.picLOGO.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
             this.picLOGO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLOGO.Location = new System.Drawing.Point(849, 50);
+            this.picLOGO.Location = new System.Drawing.Point(795, 50);
             this.picLOGO.Name = "picLOGO";
-            this.picLOGO.Size = new System.Drawing.Size(218, 210);
+            this.picLOGO.Size = new System.Drawing.Size(210, 213);
             this.picLOGO.TabIndex = 89;
             this.picLOGO.TabStop = false;
             // 
@@ -270,7 +276,7 @@
             this.txtNOTA.Location = new System.Drawing.Point(130, 473);
             this.txtNOTA.MaxLength = 100;
             this.txtNOTA.Name = "txtNOTA";
-            this.txtNOTA.Size = new System.Drawing.Size(389, 70);
+            this.txtNOTA.Size = new System.Drawing.Size(389, 96);
             this.txtNOTA.TabIndex = 92;
             this.txtNOTA.Text = "";
             // 
@@ -287,7 +293,7 @@
             this.grbVENTA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbVENTA.Location = new System.Drawing.Point(494, 40);
             this.grbVENTA.Name = "grbVENTA";
-            this.grbVENTA.Size = new System.Drawing.Size(349, 223);
+            this.grbVENTA.Size = new System.Drawing.Size(295, 223);
             this.grbVENTA.TabIndex = 87;
             this.grbVENTA.TabStop = false;
             this.grbVENTA.Text = "VENTA";
@@ -297,7 +303,7 @@
             this.lbDOCUMENTO.AutoSize = true;
             this.lbDOCUMENTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDOCUMENTO.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbDOCUMENTO.Location = new System.Drawing.Point(121, 102);
+            this.lbDOCUMENTO.Location = new System.Drawing.Point(102, 109);
             this.lbDOCUMENTO.Name = "lbDOCUMENTO";
             this.lbDOCUMENTO.Size = new System.Drawing.Size(86, 13);
             this.lbDOCUMENTO.TabIndex = 100;
@@ -308,7 +314,7 @@
             this.lbNIVEL.AutoSize = true;
             this.lbNIVEL.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbNIVEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNIVEL.Location = new System.Drawing.Point(114, 180);
+            this.lbNIVEL.Location = new System.Drawing.Point(100, 180);
             this.lbNIVEL.Name = "lbNIVEL";
             this.lbNIVEL.Size = new System.Drawing.Size(74, 25);
             this.lbNIVEL.TabIndex = 99;
@@ -318,7 +324,7 @@
             // 
             this.dateVenta.Enabled = false;
             this.dateVenta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateVenta.Location = new System.Drawing.Point(119, 125);
+            this.dateVenta.Location = new System.Drawing.Point(105, 144);
             this.dateVenta.Name = "dateVenta";
             this.dateVenta.Size = new System.Drawing.Size(129, 20);
             this.dateVenta.TabIndex = 9;
@@ -326,7 +332,7 @@
             // txtNUMVENTA
             // 
             this.txtNUMVENTA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNUMVENTA.Location = new System.Drawing.Point(119, 69);
+            this.txtNUMVENTA.Location = new System.Drawing.Point(105, 76);
             this.txtNUMVENTA.Name = "txtNUMVENTA";
             this.txtNUMVENTA.ReadOnly = true;
             this.txtNUMVENTA.Size = new System.Drawing.Size(129, 30);
@@ -338,7 +344,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(55, 128);
+            this.label5.Location = new System.Drawing.Point(31, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 4;
@@ -349,7 +355,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(42, 73);
+            this.label1.Location = new System.Drawing.Point(18, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 0;
@@ -359,7 +365,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(29, 32);
+            this.label19.Location = new System.Drawing.Point(18, 32);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 96;
@@ -370,7 +376,7 @@
             this.cbxSUCURSAL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSUCURSAL.Enabled = false;
             this.cbxSUCURSAL.FormattingEnabled = true;
-            this.cbxSUCURSAL.Location = new System.Drawing.Point(119, 29);
+            this.cbxSUCURSAL.Location = new System.Drawing.Point(21, 49);
             this.cbxSUCURSAL.Name = "cbxSUCURSAL";
             this.cbxSUCURSAL.Size = new System.Drawing.Size(213, 21);
             this.cbxSUCURSAL.TabIndex = 97;
@@ -605,40 +611,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(681, 469);
+            this.label3.Location = new System.Drawing.Point(757, 463);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 17);
+            this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 103;
             this.label3.Text = "SUMAS";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(681, 496);
+            this.label2.Location = new System.Drawing.Point(724, 482);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 17);
+            this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 102;
             this.label2.Text = "DESCUENTO";
-            // 
-            // txtDESCUENTO
-            // 
-            this.txtDESCUENTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDESCUENTO.Location = new System.Drawing.Point(807, 491);
-            this.txtDESCUENTO.Name = "txtDESCUENTO";
-            this.txtDESCUENTO.ReadOnly = true;
-            this.txtDESCUENTO.Size = new System.Drawing.Size(135, 23);
-            this.txtDESCUENTO.TabIndex = 101;
-            this.txtDESCUENTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTOTAL
             // 
             this.txtTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTOTAL.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtTOTAL.Location = new System.Drawing.Point(807, 520);
+            this.txtTOTAL.Location = new System.Drawing.Point(816, 551);
             this.txtTOTAL.Name = "txtTOTAL";
             this.txtTOTAL.ReadOnly = true;
             this.txtTOTAL.Size = new System.Drawing.Size(135, 32);
@@ -650,7 +646,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(680, 525);
+            this.label4.Location = new System.Drawing.Point(698, 556);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 23);
             this.label4.TabIndex = 100;
@@ -665,7 +661,7 @@
             this.grbDETALLE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbDETALLE.Location = new System.Drawing.Point(12, 266);
             this.grbDETALLE.Name = "grbDETALLE";
-            this.grbDETALLE.Size = new System.Drawing.Size(1055, 191);
+            this.grbDETALLE.Size = new System.Drawing.Size(993, 194);
             this.grbDETALLE.TabIndex = 105;
             this.grbDETALLE.TabStop = false;
             // 
@@ -682,39 +678,16 @@
             this.DESCRIPCION,
             this.MONTO,
             this.PRECIO});
-            this.tblITEMS.Location = new System.Drawing.Point(6, 19);
+            this.tblITEMS.Location = new System.Drawing.Point(6, 9);
             this.tblITEMS.MultiSelect = false;
             this.tblITEMS.Name = "tblITEMS";
             this.tblITEMS.RowHeadersWidth = 40;
-            this.tblITEMS.Size = new System.Drawing.Size(930, 172);
+            this.tblITEMS.Size = new System.Drawing.Size(930, 179);
             this.tblITEMS.TabIndex = 96;
             this.tblITEMS.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.tblITEMS_CellBeginEdit);
             this.tblITEMS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblITEMS_CellEndEdit);
             this.tblITEMS.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tblITEMS_CellPainting);
             this.tblITEMS.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tblITEMS_CellValidating);
-            // 
-            // viewerFACTURA
-            // 
-            reportDataSource4.Name = "DSI";
-            reportDataSource4.Value = null;
-            this.viewerFACTURA.LocalReport.DataSources.Add(reportDataSource4);
-            this.viewerFACTURA.LocalReport.ReportEmbeddedResource = "";
-            this.viewerFACTURA.Location = new System.Drawing.Point(909, 0);
-            this.viewerFACTURA.Name = "viewerFACTURA";
-            this.viewerFACTURA.Size = new System.Drawing.Size(170, 25);
-            this.viewerFACTURA.TabIndex = 106;
-            this.viewerFACTURA.Visible = false;
-            this.viewerFACTURA.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
-            // 
-            // bindingFCF
-            // 
-            this.bindingFCF.DataMember = "ITEM";
-            this.bindingFCF.DataSource = this.dSItemFCF;
-            // 
-            // dSItemFCF
-            // 
-            this.dSItemFCF.DataSetName = "DSItemFCF";
-            this.dSItemFCF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // CODIGO
             // 
@@ -729,8 +702,8 @@
             // COD_ITEM
             // 
             this.COD_ITEM.DataPropertyName = "COD_ITEM";
-            dataGridViewCellStyle13.NullValue = "-----";
-            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.NullValue = "-----";
+            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle5;
             this.COD_ITEM.Frozen = true;
             this.COD_ITEM.HeaderText = "ARTICULO";
             this.COD_ITEM.Name = "COD_ITEM";
@@ -741,8 +714,8 @@
             // CANTIDAD
             // 
             this.CANTIDAD.DataPropertyName = "CANTIDAD";
-            dataGridViewCellStyle14.Format = "N1";
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Format = "N1";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle6;
             this.CANTIDAD.Frozen = true;
             this.CANTIDAD.HeaderText = "CANTIDAD";
             this.CANTIDAD.Name = "CANTIDAD";
@@ -762,8 +735,8 @@
             // MONTO
             // 
             this.MONTO.DataPropertyName = "MONTO";
-            dataGridViewCellStyle15.Format = "C2";
-            this.MONTO.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Format = "C2";
+            this.MONTO.DefaultCellStyle = dataGridViewCellStyle7;
             this.MONTO.Frozen = true;
             this.MONTO.HeaderText = "MONTO";
             this.MONTO.Name = "MONTO";
@@ -772,13 +745,114 @@
             // PRECIO
             // 
             this.PRECIO.DataPropertyName = "PRECIO";
-            dataGridViewCellStyle16.Format = "C2";
-            dataGridViewCellStyle16.NullValue = "0.00";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = "0.00";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle8;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.PRECIO.Visible = false;
+            // 
+            // viewerFACTURA
+            // 
+            reportDataSource2.Name = "DSI";
+            reportDataSource2.Value = null;
+            this.viewerFACTURA.LocalReport.DataSources.Add(reportDataSource2);
+            this.viewerFACTURA.LocalReport.ReportEmbeddedResource = "";
+            this.viewerFACTURA.Location = new System.Drawing.Point(821, 0);
+            this.viewerFACTURA.Name = "viewerFACTURA";
+            this.viewerFACTURA.Size = new System.Drawing.Size(170, 25);
+            this.viewerFACTURA.TabIndex = 106;
+            this.viewerFACTURA.Visible = false;
+            this.viewerFACTURA.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
+            // 
+            // bindingFCF
+            // 
+            this.bindingFCF.DataMember = "ITEM";
+            this.bindingFCF.DataSource = this.dSItemFCF;
+            // 
+            // dSItemFCF
+            // 
+            this.dSItemFCF.DataSetName = "DSItemFCF";
+            this.dSItemFCF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ckCESC
+            // 
+            this.ckCESC.AutoSize = true;
+            this.ckCESC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckCESC.Location = new System.Drawing.Point(707, 522);
+            this.ckCESC.Name = "ckCESC";
+            this.ckCESC.Size = new System.Drawing.Size(103, 17);
+            this.ckCESC.TabIndex = 107;
+            this.ckCESC.Text = "Incluye CESC";
+            this.ckCESC.UseVisualStyleBackColor = true;
+            this.ckCESC.CheckedChanged += new System.EventHandler(this.ckCESC_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(735, 506);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 109;
+            this.label6.Text = "SUBTOTAL";
+            // 
+            // lbDESCUENTO
+            // 
+            this.lbDESCUENTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDESCUENTO.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbDESCUENTO.Location = new System.Drawing.Point(804, 482);
+            this.lbDESCUENTO.Name = "lbDESCUENTO";
+            this.lbDESCUENTO.Size = new System.Drawing.Size(135, 17);
+            this.lbDESCUENTO.TabIndex = 111;
+            this.lbDESCUENTO.Text = "$0.00";
+            this.lbDESCUENTO.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbSUBTOTAL
+            // 
+            this.lbSUBTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSUBTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbSUBTOTAL.Location = new System.Drawing.Point(804, 504);
+            this.lbSUBTOTAL.Name = "lbSUBTOTAL";
+            this.lbSUBTOTAL.Size = new System.Drawing.Size(135, 17);
+            this.lbSUBTOTAL.TabIndex = 112;
+            this.lbSUBTOTAL.Text = "$0.00";
+            this.lbSUBTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbCESC
+            // 
+            this.lbCESC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCESC.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbCESC.Location = new System.Drawing.Point(804, 521);
+            this.lbCESC.Name = "lbCESC";
+            this.lbCESC.Size = new System.Drawing.Size(135, 17);
+            this.lbCESC.TabIndex = 113;
+            this.lbCESC.Text = "$0.00";
+            this.lbCESC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label20.Location = new System.Drawing.Point(813, 494);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(135, 10);
+            this.label20.TabIndex = 114;
+            this.label20.Text = "--------------------";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label21.Location = new System.Drawing.Point(813, 533);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(135, 10);
+            this.label21.TabIndex = 115;
+            this.label21.Text = "--------------------";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // VentasForm
             // 
@@ -787,13 +861,17 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1079, 561);
+            this.ClientSize = new System.Drawing.Size(1010, 592);
+            this.Controls.Add(this.lbCESC);
+            this.Controls.Add(this.lbSUBTOTAL);
+            this.Controls.Add(this.lbDESCUENTO);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ckCESC);
             this.Controls.Add(this.viewerFACTURA);
             this.Controls.Add(this.grbDETALLE);
             this.Controls.Add(this.lbSUMAS);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtDESCUENTO);
             this.Controls.Add(this.txtTOTAL);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.picLOGO);
@@ -802,6 +880,8 @@
             this.Controls.Add(this.grbVENTA);
             this.Controls.Add(this.grbCLIENTE);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label21);
             this.MaximizeBox = false;
             this.Name = "VentasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -871,7 +951,6 @@
         private System.Windows.Forms.Label lbSUMAS;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDESCUENTO;
         private System.Windows.Forms.TextBox txtTOTAL;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox grbDETALLE;
@@ -889,5 +968,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn MONTO;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
+        private System.Windows.Forms.CheckBox ckCESC;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbDESCUENTO;
+        private System.Windows.Forms.Label lbSUBTOTAL;
+        private System.Windows.Forms.Label lbCESC;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
     }
 }

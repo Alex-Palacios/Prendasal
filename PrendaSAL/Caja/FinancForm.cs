@@ -174,6 +174,26 @@ namespace PrendaSAL.Caja
 
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int anio = 0;
+            string anioString = Controles.InputBox("AÑO", "CONSULTAR FINANCIAMIENTOS");
+            if (anioString != string.Empty && Int32.TryParse(anioString,out anio))
+            {
+                FINANCIAMIENTOS = dbFinanc.getFinancBySucAnio(HOME.Instance().SUCURSAL.COD_SUC,anio);
+                tblFinanc.DataSource = FINANCIAMIENTOS;
+                calcularTotales();
+            }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (FINANCIAMIENTOS != null)
+            {
+                HOME.Instance().exportDataGridViewToExcel("FINANCIAMIENTOS", tblFinanc.Columns, FINANCIAMIENTOS, "Financiamientos");
+            }
+        }
+
 
        
 

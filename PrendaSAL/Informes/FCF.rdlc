@@ -524,6 +524,43 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="SUMAS3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!CESC.Value</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                  <Format>'$'#,0.00;('$'#,0.00)</Format>
+                  <Language>es-SV</Language>
+                  <rd:FormatSymbolCulture>es-SV</rd:FormatSymbolCulture>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>SUMAS</rd:DefaultName>
+        <Top>6.74475cm</Top>
+        <Left>13.77436cm</Left>
+        <Height>0.38834cm</Height>
+        <Width>1.48198cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>8.3cm</Height>
     <Style>
@@ -614,6 +651,12 @@
     </ReportParameter>
     <ReportParameter Name="DOCUMENTO">
       <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CESC">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

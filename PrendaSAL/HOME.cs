@@ -16,6 +16,7 @@ namespace PrendaSAL
 {
     using DDB;
     using MODELO;
+
     public partial class HOME : Office2007Form
     {
         //PARA MANTENER UNA INSTANCIA UNICA DE LA CLASE//
@@ -1136,7 +1137,10 @@ namespace PrendaSAL
                         {
                             if (column.Visible)
                             {
-                                excel.Cells[fila, columna] = row.Field<object>(column.Name);
+                                if (row.Table.Columns.Contains(column.Name))
+                                {
+                                    excel.Cells[fila, columna] = row.Field<object>(column.Name);
+                                }
                                 columna++;
                             }
                         }
@@ -1166,6 +1170,9 @@ namespace PrendaSAL
                     break;
                 case "C2":
                     formato = "$#,##0.00_);[Red]($#,##0.00)";
+                    break;
+                case "d":
+                    formato = "dd/mm/yyyy";
                     break;
                 default:
                     formato = "@";

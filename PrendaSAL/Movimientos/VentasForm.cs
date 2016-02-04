@@ -120,6 +120,7 @@ namespace PrendaSAL.Movimientos
             tblITEMS.Columns["CANTIDAD"].ReadOnly = true;
             tblITEMS.Columns["DESCRIPCION"].ReadOnly = true;
             tblITEMS.Columns["MONTO"].ReadOnly = true;
+            ckCESC.Enabled = false;
             txtNOTA.ReadOnly = true;
         }
 
@@ -134,6 +135,7 @@ namespace PrendaSAL.Movimientos
             tblITEMS.Columns["CANTIDAD"].ReadOnly = true;
             tblITEMS.Columns["DESCRIPCION"].ReadOnly = true;
             tblITEMS.Columns["MONTO"].ReadOnly = false;
+            ckCESC.Enabled = true;
             txtNOTA.ReadOnly = false;
         }
 
@@ -255,9 +257,14 @@ namespace PrendaSAL.Movimientos
                 lbNIVEL.Text = VENTA.NIVEL.ToString();
                 tblITEMS.DataSource = null;
                 tblITEMS.DataSource = VENTA.ITEMS_VENTA;
+                //TOTALES
                 lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
-                txtDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
+                lbDESCUENTO.Text = "- " + VENTA.DESCUENTO.ToString("C2");
+                lbSUBTOTAL.Text = VENTA.SUBTOTAL.ToString("C2");
+                ckCESC.Checked = VENTA.isCESC;
+                lbCESC.Text = "+ " + VENTA.CESC.ToString("C2");
                 txtTOTAL.Text = VENTA.TOTAL.ToString("C2");
+
                 txtNOTA.Text = VENTA.NOTA;
             }
             else
@@ -399,7 +406,7 @@ namespace PrendaSAL.Movimientos
 
         public void addItemVenta(Existencia exist)
         {
-            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
+            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.COSTO,exist.PRECIO);
             calcularTotales();
         }
 
@@ -527,13 +534,39 @@ namespace PrendaSAL.Movimientos
         }
 
 
+
+        private void ckCESC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (VENTA != null)
+            {
+                switch (ACCION)
+                {
+                    case eOperacion.INSERT:
+                        VENTA.isCESC = ckCESC.Checked;
+                        calcularTotales();
+                        break;
+                    case eOperacion.UPDATE:
+                        VENTA.isCESC = ckCESC.Checked;
+                        calcularTotales();
+                        break;
+                }
+            }
+        }
+
+
         private void calcularTotales()
         {
-            decimal SUMAS = VENTA.ITEMS_VENTA.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
-            VENTA.DESCUENTO = Decimal.Round(SUMAS * REGLAS.DESC_COMPRA / 100,2,MidpointRounding.AwayFromZero);
-            VENTA.TOTAL = SUMAS - VENTA.DESCUENTO;
+            if (VENTA != null)
+            {
+                VENTA.DESCUENTO = Decimal.Round(VENTA.SUMAS * REGLAS.DESC_COMPRA / 100, 2, MidpointRounding.AwayFromZero);
+                VENTA.calcularTotales();
+                
+            }           
             lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
-            txtDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
+            lbDESCUENTO.Text = "- " + VENTA.DESCUENTO.ToString("C2");
+            lbSUBTOTAL.Text = VENTA.SUBTOTAL.ToString("C2");
+            ckCESC.Checked = VENTA.isCESC;
+            lbCESC.Text = "+ " + VENTA.CESC.ToString("C2");
             txtTOTAL.Text = VENTA.TOTAL.ToString("C2");
         }
 
@@ -871,15 +904,16 @@ namespace PrendaSAL.Movimientos
                     }
                     bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                    ReportParameter[] parameters = new ReportParameter[8];
+                    ReportParameter[] parameters = new ReportParameter[9];
                     parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
                     parameters[1] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
                     parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
                     parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
                     parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                    parameters[5] = new ReportParameter("SUMAS", SELECTED.SUMAS.ToString("C2"));
-                    parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
-                    parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
+                    parameters[5] = new ReportParameter("SUMAS", SELECTED.SUBTOTAL.ToString("C2"));
+                    parameters[6] = new ReportParameter("CESC", SELECTED.CESC.ToString("C2"));
+                    parameters[7] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                    parameters[8] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
 
                     viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
                     viewerFACTURA.LocalReport.DataSources.Clear();
@@ -915,6 +949,7 @@ namespace PrendaSAL.Movimientos
         {
 
         }
+
 
     }
 }

@@ -199,6 +199,26 @@ namespace PrendaSAL.Caja
 
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int anio = 0;
+            string anioString = Controles.InputBox("AÑO", "CONSULTAR GASTOS");
+            if (anioString != string.Empty && Int32.TryParse(anioString, out anio))
+            {
+                GASTOS = dbGasto.findBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, anio);
+                tblGASTOS.DataSource = GASTOS;
+                calcularTotales();
+            }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (GASTOS != null)
+            {
+                HOME.Instance().exportDataGridViewToExcel("GASTOS", tblGASTOS.Columns, GASTOS, "Gastos");
+            }
+        }
+
 
 
     }

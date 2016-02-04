@@ -41,8 +41,11 @@ namespace PrendaSAL.Movimientos
                 lbFECHA.Text = VENTA.FECHA.ToString("dd/MM/yyyy");
                 lbCLIENTE.Text = VENTA.CLIENTE;
                 lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
-                lbDESCUENTO.Text = VENTA.DESCUENTO.ToString("C2");
+                lbDESCUENTO.Text = "- "+ VENTA.DESCUENTO.ToString("C2");
+                lbSUBTOTAL.Text = VENTA.SUBTOTAL.ToString("C2");
+                lbCESC.Text = "+ " + VENTA.CESC.ToString("C2");
                 lbTOTAL.Text = VENTA.TOTAL.ToString("C2");
+
                 lbNIVEL.Text = VENTA.NIVEL.ToString();
                 switch (VENTA.NIVEL)
                 {
@@ -83,7 +86,7 @@ namespace PrendaSAL.Movimientos
                     case eOperacion.UPDATE:
                         if (dbVenta.update(VENTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                         {
-                            ComprasForm.Instance().buscarCompra(VENTA.NUMVENTA);
+                            VentasForm.Instance().buscarVenta(VENTA.NUMVENTA);
                             this.Close();
                         }
                         break;

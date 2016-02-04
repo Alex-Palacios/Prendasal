@@ -25,10 +25,19 @@ namespace MODELO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("13")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.13")]
         public decimal IVA {
             get {
                 return ((decimal)(this["IVA"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.05")]
+        public decimal CESC {
+            get {
+                return ((decimal)(this["CESC"]));
             }
         }
     }

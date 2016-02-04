@@ -1061,15 +1061,16 @@ namespace PrendaSAL.Movimientos
                     }
                     bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                    ReportParameter[] parameters = new ReportParameter[8];
+                    ReportParameter[] parameters = new ReportParameter[9];
                     parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
                     parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
                     parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
                     parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
                     parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
                     parameters[5] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                    parameters[6] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                    parameters[7] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
+                    parameters[6] = new ReportParameter("CESC", "");
+                    parameters[7] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[8] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
 
                     viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
                     viewerRECIBO.LocalReport.DataSources.Clear();

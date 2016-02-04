@@ -22,7 +22,12 @@ namespace MODELO
         public string NUMVENTA;
         public string DOCUMENTO;
         public eTipoPago TIPO_PAGO;
+        public decimal SUMAS;
         public decimal DESCUENTO;
+        public decimal SUBTOTAL;
+        public decimal IVA;
+        public decimal IVA_DESC;
+        public decimal CESC;
         public decimal TOTAL;
         public eCategoria CATEGORIA;
         public eNIVEL NIVEL;
@@ -31,6 +36,7 @@ namespace MODELO
         public string NOTA;
 
         //AUXILIARES
+        public bool isCESC;
         public string RESPONSABLE;
         public string ARTICULO;
         public string CLIENTE;
@@ -60,6 +66,7 @@ namespace MODELO
             ITEMS_VENTA.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
             ITEMS_VENTA.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
             ITEMS_VENTA.Columns.Add("MONTO").DataType = System.Type.GetType("System.Decimal");
+            ITEMS_VENTA.Columns.Add("COSTO").DataType = System.Type.GetType("System.Decimal");
             ITEMS_VENTA.Columns.Add("PRECIO").DataType = System.Type.GetType("System.Decimal");
         }
 
@@ -80,8 +87,13 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("NUMVENTA")) { venta.NUMVENTA = dr.Field<string>("NUMVENTA"); }
                 if (dr.Table.Columns.Contains("DOCUMENTO")) { venta.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
                 if (dr.Table.Columns.Contains("TIPO_PAGO")) { venta.TIPO_PAGO = (eTipoPago)dr.Field<int>("TIPO_PAGO"); }
+                if (dr.Table.Columns.Contains("SUMAS")) { venta.SUMAS = dr.Field<decimal>("SUMAS"); }
                 if (dr.Table.Columns.Contains("DESCUENTO")) { venta.DESCUENTO = dr.Field<decimal>("DESCUENTO"); }
+                if (dr.Table.Columns.Contains("SUBTOTAL")) { venta.SUBTOTAL = dr.Field<decimal>("SUBTOTAL"); }
+                if (dr.Table.Columns.Contains("CESC")) { venta.CESC = dr.Field<decimal>("CESC"); }
                 if (dr.Table.Columns.Contains("TOTAL")) { venta.TOTAL = dr.Field<decimal>("TOTAL"); }
+                if (dr.Table.Columns.Contains("IVA")) { venta.IVA = dr.Field<decimal>("IVA"); }
+                if (dr.Table.Columns.Contains("IVA_DESC")) { venta.IVA_DESC = dr.Field<decimal>("IVA_DESC"); }
                 if (dr.Table.Columns.Contains("CATEGORIA")) { venta.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
                 if (dr.Table.Columns.Contains("NIVEL")) { venta.NIVEL = (eNIVEL)dr.Field<int>("NIVEL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { venta.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
@@ -103,6 +115,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DOMICILIO_CLI")) { venta.DOMICILIO_CLI = dr.Field<string>("DOMICILIO_CLI"); }
                 if (dr.Table.Columns.Contains("DIRECCION_CLI")) { venta.DIRECCION_CLI = dr.Field<string>("DIRECCION_CLI"); }
 
+                venta.isCESC = (venta.CESC > 0);
             }
             return venta;
 
@@ -118,30 +131,30 @@ namespace MODELO
             return copy;
         }
 
-        public decimal SUMAS
-        {
-            get
-            {
-                return this.TOTAL + this.DESCUENTO;
-            }
-        }
 
 
-        public decimal IVA
+
+
+        public void calcularTotales()
         {
-            get
+            this.SUMAS= (decimal)0.00;
+            this.SUBTOTAL = (decimal)0.00;
+            this.CESC = (decimal)0.00;
+            this.TOTAL = (decimal) 0.00;
+            //CALCULOS
+            this.SUMAS = this.ITEMS_VENTA.AsEnumerable().Select(r => r.Field<decimal>("MONTO")).Sum();
+            this.SUBTOTAL = this.SUMAS - this.DESCUENTO;
+            this.IVA = Decimal.Round(this.SUMAS - (this.SUMAS / (1 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            this.IVA_DESC = Decimal.Round(this.DESCUENTO - (this.DESCUENTO/ (1 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+            
+            if (isCESC)
             {
-                return Decimal.Round(this.TOTAL - (this.TOTAL * 100 / (100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+                this.CESC = Decimal.Round((this.SUBTOTAL - this.IVA + this.IVA_DESC) * Properties.Settings.Default.CESC, 2, MidpointRounding.AwayFromZero);
             }
+
+            this.TOTAL = this.SUBTOTAL + this.CESC;
         }
 
-        public decimal IVA_DESC
-        {
-            get
-            {
-                return Decimal.Round(this.DESCUENTO - (this.DESCUENTO * 100 / (100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
-            }
-        }
         
     }
 }

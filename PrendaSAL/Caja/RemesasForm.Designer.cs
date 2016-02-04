@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemesasForm));
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -37,6 +39,8 @@
             this.btnAnular = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
             this.btnReimprimir = new System.Windows.Forms.ToolStripButton();
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
@@ -65,6 +69,8 @@
             this.btnAnular,
             this.btnEliminar,
             this.toolStripSeparator3,
+            this.btnBuscar,
+            this.btnExportExcel,
             this.btnReimprimir,
             this.btnLog,
             this.btnAyuda});
@@ -124,6 +130,26 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(23, 22);
+            this.btnBuscar.Text = "toolStripButton1";
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
             // btnReimprimir
             // 
             this.btnReimprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -180,9 +206,9 @@
             // 
             // viewerCOMPROBANTE
             // 
-            reportDataSource4.Name = "DSI";
-            reportDataSource4.Value = null;
-            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource4);
+            reportDataSource1.Name = "DSI";
+            reportDataSource1.Value = null;
+            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource1);
             this.viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "";
             this.viewerCOMPROBANTE.Location = new System.Drawing.Point(719, 0);
             this.viewerCOMPROBANTE.Name = "viewerCOMPROBANTE";
@@ -223,9 +249,9 @@
             // FECHA
             // 
             this.FECHA.DataPropertyName = "FECHA";
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.FECHA.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.FECHA.DefaultCellStyle = dataGridViewCellStyle1;
             this.FECHA.HeaderText = "FECHA";
             this.FECHA.Name = "FECHA";
             this.FECHA.ReadOnly = true;
@@ -269,6 +295,8 @@
             // TOTAL
             // 
             this.TOTAL.DataPropertyName = "TOTAL";
+            dataGridViewCellStyle2.Format = "C2";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle2;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
@@ -325,6 +353,8 @@
         private System.Windows.Forms.ToolStripButton btnAnular;
         private System.Windows.Forms.Label lbTOTAL;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripButton btnBuscar;
+        private System.Windows.Forms.ToolStripButton btnExportExcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn NUM;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
         private System.Windows.Forms.DataGridViewTextBoxColumn RESPONSABLE;

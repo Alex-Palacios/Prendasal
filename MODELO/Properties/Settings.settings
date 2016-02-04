@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="IVA" Type="System.Decimal" Scope="Application">
-      <Value Profile="(Default)">13</Value>
+      <Value Profile="(Default)">0.13</Value>
+    </Setting>
+    <Setting Name="CESC" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">0.05</Value>
     </Setting>
   </Settings>
 </SettingsFile>
