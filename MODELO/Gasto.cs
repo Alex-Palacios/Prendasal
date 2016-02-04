@@ -19,8 +19,9 @@ namespace MODELO
         public string DOCUMENTO;
         public eTipoPago TIPO_PAGO;
         public string DESCRIPCION;
-        public decimal TOTAL;
+        public decimal SUBTOTAL;
         public decimal IVA;
+        public decimal TOTAL;
         public eEstado ESTADO;
         public bool INIT_BALANCE;
         public string NOTA;
@@ -51,8 +52,9 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DOCUMENTO")) { gasto.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
                 if (dr.Table.Columns.Contains("TIPO_PAGO")) { gasto.TIPO_PAGO = (eTipoPago)dr.Field<int>("TIPO_PAGO"); }
                 if (dr.Table.Columns.Contains("DESCRIPCION")) { gasto.DESCRIPCION = dr.Field<string>("DESCRIPCION"); }
-                if (dr.Table.Columns.Contains("TOTAL")) { gasto.TOTAL = dr.Field<decimal>("TOTAL"); }
+                if (dr.Table.Columns.Contains("SUBTOTAL")) { gasto.SUBTOTAL = dr.Field<decimal>("SUBTOTAL"); }
                 if (dr.Table.Columns.Contains("IVA")) { gasto.IVA = dr.Field<decimal>("IVA"); }
+                if (dr.Table.Columns.Contains("TOTAL")) { gasto.TOTAL = dr.Field<decimal>("TOTAL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { gasto.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { gasto.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
                 if (dr.Table.Columns.Contains("NOTA")) { gasto.NOTA = dr.Field<string>("NOTA"); }
@@ -71,6 +73,16 @@ namespace MODELO
             Gasto copy = (Gasto)this.MemberwiseClone();
             return copy;
         }
+
+
+
+
+        public void calcularTotales()
+        {
+            this.TOTAL = this.SUBTOTAL + this.IVA;
+        }
+
+
 
 
 

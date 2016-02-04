@@ -43,14 +43,14 @@
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblGASTOS = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbTOTAL = new System.Windows.Forms.Label();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RESPONSABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DOCUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbTOTAL = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblGASTOS)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             this.btnAyuda});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(889, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1097, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -180,31 +180,9 @@
             this.tblGASTOS.Name = "tblGASTOS";
             this.tblGASTOS.ReadOnly = true;
             this.tblGASTOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblGASTOS.Size = new System.Drawing.Size(872, 357);
+            this.tblGASTOS.Size = new System.Drawing.Size(1085, 357);
             this.tblGASTOS.TabIndex = 5;
             this.tblGASTOS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblGASTOS_CellFormatting);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(648, 388);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 23);
-            this.label4.TabIndex = 112;
-            this.label4.Text = "T O T A L";
-            // 
-            // lbTOTAL
-            // 
-            this.lbTOTAL.AutoSize = true;
-            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTOTAL.Location = new System.Drawing.Point(795, 391);
-            this.lbTOTAL.Name = "lbTOTAL";
-            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
-            this.lbTOTAL.TabIndex = 113;
-            this.lbTOTAL.Text = "$0.00";
             // 
             // FECHA
             // 
@@ -261,6 +239,28 @@
             this.NOTA.ReadOnly = true;
             this.NOTA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(648, 388);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 23);
+            this.label4.TabIndex = 112;
+            this.label4.Text = "T O T A L";
+            // 
+            // lbTOTAL
+            // 
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTOTAL.Location = new System.Drawing.Point(795, 391);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
+            this.lbTOTAL.TabIndex = 113;
+            this.lbTOTAL.Text = "$0.00";
+            // 
             // GastosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -269,7 +269,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(889, 423);
+            this.ClientSize = new System.Drawing.Size(1097, 423);
             this.Controls.Add(this.lbTOTAL);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tblGASTOS);

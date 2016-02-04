@@ -35,7 +35,7 @@
             this.txtDOCUMENTO = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateGasto = new System.Windows.Forms.DateTimePicker();
-            this.txtTOTAL = new System.Windows.Forms.TextBox();
+            this.txtSUBTOTAL = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDESCRIPCION = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +43,10 @@
             this.GUARDAR = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNOTA = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIVA = new System.Windows.Forms.TextBox();
+            this.lbTOTAL = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label19
@@ -85,6 +89,7 @@
             this.cbxTIPODOC.Name = "cbxTIPODOC";
             this.cbxTIPODOC.Size = new System.Drawing.Size(80, 24);
             this.cbxTIPODOC.TabIndex = 106;
+            this.cbxTIPODOC.SelectedIndexChanged += new System.EventHandler(this.cbxTIPODOC_SelectedIndexChanged);
             // 
             // txtDOCUMENTO
             // 
@@ -115,29 +120,29 @@
             this.dateGasto.Size = new System.Drawing.Size(101, 20);
             this.dateGasto.TabIndex = 103;
             // 
-            // txtTOTAL
+            // txtSUBTOTAL
             // 
-            this.txtTOTAL.BackColor = System.Drawing.SystemColors.Control;
-            this.txtTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTOTAL.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtTOTAL.Location = new System.Drawing.Point(303, 230);
-            this.txtTOTAL.Name = "txtTOTAL";
-            this.txtTOTAL.Size = new System.Drawing.Size(128, 32);
-            this.txtTOTAL.TabIndex = 110;
-            this.txtTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTOTAL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTOTAL_KeyPress);
-            this.txtTOTAL.Leave += new System.EventHandler(this.txtTOTAL_Leave);
+            this.txtSUBTOTAL.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSUBTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSUBTOTAL.ForeColor = System.Drawing.Color.ForestGreen;
+            this.txtSUBTOTAL.Location = new System.Drawing.Point(307, 215);
+            this.txtSUBTOTAL.Name = "txtSUBTOTAL";
+            this.txtSUBTOTAL.Size = new System.Drawing.Size(128, 23);
+            this.txtSUBTOTAL.TabIndex = 110;
+            this.txtSUBTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSUBTOTAL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSUBTOTAL_KeyPress);
+            this.txtSUBTOTAL.Leave += new System.EventHandler(this.txtSUBTOTAL_Leave);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(159, 235);
+            this.label4.Location = new System.Drawing.Point(179, 276);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 23);
+            this.label4.Size = new System.Drawing.Size(118, 23);
             this.label4.TabIndex = 111;
-            this.label4.Text = "T O T A L  $";
+            this.label4.Text = "T O T A L ";
             // 
             // txtDESCRIPCION
             // 
@@ -189,7 +194,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(106, 299);
+            this.label3.Location = new System.Drawing.Point(12, 296);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 13);
             this.label3.TabIndex = 117;
@@ -198,12 +203,58 @@
             // txtNOTA
             // 
             this.txtNOTA.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNOTA.Location = new System.Drawing.Point(105, 315);
+            this.txtNOTA.Location = new System.Drawing.Point(12, 324);
             this.txtNOTA.MaxLength = 100;
             this.txtNOTA.Multiline = true;
             this.txtNOTA.Name = "txtNOTA";
             this.txtNOTA.Size = new System.Drawing.Size(326, 51);
             this.txtNOTA.TabIndex = 116;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Copperplate Gothic Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(199, 219);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 15);
+            this.label5.TabIndex = 119;
+            this.label5.Text = "SUBTOTAL";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Copperplate Gothic Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(260, 246);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 15);
+            this.label7.TabIndex = 120;
+            this.label7.Text = "IVA";
+            // 
+            // txtIVA
+            // 
+            this.txtIVA.BackColor = System.Drawing.SystemColors.Control;
+            this.txtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIVA.ForeColor = System.Drawing.Color.ForestGreen;
+            this.txtIVA.Location = new System.Drawing.Point(307, 242);
+            this.txtIVA.Name = "txtIVA";
+            this.txtIVA.Size = new System.Drawing.Size(128, 23);
+            this.txtIVA.TabIndex = 121;
+            this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIVA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIVA_KeyPress);
+            this.txtIVA.Leave += new System.EventHandler(this.txtIVA_Leave);
+            // 
+            // lbTOTAL
+            // 
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.ForeColor = System.Drawing.Color.Green;
+            this.lbTOTAL.Location = new System.Drawing.Point(303, 276);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(86, 24);
+            this.lbTOTAL.TabIndex = 122;
+            this.lbTOTAL.Text = "$0.00";
             // 
             // ConfirmarGasto
             // 
@@ -214,13 +265,17 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(444, 452);
+            this.Controls.Add(this.lbTOTAL);
+            this.Controls.Add(this.txtIVA);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNOTA);
             this.Controls.Add(this.CANCELAR);
             this.Controls.Add(this.GUARDAR);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDESCRIPCION);
-            this.Controls.Add(this.txtTOTAL);
+            this.Controls.Add(this.txtSUBTOTAL);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.cbxSUCURSAL);
@@ -249,7 +304,7 @@
         private System.Windows.Forms.TextBox txtDOCUMENTO;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateGasto;
-        private System.Windows.Forms.TextBox txtTOTAL;
+        private System.Windows.Forms.TextBox txtSUBTOTAL;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDESCRIPCION;
         private System.Windows.Forms.Label label2;
@@ -257,5 +312,9 @@
         private System.Windows.Forms.Button GUARDAR;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNOTA;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtIVA;
+        private System.Windows.Forms.Label lbTOTAL;
     }
 }

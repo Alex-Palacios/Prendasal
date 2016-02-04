@@ -71,9 +71,12 @@ namespace PrendaSAL.Caja
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
 
+            eOperacion op = ACCION;
+            ACCION = eOperacion.PREVIEW;
             cbxTIPODOC.DataSource = Enum.GetValues(new eTipoFactura().GetType());
             txtDOCUMENTO.Focus();
             cargarDatos();
+            ACCION = op;
         }
 
 
@@ -88,11 +91,126 @@ namespace PrendaSAL.Caja
                 cbxTIPODOC.SelectedItem = SELECTED.TIPO_DOC;
                 txtDOCUMENTO.Text = SELECTED.DOCUMENTO;
                 txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
-                txtTOTAL.Text = SELECTED.TOTAL.ToString("C2");
+                txtSUBTOTAL.Text = SELECTED.SUBTOTAL.ToString("C2");
+                txtIVA.Text = SELECTED.IVA.ToString("C2"); 
+                lbTOTAL.Text = SELECTED.TOTAL.ToString("C2");
                 txtNOTA.Text = SELECTED.NOTA;
             }
         }
 
+
+
+        private void cbxTIPODOC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxTIPODOC.SelectedIndex >= 0 && ACCION != eOperacion.PREVIEW)
+            {
+                SELECTED.TIPO_DOC = (eTipoFactura)cbxTIPODOC.SelectedItem;
+                SELECTED.IVA = (decimal)0.00;
+                SELECTED.calcularTotales();
+                switch (SELECTED.TIPO_DOC)
+                {
+                    case eTipoFactura.CCF:
+                        txtIVA.ReadOnly = false;
+                        break;
+                    default:
+                        txtIVA.ReadOnly = true;
+                        break;
+                }
+                txtSUBTOTAL.Text = SELECTED.SUBTOTAL.ToString("C2");
+                txtIVA.Text = SELECTED.IVA.ToString("C2");
+                lbTOTAL.Text = SELECTED.TOTAL.ToString("C2");
+            }
+        }
+
+
+
+        private void txtSUBTOTAL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Impide introducir mas de un $
+            if (e.KeyChar == 36 && txtSUBTOTAL.Text.IndexOf('$') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            //Impide introducir mas de un punto
+            if (e.KeyChar == 46 && txtSUBTOTAL.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            //Solo permite introducir numeros y el carater punto y tambien permite borrar digitos y el signo de dolar
+            if (!Char.IsNumber(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 36 && e.KeyChar != 46)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+
+
+        private void txtSUBTOTAL_Leave(object sender, EventArgs e)
+        {
+            SELECTED.SUBTOTAL = (decimal)0.00;
+            decimal valor;
+            if (Decimal.TryParse(txtSUBTOTAL.Text, System.Globalization.NumberStyles.Currency, null, out valor))
+            {
+                SELECTED.SUBTOTAL = Decimal.Round(valor, 2, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                MessageBox.Show("FORMATO INVALIDO", "ERROR DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            SELECTED.calcularTotales();
+            txtSUBTOTAL.Text = SELECTED.SUBTOTAL.ToString("C2");
+            txtIVA.Text = SELECTED.IVA.ToString("C2");
+            lbTOTAL.Text = SELECTED.TOTAL.ToString("C2");
+        }
+
+
+
+        private void txtIVA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Impide introducir mas de un $
+            if (e.KeyChar == 36 && txtIVA.Text.IndexOf('$') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            //Impide introducir mas de un punto
+            if (e.KeyChar == 46 && txtIVA.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            //Solo permite introducir numeros y el carater punto y tambien permite borrar digitos y el signo de dolar
+            if (!Char.IsNumber(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 36 && e.KeyChar != 46)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+
+
+
+        private void txtIVA_Leave(object sender, EventArgs e)
+        {
+            SELECTED.IVA = (decimal)0.00;
+            decimal valor;
+            if (Decimal.TryParse(txtIVA.Text, System.Globalization.NumberStyles.Currency, null, out valor))
+            {
+                SELECTED.IVA = Decimal.Round(valor, 2, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                MessageBox.Show("FORMATO INVALIDO", "ERROR DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            SELECTED.calcularTotales();
+            txtSUBTOTAL.Text = SELECTED.SUBTOTAL.ToString("C2");
+            txtIVA.Text = SELECTED.IVA.ToString("C2");
+            lbTOTAL.Text = SELECTED.TOTAL.ToString("C2");
+        }
 
 
 
@@ -117,10 +235,22 @@ namespace PrendaSAL.Caja
                 MessageBox.Show("DESCRIBA EL GASTO REALIZADO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return OK;
             }
-            else if (SELECTED.TOTAL <= 0)
+            else if (SELECTED.SUBTOTAL <= 0)
             {
                 OK = false;
-                MessageBox.Show("TOTAL DE GASTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("SUBTOTAL DE GASTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return OK;
+            }
+            else if (SELECTED.IVA <= 0 && SELECTED.TIPO_DOC == eTipoFactura.CCF)
+            {
+                OK = false;
+                MessageBox.Show("IVA DE GASTO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return OK;
+            }
+            else if (SELECTED.IVA > 0 && SELECTED.TIPO_DOC != eTipoFactura.CCF)
+            {
+                OK = false;
+                MessageBox.Show("IVA INVALIDO VERIFIQUE TIPO DE FACTURA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return OK;
             }
             return OK;
@@ -194,38 +324,7 @@ namespace PrendaSAL.Caja
 
 
 
-
-        private void txtTOTAL_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //Impide introducir mas de un punto
-
-            if (e.KeyChar == 46 && txtTOTAL.Text.IndexOf('.') != -1)
-            {
-                e.Handled = true;
-                return;
-            }
-            //Solo permite introducir numeros y el carater punto y tambien permite borrar digitos
-            if (!Char.IsNumber(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46)
-            {
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void txtTOTAL_Leave(object sender, EventArgs e)
-        {
-            SELECTED.TOTAL = (decimal)0.00;
-            decimal valor;
-            if (Decimal.TryParse(txtTOTAL.Text, System.Globalization.NumberStyles.Currency, null, out valor))
-            {
-                SELECTED.TOTAL = Decimal.Round(valor, 2,MidpointRounding.AwayFromZero);
-            }
-            else
-            {
-                MessageBox.Show("FORMATO INVALIDO", "ERROR DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            txtTOTAL.Text = SELECTED.TOTAL.ToString("C2");
-        }
+        
 
 
         

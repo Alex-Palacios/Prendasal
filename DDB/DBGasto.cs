@@ -40,14 +40,16 @@ namespace DDB
                 tipodoc_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter doc_gasto = cmd.Parameters.Add("doc_gasto", MySqlDbType.VarChar, 20);
                 doc_gasto.Direction = ParameterDirection.Input;
-                MySqlParameter descrip_gasto = cmd.Parameters.Add("descrip_gasto", MySqlDbType.VarChar, 255);
-                descrip_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter pago_gasto = cmd.Parameters.Add("pago_gasto", MySqlDbType.Int32);
                 pago_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter descrip_gasto = cmd.Parameters.Add("descrip_gasto", MySqlDbType.VarChar, 255);
+                descrip_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter subtotal_gasto = cmd.Parameters.Add("subtotal_gasto", MySqlDbType.Decimal);
+                subtotal_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter iva_gasto = cmd.Parameters.Add("iva_gasto", MySqlDbType.Decimal);
+                iva_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter total_gasto = cmd.Parameters.Add("total_gasto", MySqlDbType.Decimal);
                 total_gasto.Direction = ParameterDirection.Input;
-                MySqlParameter imp_gasto = cmd.Parameters.Add("imp_gasto", MySqlDbType.Decimal);
-                imp_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter nota_gasto = cmd.Parameters.Add("nota_gasto", MySqlDbType.VarChar, 100);
                 nota_gasto.Direction = ParameterDirection.Input;
 
@@ -62,10 +64,11 @@ namespace DDB
                 fecha_gasto.Value = gasto.FECHA.Date;
                 tipodoc_gasto.Value = gasto.TIPO_DOC.ToString();
                 doc_gasto.Value = gasto.DOCUMENTO;
-                descrip_gasto.Value = gasto.DESCRIPCION;
                 pago_gasto.Value = (int)gasto.TIPO_PAGO;
+                descrip_gasto.Value = gasto.DESCRIPCION;
+                subtotal_gasto.Value = gasto.SUBTOTAL;
+                iva_gasto.Value = gasto.IVA;
                 total_gasto.Value = gasto.TOTAL;
-                imp_gasto.Value = gasto.IVA;
                 nota_gasto.Value = gasto.NOTA;
 
 
@@ -107,14 +110,16 @@ namespace DDB
                 tipodoc_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter doc_gasto = cmd.Parameters.Add("doc_gasto", MySqlDbType.VarChar, 20);
                 doc_gasto.Direction = ParameterDirection.Input;
-                MySqlParameter descrip_gasto = cmd.Parameters.Add("descrip_gasto", MySqlDbType.VarChar, 255);
-                descrip_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter pago_gasto = cmd.Parameters.Add("pago_gasto", MySqlDbType.Int32);
                 pago_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter descrip_gasto = cmd.Parameters.Add("descrip_gasto", MySqlDbType.VarChar, 255);
+                descrip_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter subtotal_gasto = cmd.Parameters.Add("subtotal_gasto", MySqlDbType.Decimal);
+                subtotal_gasto.Direction = ParameterDirection.Input;
+                MySqlParameter iva_gasto = cmd.Parameters.Add("iva_gasto", MySqlDbType.Decimal);
+                iva_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter total_gasto = cmd.Parameters.Add("total_gasto", MySqlDbType.Decimal);
                 total_gasto.Direction = ParameterDirection.Input;
-                MySqlParameter imp_gasto = cmd.Parameters.Add("imp_gasto", MySqlDbType.Decimal);
-                imp_gasto.Direction = ParameterDirection.Input;
                 MySqlParameter nota_gasto = cmd.Parameters.Add("nota_gasto", MySqlDbType.VarChar, 100);
                 nota_gasto.Direction = ParameterDirection.Input;
 
@@ -130,10 +135,11 @@ namespace DDB
                 fecha_gasto.Value = gasto.FECHA.Date;
                 tipodoc_gasto.Value = gasto.TIPO_DOC.ToString();
                 doc_gasto.Value = gasto.DOCUMENTO;
-                descrip_gasto.Value = gasto.DESCRIPCION;
                 pago_gasto.Value = (int)gasto.TIPO_PAGO;
+                descrip_gasto.Value = gasto.DESCRIPCION;
+                subtotal_gasto.Value = gasto.SUBTOTAL;
+                iva_gasto.Value = gasto.IVA;
                 total_gasto.Value = gasto.TOTAL;
-                imp_gasto.Value = gasto.IVA;
                 nota_gasto.Value = gasto.NOTA;
 
 
