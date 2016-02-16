@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabDETALLE = new System.Windows.Forms.TabControl();
             this.pagARTICULOS = new System.Windows.Forms.TabPage();
             this.btnOK_REMISION = new System.Windows.Forms.Button();
@@ -83,7 +83,7 @@
             this.tabDETALLE.Multiline = true;
             this.tabDETALLE.Name = "tabDETALLE";
             this.tabDETALLE.SelectedIndex = 0;
-            this.tabDETALLE.Size = new System.Drawing.Size(843, 392);
+            this.tabDETALLE.Size = new System.Drawing.Size(870, 392);
             this.tabDETALLE.TabIndex = 144;
             // 
             // pagARTICULOS
@@ -96,7 +96,7 @@
             this.pagARTICULOS.Location = new System.Drawing.Point(42, 4);
             this.pagARTICULOS.Name = "pagARTICULOS";
             this.pagARTICULOS.Padding = new System.Windows.Forms.Padding(3);
-            this.pagARTICULOS.Size = new System.Drawing.Size(783, 384);
+            this.pagARTICULOS.Size = new System.Drawing.Size(824, 384);
             this.pagARTICULOS.TabIndex = 1;
             this.pagARTICULOS.Text = "NOTA DE REMISION";
             // 
@@ -147,12 +147,12 @@
             this.tblREMISION.MultiSelect = false;
             this.tblREMISION.Name = "tblREMISION";
             this.tblREMISION.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.tblREMISION.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.tblREMISION.Size = new System.Drawing.Size(793, 334);
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tblREMISION.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.tblREMISION.Size = new System.Drawing.Size(818, 334);
             this.tblREMISION.TabIndex = 121;
             this.tblREMISION.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblREMISION_CellValueChanged);
             // 
@@ -197,8 +197,8 @@
             // PRECIO
             // 
             this.PRECIO.DataPropertyName = "PRECIO";
-            dataGridViewCellStyle7.Format = "C2";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "C2";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle1;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -214,7 +214,7 @@
             this.pagPRESTAMOS.Location = new System.Drawing.Point(42, 4);
             this.pagPRESTAMOS.Name = "pagPRESTAMOS";
             this.pagPRESTAMOS.Padding = new System.Windows.Forms.Padding(3);
-            this.pagPRESTAMOS.Size = new System.Drawing.Size(783, 384);
+            this.pagPRESTAMOS.Size = new System.Drawing.Size(797, 384);
             this.pagPRESTAMOS.TabIndex = 0;
             this.pagPRESTAMOS.Text = "CUSTODIA DE VALORES";
             // 
@@ -429,7 +429,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(843, 392);
+            this.ClientSize = new System.Drawing.Size(870, 392);
             this.Controls.Add(this.tabDETALLE);
             this.MaximizeBox = false;
             this.Name = "ListarTrasladoForm";

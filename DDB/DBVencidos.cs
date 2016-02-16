@@ -63,7 +63,7 @@ namespace DDB
                 sys.Direction = ParameterDirection.Input;
 
                 suc_venc.Value = venc.COD_SUC;
-                fecha_venc.Value = venc.FECHA.Date;
+                fecha_venc.Value = venc.FECHA_APERTURA.Date;
                 doc_venc.Value = venc.DOCUMENTO;
                 nota_venc.Value = venc.NOTA;
 
@@ -258,9 +258,9 @@ namespace DDB
             DataRow row = null;
             try
             {
-                string sql = "prendasal.SP_GET_LISTAVENC;";
+                string sql = "SELECT * FROM prendasal.view_lista_vencidos WHERE DOCUMENTO = @doc_venc;"; 
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.Text;
 
                 MySqlParameter doc_venc = cmd.Parameters.Add("doc_venc", MySqlDbType.VarChar, 20);
                 doc_venc.Direction = ParameterDirection.Input;
@@ -295,9 +295,9 @@ namespace DDB
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_SHOW_LISTAVENC;";
+                string sql = "SELECT * FROM prendasal.view_lista_vencidos WHERE FECHA_APERTURA = @fecha_venc;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.Text;
 
                 MySqlParameter fecha_venc = cmd.Parameters.Add("fecha_venc", MySqlDbType.Date);
                 fecha_venc.Direction = ParameterDirection.Input;
@@ -352,6 +352,51 @@ namespace DDB
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("CONTRATO HA SIDO REACTIVADO ", "REACTIVACION DE CONTRATO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                OK = false;
+                MessageBox.Show(e.Message, "ERROR AL REACTIVAR CONTRATO ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+
+
+
+
+
+
+        public bool CERRAR_LISTA(Vencidos venc,string sucursal, string empleado, string sistema)
+        {
+            bool OK = true;
+            try
+            {
+                string sql = "prendasal.SP_CERRAR_LISTAVENC";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                MySqlParameter idvenc = cmd.Parameters.Add("idvenc", MySqlDbType.Int32);
+                idvenc.Direction = ParameterDirection.Input;
+                MySqlParameter fecha_c = cmd.Parameters.Add("fecha_c", MySqlDbType.Date);
+                fecha_c.Direction = ParameterDirection.Input;
+
+                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
+                suc.Direction = ParameterDirection.Input;
+                MySqlParameter emp = cmd.Parameters.Add("emp", MySqlDbType.VarChar, 15);
+                emp.Direction = ParameterDirection.Input;
+                MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
+                sys.Direction = ParameterDirection.Input;
+
+                idvenc.Value = venc.ID_VENC;
+                fecha_c.Value = venc.FECHA_CIERRE.Value;
+
+                suc.Value = sucursal;
+                emp.Value = empleado;
+                sys.Value = sistema;
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("LISTA DE VENCIDOS CERRADA ", "CIERRE DE LISTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {

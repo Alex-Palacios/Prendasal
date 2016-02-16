@@ -317,6 +317,52 @@ namespace DDB
 
 
 
+        public DataTable getRemesasBySucAnioMes(string sucursalENV, string anioRemesa,string mesRemesa,string sucursalDEST)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = string.Empty;
+                if (sucursalDEST != "00")
+                {
+                    sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_ENVIA = @sucenvia AND YEAR(FECHA) = @anio AND MONTH(FECHA) = @mes AND SUC_DEST= @sucdestino  ORDER BY SUC_ENVIA,FECHA DESC;";
+                }
+                else
+                {
+                    sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_ENVIA = @sucenvia AND YEAR(FECHA) = @anio AND MONTH(FECHA) = @mes AND SUC_DEST != @sucdestino ORDER BY SUC_ENVIA,FECHA DESC;";
+                }
+               
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+                MySqlParameter sucdestino = cmd.Parameters.Add("sucdestino", MySqlDbType.VarChar, 2);
+                sucdestino.Direction = ParameterDirection.Input;
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.VarChar,4);
+                anio.Direction = ParameterDirection.Input;
+                MySqlParameter mes = cmd.Parameters.Add("mes", MySqlDbType.VarChar,2);
+                mes.Direction = ParameterDirection.Input;
+                MySqlParameter sucenvia = cmd.Parameters.Add("sucenvia", MySqlDbType.VarChar, 2);
+                sucenvia.Direction = ParameterDirection.Input;
+                
+                sucenvia.Value = sucursalENV;
+                anio.Value = anioRemesa;
+                mes.Value = mesRemesa;
+                sucdestino.Value = sucursalDEST;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR REMESAS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
 
 
         public DataTable getFinancBySucAnio(string sucursal, int aniofinanc)
@@ -335,6 +381,54 @@ namespace DDB
 
                 suc.Value = sucursal;
                 anio.Value = aniofinanc;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR FINANCIAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+        public DataTable getFinancBySucAnioMes(string sucursalDEST, string aniofinanc,string mesfinanc,string sucursalENV)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = string.Empty;
+                if (sucursalENV != "00")
+                {
+                    sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_DEST = @sucdestino AND YEAR(FECHA) = @anio AND MONTH(FECHA) = @mes AND SUC_ENVIA = @sucenvia  ORDER BY SUC_ENVIA,FECHA DESC;";
+                }
+                else
+                {
+                    sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_DEST = @sucdestino AND YEAR(FECHA) = @anio AND MONTH(FECHA) = @mes AND SUC_ENVIA != @sucenvia ORDER BY SUC_ENVIA,FECHA DESC;";
+                }
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+                MySqlParameter sucdestino = cmd.Parameters.Add("sucdestino", MySqlDbType.VarChar, 2);
+                sucdestino.Direction = ParameterDirection.Input;
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.VarChar,4);
+                anio.Direction = ParameterDirection.Input;
+                MySqlParameter mes = cmd.Parameters.Add("mes", MySqlDbType.VarChar,2);
+                mes.Direction = ParameterDirection.Input;
+                MySqlParameter sucenvia = cmd.Parameters.Add("sucenvia", MySqlDbType.VarChar, 2);
+                sucenvia.Direction = ParameterDirection.Input;
+
+                sucdestino.Value = sucursalDEST;
+                anio.Value = aniofinanc;
+                mes.Value = mesfinanc;
+                sucenvia.Value = sucursalENV;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)

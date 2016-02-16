@@ -120,6 +120,26 @@
   <metadata name="opciones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCerrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAL+SURBVDhPHZNpSJRRFIY/Cttc0KwwgoSM9iiEbDGjkmjV
+        ijIiicwWCCICIyyTStsX0moiC6OFspIhR8t9GVRwnYoytc20vhlnMbdcRmempzP9eHnvOffeh3PgHAXX
+        MPy1g7MfGBCX2NEn5y6RWWJV9F3ODeJ14rWidyJ3TkVhSMXVLgmrXNiqcLTpoaMaOitxtufjbMvGVHsX
+        te4mJsN1rIbLGA03+FiZ9h+i8PkBFSmRvE9dxYfUxbzXLOWtJpSalBCqbi9hsP4IlvIDqEV7sen3YymL
+        prVkH03lyTBULQDDaXTxgZQn+FGdOIaKU2PQi5cmjMJRvIE/JVv4XbiZ3rLtdBdH0lEQjrU0ii95cdJq
+        DYrjUxINmVvlYgt/ijZgl0c9+WuhLoq+sgj6crdBRSxdRRuxFaxkqGItnfkCyo2HvnqpwJzKz9IY1MJI
+        THnhdOStoSN/NWrucnpLImhPX8fZYIVvmjBcBTsZzopgWBvN+RBPjJpTAjBeoVm3ibbXq1CzF9FVuAxr
+        TjDmN4sYKojg6kKFc5MVLgQoWBJ2wMM47swaycXJ4zjhNVoA6lmaX4XL58XY3izAopuBLWcWlpx59OrC
+        GEjfyMUpCpqAUaRN8OZJ4HjuBIwj0ccDHt0XgOkkHzJDMGXPxaqdikU7BWvWVMy6IMxZs+nSBuN6Hsm9
+        IA/S/X154O/FJV+F+oQY6H7nBiRheBFKa+ZcTJmBmATyUxtIi3aa5GZKFaGoKcu4Im3c9PMkbZIPSf4j
+        eLlnNfQaUJxtt6l6uommjKV8zZhP8/M5NAqsQTuP1pcr+HhmOcd8FBIniMaP4FqQL8f9FA5JrjYuViro
+        LqXw8UHqMnaLtqF/uB69AIufrOftsxj2S/+xPiPZ5a1Qk3QU67NbHJ4+kWgvD2K8xwrAaZSRlJkfbIX+
+        FhmOXwx3N+Ec+CbxDxlrI/FRW3G0NMobq6xLJ9h7SN69i57qSgHIArmcg7JQwnGJxF3iDnfslsMtF3//
+        L5hdUpJwyPK5Ze/nH/JEktq0+FlaAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="ID_PRESTAMO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -159,29 +179,14 @@
   <metadata name="MONTO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="KILATAJE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="PESO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MONTO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="bsListaVenc.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>118, 17</value>
   </metadata>
   <metadata name="dSListaVenc.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>233, 17</value>
   </metadata>
-  <metadata name="dSListaVenc.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>233, 17</value>
-  </metadata>
   <metadata name="bsKPM.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>350, 17</value>
-  </metadata>
-  <metadata name="dSKPM.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>439, 17</value>
   </metadata>
   <metadata name="dSKPM.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>439, 17</value>

@@ -267,14 +267,14 @@ namespace DDB
 
 
 
-        public DataRow getTrasladoByDocTipo(eTipoTraslado tipo,string documento)
+        public DataRow getTrasladoByDocTipoSucDEST(eTipoTraslado tipo,string documento, string destino)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             DataRow row = null;
             try
             {
-                string sql = "SELECT * FROM prendasal.view_traslados WHERE DOCUMENTO = @doc AND TIPO = @tipodoc;";
+                string sql = "SELECT * FROM prendasal.view_traslados WHERE DOCUMENTO = @doc AND TIPO = @tipodoc AND SUC_DEST = @dest;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
 
@@ -282,9 +282,53 @@ namespace DDB
                 doc.Direction = ParameterDirection.Input;
                 MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
                 tipodoc.Direction = ParameterDirection.Input;
+                MySqlParameter dest = cmd.Parameters.Add("dest", MySqlDbType.VarChar, 2);
+                dest.Direction = ParameterDirection.Input;
 
                 doc.Value = documento;
                 tipodoc.Value = (int)tipo;
+                dest.Value = destino;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL OBTENER TRASLADO", "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (datos.Rows.Count == 1)
+            {
+                row = datos.Rows[0];
+            }
+            return row;
+        }
+
+
+        public DataRow getTrasladoByDocTipoSucENVIA(eTipoTraslado tipo, string documento, string envia)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            DataRow row = null;
+            try
+            {
+                string sql = "SELECT * FROM prendasal.view_traslados WHERE DOCUMENTO = @doc AND TIPO = @tipodoc AND SUC_ENVIA = @env;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                MySqlParameter doc = cmd.Parameters.Add("doc", MySqlDbType.VarChar, 20);
+                doc.Direction = ParameterDirection.Input;
+                MySqlParameter tipodoc = cmd.Parameters.Add("tipodoc", MySqlDbType.Int32);
+                tipodoc.Direction = ParameterDirection.Input;
+                MySqlParameter env = cmd.Parameters.Add("env", MySqlDbType.VarChar, 2);
+                env.Direction = ParameterDirection.Input;
+
+                doc.Value = documento;
+                tipodoc.Value = (int)tipo;
+                env.Value = envia;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -376,19 +420,20 @@ namespace DDB
 
 
 
-        public DataTable getExistenciasBySuc(string codsuc)
+        public DataTable getExistenciasTrasladoARTICULOS(string sucursal)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_TRASLADO_EXISTENCIA;";
+                string sql = "prendasal.SP_TRASLADO_EXISTENCIAS_ARTICULO;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter sucursal = cmd.Parameters.Add("sucursal", MySqlDbType.VarChar, 2);
-                sucursal.Direction = ParameterDirection.Input;
 
-                sucursal.Value = codsuc;
+                MySqlParameter suc_exis = cmd.Parameters.Add("suc_exis", MySqlDbType.VarChar, 2);
+                suc_exis.Direction = ParameterDirection.Input;
+
+                suc_exis.Value = sucursal;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)

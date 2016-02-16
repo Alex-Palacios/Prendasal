@@ -86,6 +86,15 @@ namespace PrendaSAL.Movimientos
         private void CorteDiarioForm_Load(object sender, EventArgs e)
         {
             permisos();
+            FECHA = HOME.Instance().FECHA_SISTEMA;
+            //PERSONALIZAR FORMATO
+            calendarCORTE.Colors.Today.TextColor = Color.Red;
+            calendarCORTE.Colors.DayMarker.IsBold = true;
+            calendarCORTE.Colors.DayMarker.TextColor = Color.Blue;
+            calendarCORTE.DisplayMonth = FECHA;
+            calendarCORTE.SelectedDate = FECHA;
+            calendarCORTE.TodayDate = FECHA;
+
             cbxSUCURSAL.DataSource = HOME.Instance().datSUCURSALES.Copy();
             if (HOME.Instance().datSUCURSALES.Rows.Count > 0)
             {
@@ -93,14 +102,7 @@ namespace PrendaSAL.Movimientos
                 cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
-            //PERSONALIZAR FORMATO
-            calendarCORTE.Colors.Today.TextColor = Color.Red;
-            calendarCORTE.Colors.DayMarker.IsBold = true;
-            calendarCORTE.Colors.DayMarker.TextColor = Color.Blue;
-            listarCortesDiarios();
-            FECHA = HOME.Instance().FECHA_SISTEMA;
-            calendarCORTE.DisplayMonth = FECHA;
-            calendarCORTE.SelectedDate = FECHA;
+            
         }
 
 

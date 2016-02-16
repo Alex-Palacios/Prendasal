@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization; 
 
 namespace PrendaSAL.Reportes
 {
@@ -32,7 +33,7 @@ namespace PrendaSAL.Reportes
         private DBReporte dbReporte;
         private DBCatalogo dbCatalogo;
         private DataTable KARDEX;
-
+        private DataTable MESES;
 
         private void permisos()
         {
@@ -52,23 +53,56 @@ namespace PrendaSAL.Reportes
             permisos();
             tblKARDEX.AutoGenerateColumns = false;
 
-            dateFechaInicio.Value = HOME.Instance().FECHA_SISTEMA;
-            dateFechaFin.Value = HOME.Instance().FECHA_SISTEMA;
+            MESES = new DataTable();
+            MESES.Columns.Add("MES").DataType = System.Type.GetType("System.String");
+            MESES.Columns.Add("NOMBRE").DataType = System.Type.GetType("System.String");
 
-            cbxCategorias.DataSource = Enum.GetValues(new eCategoria().GetType());
-            cbxCategorias.SelectedItem = eCategoria.ARTICULO;
+            List<string> meses = new List<string>();
+            DateTimeFormatInfo formatoFecha = CultureInfo.CurrentCulture.DateTimeFormat;
+            for (int i = 1; i <= 12; i++)
+            {
+                string num = "";
+                if (i < 10)
+                {
+                    num = "0" + i;
+                }
+                else
+                {
+                    num = i.ToString();
+                }
+                MESES.Rows.Add(num, formatoFecha.GetMonthName(i).ToUpper());
+            }
+            cbxMESES.DataSource = MESES;
+            cbxMESES.DisplayMember = "NOMBRE";
+            cbxMESES.ValueMember = "MES";
+            txtANIO.Text = DateTime.Today.Year.ToString();
+
+            cbxItem.DataSource = dbCatalogo.showCatalogo(eCategoria.ORO);
+            if (((DataTable)cbxItem.DataSource).Rows.Count > 0)
+            {
+                cbxItem.DisplayMember = "COD_ITEM";
+                cbxItem.ValueMember = "COD_ITEM";
+            }
+
 
             txtCODIGO.Text = string.Empty;
-            lbENTRADAS.Text = "0.0";
-            lbSALIDAS.Text = "0.0";
-            lbINGRESOS.Text = "$0.00";
-            lbEGRESOS.Text = "$0.00";
-            lbCONSOLIDADO.Text = "$0.00";
-            lbCONSOLIDADO.TextAlign = ContentAlignment.MiddleRight;
 
-            rdbFILTROS.Checked = true;
+            rdbKILATAJE.Checked = true;
+
         }
 
+
+
+        private void txtANIO_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Impide introducir mas de un punto
+            //Solo permite introducir numeros y el carater punto y tambien permite borrar digitos
+            if (!Char.IsNumber(e.KeyChar) && e.KeyChar != 46)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
 
 
         private void rdbCODIGO_CheckedChanged(object sender, EventArgs e)
@@ -77,9 +111,6 @@ namespace PrendaSAL.Reportes
             {
                 txtCODIGO.Text = string.Empty;
 
-                dateFechaFin.Enabled = false;
-                dateFechaInicio.Enabled = false;
-                cbxCategorias.Enabled = false;
                 cbxItem.Enabled = false;
                 txtCODIGO.ReadOnly = false;
             }
@@ -87,13 +118,10 @@ namespace PrendaSAL.Reportes
 
         private void rdbFILTROS_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbFILTROS.Checked)
+            if (rdbKILATAJE.Checked)
             {
                 txtCODIGO.Text = string.Empty;
 
-                dateFechaFin.Enabled = true;
-                dateFechaInicio.Enabled = true;
-                cbxCategorias.Enabled = true;
                 cbxItem.Enabled = true;
                 txtCODIGO.ReadOnly = true;
             }
@@ -101,100 +129,40 @@ namespace PrendaSAL.Reportes
 
 
 
-        private void cbxCategorias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxCategorias.SelectedIndex >= 0)
-            {
-                DataTable CATALOGO = dbCatalogo.showCatalogo((eCategoria) cbxCategorias.SelectedItem);
-                if (CATALOGO.Rows.Count == 0)
-                {
-                    CATALOGO.Columns.Add("CATEGORIA");
-                    CATALOGO.Columns.Add("COD_ITEM");
-                    CATALOGO.Columns.Add("UNIDAD_MEDIDA");
-                }
-                DataRow R = CATALOGO.NewRow();
-                R.SetField<string>("CATEGORIA", "-----");
-                R.SetField<string>("COD_ITEM", "TODAS");
-                R.SetField<string>("UNIDAD_MEDIDA", "-----");
-                CATALOGO.Rows.InsertAt(R, 0);
-
-                cbxItem.DataSource = CATALOGO;
-                cbxItem.DisplayMember = "COD_ITEM";
-                cbxItem.ValueMember = "COD_ITEM";
-            }
-        }
 
 
         private void btnBUSCAR_Click(object sender, EventArgs e)
         {
-            if (rdbFILTROS.Checked)
+            if (rdbKILATAJE.Checked)
             {
-                //BUSCAR POR ARTICULO
-                if (dateFechaFin.Value >= dateFechaInicio.Value)
+                //BUSCAR POR ITEM
+                if(txtANIO.Text.Trim() != string.Empty && cbxMESES.SelectedIndex >= 0 && cbxItem.SelectedIndex >= 0)
                 {
-                    KARDEX = dbReporte.RptKARDEX(null,dateFechaInicio.Value,dateFechaFin.Value,(string) cbxCategorias.Text,(string) cbxItem.SelectedValue);
+                    KARDEX = dbReporte.RptKARDEX_ORO(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, (string)cbxItem.SelectedValue);
                     tblKARDEX.DataSource = KARDEX.Copy();
                 }
                 else
                 {
-                    MessageBox.Show("RANGO DE FECHAS INVALIDA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("PARAMETROS INVALIDOS", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
                 //BUSCAR POR CODIGO
-                if (txtCODIGO.Text.Trim() != string.Empty)
+                if (txtANIO.Text.Trim() != string.Empty && cbxMESES.SelectedIndex >= 0 && txtCODIGO.Text.Trim() != string.Empty)
                 {
-                    KARDEX = dbReporte.RptKARDEX(txtCODIGO.Text.Trim()+"%",null,null,null,null);
+                    KARDEX = dbReporte.RptKARDEX_ARTICULO(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, txtCODIGO.Text.Trim());
                     tblKARDEX.DataSource = KARDEX.Copy();
                 }
                 else
                 {
-                    MessageBox.Show("INGRESE CODIGO DE ARTICULOS A BUSCAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("PARAMETROS INVALIDOS", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            calcularTotales();
         }
 
 
 
-
-        private void calcularTotales()
-        {
-            if (KARDEX != null)
-            {
-                decimal entradas = KARDEX.AsEnumerable().Select(r => r.Field<decimal>("ENTRADAS")).Sum();
-                decimal salidas = KARDEX.AsEnumerable().Select(r => r.Field<decimal>("SALIDAS")).Sum();
-                decimal ingresos = KARDEX.AsEnumerable().Select(r => r.Field<decimal>("INGRESOS")).Sum();
-                decimal egresos = KARDEX.AsEnumerable().Select(r => r.Field<decimal>("EGRESOS")).Sum();
-                decimal consolidado = ingresos - egresos;
-                lbENTRADAS.Text = entradas.ToString("N1");
-                lbSALIDAS.Text = salidas.ToString("N1");
-                lbINGRESOS.Text = ingresos.ToString("C2");
-                lbEGRESOS.Text = egresos.ToString("C2");
-
-                if (consolidado < 0)
-                {
-                    lbCONSOLIDADO.Text = (consolidado*-1).ToString("C2");
-                    lbCONSOLIDADO.TextAlign = ContentAlignment.MiddleRight;
-                }
-                else
-                {
-                    lbCONSOLIDADO.Text = consolidado.ToString("C2");
-                    lbCONSOLIDADO.TextAlign = ContentAlignment.MiddleLeft;
-                }
-                
-            }
-            else
-            {
-                lbCONSOLIDADO.Text = "$0.00";
-                lbCONSOLIDADO.TextAlign = ContentAlignment.MiddleRight;
-                lbENTRADAS.Text = "0.0";
-                lbSALIDAS.Text = "0.0";
-                lbINGRESOS.Text = "$0.00";
-                lbEGRESOS.Text = "$0.00";
-            }
-        }
 
 
 
@@ -205,6 +173,7 @@ namespace PrendaSAL.Reportes
                 HOME.Instance().exportDataGridViewToExcel("REPORTE KARDEX", tblKARDEX.Columns, KARDEX, "ReporteKardex");
             }
         }
+
         
 
 

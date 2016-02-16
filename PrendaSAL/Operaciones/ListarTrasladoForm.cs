@@ -43,7 +43,7 @@ namespace PrendaSAL.Operaciones
             {
                 case eTipoDetalleTraslado.ARTICULO:
                     tabDETALLE.TabPages.Add(pagARTICULOS);
-                    ARTICULOS = dbTraslado.getExistenciasBySuc(TRASLADO.SUC_ENVIA);
+                    ARTICULOS = dbTraslado.getExistenciasTrasladoARTICULOS(TRASLADO.SUC_ENVIA);
                     foreach (DataRow row in TRASLADO.DETALLE_TRASLADO.Rows)
                     {
                         eliminarListadoRM(row.Field<string>("CODIGO"));
@@ -341,7 +341,7 @@ namespace PrendaSAL.Operaciones
                 {
                     if (TRASLADO.CUSTODIA_COMPRAS.Rows.Count <= 20)
                     {
-                        TRASLADO.DETALLE_TRASLADO.Rows.Add((int)eTipoDetalleTraslado.COMPRA, COMPRAS.Rows[row.Index].Field<string>("DOCUMENTO"), (decimal)(int)COMPRAS.Rows[row.Index].Field<int>("NIVEL"), COMPRAS.Rows[row.Index].Field<string>("CATEGORIA"), "-----", (decimal)0.00);
+                        TRASLADO.DETALLE_TRASLADO.Rows.Add((int)eTipoDetalleTraslado.COMPRA, COMPRAS.Rows[row.Index].Field<string>("DOCUMENTO"), (decimal)(int)COMPRAS.Rows[row.Index].Field<int>("NIVEL"), COMPRAS.Rows[row.Index].Field<string>("CATEGORIA"), "-----", (decimal)0.00,false);
                     }
                     
                 }

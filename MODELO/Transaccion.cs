@@ -230,6 +230,11 @@ namespace MODELO
         DICIEMBRE
     }
 
+    public enum eEstadoListaVenc
+    {
+        ABIERTA = 1,
+        CERRADA
+    }
 
 
     public class Transaccion

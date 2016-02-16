@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemesasForm));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,9 +45,6 @@
             this.btnLog = new System.Windows.Forms.ToolStripButton();
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblRemesas = new System.Windows.Forms.DataGridView();
-            this.viewerCOMPROBANTE = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.lbTOTAL = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.NUM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RESPONSABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +53,9 @@
             this.DESTINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewerCOMPROBANTE = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.lbTOTAL = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblRemesas)).BeginInit();
             this.SuspendLayout();
@@ -137,7 +137,7 @@
             this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(23, 22);
-            this.btnBuscar.Text = "toolStripButton1";
+            this.btnBuscar.Text = "Buscar";
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnExportExcel
@@ -147,7 +147,7 @@
             this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
-            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Text = "Exportar";
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnReimprimir
@@ -203,41 +203,6 @@
             this.tblRemesas.Size = new System.Drawing.Size(904, 298);
             this.tblRemesas.TabIndex = 4;
             this.tblRemesas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tblRemesas_CellFormatting);
-            // 
-            // viewerCOMPROBANTE
-            // 
-            reportDataSource1.Name = "DSI";
-            reportDataSource1.Value = null;
-            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource1);
-            this.viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "";
-            this.viewerCOMPROBANTE.Location = new System.Drawing.Point(719, 0);
-            this.viewerCOMPROBANTE.Name = "viewerCOMPROBANTE";
-            this.viewerCOMPROBANTE.Size = new System.Drawing.Size(170, 25);
-            this.viewerCOMPROBANTE.TabIndex = 93;
-            this.viewerCOMPROBANTE.Visible = false;
-            this.viewerCOMPROBANTE.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
-            // 
-            // lbTOTAL
-            // 
-            this.lbTOTAL.AutoSize = true;
-            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTOTAL.Location = new System.Drawing.Point(724, 329);
-            this.lbTOTAL.Name = "lbTOTAL";
-            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
-            this.lbTOTAL.TabIndex = 115;
-            this.lbTOTAL.Text = "$0.00";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(593, 329);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 23);
-            this.label4.TabIndex = 114;
-            this.label4.Text = "T O T A L";
             // 
             // NUM
             // 
@@ -308,6 +273,41 @@
             this.NOTA.HeaderText = "NOTA";
             this.NOTA.Name = "NOTA";
             this.NOTA.ReadOnly = true;
+            // 
+            // viewerCOMPROBANTE
+            // 
+            reportDataSource1.Name = "DSI";
+            reportDataSource1.Value = null;
+            this.viewerCOMPROBANTE.LocalReport.DataSources.Add(reportDataSource1);
+            this.viewerCOMPROBANTE.LocalReport.ReportEmbeddedResource = "";
+            this.viewerCOMPROBANTE.Location = new System.Drawing.Point(719, 0);
+            this.viewerCOMPROBANTE.Name = "viewerCOMPROBANTE";
+            this.viewerCOMPROBANTE.Size = new System.Drawing.Size(170, 25);
+            this.viewerCOMPROBANTE.TabIndex = 93;
+            this.viewerCOMPROBANTE.Visible = false;
+            this.viewerCOMPROBANTE.RenderingComplete += new Microsoft.Reporting.WinForms.RenderingCompleteEventHandler(this.ShowPrintDialog);
+            // 
+            // lbTOTAL
+            // 
+            this.lbTOTAL.AutoSize = true;
+            this.lbTOTAL.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTOTAL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTOTAL.Location = new System.Drawing.Point(724, 329);
+            this.lbTOTAL.Name = "lbTOTAL";
+            this.lbTOTAL.Size = new System.Drawing.Size(77, 23);
+            this.lbTOTAL.TabIndex = 115;
+            this.lbTOTAL.Text = "$0.00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(593, 329);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 23);
+            this.label4.TabIndex = 114;
+            this.label4.Text = "T O T A L";
             // 
             // RemesasForm
             // 

@@ -145,7 +145,7 @@
             this.Name = "RVencidosOroForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "COMPRAS DE ORO Y PLATA";
+            this.Text = "VENCIDOS ORO Y PLATA";
             this.Load += new System.EventHandler(this.ComprasOroForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsVencidosOro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSVencidosOro)).EndInit();

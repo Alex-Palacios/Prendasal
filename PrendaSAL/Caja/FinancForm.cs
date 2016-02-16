@@ -74,7 +74,7 @@ namespace PrendaSAL.Caja
 
         public void cargarHistoryFinanc()
         {
-            FINANCIAMIENTOS = dbFinanc.getFinancBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year);
+            FINANCIAMIENTOS = dbFinanc.getFinancBySucAnioMes(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year.ToString(), HOME.Instance().FECHA_SISTEMA.Month.ToString(),"00");
             tblFinanc.DataSource = FINANCIAMIENTOS;
             calcularTotales();
         }
@@ -176,15 +176,17 @@ namespace PrendaSAL.Caja
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            int anio = 0;
-            string anioString = Controles.InputBox("AÑO", "CONSULTAR FINANCIAMIENTOS");
-            if (anioString != string.Empty && Int32.TryParse(anioString,out anio))
+            List<string> AMS = Controles.InputComboBoxAMS("BUSCAR POR", HOME.Instance().datSUCURSALES.Copy());
+            if (AMS != null && AMS.Count ==3)
             {
-                FINANCIAMIENTOS = dbFinanc.getFinancBySucAnio(HOME.Instance().SUCURSAL.COD_SUC,anio);
+                FINANCIAMIENTOS = dbFinanc.getFinancBySucAnioMes(HOME.Instance().SUCURSAL.COD_SUC,AMS[0],AMS[1],AMS[2]);
                 tblFinanc.DataSource = FINANCIAMIENTOS;
                 calcularTotales();
             }
         }
+
+
+
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {

@@ -23,18 +23,20 @@ namespace PrendaSAL.Operaciones
         private DBInventario dbInventario;
         private DBCatalogo dbCatalogo;
         private InvInicial SELECTED;
+        private int ANIO;
 
         private DataTable ITEMS;
         private eOperacion ACCION;
 
 
-        public ItemInicialForm()
+        public ItemInicialForm(int year)
         {
             InitializeComponent();
             ACCION = eOperacion.INSERT;
             dbUser = new DBUsuario();
             dbInventario = new DBInventario();
             dbCatalogo = new DBCatalogo();
+            this.ANIO = year;
         }
 
 
@@ -74,8 +76,9 @@ namespace PrendaSAL.Operaciones
         {
             limpiar();
             SELECTED = new InvInicial();
+            SELECTED.PERIODO = ANIO;
             SELECTED.CATEGORIA = eCategoria.ARTICULO;
-            SELECTED.COD_SUC = HOME.Instance().SUCURSAL.COD_SUC;
+            SELECTED.BODEGA = HOME.Instance().SUCURSAL.COD_SUC;
             SELECTED.CANTIDAD = 1;
             cargarItemSelected();
         }
@@ -95,13 +98,14 @@ namespace PrendaSAL.Operaciones
         {
             if (SELECTED != null)
             {
-                cbxSUCURSAL.SelectedValue = SELECTED.COD_SUC;
+                cbxSUCURSAL.SelectedValue = SELECTED.BODEGA;
                 cbxITEM.DataSource = dbCatalogo.showCatalogo(SELECTED.CATEGORIA);
                 if (cbxITEM.DataSource != null)
                 {
                     cbxITEM.DisplayMember = "COD_ITEM";
                     cbxITEM.ValueMember = "COD_ITEM";
                 }
+                txtPERIODO.Text = SELECTED.PERIODO.ToString();
                 txtCATEGORIA.Text = SELECTED.CATEGORIA.ToString();
                 cbxITEM.Text = SELECTED.COD_ITEM;
                 txtCODIGO.Text = SELECTED.CODIGO;
@@ -285,7 +289,7 @@ namespace PrendaSAL.Operaciones
         private void GUARDAR(object sender, EventArgs e)
         {
             string autorizacion;
-            SELECTED.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
+            SELECTED.BODEGA = (string)cbxSUCURSAL.SelectedValue;
             SELECTED.CODIGO = txtCODIGO.Text.Trim();
             SELECTED.COD_ITEM = (string)cbxITEM.SelectedValue;
             SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();

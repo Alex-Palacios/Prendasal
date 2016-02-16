@@ -130,7 +130,7 @@ namespace PrendaSAL.Operaciones
         public bool buscarTraslado(eTipoTraslado tipo, string doc)
         {
             bool OK = false;
-            SELECTED = Traslado.ConvertToTraslado(dbTraslado.getTrasladoByDocTipo(tipo, doc));
+            SELECTED = Traslado.ConvertToTraslado(dbTraslado.getTrasladoByDocTipoSucDEST(tipo, doc,HOME.Instance().SUCURSAL.COD_SUC));
             if (SELECTED != null)
             {
                 switch (SELECTED.TIPO)

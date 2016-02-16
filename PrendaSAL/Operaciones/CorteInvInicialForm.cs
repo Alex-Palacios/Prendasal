@@ -36,6 +36,8 @@ namespace PrendaSAL.Operaciones
         private DataTable INVENTARIO;
         private InvInicial SELECTED;
 
+        private int ANIO;
+
         public CorteInvInicialForm()
         {
             InitializeComponent();
@@ -69,6 +71,7 @@ namespace PrendaSAL.Operaciones
         private void CorteInvInicialForm_Load(object sender, EventArgs e)
         {
             permisos();
+            ANIO = HOME.Instance().FECHA_SISTEMA.Year;
             tblInventario.AutoGenerateColumns = false;
             cargarInventarioInicial();
         }
@@ -76,7 +79,7 @@ namespace PrendaSAL.Operaciones
 
         public void cargarInventarioInicial()
         {
-            INVENTARIO = dbInventario.getInvInicial();
+            INVENTARIO = dbInventario.getInvInicialByPeriodo(ANIO);
             tblInventario.DataSource = INVENTARIO;
 
             btnEditar.Enabled = false;
@@ -113,7 +116,7 @@ namespace PrendaSAL.Operaciones
 
         private void AGREGAR_ARTICULO(object sender, EventArgs e)
         {
-            ItemInicialForm inv = new ItemInicialForm();
+            ItemInicialForm inv = new ItemInicialForm(ANIO);
             inv.ShowDialog();
         }
 
@@ -173,25 +176,38 @@ namespace PrendaSAL.Operaciones
             }
         }
 
+
+
         private void BUSCAR(object sender, EventArgs e)
         {
+            string anio = Controles.InputBox("PERIODO ", "CONSULTAR INVENTARIO INICIAL");
+            if (anio != null && anio != string.Empty)
+            {
+                ANIO = Int32.Parse(anio);
+                INVENTARIO = dbInventario.getInvInicialByPeriodo(ANIO);
+                tblInventario.DataSource = INVENTARIO;
 
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
+            }
         }
+
+
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-
+            if (INVENTARIO != null)
+            {
+                HOME.Instance().exportDataGridViewToExcel("INVENTARIO INICIAL", tblInventario.Columns, INVENTARIO, "InventarioInicial");
+            }
         }
 
-        private void IMPRIMIR(object sender, EventArgs e)
-        {
-
-        }
 
         private void AYUDA(object sender, EventArgs e)
         {
 
         }
+
 
 
 

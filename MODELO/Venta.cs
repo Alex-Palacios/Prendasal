@@ -66,7 +66,6 @@ namespace MODELO
             ITEMS_VENTA.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
             ITEMS_VENTA.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
             ITEMS_VENTA.Columns.Add("MONTO").DataType = System.Type.GetType("System.Decimal");
-            ITEMS_VENTA.Columns.Add("COSTO").DataType = System.Type.GetType("System.Decimal");
             ITEMS_VENTA.Columns.Add("PRECIO").DataType = System.Type.GetType("System.Decimal");
         }
 

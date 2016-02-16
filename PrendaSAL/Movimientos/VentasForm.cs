@@ -406,7 +406,7 @@ namespace PrendaSAL.Movimientos
 
         public void addItemVenta(Existencia exist)
         {
-            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.COSTO,exist.PRECIO);
+            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
             calcularTotales();
         }
 

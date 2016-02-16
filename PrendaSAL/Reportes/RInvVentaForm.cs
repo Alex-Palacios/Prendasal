@@ -33,6 +33,7 @@ namespace PrendaSAL.Reportes
         private DBInventario dbInventario;
         private DBCatalogo dbCatalogo;
         private DataTable INVENTARIO;
+        private DataTable FILTRO;
         private Existencia SELECTED;
 
 
@@ -99,35 +100,59 @@ namespace PrendaSAL.Reportes
                 ((DataTable)cbxARTICULO.DataSource).Rows.InsertAt(R, 0);
                 cbxARTICULO.SelectedIndex = 0;
             }
-            rdbDETALLE.Checked = true;
+
+            cargarExistencias();
             
         }
 
 
-        private void rdbDETALLE_CheckedChanged(object sender, EventArgs e)
+
+        private void cargarExistencias()
         {
-            if (rdbDETALLE.Checked)
-            {
-                cbxSUCURSAL.Enabled = true;
-                cbxARTICULO.Enabled = true;
-                txtCODIGO.Text = string.Empty;
-                txtCODIGO.ReadOnly = true;
-            }
-
-
+            INVENTARIO = dbInventario.getExistenciasARTICULOS((string)cbxSUCURSAL.SelectedValue);
+            System.Media.SystemSounds.Exclamation.Play();
+            filtrarDatosExistencias();
         }
 
 
-        private void rdbCODIGO_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbCODIGO.Checked)
-            {
-                cbxSUCURSAL.Enabled = false;
-                cbxARTICULO.Enabled = false;
-                txtCODIGO.ReadOnly = false;
-            }
-        }
 
+        private void filtrarDatosExistencias()
+        {
+            DataRow[] filtros;
+            FILTRO = INVENTARIO.Copy();
+            if (FILTRO.Rows.Count > 0)
+            {
+                if (txtCODIGO.Text.Trim() != string.Empty)
+                {
+                    filtros = FILTRO.Select("CODIGO LIKE '" + txtCODIGO.Text.Trim() + "%'");
+                    if (filtros.Count() > 0)
+                    {
+                        FILTRO = filtros.CopyToDataTable();
+                    }
+                    else
+                    {
+                        FILTRO.Clear();
+                    }
+                }
+                if (cbxARTICULO.Text.Trim() != string.Empty && cbxARTICULO.Text.Trim() != "TODAS")
+                {
+                    filtros = FILTRO.Select("COD_ITEM LIKE '" + cbxARTICULO.Text.Trim() + "%'");
+                    if (filtros.Count() > 0)
+                    {
+                        FILTRO = filtros.CopyToDataTable();
+                    }
+                    else
+                    {
+                        FILTRO.Clear();
+                    }
+                }
+
+            }
+            tblINVENTARIO.DataSource = FILTRO;
+
+           
+           
+        }
 
 
 
@@ -135,36 +160,37 @@ namespace PrendaSAL.Reportes
 
         private void btnBUSCAR_Click(object sender, EventArgs e)
         {
-            if (rdbDETALLE.Checked)
+            //BUSCAR POR ARTICULO
+            if (cbxSUCURSAL.SelectedIndex >= 0 )
             {
-                //BUSCAR POR ARTICULO
-                if (cbxSUCURSAL.SelectedIndex >= 0 && cbxARTICULO.SelectedIndex >= 0)
-                {
-                    INVENTARIO = dbInventario.getExistenciasARTICULOS((string)cbxSUCURSAL.SelectedValue, (string)cbxARTICULO.Text);
-                    tblINVENTARIO.DataSource = INVENTARIO.Copy();
-                    System.Media.SystemSounds.Exclamation.Play();
-                }
-                else
-                {
-                    MessageBox.Show("SELECCIONE SUCURSAL Y CATEGORIA", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                txtCODIGO.Text = string.Empty;
+                cbxARTICULO.SelectedIndex = 0;
+
+                cargarExistencias();
             }
             else
             {
-                //BUSCAR POR CODIGO
-                if (txtCODIGO.Text.Trim() != string.Empty)
-                {
-                    INVENTARIO = dbInventario.getExistenciasARTICULOSbyCodigo(txtCODIGO.Text.Trim());
-                    tblINVENTARIO.DataSource = INVENTARIO.Copy();
-                    System.Media.SystemSounds.Exclamation.Play();
-                }
-                else
-                {
-                    MessageBox.Show("INGRESE CODIGO DE ARTICULOS A BUSCAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show("SELECCIONE SUCURSAL ", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
+
+
+        private void txtCODIGO_TextChanged(object sender, EventArgs e)
+        {
+            if (INVENTARIO != null)
+            {
+                filtrarDatosExistencias();
             }
         }
 
+        private void cbxARTICULO_TextChanged(object sender, EventArgs e)
+        {
+            if (INVENTARIO != null)
+            {
+                filtrarDatosExistencias();
+            }
+        }
 
 
 
@@ -201,7 +227,7 @@ namespace PrendaSAL.Reportes
             SELECTED = null;
             if (tblINVENTARIO.CurrentCell != null && tblINVENTARIO.SelectedRows.Count == 1)
             {
-                SELECTED = Existencia.ConvertToExistencia(INVENTARIO.Rows[tblINVENTARIO.CurrentCell.RowIndex]);
+                SELECTED = Existencia.ConvertToExistencia(FILTRO.Rows[tblINVENTARIO.CurrentCell.RowIndex]);
 
                 btnEditar.Enabled = true;
             }
@@ -235,9 +261,9 @@ namespace PrendaSAL.Reportes
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            if (INVENTARIO != null)
+            if (FILTRO != null)
             {
-                HOME.Instance().exportDataGridViewToExcel("REPORTE DE EXISTENCIA", tblINVENTARIO.Columns, INVENTARIO, "ReporteExistencias");
+                HOME.Instance().exportDataGridViewToExcel("REPORTE DE EXISTENCIA", tblINVENTARIO.Columns, FILTRO, "ReporteExistencias");
             }
         }
 

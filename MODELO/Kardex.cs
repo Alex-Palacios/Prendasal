@@ -18,6 +18,7 @@ namespace MODELO
         public string DESCRIPCION;
         public decimal ENTRADA;
         public decimal SALIDA;
+        public decimal COSTO;
         public decimal PRECIO;
 
 

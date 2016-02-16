@@ -53,7 +53,15 @@
             this.txtASESOR_RM = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tblREMISION = new System.Windows.Forms.DataGridView();
+            this.OK_RM = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pagCUSTODIA = new System.Windows.Forms.TabPage();
+            this.ckALLCVC = new System.Windows.Forms.CheckBox();
+            this.ckALLCVP = new System.Windows.Forms.CheckBox();
             this.btnRECIBIR_CUSTODIA = new System.Windows.Forms.Button();
             this.lbESTADO_CV = new System.Windows.Forms.Label();
             this.txtNOTA_CV = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -74,19 +82,11 @@
             this.txtASESOR_CV = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tblCUSTODIA_COMPRAS = new System.Windows.Forms.DataGridView();
-            this.tblCUSTODIA_PRESTAMOS = new System.Windows.Forms.DataGridView();
-            this.OK_RM = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ckALLCVP = new System.Windows.Forms.CheckBox();
-            this.ckALLCVC = new System.Windows.Forms.CheckBox();
             this.OK_CVC = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CODIGO_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CATEGORIA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NIVEL_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCUSTODIA_PRESTAMOS = new System.Windows.Forms.DataGridView();
             this.OK_CVP = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CODIGO_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CATEGORIA_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -394,6 +394,58 @@
             this.tblREMISION.Size = new System.Drawing.Size(801, 189);
             this.tblREMISION.TabIndex = 121;
             // 
+            // OK_RM
+            // 
+            this.OK_RM.DataPropertyName = "RECIBIDO";
+            this.OK_RM.HeaderText = "R";
+            this.OK_RM.Name = "OK_RM";
+            this.OK_RM.Width = 30;
+            // 
+            // CODIGO
+            // 
+            this.CODIGO.DataPropertyName = "CODIGO";
+            this.CODIGO.HeaderText = "CODIGO";
+            this.CODIGO.Name = "CODIGO";
+            this.CODIGO.ReadOnly = true;
+            this.CODIGO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CODIGO.Width = 150;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.DataPropertyName = "CANTIDAD";
+            this.CANTIDAD.HeaderText = "CANTIDAD";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CANTIDAD.Width = 70;
+            // 
+            // COD_ITEM
+            // 
+            this.COD_ITEM.DataPropertyName = "COD_ITEM";
+            this.COD_ITEM.HeaderText = "ARTICULO";
+            this.COD_ITEM.Name = "COD_ITEM";
+            this.COD_ITEM.ReadOnly = true;
+            this.COD_ITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.COD_ITEM.Width = 80;
+            // 
+            // DESCRIPCION
+            // 
+            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
+            this.DESCRIPCION.HeaderText = "DETALLE";
+            this.DESCRIPCION.Name = "DESCRIPCION";
+            this.DESCRIPCION.ReadOnly = true;
+            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DESCRIPCION.Width = 350;
+            // 
+            // PRECIO
+            // 
+            this.PRECIO.DataPropertyName = "PRECIO";
+            this.PRECIO.HeaderText = "PRECIO";
+            this.PRECIO.Name = "PRECIO";
+            this.PRECIO.ReadOnly = true;
+            this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PRECIO.Width = 80;
+            // 
             // pagCUSTODIA
             // 
             this.pagCUSTODIA.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -411,6 +463,26 @@
             this.pagCUSTODIA.Size = new System.Drawing.Size(842, 496);
             this.pagCUSTODIA.TabIndex = 0;
             this.pagCUSTODIA.Text = "CUSTODIA DE VALORES";
+            // 
+            // ckALLCVC
+            // 
+            this.ckALLCVC.AutoSize = true;
+            this.ckALLCVC.Location = new System.Drawing.Point(405, 208);
+            this.ckALLCVC.Name = "ckALLCVC";
+            this.ckALLCVC.Size = new System.Drawing.Size(15, 14);
+            this.ckALLCVC.TabIndex = 156;
+            this.ckALLCVC.UseVisualStyleBackColor = true;
+            this.ckALLCVC.CheckedChanged += new System.EventHandler(this.ckALLCVC_CheckedChanged);
+            // 
+            // ckALLCVP
+            // 
+            this.ckALLCVP.AutoSize = true;
+            this.ckALLCVP.Location = new System.Drawing.Point(13, 208);
+            this.ckALLCVP.Name = "ckALLCVP";
+            this.ckALLCVP.Size = new System.Drawing.Size(15, 14);
+            this.ckALLCVP.TabIndex = 155;
+            this.ckALLCVP.UseVisualStyleBackColor = true;
+            this.ckALLCVP.CheckedChanged += new System.EventHandler(this.ckALLCVP_CheckedChanged);
             // 
             // btnRECIBIR_CUSTODIA
             // 
@@ -639,96 +711,6 @@
             this.tblCUSTODIA_COMPRAS.Size = new System.Drawing.Size(394, 214);
             this.tblCUSTODIA_COMPRAS.TabIndex = 123;
             // 
-            // tblCUSTODIA_PRESTAMOS
-            // 
-            this.tblCUSTODIA_PRESTAMOS.AllowUserToAddRows = false;
-            this.tblCUSTODIA_PRESTAMOS.AllowUserToDeleteRows = false;
-            this.tblCUSTODIA_PRESTAMOS.BackgroundColor = System.Drawing.Color.LightSeaGreen;
-            this.tblCUSTODIA_PRESTAMOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCUSTODIA_PRESTAMOS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OK_CVP,
-            this.CODIGO_PRESTAMO,
-            this.CATEGORIA_PRESTAMO});
-            this.tblCUSTODIA_PRESTAMOS.Location = new System.Drawing.Point(6, 203);
-            this.tblCUSTODIA_PRESTAMOS.Name = "tblCUSTODIA_PRESTAMOS";
-            this.tblCUSTODIA_PRESTAMOS.ReadOnly = true;
-            this.tblCUSTODIA_PRESTAMOS.RowHeadersVisible = false;
-            this.tblCUSTODIA_PRESTAMOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblCUSTODIA_PRESTAMOS.Size = new System.Drawing.Size(291, 214);
-            this.tblCUSTODIA_PRESTAMOS.TabIndex = 122;
-            // 
-            // OK_RM
-            // 
-            this.OK_RM.DataPropertyName = "RECIBIDO";
-            this.OK_RM.HeaderText = "R";
-            this.OK_RM.Name = "OK_RM";
-            this.OK_RM.Width = 30;
-            // 
-            // CODIGO
-            // 
-            this.CODIGO.DataPropertyName = "CODIGO";
-            this.CODIGO.HeaderText = "CODIGO";
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CODIGO.Width = 150;
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.DataPropertyName = "CANTIDAD";
-            this.CANTIDAD.HeaderText = "CANTIDAD";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CANTIDAD.Width = 70;
-            // 
-            // COD_ITEM
-            // 
-            this.COD_ITEM.DataPropertyName = "COD_ITEM";
-            this.COD_ITEM.HeaderText = "ARTICULO";
-            this.COD_ITEM.Name = "COD_ITEM";
-            this.COD_ITEM.ReadOnly = true;
-            this.COD_ITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.COD_ITEM.Width = 80;
-            // 
-            // DESCRIPCION
-            // 
-            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
-            this.DESCRIPCION.HeaderText = "DETALLE";
-            this.DESCRIPCION.Name = "DESCRIPCION";
-            this.DESCRIPCION.ReadOnly = true;
-            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DESCRIPCION.Width = 350;
-            // 
-            // PRECIO
-            // 
-            this.PRECIO.DataPropertyName = "PRECIO";
-            this.PRECIO.HeaderText = "PRECIO";
-            this.PRECIO.Name = "PRECIO";
-            this.PRECIO.ReadOnly = true;
-            this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PRECIO.Width = 80;
-            // 
-            // ckALLCVP
-            // 
-            this.ckALLCVP.AutoSize = true;
-            this.ckALLCVP.Location = new System.Drawing.Point(13, 208);
-            this.ckALLCVP.Name = "ckALLCVP";
-            this.ckALLCVP.Size = new System.Drawing.Size(15, 14);
-            this.ckALLCVP.TabIndex = 155;
-            this.ckALLCVP.UseVisualStyleBackColor = true;
-            this.ckALLCVP.CheckedChanged += new System.EventHandler(this.ckALLCVP_CheckedChanged);
-            // 
-            // ckALLCVC
-            // 
-            this.ckALLCVC.AutoSize = true;
-            this.ckALLCVC.Location = new System.Drawing.Point(405, 208);
-            this.ckALLCVC.Name = "ckALLCVC";
-            this.ckALLCVC.Size = new System.Drawing.Size(15, 14);
-            this.ckALLCVC.TabIndex = 156;
-            this.ckALLCVC.UseVisualStyleBackColor = true;
-            this.ckALLCVC.CheckedChanged += new System.EventHandler(this.ckALLCVC_CheckedChanged);
-            // 
             // OK_CVC
             // 
             this.OK_CVC.DataPropertyName = "RECIBIDO";
@@ -765,12 +747,28 @@
             this.NIVEL_COMPRA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.NIVEL_COMPRA.Width = 80;
             // 
+            // tblCUSTODIA_PRESTAMOS
+            // 
+            this.tblCUSTODIA_PRESTAMOS.AllowUserToAddRows = false;
+            this.tblCUSTODIA_PRESTAMOS.AllowUserToDeleteRows = false;
+            this.tblCUSTODIA_PRESTAMOS.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.tblCUSTODIA_PRESTAMOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCUSTODIA_PRESTAMOS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OK_CVP,
+            this.CODIGO_PRESTAMO,
+            this.CATEGORIA_PRESTAMO});
+            this.tblCUSTODIA_PRESTAMOS.Location = new System.Drawing.Point(6, 203);
+            this.tblCUSTODIA_PRESTAMOS.Name = "tblCUSTODIA_PRESTAMOS";
+            this.tblCUSTODIA_PRESTAMOS.RowHeadersVisible = false;
+            this.tblCUSTODIA_PRESTAMOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblCUSTODIA_PRESTAMOS.Size = new System.Drawing.Size(291, 214);
+            this.tblCUSTODIA_PRESTAMOS.TabIndex = 122;
+            // 
             // OK_CVP
             // 
             this.OK_CVP.DataPropertyName = "RECIBIDO";
             this.OK_CVP.HeaderText = "R";
             this.OK_CVP.Name = "OK_CVP";
-            this.OK_CVP.ReadOnly = true;
             this.OK_CVP.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.OK_CVP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.OK_CVP.Width = 30;
@@ -780,7 +778,6 @@
             this.CODIGO_PRESTAMO.DataPropertyName = "CODIGO";
             this.CODIGO_PRESTAMO.HeaderText = "CONTRATO";
             this.CODIGO_PRESTAMO.Name = "CODIGO_PRESTAMO";
-            this.CODIGO_PRESTAMO.ReadOnly = true;
             this.CODIGO_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CODIGO_PRESTAMO.Width = 80;
             // 
@@ -789,7 +786,6 @@
             this.CATEGORIA_PRESTAMO.DataPropertyName = "COD_ITEM";
             this.CATEGORIA_PRESTAMO.HeaderText = "CATEGORIA";
             this.CATEGORIA_PRESTAMO.Name = "CATEGORIA_PRESTAMO";
-            this.CATEGORIA_PRESTAMO.ReadOnly = true;
             this.CATEGORIA_PRESTAMO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CATEGORIA_PRESTAMO.Width = 80;
             // 

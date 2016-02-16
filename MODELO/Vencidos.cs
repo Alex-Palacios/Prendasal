@@ -15,10 +15,13 @@ namespace MODELO
     {
         public int ID_VENC;
         public string COD_SUC;
-        public string COD_TRANS;
-        public DateTime FECHA;
+        public string TRANS_APERTURA;
+        public DateTime FECHA_APERTURA;
         public string DOCUMENTO;
+        public string TRANS_CIERRE;
+        public DateTime? FECHA_CIERRE;
         public eEstado ESTADO;
+        
         public bool INIT_BALANCE;
         public string NOTA;
 
@@ -26,11 +29,15 @@ namespace MODELO
         public DataTable CONTRATOS_VENCIDOS;
         public DataTable KPM;
 
-        public string RESPONSABLE;
+        public eEstadoListaVenc ESTADO_LISTA;
+
+        public string RESPONSABLE_APERTURA;
+        public string RESPONSABLE_CIERRE;
 
         //calculados
-        public Int64 VENCIDOS;
-        public Int64 REACTIVADOS;
+        public int VENCIDOS;
+        public int REACTIVADOS;
+        public decimal TOTAL;
 
         public Vencidos()
         {
@@ -48,17 +55,22 @@ namespace MODELO
                 venc = new Vencidos();
                 if (dr.Table.Columns.Contains("ID_VENC")) { venc.ID_VENC = dr.Field<int>("ID_VENC"); }
                 if (dr.Table.Columns.Contains("COD_SUC")) { venc.COD_SUC = dr.Field<string>("COD_SUC"); }
-                if (dr.Table.Columns.Contains("COD_TRANS")) { venc.COD_TRANS = dr.Field<string>("COD_TRANS"); }
-                if (dr.Table.Columns.Contains("FECHA")) { venc.FECHA = dr.Field<DateTime>("FECHA"); }
+                if (dr.Table.Columns.Contains("TRANS_APERTURA")) { venc.TRANS_APERTURA = dr.Field<string>("TRANS_APERTURA"); }
+                if (dr.Table.Columns.Contains("FECHA_APERTURA")) { venc.FECHA_APERTURA = dr.Field<DateTime>("FECHA_APERTURA"); }
                 if (dr.Table.Columns.Contains("DOCUMENTO")) { venc.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
+                if (dr.Table.Columns.Contains("TRANS_CIERRE")) { venc.TRANS_CIERRE = dr.Field<string>("TRANS_CIERRE"); }
+                if (dr.Table.Columns.Contains("FECHA_CIERRE")) { venc.FECHA_CIERRE = dr.Field<DateTime?>("FECHA_CIERRE"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { venc.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { venc.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }
                 if (dr.Table.Columns.Contains("NOTA")) { venc.NOTA = dr.Field<string>("NOTA"); }
 
-                if (dr.Table.Columns.Contains("RESPONSABLE")) { venc.RESPONSABLE = dr.Field<string>("RESPONSABLE"); }
-                if (dr.Table.Columns.Contains("VENCIDOS")) { venc.VENCIDOS = dr.Field<Int64>("VENCIDOS"); }
-                if (dr.Table.Columns.Contains("REACTIVADOS")) { venc.REACTIVADOS = dr.Field<Int64>("REACTIVADOS"); }
-                
+                if (dr.Table.Columns.Contains("RESPONSABLE_APERTURA")) { venc.RESPONSABLE_APERTURA = dr.Field<string>("RESPONSABLE_APERTURA"); }
+                if (dr.Table.Columns.Contains("RESPONSABLE_CIERRE")) { venc.RESPONSABLE_CIERRE = dr.Field<string>("RESPONSABLE_CIERRE"); }
+                if (dr.Table.Columns.Contains("VENCIDOS")) { venc.VENCIDOS = Int32.Parse(dr.Field<object>("VENCIDOS").ToString()); }
+                if (dr.Table.Columns.Contains("REACTIVADOS")) { venc.REACTIVADOS = Int32.Parse(dr.Field<object>("REACTIVADOS").ToString()); }
+                if (dr.Table.Columns.Contains("TOTAL")) { venc.TOTAL = dr.Field<decimal>("TOTAL"); }
+
+                if (dr.Table.Columns.Contains("ESTADO_LISTA")) { venc.ESTADO_LISTA = (eEstadoListaVenc)Enum.Parse(typeof(eEstadoListaVenc), dr.Field<string>("ESTADO_LISTA")); }
 
             }
             return venc;
@@ -73,14 +85,6 @@ namespace MODELO
             return copy;
         }
 
-
-        public Int64 TOTAL
-        {
-            get
-            {
-                return (this.VENCIDOS + this.REACTIVADOS);
-            }
-        }
 
     }
 }

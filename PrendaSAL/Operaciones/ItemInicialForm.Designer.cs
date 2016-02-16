@@ -49,6 +49,8 @@
             this.txtCATEGORIA = new System.Windows.Forms.TextBox();
             this.txtNOTA = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtPERIODO = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -255,6 +257,25 @@
             this.label9.TabIndex = 117;
             this.label9.Text = "NOTA";
             // 
+            // txtPERIODO
+            // 
+            this.txtPERIODO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPERIODO.Location = new System.Drawing.Point(392, 55);
+            this.txtPERIODO.MaxLength = 25;
+            this.txtPERIODO.Name = "txtPERIODO";
+            this.txtPERIODO.Size = new System.Drawing.Size(109, 20);
+            this.txtPERIODO.TabIndex = 120;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(416, 35);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 13);
+            this.label10.TabIndex = 119;
+            this.label10.Text = "PERIODO";
+            // 
             // ItemInicialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -262,7 +283,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(554, 402);
+            this.ClientSize = new System.Drawing.Size(526, 402);
+            this.Controls.Add(this.txtPERIODO);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txtNOTA);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtCATEGORIA);
@@ -319,5 +342,7 @@
         private System.Windows.Forms.TextBox txtCATEGORIA;
         private System.Windows.Forms.TextBox txtNOTA;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPERIODO;
+        private System.Windows.Forms.Label label10;
     }
 }

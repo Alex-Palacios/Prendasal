@@ -36,6 +36,8 @@ namespace DDB
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                MySqlParameter periodo_inv = cmd.Parameters.Add("periodo_inv", MySqlDbType.Int32);
+                periodo_inv.Direction = ParameterDirection.Input;
                 MySqlParameter bodega_inv = cmd.Parameters.Add("bodega_inv", MySqlDbType.VarChar, 2);
                 bodega_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cod_inv = cmd.Parameters.Add("cod_inv", MySqlDbType.VarChar, 50);
@@ -60,8 +62,8 @@ namespace DDB
                 MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
                 sys.Direction = ParameterDirection.Input;
 
-
-                bodega_inv.Value = inv.COD_SUC;
+                periodo_inv.Value = inv.PERIODO;
+                bodega_inv.Value = inv.BODEGA;
                 cod_inv.Value = inv.CODIGO;
                 item_inv.Value = inv.COD_ITEM;
                 descrip_inv.Value = inv.DESCRIPCION;
@@ -84,6 +86,8 @@ namespace DDB
             }
             return OK;
         }
+
+
 
         public bool updateInit(InvInicial inv, string sucursal, string empleado, string sistema)
         {
@@ -122,7 +126,7 @@ namespace DDB
                 sys.Direction = ParameterDirection.Input;
 
                 idmov.Value = inv.ID_MOV;
-                bodega_inv.Value = inv.COD_SUC;
+                bodega_inv.Value = inv.BODEGA;
                 cod_inv.Value = inv.CODIGO;
                 item_inv.Value = inv.COD_ITEM;
                 descrip_inv.Value = inv.DESCRIPCION;
@@ -193,15 +197,18 @@ namespace DDB
 
 
 
-        public DataTable getInvInicial()
+        public DataTable getInvInicialByPeriodo(int periodo)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_inv_inicial;";
+                string sql = "SELECT * FROM prendasal.view_inv_inicial WHERE PERIODO = @anio;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.Int32);
+                anio.Direction = ParameterDirection.Input;
+                anio.Value = periodo;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -212,7 +219,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR INVENTARIO INICIAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR INVENTARIO INICIAL " + periodo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -291,53 +298,25 @@ namespace DDB
 
 
 
-        public DataTable getExistenciasORO()
+
+
+
+
+
+        public DataTable getExistenciasARTICULOS(string sucursal)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_inv_oro;";
+                string sql = "prendasal.RPT_EXISTENCIAS_ARTICULOS;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ORO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
+                MySqlParameter suc_exis = cmd.Parameters.Add("suc_exis", MySqlDbType.VarChar, 2);
+                suc_exis.Direction = ParameterDirection.Input;
 
-
-
-        
-        public DataTable getExistenciasARTICULOSbySuc(string sucursal)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = string.Empty;
-                if(sucursal == "00"){
-                    sql = "SELECT * FROM prendasal.view_inv_articulos;";
-                }
-                else
-                {
-                    sql = "SELECT * FROM prendasal.view_inv_articulos WHERE BODEGA = @suc";
-                }
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-
-                suc.Value = sucursal;
+                suc_exis.Value = sucursal;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -352,88 +331,6 @@ namespace DDB
             }
             return datos;
         }
-
-
-
-
-
-
-
-
-        public DataTable getExistenciasARTICULOS(string sucursal,string articulo)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM prendasal.view_inv_articulos WHERE 1=1 ";
-                if (sucursal != "00")
-                {
-                    sql = sql + "AND BODEGA = @suc ";
-                }
-                if (articulo != "TODAS")
-                {
-                    sql = sql + "AND COD_ITEM LIKE @item ";
-                }
-                sql = sql + "ORDER BY CODIGO;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
-                suc.Direction = ParameterDirection.Input;
-                MySqlParameter item = cmd.Parameters.Add("item", MySqlDbType.VarChar, 20);
-                item.Direction = ParameterDirection.Input;
-
-                suc.Value = sucursal;
-                item.Value = articulo;
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ARTICULOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
-
-
-
-
-
-        public DataTable getExistenciasARTICULOSbyCodigo(string codigo)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM prendasal.view_inv_articulos WHERE CODIGO LIKE @cod";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.Text;
-                MySqlParameter cod = cmd.Parameters.Add("cod", MySqlDbType.VarChar, 25);
-                cod.Direction = ParameterDirection.Input;
-
-                cod.Value = codigo+"%";
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ARTICULOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
-
-
-
 
 
 

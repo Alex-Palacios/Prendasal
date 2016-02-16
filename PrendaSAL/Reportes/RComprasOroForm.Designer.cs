@@ -109,6 +109,7 @@
             // 
             // cbxMESES
             // 
+            this.cbxMESES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMESES.FormattingEnabled = true;
             this.cbxMESES.Location = new System.Drawing.Point(932, 220);
             this.cbxMESES.Name = "cbxMESES";

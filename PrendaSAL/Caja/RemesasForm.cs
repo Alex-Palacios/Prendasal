@@ -83,7 +83,7 @@ namespace PrendaSAL.Caja
 
         public void cargarHistoryRemesa()
         {
-            REMESAS = dbRemesa.getRemesasBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year);
+            REMESAS = dbRemesa.getRemesasBySucAnioMes(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year.ToString(), HOME.Instance().FECHA_SISTEMA.Month.ToString(), "00");
             tblRemesas.DataSource = REMESAS;
             calcularTotales();
         }
@@ -299,15 +299,15 @@ namespace PrendaSAL.Caja
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            int anio = 0;
-            string anioString = Controles.InputBox("AÑO", "CONSULTAR REMESAS");
-            if (anioString != string.Empty && Int32.TryParse(anioString, out anio))
+            List<string> AMS = Controles.InputComboBoxAMS("BUSCAR POR", HOME.Instance().datSUCURSALES.Copy());
+            if (AMS != null && AMS.Count == 3)
             {
-                REMESAS = dbRemesa.getRemesasBySucAnio(HOME.Instance().SUCURSAL.COD_SUC, anio);
+                REMESAS = dbRemesa.getRemesasBySucAnioMes(HOME.Instance().SUCURSAL.COD_SUC,AMS[0],AMS[1],AMS[2]);
                 tblRemesas.DataSource = REMESAS;
                 calcularTotales();
             }
         }
+
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {

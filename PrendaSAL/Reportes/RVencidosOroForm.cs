@@ -70,10 +70,11 @@ namespace PrendaSAL.Reportes
                 DataRow R = LISTAS.NewRow();
                 R.SetField<int>("ID_VENC", 0);
                 R.SetField<string>("COD_SUC", "00");
-                R.SetField<string>("COD_TRANS", "00000000");
-                R.SetField<DateTime>("FECHA", DateTime.Today);
+                R.SetField<string>("TRANS_APERTURA", "00000000");
+                R.SetField<DateTime>("FECHA_APERTURA", DateTime.Today);
                 R.SetField<string>("DOCUMENTO", "TODAS");
                 R.SetField<int>("ESTADO", 0);
+                R.SetField<string>("ESTADO_LISTA", "CERRADA");
                 R.SetField<bool>("INIT_BALANCE",false);
                 LISTAS.Rows.InsertAt(R, 0);
             }

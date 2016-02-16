@@ -130,7 +130,7 @@
             this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(23, 22);
-            this.btnBuscar.Text = "toolStripButton1";
+            this.btnBuscar.Text = "Buscar";
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnExportExcel
@@ -140,7 +140,7 @@
             this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
-            this.btnExportExcel.Text = "toolStripButton1";
+            this.btnExportExcel.Text = "Exportar";
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnLog

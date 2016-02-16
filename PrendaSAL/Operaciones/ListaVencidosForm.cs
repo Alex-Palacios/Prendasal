@@ -84,7 +84,7 @@ namespace PrendaSAL.Operaciones
             }
             else
             {
-                cbxSUCURSAL.Enabled = true;
+                cbxSUCURSAL.Enabled = false;
             }
         }
 
@@ -117,11 +117,20 @@ namespace PrendaSAL.Operaciones
 
         public void desbloquear()
         {
+            if (HOME.Instance().USUARIO.TIPO != eTipoUsuario.ASESOR)
+            {
+                cbxSUCURSAL.Enabled = true;
+            }
+            else
+            {
+                cbxSUCURSAL.Enabled = false;
+            }
             txtNOTA.ReadOnly = false;
         }
 
         public void bloquear()
         {
+            cbxSUCURSAL.Enabled = false;
             txtNOTA.ReadOnly = true;
         }
 
@@ -130,10 +139,13 @@ namespace PrendaSAL.Operaciones
         public void limpiarDatosListaVencidos()
         {
             cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
-            dateVencidos.Value = HOME.Instance().FECHA_SISTEMA;
+            dateApertura.Value = HOME.Instance().FECHA_SISTEMA;
+            dateCierre.Value = HOME.Instance().FECHA_SISTEMA;
             txtDOCUMENTO.Text = string.Empty;
-            txtResponsable.Text = string.Empty;
+            txtRespoApertura.Text = string.Empty;
+            txtRespoCierre.Text = string.Empty;
             txtNOTA.Text = string.Empty;
+            lbESTADO.Text = string.Empty;
 
             tblCONTRATOS.DataSource = null;
             tblKPM.DataSource = null;
@@ -151,17 +163,20 @@ namespace PrendaSAL.Operaciones
             LISTA = new Vencidos();
             LISTA.COD_SUC = (string)cbxSUCURSAL.SelectedValue;
             LISTA.DOCUMENTO = dbVencidos.nextListaVencidos(LISTA.COD_SUC);
-            LISTA.FECHA = HOME.Instance().FECHA_SISTEMA;
-            LISTA.RESPONSABLE = HOME.Instance().USUARIO.NOMBRE;
+            LISTA.FECHA_APERTURA = HOME.Instance().FECHA_SISTEMA;
+            LISTA.RESPONSABLE_APERTURA = HOME.Instance().USUARIO.NOMBRE;
             LISTA.NOTA = string.Empty;
-
+            LISTA.ESTADO_LISTA = eEstadoListaVenc.ABIERTA;
+           
             cargarListaVencido();
+
 
             btnGuardar.Enabled = true;
             btnCancelar.Enabled = true;
             btnEliminar.Enabled = false;
             btnLog.Enabled = false;
             btnReimprimir.Enabled = false;
+            btnCerrar.Enabled = false;
 
             numDIAS.Enabled = true;
             cbxCategorias.Enabled = true;
@@ -192,16 +207,45 @@ namespace PrendaSAL.Operaciones
             if (LISTA != null)
             {
                 txtDOCUMENTO.Text = LISTA.DOCUMENTO;
-                dateVencidos.Value = LISTA.FECHA;
+                dateApertura.Value = LISTA.FECHA_APERTURA;
                 cbxSUCURSAL.SelectedValue = LISTA.COD_SUC;
-                txtResponsable.Text = LISTA.RESPONSABLE;
+                txtRespoApertura.Text = LISTA.RESPONSABLE_APERTURA;
                 txtNOTA.Text = LISTA.NOTA;
                 tblCONTRATOS.DataSource = LISTA.CONTRATOS_VENCIDOS;
                 tblKPM.DataSource = LISTA.KPM;
+                if (LISTA.FECHA_CIERRE != null)
+                {
+                    dateCierre.Value = LISTA.FECHA_CIERRE.Value;
+                    dateCierre.Visible = true;
+                }
+                else
+                {
+                    dateCierre.Visible = false;
+                }
+                if (LISTA.RESPONSABLE_CIERRE != null)
+                {
+                    txtRespoCierre.Text = LISTA.RESPONSABLE_CIERRE;
+                    txtRespoCierre.Visible = true;
+                }
+                else
+                {
+                    txtRespoCierre.Visible = false;
+                }
+
+                switch (LISTA.ESTADO_LISTA)
+                {
+                    case eEstadoListaVenc.ABIERTA:
+                        lbESTADO.ForeColor = Color.Blue;
+                        break;
+                    case eEstadoListaVenc.CERRADA:
+                        lbESTADO.ForeColor = Color.Red;
+                        break;
+                }
+                lbESTADO.Text = LISTA.ESTADO_LISTA.ToString();
                 
                 lbCONTRATOS.Text = LISTA.VENCIDOS + " VENCIDOS";
                 lbREACTIVADOS.Text = LISTA.REACTIVADOS + " REACTIVADOS";
-                lbTOTAL.Text = LISTA.TOTAL + " CONTRATOS";
+                lbTOTAL.Text = (LISTA.VENCIDOS + LISTA.REACTIVADOS)+ " CONTRATOS";
                 
             }
             else
@@ -258,6 +302,7 @@ namespace PrendaSAL.Operaciones
 
         private void GUARDAR(object sender, EventArgs e)
         {
+            LISTA.NOTA = txtNOTA.Text;
             switch (ACCION)
             {
                 case eOperacion.INSERT:
@@ -268,7 +313,10 @@ namespace PrendaSAL.Operaciones
                         {
                             if (dbVencidos.insert(LISTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
                             {
-                                SELECTED = Vencidos.ConvertToVencidos(dbVencidos.getListaVencByDoc(LISTA.DOCUMENTO));
+                                if (buscarListaVencidos(LISTA.DOCUMENTO))
+                                {
+                                    cargarListaVencido();
+                                }
                                 
                             }
                         }
@@ -305,6 +353,36 @@ namespace PrendaSAL.Operaciones
 
 
 
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            if (LISTA != null && LISTA.ESTADO_LISTA == eEstadoListaVenc.ABIERTA)
+            {
+                DialogResult cerrar = MessageBox.Show("¿Está seguro que desea CERRAR La Lista de Vencidos # " + LISTA.DOCUMENTO + " aperturada el: " + SELECTED.FECHA_APERTURA.Date.ToString("dd/MM/yyyy") + " ? \n\n TENGA EN CUENTA QUE YA NO SE PERMITIRA REACTIVAR CONTRATOS DE ESTA LISTA", "CIERRE DEFINITIVO DE LISTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (cerrar == DialogResult.Yes)
+                {
+                    string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
+                    if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
+                    {
+                        LISTA.FECHA_CIERRE = HOME.Instance().FECHA_SISTEMA;
+                        if (dbVencidos.CERRAR_LISTA(LISTA, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            if (buscarListaVencidos(LISTA.DOCUMENTO))
+                            {
+                                cargarListaVencido();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("CODIGO DE AUTORIZACION INVALIDO", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("LISTA YA SE ESTA CERRADA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
 
 
 
@@ -314,7 +392,7 @@ namespace PrendaSAL.Operaciones
             if (SELECTED != null)
             {
                 ACCION = eOperacion.DELETE;
-                DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar el Cierre # " + SELECTED.DOCUMENTO + " realizado el: " + SELECTED.FECHA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR LISTA DE VENCIDO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult eliminar = MessageBox.Show("¿Está seguro que desea eliminar la Lista # " + SELECTED.DOCUMENTO + " aperturada el: " + SELECTED.FECHA_APERTURA.Date.ToString("dd/MM/yyyy") + " ?", "ELIMINAR LISTA DE VENCIDO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (eliminar == DialogResult.Yes)
                 {
                     string autorizacion = Controles.InputBoxPassword("CODIGO", "CODIGO DE AUTORIZACION");
@@ -344,8 +422,9 @@ namespace PrendaSAL.Operaciones
             {
                 if (buscarListaVencidos(numLIST))
                 {
-                    
+
                     MessageBox.Show("LISTA DE VENCIDOS CARGADA", "ENCONTRADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
                     numDIAS.Enabled = false;
                     cbxCategorias.Enabled = false;
@@ -379,6 +458,7 @@ namespace PrendaSAL.Operaciones
                 btnEliminar.Enabled = true;
                 btnLog.Enabled = true;
                 btnReimprimir.Enabled = true;
+                btnCerrar.Enabled = true;
             }
             else
             {
@@ -413,15 +493,25 @@ namespace PrendaSAL.Operaciones
                     }
                     bsKPM.DataSource = dSKPM.KPM;
 
-                    ReportParameter[] parameters = new ReportParameter[8];
+                    ReportParameter[] parameters = new ReportParameter[11];
                     parameters[0] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
                     parameters[1] = new ReportParameter("docVenc", SELECTED.DOCUMENTO);
-                    parameters[2] = new ReportParameter("fechaVenc", SELECTED.FECHA.ToString("dd/MM/yyyy"));
-                    parameters[3] = new ReportParameter("responsable", SELECTED.RESPONSABLE);
-                    parameters[4] = new ReportParameter("VENCIDOS", SELECTED.VENCIDOS.ToString());
-                    parameters[5] = new ReportParameter("REACTIVADOS", SELECTED.REACTIVADOS.ToString());
-                    parameters[6] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString());
-                    parameters[7] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
+                    parameters[2] = new ReportParameter("fechaApertura", SELECTED.FECHA_APERTURA.ToShortDateString());
+                    parameters[3] = new ReportParameter("responsableApertura", SELECTED.RESPONSABLE_APERTURA);
+                    if (SELECTED.FECHA_CIERRE != null)
+                    {
+                        parameters[4] = new ReportParameter("fechaCierre", SELECTED.FECHA_CIERRE.Value.ToShortDateString());
+                    }
+                    else
+                    {
+                        parameters[4] = new ReportParameter("fechaCierre", "");
+                    }
+                    parameters[5] = new ReportParameter("responsableCierre", SELECTED.RESPONSABLE_CIERRE);
+                    parameters[6] = new ReportParameter("Estado", SELECTED.ESTADO_LISTA.ToString());
+                    parameters[7] = new ReportParameter("VENCIDOS", SELECTED.VENCIDOS.ToString());
+                    parameters[8] = new ReportParameter("REACTIVADOS", SELECTED.REACTIVADOS.ToString());
+                    parameters[9] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString());
+                    parameters[10] = new ReportParameter("FechaImp", "Impresion: " + HOME.Instance().FECHA_SISTEMA.ToString("dd/MM/yyyy"));
                     viewerLISTAVENC.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.ListaVencidos.rdlc";
                     viewerLISTAVENC.LocalReport.DataSources.Clear();
                     viewerLISTAVENC.LocalReport.DataSources.Add(new ReportDataSource("CONTRATOS", bsListaVenc));
@@ -461,6 +551,7 @@ namespace PrendaSAL.Operaciones
         {
 
         }
+
 
 
     }
