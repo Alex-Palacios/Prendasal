@@ -134,7 +134,7 @@ namespace MODELO
         {
             get
             {
-                return Decimal.Round(this.INTERES - (this.INTERES*100/(100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+                return Decimal.Round(this.INTERES - (this.INTERES/(1 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -142,7 +142,7 @@ namespace MODELO
         {
             get
             {
-                return Decimal.Round(this.DESCUENTO - (this.DESCUENTO*100/(100 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
+                return Decimal.Round(this.DESCUENTO - (this.DESCUENTO/(1 + Properties.Settings.Default.IVA)), 2, MidpointRounding.AwayFromZero);
             }
         }
 
