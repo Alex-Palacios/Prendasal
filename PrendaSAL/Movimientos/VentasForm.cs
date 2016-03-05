@@ -173,7 +173,7 @@ namespace PrendaSAL.Movimientos
             VENTA.NIVEL = eNIVEL.PRENDASAL;
             VENTA.TIPO = eTipoVenta.CONTADO;
             VENTA.TIPO_PAGO = eTipoPago.EFECTIVO;
-            VENTA.CATEGORIA = eCategoria.ARTICULO;
+            VENTA.CATEGORIA = "ARTICULO";
             cargarDatosCliente(null);
             cargarDatosVenta();
             desbloquear();
@@ -406,7 +406,7 @@ namespace PrendaSAL.Movimientos
 
         public void addItemVenta(Existencia exist)
         {
-            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA.ToString(),exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
+            VENTA.ITEMS_VENTA.Rows.Add(exist.CATEGORIA,exist.CODIGO,exist.COD_ITEM,exist.CANTIDAD,exist.DESCRIPCION,exist.PRECIO,exist.PRECIO);
             calcularTotales();
         }
 

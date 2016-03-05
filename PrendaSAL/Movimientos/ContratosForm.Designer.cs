@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -88,13 +88,8 @@
             this.txtNOTA = new System.Windows.Forms.RichTextBox();
             this.grbDETALLE = new System.Windows.Forms.GroupBox();
             this.tblITEMS = new System.Windows.Forms.DataGridView();
-            this.COD_ITEM = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxCategorias = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnDEL = new System.Windows.Forms.Button();
             this.btnADD = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtINTERES_DIARIO = new System.Windows.Forms.TextBox();
@@ -110,6 +105,13 @@
             this.dSKITCO = new PrendaSAL.Informes.DSKITCO();
             this.btnEstadoCuenta = new System.Windows.Forms.Button();
             this.btnPrecios = new System.Windows.Forms.Button();
+            this.btnEditarItem = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnEliminarItem = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.grbCLIENTE.SuspendLayout();
             this.grbCONTRATO.SuspendLayout();
@@ -675,7 +677,6 @@
             this.grbDETALLE.Controls.Add(this.lbESTADO_CONTRATO);
             this.grbDETALLE.Controls.Add(this.cbxCategorias);
             this.grbDETALLE.Controls.Add(this.label9);
-            this.grbDETALLE.Controls.Add(this.btnDEL);
             this.grbDETALLE.Controls.Add(this.btnADD);
             this.grbDETALLE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbDETALLE.Location = new System.Drawing.Point(21, 272);
@@ -691,65 +692,22 @@
             this.tblITEMS.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.tblITEMS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblITEMS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btnEditarItem,
+            this.btnEliminarItem,
             this.COD_ITEM,
+            this.TIPO,
             this.CANTIDAD,
             this.DESCRIPCION,
             this.MONTO});
             this.tblITEMS.Location = new System.Drawing.Point(12, 36);
             this.tblITEMS.Name = "tblITEMS";
             this.tblITEMS.ReadOnly = true;
-            this.tblITEMS.Size = new System.Drawing.Size(803, 181);
+            this.tblITEMS.RowHeadersVisible = false;
+            this.tblITEMS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblITEMS.Size = new System.Drawing.Size(835, 181);
             this.tblITEMS.TabIndex = 89;
-            this.tblITEMS.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.tblITEMS_CellBeginEdit);
-            this.tblITEMS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblITEMS_CellEndEdit);
+            this.tblITEMS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblITEMS_CellContentClick);
             this.tblITEMS.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tblITEMS_CellPainting);
-            this.tblITEMS.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tblITEMS_CellValidating);
-            // 
-            // COD_ITEM
-            // 
-            this.COD_ITEM.DataPropertyName = "COD_ITEM";
-            dataGridViewCellStyle1.NullValue = "-----";
-            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle1;
-            this.COD_ITEM.Frozen = true;
-            this.COD_ITEM.HeaderText = "KIL/ART";
-            this.COD_ITEM.Name = "COD_ITEM";
-            this.COD_ITEM.ReadOnly = true;
-            this.COD_ITEM.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.COD_ITEM.Width = 125;
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.DataPropertyName = "CANTIDAD";
-            dataGridViewCellStyle2.Format = "N1";
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CANTIDAD.Frozen = true;
-            this.CANTIDAD.HeaderText = "PESO/CANT";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DESCRIPCION
-            // 
-            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
-            this.DESCRIPCION.Frozen = true;
-            this.DESCRIPCION.HeaderText = "DESCRIPCION";
-            this.DESCRIPCION.Name = "DESCRIPCION";
-            this.DESCRIPCION.ReadOnly = true;
-            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DESCRIPCION.ToolTipText = "Descripcion detallada del Articulo o Prenda";
-            this.DESCRIPCION.Width = 425;
-            // 
-            // MONTO
-            // 
-            this.MONTO.DataPropertyName = "MONTO";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0.00";
-            this.MONTO.DefaultCellStyle = dataGridViewCellStyle3;
-            this.MONTO.Frozen = true;
-            this.MONTO.HeaderText = "MONTO";
-            this.MONTO.Name = "MONTO";
-            this.MONTO.ReadOnly = true;
-            this.MONTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // cbxCategorias
             // 
@@ -771,20 +729,10 @@
             this.label9.TabIndex = 88;
             this.label9.Text = "CATEGORIA";
             // 
-            // btnDEL
-            // 
-            this.btnDEL.Image = global::PrendaSAL.Properties.Resources.menos;
-            this.btnDEL.Location = new System.Drawing.Point(821, 69);
-            this.btnDEL.Name = "btnDEL";
-            this.btnDEL.Size = new System.Drawing.Size(37, 25);
-            this.btnDEL.TabIndex = 22;
-            this.btnDEL.UseVisualStyleBackColor = true;
-            this.btnDEL.Click += new System.EventHandler(this.removeItemPrestamo);
-            // 
             // btnADD
             // 
             this.btnADD.Image = global::PrendaSAL.Properties.Resources.plus;
-            this.btnADD.Location = new System.Drawing.Point(821, 38);
+            this.btnADD.Location = new System.Drawing.Point(235, 8);
             this.btnADD.Name = "btnADD";
             this.btnADD.Size = new System.Drawing.Size(37, 25);
             this.btnADD.TabIndex = 21;
@@ -945,6 +893,80 @@
             this.btnPrecios.UseVisualStyleBackColor = true;
             this.btnPrecios.Click += new System.EventHandler(this.btnPrecios_Click);
             // 
+            // btnEditarItem
+            // 
+            this.btnEditarItem.Frozen = true;
+            this.btnEditarItem.HeaderText = "";
+            this.btnEditarItem.Name = "btnEditarItem";
+            this.btnEditarItem.ReadOnly = true;
+            this.btnEditarItem.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEditarItem.Width = 25;
+            // 
+            // btnEliminarItem
+            // 
+            this.btnEliminarItem.Frozen = true;
+            this.btnEliminarItem.HeaderText = "";
+            this.btnEliminarItem.Name = "btnEliminarItem";
+            this.btnEliminarItem.ReadOnly = true;
+            this.btnEliminarItem.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEliminarItem.Width = 25;
+            // 
+            // COD_ITEM
+            // 
+            this.COD_ITEM.DataPropertyName = "COD_ITEM";
+            dataGridViewCellStyle1.NullValue = "-----";
+            this.COD_ITEM.DefaultCellStyle = dataGridViewCellStyle1;
+            this.COD_ITEM.Frozen = true;
+            this.COD_ITEM.HeaderText = "KILATAJE";
+            this.COD_ITEM.Name = "COD_ITEM";
+            this.COD_ITEM.ReadOnly = true;
+            this.COD_ITEM.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.COD_ITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.COD_ITEM.Width = 125;
+            // 
+            // TIPO
+            // 
+            this.TIPO.DataPropertyName = "TIPO";
+            this.TIPO.Frozen = true;
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            this.TIPO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.DataPropertyName = "CANTIDAD";
+            dataGridViewCellStyle2.Format = "N1";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CANTIDAD.Frozen = true;
+            this.CANTIDAD.HeaderText = "PESO/CANT";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DESCRIPCION
+            // 
+            this.DESCRIPCION.DataPropertyName = "DESCRIPCION";
+            this.DESCRIPCION.Frozen = true;
+            this.DESCRIPCION.HeaderText = "DESCRIPCION";
+            this.DESCRIPCION.Name = "DESCRIPCION";
+            this.DESCRIPCION.ReadOnly = true;
+            this.DESCRIPCION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DESCRIPCION.ToolTipText = "Descripcion detallada del Articulo o Prenda";
+            this.DESCRIPCION.Width = 425;
+            // 
+            // MONTO
+            // 
+            this.MONTO.DataPropertyName = "MONTO";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0.00";
+            this.MONTO.DefaultCellStyle = dataGridViewCellStyle3;
+            this.MONTO.Frozen = true;
+            this.MONTO.HeaderText = "MONTO";
+            this.MONTO.Name = "MONTO";
+            this.MONTO.ReadOnly = true;
+            this.MONTO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // ContratosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1023,7 +1045,6 @@
         private System.Windows.Forms.RichTextBox txtNOTA;
         private System.Windows.Forms.GroupBox grbDETALLE;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btnDEL;
         private System.Windows.Forms.Button btnADD;
         private System.Windows.Forms.Button btnBuscarCLI;
         private System.Windows.Forms.TextBox txtDireccionCLI;
@@ -1067,14 +1088,17 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView tblITEMS;
-        private System.Windows.Forms.DataGridViewComboBoxColumn COD_ITEM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MONTO;
         private System.Windows.Forms.NumericUpDown numTASA;
         private System.Windows.Forms.NumericUpDown numPLAZO;
         private System.Windows.Forms.NumericUpDown numVENC;
         private System.Windows.Forms.Label lbNUMTARJETA;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEditarItem;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEliminarItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_ITEM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTO;
 
     }
 }

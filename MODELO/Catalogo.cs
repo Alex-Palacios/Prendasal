@@ -14,8 +14,7 @@ namespace MODELO
     public class Catalogo
     {
         public string COD_ITEM;
-        public eCategoria CATEGORIA;
-        public eUnidadMedida UNIDAD_MEDIDA;
+        public string CATEGORIA;
 
 
         public Catalogo()
@@ -30,9 +29,8 @@ namespace MODELO
             {
                 item = new Catalogo();
                 if (dr.Table.Columns.Contains("COD_ITEM")) { item.COD_ITEM = dr.Field<string>("COD_ITEM"); }
-                if (dr.Table.Columns.Contains("CATEGORIA")) { item.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
-                if (dr.Table.Columns.Contains("UNIDAD_MEDIDA")) { item.UNIDAD_MEDIDA = (eUnidadMedida)Enum.Parse(typeof(eUnidadMedida), dr.Field<string>("UNIDAD_MEDIDA")); }
-                
+                if (dr.Table.Columns.Contains("CATEGORIA")) { item.CATEGORIA =  dr.Field<string>("CATEGORIA"); }
+                 
             }
             return item;
 

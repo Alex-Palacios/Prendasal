@@ -22,7 +22,7 @@ namespace MODELO
         public decimal PRECIO;
 
 
-        public eCategoria CATEGORIA;
+        public string CATEGORIA;
         public string RESPONSABLE;
 
 
@@ -39,7 +39,7 @@ namespace MODELO
                 inv = new Kardex();
                 if (dr.Table.Columns.Contains("COD_TRANS")) { inv.COD_TRANS = dr.Field<string>("COD_TRANS"); }
                 if (dr.Table.Columns.Contains("FECHA")) { inv.FECHA = dr.Field<DateTime>("FECHA"); }
-                if (dr.Table.Columns.Contains("CATEGORIA")) { inv.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
+                if (dr.Table.Columns.Contains("CATEGORIA")) { inv.CATEGORIA = dr.Field<string>("CATEGORIA"); }
                 if (dr.Table.Columns.Contains("CODIGO")) { inv.CODIGO = dr.Field<string>("CODIGO"); }
                 if (dr.Table.Columns.Contains("COD_ITEM")) { inv.COD_ITEM = dr.Field<string>("COD_ITEM"); }
                 if (dr.Table.Columns.Contains("DESCRIPCION")) { inv.DESCRIPCION = dr.Field<string>("DESCRIPCION"); }

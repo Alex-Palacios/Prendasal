@@ -76,7 +76,10 @@
     <ManifestKeyFile>PrendaSAL_ClaveTemporal.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar.Design">
@@ -148,12 +151,6 @@
     </Compile>
     <Compile Include="Caja\RemesasForm.Designer.cs">
       <DependentUpon>RemesasForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Catalogos\ArticulosListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Catalogos\ArticulosListForm.Designer.cs">
-      <DependentUpon>ArticulosListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\BuscarCliente.cs">
       <SubType>Form</SubType>
@@ -362,6 +359,12 @@
     <Compile Include="Configuracion\UsuariosForm.Designer.cs">
       <DependentUpon>UsuariosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Movimientos\AddInvItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\AddInvItemForm.Designer.cs">
+      <DependentUpon>AddInvItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Movimientos\ExistenciasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -562,9 +565,6 @@
     <EmbeddedResource Include="Caja\RemesasForm.resx">
       <DependentUpon>RemesasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\ArticulosListForm.resx">
-      <DependentUpon>ArticulosListForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\BuscarCliente.resx">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -641,6 +641,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Configuracion\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\AddInvItemForm.resx">
+      <DependentUpon>AddInvItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Movimientos\ExistenciasForm.resx">
       <DependentUpon>ExistenciasForm.cs</DependentUpon>
@@ -1144,6 +1147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\edit_16.png" />
     <None Include="Resources\chart2.png" />
     <None Include="Resources\print.png" />
     <None Include="Resources\printer1.png" />

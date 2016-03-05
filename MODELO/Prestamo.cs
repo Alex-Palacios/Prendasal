@@ -29,7 +29,7 @@ namespace MODELO
         public int PLAZO_CONTRATO;
         public int PLAZO_VENC;
         public decimal TOTAL;
-        public eCategoria CATEGORIA;
+        public string CATEGORIA;
         public decimal SALDO;
         public DateTime ULTIMA_PRORROGA;
         public eNIVEL NIVEL;
@@ -68,14 +68,18 @@ namespace MODELO
             //DATOS POR DEFECTO
             ITEMS_PRESTAMO = new DataTable();
             ITEMS_PRESTAMO.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
+            ITEMS_PRESTAMO.Columns.Add("CODIGO").DataType = System.Type.GetType("System.String");
             ITEMS_PRESTAMO.Columns.Add("COD_ITEM").DataType = System.Type.GetType("System.String");
-            ITEMS_PRESTAMO.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
+            ITEMS_PRESTAMO.Columns.Add("TIPO").DataType = System.Type.GetType("System.String");
+            ITEMS_PRESTAMO.Columns.Add("MARCA").DataType = System.Type.GetType("System.String");
             ITEMS_PRESTAMO.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
+            ITEMS_PRESTAMO.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
             ITEMS_PRESTAMO.Columns.Add("MONTO").DataType = System.Type.GetType("System.Decimal");
 
             HISTORIAL_PAC = new DataTable();
 
         }
+
 
 
         public static Prestamo ConvertToPrestamo(DataRow dr)
@@ -96,7 +100,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("PLAZO_CONTRATO")) { prestamo.PLAZO_CONTRATO = dr.Field<int>("PLAZO_CONTRATO"); }
                 if (dr.Table.Columns.Contains("PLAZO_VENC")) { prestamo.PLAZO_VENC = dr.Field<int>("PLAZO_VENC"); }
                 if (dr.Table.Columns.Contains("TOTAL")) { prestamo.TOTAL = dr.Field<decimal>("TOTAL"); }
-                if (dr.Table.Columns.Contains("CATEGORIA")) { try { prestamo.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); } catch (Exception e) { }; }
+                if (dr.Table.Columns.Contains("CATEGORIA")) {  prestamo.CATEGORIA = dr.Field<string>("CATEGORIA");}
                 if (dr.Table.Columns.Contains("SALDO")) { prestamo.SALDO = dr.Field<decimal>("SALDO"); }
                 if (dr.Table.Columns.Contains("ULTIMA_PRORROGA")) { prestamo.ULTIMA_PRORROGA = dr.Field<DateTime>("ULTIMA_PRORROGA"); }
                 if (dr.Table.Columns.Contains("NIVEL")) { prestamo.NIVEL = (eNIVEL)dr.Field<int>("NIVEL"); }

@@ -122,8 +122,14 @@ namespace PrendaSAL.Movimientos
             cbxTIPOPRESTAMO.DataSource = Enum.GetValues(new eTipoPrestamo().GetType());
             cbxTIPOPRESTAMO.SelectedItem = eTipoPrestamo.PRENDARIO;
 
-            cbxCategorias.DataSource = Enum.GetValues(new eCategoria().GetType());
-            cbxCategorias.SelectedItem = eCategoria.ORO;
+            cbxCategorias.DataSource = HOME.Instance().datCATEGORIAS.Copy();
+            if (HOME.Instance().datCATEGORIAS.Rows.Count > 0)
+            {
+                cbxCategorias.DisplayMember = "CATEGORIA";
+                cbxCategorias.ValueMember = "CATEGORIA";
+                cbxCategorias.SelectedIndex = -1;
+                cbxCategorias.SelectedIndex = 0;
+            }
 
             bloquear();
             NUEVO(null, null);
@@ -138,7 +144,6 @@ namespace PrendaSAL.Movimientos
             grbCONTRATO.Enabled = false;
             grbREGLAS.Enabled = false;
             grbDETALLE.Enabled = false;
-            tblITEMS.ReadOnly = true;
             txtNOTA.ReadOnly = true;
         }
 
@@ -149,7 +154,6 @@ namespace PrendaSAL.Movimientos
             grbCONTRATO.Enabled = true;
             grbREGLAS.Enabled = true;
             grbDETALLE.Enabled = true;
-            tblITEMS.ReadOnly = false;
             txtNOTA.ReadOnly = false;
         }
 
@@ -190,6 +194,7 @@ namespace PrendaSAL.Movimientos
             PRESTAMO.NIVEL = eNIVEL.PRENDASAL;
             PRESTAMO.TIPO = eTipoPrestamo.PRENDARIO;
             PRESTAMO.TIPO_PAGO = eTipoPago.EFECTIVO;
+            PRESTAMO.CATEGORIA = (string)cbxCategorias.SelectedValue;
             PRESTAMO.ESTADO_CONTRATO = eEstadoContrato.ACTIVO;
             
             cargarTarjeta(new Tarjeta());
@@ -263,6 +268,8 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+
         private void cargarDatosPrestamo()
         {
             if (PRESTAMO != null)
@@ -276,12 +283,13 @@ namespace PrendaSAL.Movimientos
                 numPLAZO.Value = PRESTAMO.PLAZO_CONTRATO;
                 numVENC.Value = PRESTAMO.PLAZO_VENC;
                 tblITEMS.DataSource = null;
-                cbxCategorias.SelectedItem = PRESTAMO.CATEGORIA;
+                cbxCategorias.SelectedValue = PRESTAMO.CATEGORIA;
                 tblITEMS.DataSource = PRESTAMO.ITEMS_PRESTAMO;
                 txtINTERES_MENSUAL.Text = PRESTAMO.INTERES_MENSUAL_INIT.ToString("C2");
                 txtINTERES_DIARIO.Text = PRESTAMO.INTERES_DIARIO_INIT.ToString("C4");
                 txtTOTAL.Text = PRESTAMO.TOTAL.ToString("C2");
                 txtNOTA.Text = PRESTAMO.NOTA;
+
                 switch (PRESTAMO.ESTADO_CONTRATO)
                 {
                     case eEstadoContrato.ACTIVO:
@@ -459,12 +467,10 @@ namespace PrendaSAL.Movimientos
             if (PRESTAMO.TIPO == eTipoPrestamo.PRENDARIO)
             {
                 btnADD.Enabled = true;
-                btnDEL.Enabled = true;
             }
             else
             {
                 btnADD.Enabled = false;
-                btnDEL.Enabled = false;
             }
             
             calcularTotales();
@@ -494,7 +500,7 @@ namespace PrendaSAL.Movimientos
             }
             lbNIVEL.Text = PRESTAMO.NIVEL.ToString();
 
-            if (tblITEMS.Rows.Count > 0 && (eCategoria)cbxCategorias.SelectedItem == eCategoria.ORO && ACCION != eOperacion.SEARCH)
+            if (tblITEMS.Rows.Count > 0 && (string)cbxCategorias.SelectedValue == "ORO" && ACCION != eOperacion.SEARCH)
             {
                 actualizarNivelPreciosItems();
             }
@@ -536,38 +542,23 @@ namespace PrendaSAL.Movimientos
 
         private void cbxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxCategorias.SelectedIndex >= 0)
+            if (cbxCategorias.SelectedIndex >= 0 && cbxCategorias.ValueMember != string.Empty)
             {
-                PRESTAMO.CATEGORIA = (eCategoria)cbxCategorias.SelectedItem;
-                DataTable CATALOGO = dbCatalogo.showCatalogo(PRESTAMO.CATEGORIA);
-                if (CATALOGO.Rows.Count == 0)
-                {
-                    CATALOGO.Columns.Add("CATEGORIA");
-                    CATALOGO.Columns.Add("COD_ITEM");
-                    CATALOGO.Columns.Add("UNIDAD_MEDIDA");
-                }
-                DataRow R = CATALOGO.NewRow();
-                R.SetField<string>("CATEGORIA", "-----");
-                R.SetField<string>("COD_ITEM", "-----");
-                R.SetField<string>("UNIDAD_MEDIDA", "-----");
-                CATALOGO.Rows.InsertAt(R, 0);
-
-
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DataSource = CATALOGO;
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DisplayMember = "COD_ITEM";
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).ValueMember = "COD_ITEM";
-
+                PRESTAMO.CATEGORIA = (string)cbxCategorias.SelectedValue;
                 switch (PRESTAMO.CATEGORIA)
                 {
-                    case eCategoria.ORO:
-                        tblITEMS.Columns["COD_ITEM"].HeaderText = "KILATAJE";
+                    case "ORO":
+                        tblITEMS.Columns["COD_ITEM"].Visible = true;
+                        tblITEMS.Columns["TIPO"].Visible = false;
                         tblITEMS.Columns["CANTIDAD"].HeaderText = "PESO";
                         break;
-                    case eCategoria.ARTICULO:
-                        tblITEMS.Columns["COD_ITEM"].HeaderText = "ARTICULO";
+                    case "ARTICULO":
+                        tblITEMS.Columns["COD_ITEM"].Visible = false;
+                        tblITEMS.Columns["TIPO"].Visible = true;
                         tblITEMS.Columns["CANTIDAD"].HeaderText = "CANTIDAD";
                         break;
                 }
+
                 switch (ACCION)
                 {
                     case eOperacion.INSERT:
@@ -583,10 +574,6 @@ namespace PrendaSAL.Movimientos
                 }
 
 
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DataSource = CATALOGO;
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).DisplayMember = "COD_ITEM";
-                ((DataGridViewComboBoxColumn)tblITEMS.Columns["COD_ITEM"]).ValueMember = "COD_ITEM";
-
             }
         }
 
@@ -594,20 +581,83 @@ namespace PrendaSAL.Movimientos
 
         private void addItemPrestamo(object sender, EventArgs e)
         {
-            PRESTAMO.ITEMS_PRESTAMO.Rows.Add(cbxCategorias.SelectedItem.ToString(), "-----", 0.0, "", 0.00);
-        }
+            AddInvItemForm insertItemForm = new AddInvItemForm();
+            //Construir
+            var txtCategoria = insertItemForm.Controls["txtCATEGORIA"];
+            var txtCodigo = insertItemForm.Controls["txtCODIGO"];
+            var lbCodItem = insertItemForm.Controls["lbCODITEM"];
+            var cbxCodItem = (ComboBox)insertItemForm.Controls["cbxCODITEM"];
+            var cbxTipo = (ComboBox)insertItemForm.Controls["cbxTIPO"];
+            var lbMarca = insertItemForm.Controls["lbMARCA"];
+            var cbxMarca = (ComboBox)insertItemForm.Controls["cbxMARCA"];
+            var txtDescripcion = insertItemForm.Controls["txtDESCRIPCION"];
+            var txtCantidad = insertItemForm.Controls["txtCANTIDAD"];
+            var txtMonto = insertItemForm.Controls["txtMONTO"];
 
+            insertItemForm.Text = "AGREGAR " + PRESTAMO.CATEGORIA;
+            insertItemForm.PRECIOS = PRECIOS;
+            insertItemForm.UNICO = HOME.Instance().datCATEGORIAS.Rows[cbxCategorias.SelectedIndex].Field<bool>("UNICO");
 
-
-
-        private void removeItemPrestamo(object sender, EventArgs e)
-        {
-            if (PRESTAMO.ITEMS_PRESTAMO.Rows.Count > 0)
+            if (insertItemForm.UNICO)
             {
-                PRESTAMO.ITEMS_PRESTAMO.Rows.RemoveAt(tblITEMS.CurrentCell.RowIndex);
+                lbCodItem.Visible = false;
+                cbxCodItem.Visible = false;
+                lbMarca.Visible = true;
+                cbxMarca.Visible = true;
+            }
+            else
+            {
+                cbxCodItem.DataSource = dbCatalogo.showCatalogo(PRESTAMO.CATEGORIA);
+                if (((DataTable)cbxCodItem.DataSource).Rows.Count > 0)
+                {
+                    cbxCodItem.DisplayMember = "COD_ITEM";
+                    cbxCodItem.ValueMember = "COD_ITEM";
+                }
+                lbCodItem.Visible = true;
+                cbxCodItem.Visible = true;
+                lbMarca.Visible = false;
+                cbxMarca.Visible = false;
+            }
+
+            cbxTipo.DataSource = dbCatalogo.getTipoInv(PRESTAMO.CATEGORIA);
+            if (((DataTable)cbxTipo.DataSource).Rows.Count > 0)
+            {
+                cbxTipo.DisplayMember = "TIPO";
+                cbxTipo.ValueMember = "TIPO";
+            }
+
+            cbxMarca.DataSource = dbCatalogo.getMarcaInv(PRESTAMO.CATEGORIA);
+            if (((DataTable)cbxMarca.DataSource).Rows.Count > 0)
+            {
+                cbxMarca.DisplayMember = "MARCA";
+                cbxMarca.ValueMember = "MARCA";
+            }
+
+            txtCategoria.Text = PRESTAMO.CATEGORIA;
+            txtCodigo.Text = PRESTAMO.DOCUMENTO + "-" + PRESTAMO.FECHA.ToString("ddMMyy");
+            txtCantidad.Text = "0.0";
+            txtMonto.Text = "0.00";
+
+            
+
+            if (insertItemForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (insertItemForm.UNICO)
+                {
+                    PRESTAMO.ITEMS_PRESTAMO.Rows.Add(txtCategoria.Text, txtCodigo.Text, txtCodigo.Text, cbxTipo.Text.ToUpper(), cbxMarca.Text.ToUpper(), txtDescripcion.Text, txtCantidad.Text, txtMonto.Text);
+                }
+                else
+                {
+                    PRESTAMO.ITEMS_PRESTAMO.Rows.Add(txtCategoria.Text, txtCodigo.Text, (string)cbxCodItem.SelectedValue, cbxTipo.Text.ToUpper(), cbxMarca.Text.ToUpper(), txtDescripcion.Text, txtCantidad.Text, txtMonto.Text);
+                }
+
                 calcularTotales();
             }
+
         }
+
+
+
 
 
 
@@ -618,186 +668,144 @@ namespace PrendaSAL.Movimientos
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (tblITEMS.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected == true)
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
-                    using (Pen p = new Pen(Color.Red, 1))
-                    {
-                        Rectangle rect = e.CellBounds;
-                        rect.Width -= 2;
-                        rect.Height -= 2;
-                        e.Graphics.DrawRectangle(p, rect);
-                    }
-                    e.Handled = true;
-                }
-            }
-        }
-
-
-        private void tblITEMS_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-            switch (columnName)
-            {
-
-                case "COD_ITEM":
-                    if (cbxCategorias.SelectedIndex < 0)
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "CANTIDAD":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == string.Empty || tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "DESCRIPCION":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == string.Empty || tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-                case "MONTO":
-                    if (tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == string.Empty || tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString() == "-----")
-                    {
-                        System.Media.SystemSounds.Beep.Play();
-                        e.Cancel = true;
-                    }
-                    break;
-            }
-        }
-
-
-
-        private void tblITEMS_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-            switch (columnName)
-            {
-                case "CANTIDAD":
-                    // Verificar si columna esta vacia
-                    if (e.FormattedValue != null)
-                    {
-                        double valor;
-                        if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Columna CANTIDAD Vacia";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (!Double.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null, out valor))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Formato Invalido";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (valor < 0)
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "CANTIDAD debe ser mayor a 0";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                    }
-                    break;
-                case "MONTO":
-                    // Verificar si columna esta vacia
-                    if (e.FormattedValue != null)
-                    {
-                        decimal valor;
-
-                        if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Columna MONTO Vacia";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (!Decimal.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null, out valor))
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "Formato Invalido";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if (valor < 0)
-                        {
-                            tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO debe ser mayor a 0";
-                            System.Media.SystemSounds.Beep.Play();
-                            e.Cancel = true;
-                        }
-                        else if ((eCategoria)cbxCategorias.SelectedItem == eCategoria.ORO)
-                        {
-                            decimal precioR = getPrecioKIL(tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString());
-                            decimal cantidad = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                            decimal costoTope = Decimal.Round(precioR * cantidad, 0, MidpointRounding.AwayFromZero);
-
-                            if (costoTope > 0 && valor > costoTope)
-                            {
-                                tblITEMS.Rows[e.RowIndex].ErrorText = "MONTO SUPERA EL APROBADO";
-                                System.Media.SystemSounds.Beep.Play();
-                                e.Cancel = true;
-                            }
-                        }
-                    }
-                    break;
-            }
-        }
-
-
-
-        private void tblITEMS_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            tblITEMS.Rows[e.RowIndex].ErrorText = String.Empty;
-            if (e.RowIndex >= 0)
-            {
-                string item = tblITEMS.Rows[e.RowIndex].Cells["COD_ITEM"].FormattedValue.ToString();
-                string descripcion = tblITEMS.Rows[e.RowIndex].Cells["DESCRIPCION"].FormattedValue.ToString();
-                decimal cantidad = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-                decimal monto = Decimal.Parse(tblITEMS.Rows[e.RowIndex].Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency);
-
-                string columnName = tblITEMS.Columns[e.ColumnIndex].Name;
-
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                string columnName = this.tblITEMS.Columns[e.ColumnIndex].Name;
                 switch (columnName)
                 {
-                    case "COD_ITEM":
-                        if (item == string.Empty || item == "-----")
-                        {
-                            tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].Value = 0.0;
-                            tblITEMS.Rows[e.RowIndex].Cells["DESCRIPCION"].Value = "";
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = 0.00;
-                        }
-                        else if ((eCategoria)cbxCategorias.SelectedItem == eCategoria.ORO)
-                        {
-                            monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2,MidpointRounding.AwayFromZero);
-                            tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
-                        }
-                        calcularTotales();
+                    case "btnEditarItem":
+                        Image icoEdit = Properties.Resources.edit_16;
+                        e.Graphics.DrawImage(icoEdit, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                        tblITEMS.Rows[e.RowIndex].Height = icoEdit.Height + 5;
+                        tblITEMS.Columns[e.ColumnIndex].Width = icoEdit.Width + 5;
+
                         break;
-                    case "CANTIDAD":
-                        switch ((eCategoria)cbxCategorias.SelectedItem)
+                    case "btnEliminarItem":
+                        Image icoEliminar = Properties.Resources.menos;
+                        e.Graphics.DrawImage(icoEliminar, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                        tblITEMS.Rows[e.RowIndex].Height = icoEliminar.Height + 5;
+                        tblITEMS.Columns[e.ColumnIndex].Width = icoEliminar.Width + 5;
+
+                        break;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void tblITEMS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string columnName = this.tblITEMS.Columns[e.ColumnIndex].Name;
+                var row = PRESTAMO.ITEMS_PRESTAMO.Rows[tblITEMS.CurrentCell.RowIndex];
+                switch (columnName)
+                {
+                    case "btnEditarItem":
+                        AddInvItemForm editItemForm = new AddInvItemForm();
+                        //Construir
+                        var txtCategoria = editItemForm.Controls["txtCATEGORIA"];
+                        var txtCodigo = editItemForm.Controls["txtCODIGO"];
+                        var lbCodItem = editItemForm.Controls["lbCODITEM"];
+                        var cbxCodItem = (ComboBox)editItemForm.Controls["cbxCODITEM"];
+                        var cbxTipo = (ComboBox)editItemForm.Controls["cbxTIPO"];
+                        var lbMarca = editItemForm.Controls["lbMARCA"];
+                        var cbxMarca = (ComboBox)editItemForm.Controls["cbxMARCA"];
+                        var txtDescripcion = editItemForm.Controls["txtDESCRIPCION"];
+                        var txtCantidad = editItemForm.Controls["txtCANTIDAD"];
+                        var txtMonto = editItemForm.Controls["txtMONTO"];
+
+                        editItemForm.Text = "EDITAR " + row.Field<string>("CATEGORIA");
+                        editItemForm.PRECIOS = PRECIOS;
+                        editItemForm.UNICO = HOME.Instance().datCATEGORIAS.Rows[cbxCategorias.SelectedIndex].Field<bool>("UNICO");
+
+                        if (editItemForm.UNICO)
                         {
-                            case eCategoria.ARTICULO:
-                                cantidad = Decimal.Round(cantidad, 0);
-                                tblITEMS.Rows[e.RowIndex].Cells["CANTIDAD"].Value = cantidad;
-                                break;
-                            case eCategoria.ORO:
-                                monto = Decimal.Round((decimal)cantidad * getPrecioKIL(item), 2, MidpointRounding.AwayFromZero);
-                                tblITEMS.Rows[e.RowIndex].Cells["MONTO"].Value = monto;
-                                break;
+                            lbCodItem.Visible = false;
+                            cbxCodItem.Visible = false;
+                            lbMarca.Visible = true;
+                            cbxMarca.Visible = true;
                         }
-                        calcularTotales();
+                        else
+                        {
+                            cbxCodItem.DataSource = dbCatalogo.showCatalogo(PRESTAMO.CATEGORIA);
+                            if (((DataTable)cbxCodItem.DataSource).Rows.Count > 0)
+                            {
+                                cbxCodItem.DisplayMember = "COD_ITEM";
+                                cbxCodItem.ValueMember = "COD_ITEM";
+                                cbxCodItem.SelectedValue = row.Field<string>("COD_ITEM");
+                            }
+                            lbCodItem.Visible = true;
+                            cbxCodItem.Visible = true;
+                            lbMarca.Visible = false;
+                            cbxMarca.Visible = false;
+                        }
+
+                        cbxTipo.DataSource = dbCatalogo.getTipoInv(PRESTAMO.CATEGORIA);
+                        if (((DataTable)cbxTipo.DataSource).Rows.Count > 0)
+                        {
+                            cbxTipo.DisplayMember = "TIPO";
+                            cbxTipo.ValueMember = "TIPO";
+                            cbxTipo.Text = row.Field<string>("TIPO");
+                        }
+
+                        cbxMarca.DataSource = dbCatalogo.getMarcaInv(PRESTAMO.CATEGORIA);
+                        if (((DataTable)cbxMarca.DataSource).Rows.Count > 0)
+                        {
+                            cbxMarca.DisplayMember = "MARCA";
+                            cbxMarca.ValueMember = "MARCA";
+                            cbxMarca.Text = row.Field<string>("MARCA");
+                        }
+
+                        txtCategoria.Text = row.Field<string>("CATEGORIA");
+                        txtCodigo.Text = PRESTAMO.DOCUMENTO + "-" + PRESTAMO.FECHA.ToString("ddMMyy");
+                        txtDescripcion.Text = row.Field<string>("DESCRIPCION");
+                        txtCantidad.Text = row.Field<decimal>("CANTIDAD").ToString();
+                        txtMonto.Text = row.Field<decimal>("MONTO").ToString();
+
+                        editItemForm.LIMITE = row.Field<decimal>("CANTIDAD") * getPrecioKIL(row.Field<string>("COD_ITEM"));
+
+                        if (editItemForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            if (editItemForm.UNICO)
+                            {
+                                row.SetField<string>("CATEGORIA", txtCategoria.Text);
+                                row.SetField<string>("CODIGO", txtCodigo.Text);
+                                row.SetField<string>("COD_ITEM", txtCodigo.Text);
+                                row.SetField<string>("TIPO", cbxTipo.Text.ToUpper());
+                                row.SetField<string>("MARCA", cbxMarca.Text.ToUpper());
+                                row.SetField<string>("DESCRIPCION", txtDescripcion.Text);
+                                row.SetField<decimal>("CANTIDAD", Decimal.Parse(txtCantidad.Text));
+                                row.SetField<decimal>("MONTO", Decimal.Parse(txtMonto.Text));
+                            }
+                            else
+                            {
+                                row.SetField<string>("CATEGORIA", txtCategoria.Text);
+                                row.SetField<string>("CODIGO", txtCodigo.Text);
+                                row.SetField<string>("COD_ITEM", cbxCodItem.Text);
+                                row.SetField<string>("TIPO", cbxTipo.Text.ToUpper());
+                                row.SetField<string>("MARCA", cbxMarca.Text.ToUpper());
+                                row.SetField<string>("DESCRIPCION", txtDescripcion.Text);
+                                row.SetField<decimal>("CANTIDAD", Decimal.Parse(txtCantidad.Text));
+                                row.SetField<decimal>("MONTO", Decimal.Parse(txtMonto.Text));
+                            }
+
+
+                            calcularTotales();
+                        }
                         break;
-                    case "DESCRIPCION":
-                        tblITEMS.Rows[e.RowIndex].Cells["DESCRIPCION"].Value = descripcion.ToString().ToUpper().Replace('>', ' ').Replace('&', ' ');
-                        break;
-                    case "MONTO":
-                        calcularTotales();
+                    case "btnEliminarItem":
+                        DialogResult eliminar = MessageBox.Show("¿Eliminar Item de la lista?", "ELIMINAR ITEM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (eliminar == DialogResult.Yes)
+                        {
+                            PRESTAMO.ITEMS_PRESTAMO.Rows.RemoveAt(tblITEMS.CurrentCell.RowIndex);
+                            calcularTotales();
+                        }
                         break;
                 }
             }
         }
+
 
 
 
@@ -939,13 +947,18 @@ namespace PrendaSAL.Movimientos
                     MessageBox.Show("NUMERO CONTRATO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
+                else if (PRESTAMO.ITEMS_PRESTAMO.Rows.Count <= 0 && PRESTAMO.TIPO != eTipoPrestamo.MUTUO)
+                {
+                    OK = false;
+                    MessageBox.Show("INGRESE DETALLE DE PRESTAMO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return OK;
+                }
                 else if (PRESTAMO.TOTAL <= 0)
                 {
                     OK = false;
                     MessageBox.Show("TOTAL DE PRESTAMO INVALIDO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return OK;
                 }
-                OK = validarItemsPrestamo();
             }
             catch (Exception ex)
             {
@@ -955,59 +968,6 @@ namespace PrendaSAL.Movimientos
             return OK;
         }
 
-
-
-
-        private bool validarItemsPrestamo()
-        {
-            bool OK = true;
-            if (tblITEMS.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in tblITEMS.Rows)
-                {
-                    if (row.Cells["CANTIDAD"].Value == null || (decimal)row.Cells["CANTIDAD"].Value <= 0)
-                    {
-                        OK = false;
-                        tblITEMS.CurrentRow.Selected = false;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("CANTIDAD INVALIDA EN DETALLE DE PRESTAMO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
-                    }
-                    if (row.Cells["COD_ITEM"].Value == null || row.Cells["COD_ITEM"].Value == "-----")
-                    {
-                        OK = false;
-                        tblITEMS.CurrentRow.Selected = false;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("PRODUCTO NO ESPECIFICADO EN DETALLE DE PRESTAMO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
-                    }
-                    if (row.Cells["DESCRIPCION"].Value == null || row.Cells["DESCRIPCION"].Value.ToString().Trim() == string.Empty)
-                    {
-                        OK = false;
-                        tblITEMS.CurrentRow.Selected = false;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("DESCRIPCION VACIO EN DETALLE DE PRESTAMO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
-                    }
-                    if (row.Cells["MONTO"].Value == null || Decimal.Parse(row.Cells["MONTO"].FormattedValue.ToString(), System.Globalization.NumberStyles.Currency) <= 0)
-                    {
-                        OK = false;
-                        tblITEMS.CurrentRow.Selected = false;
-                        tblITEMS.Rows[row.Index].Selected = true;
-                        MessageBox.Show("MONTO INVALIDO EN DETALLE DE PRESTAMO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
-                    }
-                }
-            }
-            else if((eTipoPrestamo) cbxTIPOPRESTAMO.SelectedItem == eTipoPrestamo.PRENDARIO)
-            {
-                OK = false;
-                MessageBox.Show("DETALLE DE CONTRATO VACIO", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            return OK;
-        }
 
 
 
@@ -1024,6 +984,9 @@ namespace PrendaSAL.Movimientos
                 confirmar.ShowDialog();
             }
         }
+
+
+
 
 
 
@@ -1060,6 +1023,7 @@ namespace PrendaSAL.Movimientos
             {
                 ACCION = eOperacion.UPDATE;
                 desbloquear();
+
                 btnGuardar.Enabled = true;
                 btnCancelar.Enabled = true;
                 btnEditar.Enabled = false;
@@ -1150,6 +1114,10 @@ namespace PrendaSAL.Movimientos
             {
                 ACCION = eOperacion.SEARCH;
                 SELECTED.ITEMS_PRESTAMO = dbPrestamo.getItemsPrestamo(SELECTED);
+                if (SELECTED.ITEMS_PRESTAMO == null || SELECTED.ITEMS_PRESTAMO.Rows.Count == 0)
+                {
+                    SELECTED.ITEMS_PRESTAMO = new Prestamo().ITEMS_PRESTAMO.Copy();
+                }
                 
                 PRESTAMO = SELECTED.Copy();
                 cargarDatosCliente(null);
@@ -1333,6 +1301,8 @@ namespace PrendaSAL.Movimientos
         {
 
         }
+
+        
 
         
 

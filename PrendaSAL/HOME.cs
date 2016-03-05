@@ -52,6 +52,7 @@ namespace PrendaSAL
        }
 
         public DataTable datSUCURSALES;
+        public DataTable datCATEGORIAS;
 
         public HOME()
         {
@@ -142,7 +143,6 @@ namespace PrendaSAL
             btnMenuClientes.Visible = false;
             btnMenuAMIGO.Visible = false;
             btnMenuVIP.Visible = false;
-            btnMenuCatalogoProductos.Visible = false;
             //MODULO MOVIMIENTOS
             moduloMOVIMIENTOS.Visible = false;
             btnMenuContratos.Visible = false;
@@ -207,9 +207,6 @@ namespace PrendaSAL
                                 break;
                             case "V.I.P":
                                 btnMenuVIP.Visible = p.Field<bool>("ACCESO");
-                                break;
-                            case "Articulos":
-                                btnMenuCatalogoProductos.Visible = p.Field<bool>("ACCESO");
                                 break;
                         }
                         break;
@@ -335,9 +332,8 @@ namespace PrendaSAL
 
 
             //VISIBILIDAD DE MODULOS
-            moduloCATALOGOS.Visible = (btnMenuClientes.Visible || btnMenuAMIGO.Visible || btnMenuVIP.Visible || btnMenuCatalogoProductos.Visible);
+            moduloCATALOGOS.Visible = (btnMenuClientes.Visible || btnMenuAMIGO.Visible || btnMenuVIP.Visible );
             grupoClientes.Visible = (btnMenuClientes.Visible || btnMenuAMIGO.Visible || btnMenuVIP.Visible);
-            grupoCatalogos.Visible = (btnMenuCatalogoProductos.Visible);
             moduloMOVIMIENTOS.Visible =(btnMenuContratos.Visible || btnMenuPAC.Visible || btnMenuCompras.Visible || btnMenuVentas.Visible || btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible || btnCorteDiario.Visible);
             grupoTransComerciales.Visible = (btnMenuContratos.Visible || btnMenuPAC.Visible || btnMenuCompras.Visible || btnMenuVentas.Visible);
             grupoCajaChica.Visible = (btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible);
@@ -404,6 +400,8 @@ namespace PrendaSAL
         {
             //SUCURSALES PRENDASAL
             datSUCURSALES = dbSucursal.showSucursales();
+
+            datCATEGORIAS = dbCatalogo.showCategorias();
         }
 
 
@@ -525,19 +523,6 @@ namespace PrendaSAL
             }
         }
 
-
-
-        private void menuCatalogosArticulos(object sender, EventArgs e)
-        {
-            Catalogos.ArticulosListForm itens;
-            itens = Catalogos.ArticulosListForm.Instance();
-            itens.MdiParent = this;
-            itens.Show();
-            if (itens.WindowState == FormWindowState.Minimized)
-            {
-                itens.WindowState = FormWindowState.Normal;
-            }
-        }
 
 
         // MENU MOVIMIENTOS

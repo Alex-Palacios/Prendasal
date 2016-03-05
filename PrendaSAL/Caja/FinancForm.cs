@@ -57,7 +57,8 @@ namespace PrendaSAL.Caja
                 if (p.Field<string>("CODIGO") == "P9")
                 {
                     btnRecibir.Visible = p.Field<bool>("REGISTRAR");
-                    btnLog.Visible = p.Field<bool>("LOG");                }
+                    btnLog.Visible = p.Field<bool>("LOG");                
+                }
             }
         }
 

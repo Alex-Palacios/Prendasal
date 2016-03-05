@@ -214,7 +214,7 @@ namespace DDB
 
 
 
-        public DataTable getVencidos(string codsuc, int diastrans,eCategoria? categoria)
+        public DataTable getVencidos(string codsuc, int diastrans,string categoria)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();

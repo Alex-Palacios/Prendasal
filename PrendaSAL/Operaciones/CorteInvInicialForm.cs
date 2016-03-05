@@ -33,16 +33,19 @@ namespace PrendaSAL.Operaciones
         //VARIABLES
         private DBUsuario dbUser;
         private DBInventario dbInventario;
+        private DBCatalogo dbCatalogo;
         private DataTable INVENTARIO;
         private InvInicial SELECTED;
 
         private int ANIO;
+        private DataRow CAT_INV;
 
         public CorteInvInicialForm()
         {
             InitializeComponent();
             dbUser = new DBUsuario();
             dbInventario = new DBInventario();
+            dbCatalogo = new DBCatalogo();
         }
 
 
@@ -72,6 +75,7 @@ namespace PrendaSAL.Operaciones
         {
             permisos();
             ANIO = HOME.Instance().FECHA_SISTEMA.Year;
+            CAT_INV = HOME.Instance().datCATEGORIAS.Rows[0];
             tblInventario.AutoGenerateColumns = false;
             cargarInventarioInicial();
         }
@@ -79,8 +83,19 @@ namespace PrendaSAL.Operaciones
 
         public void cargarInventarioInicial()
         {
-            INVENTARIO = dbInventario.getInvInicialByPeriodo(ANIO);
+            INVENTARIO = dbInventario.getInvInicialByPeriodo(ANIO, CAT_INV.Field<string>("CATEGORIA"));
             tblInventario.DataSource = INVENTARIO;
+
+            if (CAT_INV.Field<bool>("UNICO"))
+            {
+                tblInventario.Columns["COD_ITEM"].Visible = false;
+                tblInventario.Columns["MARCA"].Visible = true;
+            }
+            else
+            {
+                tblInventario.Columns["COD_ITEM"].Visible = true;
+                tblInventario.Columns["MARCA"].Visible = false;
+            }
 
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
@@ -91,13 +106,16 @@ namespace PrendaSAL.Operaciones
         {
             if (tblInventario.DataSource != null)
             {
-                lbNUM_TOTAL.Text = tblInventario.Rows.Count + " ARTICULOS";
+                lbNUM_TOTAL.Text = tblInventario.Rows.Count + " "+CAT_INV;
             }
             else
             {
-                lbNUM_TOTAL.Text = "0 ARTICULOS";
+                lbNUM_TOTAL.Text = "0 " + CAT_INV;
             }
         }
+
+
+
 
         private void SelectedArticulo()
         {
@@ -116,8 +134,96 @@ namespace PrendaSAL.Operaciones
 
         private void AGREGAR_ARTICULO(object sender, EventArgs e)
         {
-            ItemInicialForm inv = new ItemInicialForm(ANIO);
-            inv.ShowDialog();
+            ItemInicialForm invForm = new ItemInicialForm();
+            //Construir
+            var txtPeriodo = invForm.Controls["txtPERIODO"];
+            var cbxBodega = (ComboBox)invForm.Controls["cbxBODEGA"];
+            var txtCategoria = invForm.Controls["txtCATEGORIA"];
+            var txtCodigo = invForm.Controls["txtCODIGO"];
+            var lbCodItem = invForm.Controls["lbCODITEM"];
+            var cbxCodItem = (ComboBox)invForm.Controls["cbxCODITEM"];
+            var cbxTipo = (ComboBox)invForm.Controls["cbxTIPO"];
+            var lbMarca = invForm.Controls["lbMARCA"];
+            var cbxMarca = (ComboBox)invForm.Controls["cbxMARCA"];
+            var txtDescripcion = invForm.Controls["txtDESCRIPCION"];
+            var txtCantidad = invForm.Controls["txtCANTIDAD"];
+            var txtMonto = invForm.Controls["txtMONTO"];
+            var txtNota = invForm.Controls["txtNOTA"];
+
+            invForm.Text = "AGREGAR " + CAT_INV.Field<string>("CATEGORIA");
+            invForm.UNICO = CAT_INV.Field<bool>("UNICO");
+
+            if (invForm.UNICO)
+            {
+                lbCodItem.Visible = false;
+                cbxCodItem.Visible = false;
+                lbMarca.Visible = true;
+                cbxMarca.Visible = true;
+            }
+            else
+            {
+                cbxCodItem.DataSource = dbCatalogo.showCatalogo(CAT_INV.Field<string>("CATEGORIA"));
+                if (((DataTable)cbxCodItem.DataSource).Rows.Count > 0)
+                {
+                    cbxCodItem.DisplayMember = "COD_ITEM";
+                    cbxCodItem.ValueMember = "COD_ITEM";
+                }
+                lbCodItem.Visible = true;
+                cbxCodItem.Visible = true;
+                lbMarca.Visible = false;
+                cbxMarca.Visible = false;
+            }
+
+
+            cbxBodega.DataSource = HOME.Instance().datSUCURSALES.Copy();
+            if (((DataTable)cbxBodega.DataSource).Rows.Count > 0)
+            {
+                cbxBodega.DisplayMember = "SUCURSAL";
+                cbxBodega.ValueMember = "COD_SUC";
+                cbxBodega.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
+            }
+
+            cbxTipo.DataSource = dbCatalogo.getTipoInv(CAT_INV.Field<string>("CATEGORIA"));
+            if (((DataTable)cbxTipo.DataSource).Rows.Count > 0)
+            {
+                cbxTipo.DisplayMember = "TIPO";
+                cbxTipo.ValueMember = "TIPO";
+            }
+
+            cbxMarca.DataSource = dbCatalogo.getMarcaInv(CAT_INV.Field<string>("CATEGORIA"));
+            if (((DataTable)cbxMarca.DataSource).Rows.Count > 0)
+            {
+                cbxMarca.DisplayMember = "MARCA";
+                cbxMarca.ValueMember = "MARCA";
+            }
+
+            txtPeriodo.Text = ANIO.ToString();
+            txtCategoria.Text = CAT_INV.Field<string>("CATEGORIA");
+            txtCodigo.Text = string.Empty;
+            txtCantidad.Text = "0.0";
+            txtMonto.Text = "0.00";
+
+            if (invForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                SELECTED = new InvInicial();
+                SELECTED.PERIODO = ANIO;
+                SELECTED.CATEGORIA = CAT_INV.Field<string>("CATEGORIA");
+                SELECTED.BODEGA = (string)cbxBodega.SelectedValue;
+                SELECTED.CODIGO = txtCodigo.Text.Trim();
+                SELECTED.COD_ITEM = cbxCodItem.Text.Trim();
+                SELECTED.TIPO = cbxTipo.Text.ToUpper().Trim();
+                SELECTED.MARCA = cbxMarca.Text.ToUpper().Trim();
+                SELECTED.DESCRIPCION = txtDescripcion.Text.Trim();
+                SELECTED.CANTIDAD = Decimal.Parse(txtCantidad.Text);
+                SELECTED.MONTO = Decimal.Parse(txtMonto.Text);
+                SELECTED.NOTA = txtNota.Text;
+
+                if (dbInventario.insertInit(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                {
+                    cargarInventarioInicial();
+                }
+
+            }
         }
 
 
@@ -127,15 +233,112 @@ namespace PrendaSAL.Operaciones
             if (tblInventario.CurrentCell != null && tblInventario.SelectedRows.Count == 1)
             {
                 SelectedArticulo();
-                ItemInicialForm inv = new ItemInicialForm(SELECTED);
-                inv.ShowDialog();
+                if (SELECTED != null)
+                {
+                    ItemInicialForm editarForm = new ItemInicialForm();
+                    //Construir
+                    var txtPeriodo = editarForm.Controls["txtPERIODO"];
+                    var cbxBodega = (ComboBox)editarForm.Controls["cbxBODEGA"];
+                    var txtCategoria = editarForm.Controls["txtCATEGORIA"];
+                    var txtCodigo = editarForm.Controls["txtCODIGO"];
+                    var lbCodItem = editarForm.Controls["lbCODITEM"];
+                    var cbxCodItem = (ComboBox)editarForm.Controls["cbxCODITEM"];
+                    var cbxTipo = (ComboBox)editarForm.Controls["cbxTIPO"];
+                    var lbMarca = editarForm.Controls["lbMARCA"];
+                    var cbxMarca = (ComboBox)editarForm.Controls["cbxMARCA"];
+                    var txtDescripcion = editarForm.Controls["txtDESCRIPCION"];
+                    var txtCantidad = editarForm.Controls["txtCANTIDAD"];
+                    var txtMonto = editarForm.Controls["txtMONTO"];
+                    var txtNota = editarForm.Controls["txtNOTA"];
+
+                    editarForm.Text = "EDITAR " + CAT_INV.Field<string>("CATEGORIA");
+                    editarForm.UNICO = CAT_INV.Field<bool>("UNICO");
+
+                    if (editarForm.UNICO)
+                    {
+                        lbCodItem.Visible = false;
+                        cbxCodItem.Visible = false;
+                        lbMarca.Visible = true;
+                        cbxMarca.Visible = true;
+                    }
+                    else
+                    {
+                        cbxCodItem.DataSource = dbCatalogo.showCatalogo(CAT_INV.Field<string>("CATEGORIA"));
+                        if (((DataTable)cbxCodItem.DataSource).Rows.Count > 0)
+                        {
+                            cbxCodItem.DisplayMember = "COD_ITEM";
+                            cbxCodItem.ValueMember = "COD_ITEM";
+                            cbxCodItem.Text = SELECTED.COD_ITEM;
+                        }
+                        lbCodItem.Visible = true;
+                        cbxCodItem.Visible = true;
+                        lbMarca.Visible = false;
+                        cbxMarca.Visible = false;
+                    }
+
+
+                    cbxBodega.DataSource = HOME.Instance().datSUCURSALES.Copy();
+                    if (((DataTable)cbxBodega.DataSource).Rows.Count > 0)
+                    {
+                        cbxBodega.DisplayMember = "SUCURSAL";
+                        cbxBodega.ValueMember = "COD_SUC";
+                        cbxBodega.SelectedValue = SELECTED.BODEGA;
+                    }
+
+                    cbxTipo.DataSource = dbCatalogo.getTipoInv(CAT_INV.Field<string>("CATEGORIA"));
+                    if (((DataTable)cbxTipo.DataSource).Rows.Count > 0)
+                    {
+                        cbxTipo.DisplayMember = "TIPO";
+                        cbxTipo.ValueMember = "TIPO";
+                        cbxTipo.SelectedValue = SELECTED.TIPO;
+                    }
+
+                    cbxMarca.DataSource = dbCatalogo.getMarcaInv(CAT_INV.Field<string>("CATEGORIA"));
+                    if (((DataTable)cbxMarca.DataSource).Rows.Count > 0)
+                    {
+                        cbxMarca.DisplayMember = "MARCA";
+                        cbxMarca.ValueMember = "MARCA";
+                        cbxMarca.SelectedValue = SELECTED.MARCA;
+                    }
+
+                    txtPeriodo.Text = SELECTED.PERIODO.ToString();
+                    txtCategoria.Text = SELECTED.CATEGORIA;
+                    txtCodigo.Text = SELECTED.CODIGO;
+                    txtCantidad.Text = SELECTED.CANTIDAD.ToString();
+                    txtDescripcion.Text = SELECTED.DESCRIPCION;
+                    txtMonto.Text = SELECTED.MONTO.ToString();
+                    txtNota.Text = SELECTED.NOTA;
+
+                    if (editarForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        SELECTED.BODEGA = (string)cbxBodega.SelectedValue;
+                        SELECTED.CODIGO = txtCodigo.Text.Trim();
+                        SELECTED.COD_ITEM = cbxCodItem.Text.Trim();
+                        SELECTED.TIPO = cbxTipo.Text.ToUpper().Trim();
+                        SELECTED.MARCA = cbxMarca.Text.ToUpper().Trim();
+                        SELECTED.DESCRIPCION = txtDescripcion.Text.Trim();
+                        SELECTED.CANTIDAD = Decimal.Parse(txtCantidad.Text);
+                        SELECTED.MONTO = Decimal.Parse(txtMonto.Text);
+                        SELECTED.NOTA = txtNota.Text;
+
+                        if (dbInventario.updateInit(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))
+                        {
+                            cargarInventarioInicial();
+                        }
+
+                    }
+                }
+                
             }
             else
             {
-                MessageBox.Show("SELECCIONE ARTICULO A EDITAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("SELECCIONE ITEM A EDITAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             
         }
+
+
+
 
 
         private void ELIMINAR_ARTICULO(object sender, EventArgs e)
@@ -162,7 +365,7 @@ namespace PrendaSAL.Operaciones
             }
             else
             {
-                MessageBox.Show("SELECCIONE ARTICULO A ELIMINAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("SELECCIONE ITEM A ELIMINAR", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -180,16 +383,14 @@ namespace PrendaSAL.Operaciones
 
         private void BUSCAR(object sender, EventArgs e)
         {
-            string anio = Controles.InputBox("PERIODO ", "CONSULTAR INVENTARIO INICIAL");
-            if (anio != null && anio != string.Empty)
+            List<object> AC = Controles.InputComboBoxAC("BUSCAR POR", HOME.Instance().datCATEGORIAS.Copy());
+            if (AC != null && AC.Count == 2)
             {
-                ANIO = Int32.Parse(anio);
-                INVENTARIO = dbInventario.getInvInicialByPeriodo(ANIO);
-                tblInventario.DataSource = INVENTARIO;
-
-                btnEditar.Enabled = false;
-                btnEliminar.Enabled = false;
+                ANIO = Int32.Parse(AC[0].ToString());
+                CAT_INV = (DataRow) AC[1];
+                cargarInventarioInicial();
             }
+            
         }
 
 

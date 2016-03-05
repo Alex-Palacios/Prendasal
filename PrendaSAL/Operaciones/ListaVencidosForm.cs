@@ -104,12 +104,12 @@ namespace PrendaSAL.Operaciones
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
 
-            List<string> cat = new List<string>();
-            cat.Add("TODAS");
-            cat.Add(eCategoria.ARTICULO.ToString());
-            cat.Add(eCategoria.ORO.ToString());
-            cbxCategorias.DataSource = cat;
-
+            cbxCategorias.DataSource = HOME.Instance().datCATEGORIAS.Copy();
+            if (HOME.Instance().datCATEGORIAS.Rows.Count > 0)
+            {
+                cbxCategorias.DisplayMember = "CATEGORIA";
+                cbxCategorias.ValueMember = "CATEGORIA";
+            }
             
             NUEVO(null, null);
         }
@@ -195,11 +195,15 @@ namespace PrendaSAL.Operaciones
             }
             else
             {
-                LISTA.CONTRATOS_VENCIDOS = dbVencidos.getVencidos((string)cbxSUCURSAL.SelectedValue, (int)numDIAS.Value, (eCategoria)Enum.Parse(typeof(eCategoria), cbxCategorias.Text));
+                LISTA.CONTRATOS_VENCIDOS = dbVencidos.getVencidos((string)cbxSUCURSAL.SelectedValue, (int)numDIAS.Value, (string) cbxCategorias.SelectedValue);
             }
             tblCONTRATOS.DataSource = LISTA.CONTRATOS_VENCIDOS;
 
         }
+
+
+
+
 
 
         public void cargarListaVencido()

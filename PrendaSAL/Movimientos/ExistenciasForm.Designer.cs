@@ -33,10 +33,10 @@
             this.tblEXISTENCIAS = new System.Windows.Forms.DataGridView();
             this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARTICULO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MARCA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BODEGA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblEXISTENCIAS)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,17 +68,17 @@
             this.tblEXISTENCIAS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODIGO,
             this.CANTIDAD,
-            this.ARTICULO,
+            this.TIPO,
+            this.MARCA,
             this.DESCRIPCION,
-            this.PRECIO,
-            this.BODEGA});
+            this.PRECIO});
             this.tblEXISTENCIAS.Location = new System.Drawing.Point(12, 57);
             this.tblEXISTENCIAS.MultiSelect = false;
             this.tblEXISTENCIAS.Name = "tblEXISTENCIAS";
             this.tblEXISTENCIAS.ReadOnly = true;
             this.tblEXISTENCIAS.RowHeadersVisible = false;
             this.tblEXISTENCIAS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblEXISTENCIAS.Size = new System.Drawing.Size(799, 355);
+            this.tblEXISTENCIAS.Size = new System.Drawing.Size(774, 355);
             this.tblEXISTENCIAS.TabIndex = 0;
             this.tblEXISTENCIAS.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblEXISTENCIAS_CellDoubleClick);
             // 
@@ -100,13 +100,21 @@
             this.CANTIDAD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CANTIDAD.Width = 75;
             // 
-            // ARTICULO
+            // TIPO
             // 
-            this.ARTICULO.DataPropertyName = "COD_ITEM";
-            this.ARTICULO.HeaderText = "ARTICULO";
-            this.ARTICULO.Name = "ARTICULO";
-            this.ARTICULO.ReadOnly = true;
-            this.ARTICULO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TIPO.DataPropertyName = "TIPO";
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            this.TIPO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MARCA
+            // 
+            this.MARCA.DataPropertyName = "MARCA";
+            this.MARCA.HeaderText = "MARCA";
+            this.MARCA.Name = "MARCA";
+            this.MARCA.ReadOnly = true;
+            this.MARCA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DESCRIPCION
             // 
@@ -126,14 +134,6 @@
             this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.PRECIO.Width = 80;
             // 
-            // BODEGA
-            // 
-            this.BODEGA.DataPropertyName = "BODEGA";
-            this.BODEGA.HeaderText = "BODEGA";
-            this.BODEGA.Name = "BODEGA";
-            this.BODEGA.ReadOnly = true;
-            this.BODEGA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // ExistenciasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -141,7 +141,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(831, 428);
+            this.ClientSize = new System.Drawing.Size(811, 428);
             this.Controls.Add(this.txtCODIGO);
             this.Controls.Add(this.tblEXISTENCIAS);
             this.Controls.Add(this.label1);
@@ -165,9 +165,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARTICULO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MARCA;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BODEGA;
     }
 }

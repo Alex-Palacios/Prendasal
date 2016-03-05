@@ -51,7 +51,7 @@ namespace PrendaSAL.Reportes
                 R.SetField<bool>("ACTIVA", false);
                 ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
-            cbxARTICULO.DataSource = dbCatalogo.showCatalogo(eCategoria.ARTICULO);
+            cbxARTICULO.DataSource = dbCatalogo.showCatalogo("ARTICULO");
             if (cbxARTICULO.DataSource != null && ((DataTable)cbxARTICULO.DataSource).Rows.Count > 0)
             {
                 cbxARTICULO.DisplayMember = "COD_ITEM";

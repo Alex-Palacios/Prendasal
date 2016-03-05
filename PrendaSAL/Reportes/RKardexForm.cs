@@ -77,7 +77,7 @@ namespace PrendaSAL.Reportes
             cbxMESES.ValueMember = "MES";
             txtANIO.Text = DateTime.Today.Year.ToString();
 
-            cbxItem.DataSource = dbCatalogo.showCatalogo(eCategoria.ORO);
+            cbxItem.DataSource = dbCatalogo.showCatalogo("ORO");
             if (((DataTable)cbxItem.DataSource).Rows.Count > 0)
             {
                 cbxItem.DisplayMember = "COD_ITEM";
@@ -138,7 +138,7 @@ namespace PrendaSAL.Reportes
                 //BUSCAR POR ITEM
                 if(txtANIO.Text.Trim() != string.Empty && cbxMESES.SelectedIndex >= 0 && cbxItem.SelectedIndex >= 0)
                 {
-                    KARDEX = dbReporte.RptKARDEX_ORO(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, (string)cbxItem.SelectedValue);
+                    KARDEX = dbReporte.RptKARDEX(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, (string)cbxItem.SelectedValue);
                     tblKARDEX.DataSource = KARDEX.Copy();
                 }
                 else
@@ -151,7 +151,7 @@ namespace PrendaSAL.Reportes
                 //BUSCAR POR CODIGO
                 if (txtANIO.Text.Trim() != string.Empty && cbxMESES.SelectedIndex >= 0 && txtCODIGO.Text.Trim() != string.Empty)
                 {
-                    KARDEX = dbReporte.RptKARDEX_ARTICULO(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, txtCODIGO.Text.Trim());
+                    KARDEX = dbReporte.RptKARDEX(txtANIO.Text.Trim(), (string)cbxMESES.SelectedValue, txtCODIGO.Text.Trim());
                     tblKARDEX.DataSource = KARDEX.Copy();
                 }
                 else

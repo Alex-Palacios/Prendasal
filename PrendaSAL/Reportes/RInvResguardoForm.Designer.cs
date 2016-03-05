@@ -46,7 +46,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.rdbDETALLE = new System.Windows.Forms.RadioButton();
             this.rdbCODIGO = new System.Windows.Forms.RadioButton();
-            this.cbxARTICULO = new System.Windows.Forms.ComboBox();
+            this.cbxTIPO = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.opciones = new System.Windows.Forms.ToolStrip();
             this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
@@ -228,24 +228,24 @@
             this.rdbCODIGO.UseVisualStyleBackColor = true;
             this.rdbCODIGO.CheckedChanged += new System.EventHandler(this.rdbCODIGO_CheckedChanged);
             // 
-            // cbxARTICULO
+            // cbxTIPO
             // 
-            this.cbxARTICULO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxARTICULO.FormattingEnabled = true;
-            this.cbxARTICULO.Location = new System.Drawing.Point(747, 35);
-            this.cbxARTICULO.Name = "cbxARTICULO";
-            this.cbxARTICULO.Size = new System.Drawing.Size(145, 21);
-            this.cbxARTICULO.TabIndex = 106;
+            this.cbxTIPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTIPO.FormattingEnabled = true;
+            this.cbxTIPO.Location = new System.Drawing.Point(747, 35);
+            this.cbxTIPO.Name = "cbxTIPO";
+            this.cbxTIPO.Size = new System.Drawing.Size(145, 21);
+            this.cbxTIPO.TabIndex = 106;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(672, 41);
+            this.label2.Location = new System.Drawing.Point(705, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 105;
-            this.label2.Text = "ARTICULO";
+            this.label2.Text = "TIPO";
             // 
             // opciones
             // 
@@ -286,7 +286,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(939, 497);
             this.Controls.Add(this.opciones);
-            this.Controls.Add(this.cbxARTICULO);
+            this.Controls.Add(this.cbxTIPO);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rdbCODIGO);
             this.Controls.Add(this.rdbDETALLE);
@@ -326,7 +326,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.RadioButton rdbDETALLE;
         private System.Windows.Forms.RadioButton rdbCODIGO;
-        private System.Windows.Forms.ComboBox cbxARTICULO;
+        private System.Windows.Forms.ComboBox cbxTIPO;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStrip opciones;
         private System.Windows.Forms.ToolStripButton btnAyuda;

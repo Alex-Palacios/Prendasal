@@ -121,18 +121,7 @@ namespace MODELO
     }
 
 
-    public enum eCategoria
-    {
-        ORO,
-        ARTICULO
-    }
 
-
-    public enum eUnidadMedida
-    {
-        UDS,
-        GRS
-    }
 
 
     public enum eTipoPrestamo

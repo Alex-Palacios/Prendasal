@@ -29,7 +29,7 @@ namespace MODELO
         public decimal IVA_DESC;
         public decimal CESC;
         public decimal TOTAL;
-        public eCategoria CATEGORIA;
+        public string CATEGORIA;
         public eNIVEL NIVEL;
         public eEstado ESTADO;
         public bool INIT_BALANCE;
@@ -93,7 +93,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("TOTAL")) { venta.TOTAL = dr.Field<decimal>("TOTAL"); }
                 if (dr.Table.Columns.Contains("IVA")) { venta.IVA = dr.Field<decimal>("IVA"); }
                 if (dr.Table.Columns.Contains("IVA_DESC")) { venta.IVA_DESC = dr.Field<decimal>("IVA_DESC"); }
-                if (dr.Table.Columns.Contains("CATEGORIA")) { venta.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
+                if (dr.Table.Columns.Contains("CATEGORIA")) { venta.CATEGORIA = dr.Field<string>("CATEGORIA"); }
                 if (dr.Table.Columns.Contains("NIVEL")) { venta.NIVEL = (eNIVEL)dr.Field<int>("NIVEL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { venta.ESTADO = (eEstado)dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { venta.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }

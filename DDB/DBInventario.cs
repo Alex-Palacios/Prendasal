@@ -40,19 +40,23 @@ namespace DDB
                 periodo_inv.Direction = ParameterDirection.Input;
                 MySqlParameter bodega_inv = cmd.Parameters.Add("bodega_inv", MySqlDbType.VarChar, 2);
                 bodega_inv.Direction = ParameterDirection.Input;
+                MySqlParameter cat_inv = cmd.Parameters.Add("cat_inv", MySqlDbType.VarChar, 50);
+                cat_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cod_inv = cmd.Parameters.Add("cod_inv", MySqlDbType.VarChar, 50);
                 cod_inv.Direction = ParameterDirection.Input;
-                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 20);
+                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 50);
                 item_inv.Direction = ParameterDirection.Input;
-                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 100);
+                MySqlParameter tipo_inv = cmd.Parameters.Add("tipo_inv", MySqlDbType.VarChar, 20);
+                tipo_inv.Direction = ParameterDirection.Input;
+                MySqlParameter marca_inv = cmd.Parameters.Add("marca_inv", MySqlDbType.VarChar, 50);
+                marca_inv.Direction = ParameterDirection.Input;
+                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 255);
                 descrip_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cantidad_inv = cmd.Parameters.Add("cantidad_inv", MySqlDbType.Decimal);
                 cantidad_inv.Direction = ParameterDirection.Input;
-                MySqlParameter costo_inv = cmd.Parameters.Add("costo_inv", MySqlDbType.Decimal);
-                costo_inv.Direction = ParameterDirection.Input;
-                MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
-                precio_inv.Direction = ParameterDirection.Input;
-                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 100);
+                MySqlParameter monto_inv = cmd.Parameters.Add("monto_inv", MySqlDbType.Decimal);
+                monto_inv.Direction = ParameterDirection.Input;
+                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 255);
                 nota_inv.Direction = ParameterDirection.Input;
 
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
@@ -64,12 +68,14 @@ namespace DDB
 
                 periodo_inv.Value = inv.PERIODO;
                 bodega_inv.Value = inv.BODEGA;
+                cat_inv.Value = inv.CATEGORIA;
                 cod_inv.Value = inv.CODIGO;
                 item_inv.Value = inv.COD_ITEM;
+                tipo_inv.Value = inv.TIPO;
+                marca_inv.Value = inv.MARCA;
                 descrip_inv.Value = inv.DESCRIPCION;
                 cantidad_inv.Value = inv.CANTIDAD;
-                costo_inv.Value = inv.COSTO;
-                precio_inv.Value = inv.PRECIO;
+                monto_inv.Value = inv.MONTO;
                 nota_inv.Value = inv.NOTA;
 
                 suc.Value = sucursal;
@@ -77,7 +83,7 @@ namespace DDB
                 sys.Value = sistema;
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("ARTICULO REGISTRADO EN INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ITEM REGISTRADO EN INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
@@ -86,6 +92,9 @@ namespace DDB
             }
             return OK;
         }
+
+
+
 
 
 
@@ -103,19 +112,23 @@ namespace DDB
                 idmov.Direction = ParameterDirection.Input;
                 MySqlParameter bodega_inv = cmd.Parameters.Add("bodega_inv", MySqlDbType.VarChar, 2);
                 bodega_inv.Direction = ParameterDirection.Input;
+                MySqlParameter cat_inv = cmd.Parameters.Add("cat_inv", MySqlDbType.VarChar, 50);
+                cat_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cod_inv = cmd.Parameters.Add("cod_inv", MySqlDbType.VarChar, 50);
                 cod_inv.Direction = ParameterDirection.Input;
-                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 20);
+                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 50);
                 item_inv.Direction = ParameterDirection.Input;
-                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 100);
+                MySqlParameter tipo_inv = cmd.Parameters.Add("tipo_inv", MySqlDbType.VarChar, 20);
+                tipo_inv.Direction = ParameterDirection.Input;
+                MySqlParameter marca_inv = cmd.Parameters.Add("marca_inv", MySqlDbType.VarChar, 50);
+                marca_inv.Direction = ParameterDirection.Input;
+                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 255);
                 descrip_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cantidad_inv = cmd.Parameters.Add("cantidad_inv", MySqlDbType.Decimal);
                 cantidad_inv.Direction = ParameterDirection.Input;
-                MySqlParameter costo_inv = cmd.Parameters.Add("costo_inv", MySqlDbType.Decimal);
-                costo_inv.Direction = ParameterDirection.Input;
-                MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
-                precio_inv.Direction = ParameterDirection.Input;
-                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 100);
+                MySqlParameter monto_inv = cmd.Parameters.Add("monto_inv", MySqlDbType.Decimal);
+                monto_inv.Direction = ParameterDirection.Input;
+                MySqlParameter nota_inv = cmd.Parameters.Add("nota_inv", MySqlDbType.VarChar, 255);
                 nota_inv.Direction = ParameterDirection.Input;
 
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
@@ -125,14 +138,17 @@ namespace DDB
                 MySqlParameter sys = cmd.Parameters.Add("sys", MySqlDbType.VarChar, 20);
                 sys.Direction = ParameterDirection.Input;
 
+
                 idmov.Value = inv.ID_MOV;
                 bodega_inv.Value = inv.BODEGA;
+                cat_inv.Value = inv.CATEGORIA;
                 cod_inv.Value = inv.CODIGO;
                 item_inv.Value = inv.COD_ITEM;
+                tipo_inv.Value = inv.TIPO;
+                marca_inv.Value = inv.MARCA;
                 descrip_inv.Value = inv.DESCRIPCION;
                 cantidad_inv.Value = inv.CANTIDAD;
-                costo_inv.Value = inv.COSTO;
-                precio_inv.Value = inv.PRECIO;
+                monto_inv.Value = inv.MONTO;
                 nota_inv.Value = inv.NOTA;
 
                 suc.Value = sucursal;
@@ -140,7 +156,7 @@ namespace DDB
                 sys.Value = sistema;
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("ARTICULO ACTUALIZADO DE INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ITEM ACTUALIZADO DE INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
@@ -165,6 +181,8 @@ namespace DDB
 
                 MySqlParameter idmov = cmd.Parameters.Add("idmov", MySqlDbType.Int32);
                 idmov.Direction = ParameterDirection.Input;
+                MySqlParameter cat_inv = cmd.Parameters.Add("cat_inv", MySqlDbType.VarChar, 50);
+                cat_inv.Direction = ParameterDirection.Input;
                 MySqlParameter cod_inv = cmd.Parameters.Add("cod_inv", MySqlDbType.VarChar, 50);
                 cod_inv.Direction = ParameterDirection.Input;
                 
@@ -177,6 +195,7 @@ namespace DDB
                 sys.Direction = ParameterDirection.Input;
 
                 idmov.Value = inv.ID_MOV;
+                cat_inv.Value = inv.CATEGORIA;
                 cod_inv.Value = inv.CODIGO;
 
                 suc.Value = sucursal;
@@ -184,7 +203,7 @@ namespace DDB
                 sys.Value = sistema;
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("ARTICULO ELIMINADO DE INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ITEM ELIMINADO DE INVENTARIO INICIAL", "OPERACION FINALIZADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
@@ -195,20 +214,25 @@ namespace DDB
         }
 
 
+        
 
 
-        public DataTable getInvInicialByPeriodo(int periodo)
+        public DataTable getInvInicialByPeriodo(int periodo,string categoria)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "SELECT * FROM prendasal.view_inv_inicial WHERE PERIODO = @anio;";
+                string sql = "SELECT * FROM prendasal.view_inv_inicial WHERE PERIODO = @anio AND CATEGORIA = @cat;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.Text;
                 MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.Int32);
                 anio.Direction = ParameterDirection.Input;
+                MySqlParameter cat = cmd.Parameters.Add("cat", MySqlDbType.VarChar, 50);
+                cat.Direction = ParameterDirection.Input;
+
                 anio.Value = periodo;
+                cat.Value = categoria;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -219,7 +243,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR INVENTARIO INICIAL " + periodo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR INVENTARIO INICIAL DE "+categoria +" DEL "+ + periodo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -303,20 +327,23 @@ namespace DDB
 
 
 
-        public DataTable getExistenciasARTICULOS(string sucursal)
+        public DataTable getEXISTENCIAS(string sucursal,string categoria)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.RPT_EXISTENCIAS_ARTICULOS;";
+                string sql = "prendasal.RPT_EXISTENCIAS_CATEGORIA;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 MySqlParameter suc_exis = cmd.Parameters.Add("suc_exis", MySqlDbType.VarChar, 2);
                 suc_exis.Direction = ParameterDirection.Input;
+                MySqlParameter cat_exis = cmd.Parameters.Add("cat_exis", MySqlDbType.VarChar, 50);
+                cat_exis.Direction = ParameterDirection.Input;
 
                 suc_exis.Value = sucursal;
+                cat_exis.Value = categoria;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -327,7 +354,7 @@ namespace DDB
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE ARTICULOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE " + categoria, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return datos;
         }
@@ -357,7 +384,7 @@ namespace DDB
                 {
                     sql = sql + "AND CATEGORIA = @cat ";
                 }
-                if (articulo != "TODAS")
+                if (articulo != null && articulo != "TODAS" && articulo != string.Empty)
                 {
                     sql = sql + "AND COD_ITEM = @item ";
                 }

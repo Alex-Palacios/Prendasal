@@ -7,41 +7,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
-using ControlesPersonalizados;
 
-namespace PrendaSAL.Operaciones
+namespace PrendaSAL.Movimientos
 {
     using MODELO;
     using DDB;
 
-    public partial class ItemInicialForm : Office2007Form
+    public partial class AddInvItemForm : Form
     {
-
-        //VARIABLES
         public bool UNICO;
+        public DataTable PRECIOS;
+        public decimal LIMITE;
 
 
-        public ItemInicialForm()
+
+        public AddInvItemForm()
         {
             InitializeComponent();
-            
         }
 
 
 
 
-        private void ItemInv_Load(object sender, EventArgs e)
+
+        private void AddInvItemForm_Load(object sender, EventArgs e)
         {
             
         }
 
+
+
+        private void calcularMonto()
+        {
+            LIMITE = (decimal)0.00;
+            decimal precio = getPrecioKIL((string)cbxCODITEM.SelectedValue);
+            if(precio > 0)
+            {
+                decimal cantidad = Decimal.Parse(txtCANTIDAD.Text, System.Globalization.NumberStyles.Currency);
+                LIMITE = Decimal.Round(precio * cantidad, 2, MidpointRounding.AwayFromZero);
+                txtMONTO.Text = LIMITE.ToString();
+            }
+        }
+
+
+
+
+
+
+
+
+        private Decimal getPrecioKIL(string item)
+        {
+            decimal monto = (decimal)0.00;
+            if (PRECIOS != null)
+            {
+                foreach (DataRow row in PRECIOS.Rows)
+                {
+                    if (row.Field<string>("KILATAJE") == item)
+                    {
+                        monto = row.Field<decimal>("PRECIO");
+                        break;
+                    }
+                }
+            }
+            
+            return monto;
+        }
+        
 
 
 
         private void txtCANTIDAD_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Impide introducir mas de un punto
+
             if (e.KeyChar == 46 && txtCANTIDAD.Text.IndexOf('.') != -1)
             {
                 e.Handled = true;
@@ -56,13 +95,13 @@ namespace PrendaSAL.Operaciones
         }
 
 
-
         private void txtCANTIDAD_Leave(object sender, EventArgs e)
         {
             decimal valor;
             if (Decimal.TryParse(txtCANTIDAD.Text, System.Globalization.NumberStyles.Currency, null, out valor))
             {
                 txtCANTIDAD.Text = Decimal.Round(valor, 1, MidpointRounding.AwayFromZero).ToString();
+                calcularMonto();
             }
             else
             {
@@ -79,6 +118,9 @@ namespace PrendaSAL.Operaciones
                 txtMONTO.Focus();
             }
         }
+
+
+
 
 
 
@@ -117,16 +159,29 @@ namespace PrendaSAL.Operaciones
 
 
 
+
         private void txtMONTO_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnGUARDAR.Focus();
+                btnOK.Focus();
             }
         }
 
-        
 
+
+
+
+
+
+
+        private void cbxCODITEM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxCODITEM.SelectedIndex >= 0)
+            {
+                calcularMonto();
+            }
+        }
 
 
 
@@ -138,17 +193,7 @@ namespace PrendaSAL.Operaciones
             decimal monto;
             try
             {
-                if (txtPERIODO.Text == string.Empty)
-                {
-                    Ok = false;
-                    MessageBox.Show("Periodo no indicado", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (cbxBODEGA.SelectedIndex < 0)
-                {
-                    Ok = false;
-                    MessageBox.Show("Indique bodega de almacenaje del articulo", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (txtCATEGORIA.Text == string.Empty)
+                if (txtCATEGORIA.Text == string.Empty)
                 {
                     Ok = false;
                     MessageBox.Show("Categoria no definida", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -178,33 +223,40 @@ namespace PrendaSAL.Operaciones
                     Ok = false;
                     MessageBox.Show("Monto invalido", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+                else if (LIMITE > 0 && monto > LIMITE && monto > Decimal.Round(LIMITE, 0, MidpointRounding.AwayFromZero))
+                {
+                    Ok = false;
+                    MessageBox.Show("Monto excede el autorizado", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
                 Ok = false;
-                MessageBox.Show("ERROR AL VALIDAR DATOS", "ERROR VALIDAR DATOS", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Error al validar datos", "ERROR DE VALIDACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
             return Ok;
         }
 
 
 
-        private void GUARDAR(object sender, EventArgs e)
+
+        private void btnOK_Click(object sender, EventArgs e)
         {
             if (validarDatos())
             {
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
-
         }
 
 
-
-        private void CANCELAR(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
+
+
+
 
 
 

@@ -339,13 +339,13 @@ namespace DDB
 
 
 
-        public DataTable RptKARDEX_ORO(string anio,string mes,string kilataje)
+        public DataTable RptKARDEX(string anio,string mes,string item)
         {
             MySqlDataReader reader;
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.RPT_KARDEX_ORO";
+                string sql = "prendasal.RPT_KARDEX";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 MySqlParameter anio_rpt = cmd.Parameters.Add("anio_rpt", MySqlDbType.VarChar, 4);
@@ -357,7 +357,7 @@ namespace DDB
 
                 anio_rpt.Value = anio;
                 mes_rpt.Value = mes;
-                item_rpt.Value = kilataje;
+                item_rpt.Value = item;
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -376,39 +376,7 @@ namespace DDB
 
 
 
-        public DataTable RptKARDEX_ARTICULO(string anio,string mes , string codigo)
-        {
-            MySqlDataReader reader;
-            DataTable datos = new DataTable();
-            try
-            {
-                string sql = "prendasal.RPT_KARDEX_ARTICULO";
-                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter anio_rpt = cmd.Parameters.Add("anio_rpt", MySqlDbType.VarChar, 4);
-                anio_rpt.Direction = ParameterDirection.Input;
-                MySqlParameter mes_rpt = cmd.Parameters.Add("mes_rpt", MySqlDbType.VarChar, 2);
-                mes_rpt.Direction = ParameterDirection.Input;
-                MySqlParameter codigo_rpt = cmd.Parameters.Add("codigo_rpt", MySqlDbType.VarChar, 50);
-                codigo_rpt.Direction = ParameterDirection.Input;
 
-                anio_rpt.Value = anio;
-                mes_rpt.Value = mes;
-                codigo_rpt.Value = codigo;
-
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    datos.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "ERROR AL CONSULTAR KARDEX", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return datos;
-        }
 
     }
 }

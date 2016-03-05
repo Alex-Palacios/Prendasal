@@ -20,7 +20,7 @@ namespace MODELO
         public string DOCUMENTO;
         public eTipoPago TIPO_PAGO;
         public decimal TOTAL;
-        public eCategoria CATEGORIA;
+        public string CATEGORIA;
         public eNIVEL NIVEL;
         public eEstado ESTADO;
         public bool INIT_BALANCE;
@@ -49,9 +49,12 @@ namespace MODELO
             //DATOS POR DEFECTO
             ITEMS_COMPRA = new DataTable();
             ITEMS_COMPRA.Columns.Add("CATEGORIA").DataType = System.Type.GetType("System.String");
+            ITEMS_COMPRA.Columns.Add("CODIGO").DataType = System.Type.GetType("System.String");
             ITEMS_COMPRA.Columns.Add("COD_ITEM").DataType = System.Type.GetType("System.String");
-            ITEMS_COMPRA.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
+            ITEMS_COMPRA.Columns.Add("TIPO").DataType = System.Type.GetType("System.String");
+            ITEMS_COMPRA.Columns.Add("MARCA").DataType = System.Type.GetType("System.String");
             ITEMS_COMPRA.Columns.Add("DESCRIPCION").DataType = System.Type.GetType("System.String");
+            ITEMS_COMPRA.Columns.Add("CANTIDAD").DataType = System.Type.GetType("System.Decimal");
             ITEMS_COMPRA.Columns.Add("MONTO").DataType = System.Type.GetType("System.Decimal");
         }
 
@@ -73,7 +76,7 @@ namespace MODELO
                 if (dr.Table.Columns.Contains("DOCUMENTO")) { compra.DOCUMENTO = dr.Field<string>("DOCUMENTO"); }
                 if (dr.Table.Columns.Contains("TIPO_PAGO")) { compra.TIPO_PAGO = (eTipoPago) dr.Field<int>("TIPO_PAGO"); }
                 if (dr.Table.Columns.Contains("TOTAL")) { compra.TOTAL = dr.Field<decimal>("TOTAL"); }
-                if (dr.Table.Columns.Contains("CATEGORIA")) { compra.CATEGORIA = (eCategoria)Enum.Parse(typeof(eCategoria), dr.Field<string>("CATEGORIA")); }
+                if (dr.Table.Columns.Contains("CATEGORIA")) { compra.CATEGORIA =  dr.Field<string>("CATEGORIA"); }
                 if (dr.Table.Columns.Contains("NIVEL")) { compra.NIVEL = (eNIVEL) dr.Field<int>("NIVEL"); }
                 if (dr.Table.Columns.Contains("ESTADO")) { compra.ESTADO = (eEstado) dr.Field<int>("ESTADO"); }
                 if (dr.Table.Columns.Contains("INIT_BALANCE")) { compra.INIT_BALANCE = dr.Field<bool>("INIT_BALANCE"); }

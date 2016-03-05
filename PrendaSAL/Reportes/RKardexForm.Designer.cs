@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblKARDEX = new System.Windows.Forms.DataGridView();
             this.grConsulta = new System.Windows.Forms.GroupBox();
+            this.txtANIO = new System.Windows.Forms.TextBox();
+            this.cbxMESES = new System.Windows.Forms.ComboBox();
+            this.lb4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnBUSCAR = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.rdbKILATAJE = new System.Windows.Forms.RadioButton();
@@ -46,16 +50,13 @@
             this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COD_TRANS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COD_ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MARCA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ENTRADAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SALIDAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EXISTENCIAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtANIO = new System.Windows.Forms.TextBox();
-            this.cbxMESES = new System.Windows.Forms.ComboBox();
-            this.lb4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblKARDEX)).BeginInit();
             this.grConsulta.SuspendLayout();
             this.opciones.SuspendLayout();
@@ -70,8 +71,9 @@
             this.tblKARDEX.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FECHA,
             this.COD_TRANS,
-            this.CODIGO,
             this.COD_ITEM,
+            this.TIPO,
+            this.MARCA,
             this.DESCRIPCION,
             this.ENTRADAS,
             this.SALIDAS,
@@ -82,7 +84,7 @@
             this.tblKARDEX.ReadOnly = true;
             this.tblKARDEX.RowHeadersVisible = false;
             this.tblKARDEX.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblKARDEX.Size = new System.Drawing.Size(1001, 292);
+            this.tblKARDEX.Size = new System.Drawing.Size(1032, 292);
             this.tblKARDEX.TabIndex = 0;
             // 
             // grConsulta
@@ -102,10 +104,47 @@
             this.grConsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grConsulta.Location = new System.Drawing.Point(12, 28);
             this.grConsulta.Name = "grConsulta";
-            this.grConsulta.Size = new System.Drawing.Size(1002, 111);
+            this.grConsulta.Size = new System.Drawing.Size(1032, 111);
             this.grConsulta.TabIndex = 3;
             this.grConsulta.TabStop = false;
             this.grConsulta.Text = "CONSULTAR";
+            // 
+            // txtANIO
+            // 
+            this.txtANIO.Location = new System.Drawing.Point(139, 30);
+            this.txtANIO.MaxLength = 4;
+            this.txtANIO.Name = "txtANIO";
+            this.txtANIO.Size = new System.Drawing.Size(120, 20);
+            this.txtANIO.TabIndex = 119;
+            this.txtANIO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtANIO_KeyPress);
+            // 
+            // cbxMESES
+            // 
+            this.cbxMESES.FormattingEnabled = true;
+            this.cbxMESES.Location = new System.Drawing.Point(138, 68);
+            this.cbxMESES.Name = "cbxMESES";
+            this.cbxMESES.Size = new System.Drawing.Size(121, 21);
+            this.cbxMESES.TabIndex = 118;
+            // 
+            // lb4
+            // 
+            this.lb4.AutoSize = true;
+            this.lb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb4.Location = new System.Drawing.Point(92, 30);
+            this.lb4.Name = "lb4";
+            this.lb4.Size = new System.Drawing.Size(41, 17);
+            this.lb4.TabIndex = 117;
+            this.lb4.Text = "AÑO";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(92, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 17);
+            this.label1.TabIndex = 116;
+            this.label1.Text = "MES";
             // 
             // btnBUSCAR
             // 
@@ -182,7 +221,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(523, 14);
+            this.label9.Location = new System.Drawing.Point(533, 14);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(55, 13);
             this.label9.TabIndex = 90;
@@ -195,7 +234,7 @@
             this.btnAyuda});
             this.opciones.Location = new System.Drawing.Point(0, 0);
             this.opciones.Name = "opciones";
-            this.opciones.Size = new System.Drawing.Size(1023, 25);
+            this.opciones.Size = new System.Drawing.Size(1056, 25);
             this.opciones.TabIndex = 151;
             this.opciones.Text = "toolStrip1";
             // 
@@ -221,9 +260,9 @@
             // FECHA
             // 
             this.FECHA.DataPropertyName = "FECHA";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FECHA.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.FECHA.DefaultCellStyle = dataGridViewCellStyle4;
             this.FECHA.HeaderText = "FECHA";
             this.FECHA.Name = "FECHA";
             this.FECHA.ReadOnly = true;
@@ -238,15 +277,6 @@
             this.COD_TRANS.ReadOnly = true;
             this.COD_TRANS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // CODIGO
-            // 
-            this.CODIGO.DataPropertyName = "CODIGO";
-            this.CODIGO.HeaderText = "CODIGO";
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CODIGO.Width = 150;
-            // 
             // COD_ITEM
             // 
             this.COD_ITEM.DataPropertyName = "COD_ITEM";
@@ -255,6 +285,22 @@
             this.COD_ITEM.ReadOnly = true;
             this.COD_ITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.COD_ITEM.Width = 120;
+            // 
+            // TIPO
+            // 
+            this.TIPO.DataPropertyName = "TIPO";
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            this.TIPO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MARCA
+            // 
+            this.MARCA.DataPropertyName = "MARCA";
+            this.MARCA.HeaderText = "MARCA";
+            this.MARCA.Name = "MARCA";
+            this.MARCA.ReadOnly = true;
+            this.MARCA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DESCRIPCION
             // 
@@ -268,9 +314,9 @@
             // ENTRADAS
             // 
             this.ENTRADAS.DataPropertyName = "ENTRADAS";
-            dataGridViewCellStyle2.Format = "N1";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ENTRADAS.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "N1";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ENTRADAS.DefaultCellStyle = dataGridViewCellStyle5;
             this.ENTRADAS.HeaderText = "ENTRADAS";
             this.ENTRADAS.Name = "ENTRADAS";
             this.ENTRADAS.ReadOnly = true;
@@ -280,8 +326,8 @@
             // SALIDAS
             // 
             this.SALIDAS.DataPropertyName = "SALIDAS";
-            dataGridViewCellStyle3.Format = "N1";
-            this.SALIDAS.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "N1";
+            this.SALIDAS.DefaultCellStyle = dataGridViewCellStyle6;
             this.SALIDAS.HeaderText = "SALIDAS";
             this.SALIDAS.Name = "SALIDAS";
             this.SALIDAS.ReadOnly = true;
@@ -296,50 +342,13 @@
             this.EXISTENCIAS.ReadOnly = true;
             this.EXISTENCIAS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // txtANIO
-            // 
-            this.txtANIO.Location = new System.Drawing.Point(139, 30);
-            this.txtANIO.MaxLength = 4;
-            this.txtANIO.Name = "txtANIO";
-            this.txtANIO.Size = new System.Drawing.Size(120, 20);
-            this.txtANIO.TabIndex = 119;
-            this.txtANIO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtANIO_KeyPress);
-            // 
-            // cbxMESES
-            // 
-            this.cbxMESES.FormattingEnabled = true;
-            this.cbxMESES.Location = new System.Drawing.Point(138, 68);
-            this.cbxMESES.Name = "cbxMESES";
-            this.cbxMESES.Size = new System.Drawing.Size(121, 21);
-            this.cbxMESES.TabIndex = 118;
-            // 
-            // lb4
-            // 
-            this.lb4.AutoSize = true;
-            this.lb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb4.Location = new System.Drawing.Point(92, 30);
-            this.lb4.Name = "lb4";
-            this.lb4.Size = new System.Drawing.Size(41, 17);
-            this.lb4.TabIndex = 117;
-            this.lb4.Text = "AÑO";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(92, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 17);
-            this.label1.TabIndex = 116;
-            this.label1.Text = "MES";
-            // 
             // RKardexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1023, 457);
+            this.ClientSize = new System.Drawing.Size(1056, 457);
             this.Controls.Add(this.opciones);
             this.Controls.Add(this.grConsulta);
             this.Controls.Add(this.tblKARDEX);
@@ -374,17 +383,18 @@
         private System.Windows.Forms.RadioButton rdbCODIGO;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBUSCAR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn COD_TRANS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn COD_ITEM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ENTRADAS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SALIDAS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EXISTENCIAS;
         private System.Windows.Forms.TextBox txtANIO;
         private System.Windows.Forms.ComboBox cbxMESES;
         private System.Windows.Forms.Label lb4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_TRANS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_ITEM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MARCA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ENTRADAS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SALIDAS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EXISTENCIAS;
     }
 }

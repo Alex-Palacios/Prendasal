@@ -76,7 +76,13 @@ namespace PrendaSAL.Reportes
                 ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
 
-            cbxCATEGORIA.DataSource = Enum.GetValues(new eCategoria().GetType());
+            cbxCATEGORIA.DataSource = HOME.Instance().datCATEGORIAS.Copy();
+            if (HOME.Instance().datCATEGORIAS.Rows.Count > 0)
+            {
+                cbxCATEGORIA.DisplayMember = "CATEGORIA";
+                cbxCATEGORIA.ValueMember = "CATEGORIA";
+            }
+
             rdbDETALLE.Checked = true;
         }
 
@@ -89,7 +95,7 @@ namespace PrendaSAL.Reportes
             {
                 cbxSUCURSAL.Enabled = true;
                 cbxCATEGORIA.Enabled = true;
-                cbxARTICULO.Enabled = true;
+                cbxTIPO.Enabled = true;
                 txtCODIGO.Text = string.Empty;
                 txtCODIGO.ReadOnly = true;
             }
@@ -104,7 +110,7 @@ namespace PrendaSAL.Reportes
             {
                 cbxSUCURSAL.Enabled = false;
                 cbxCATEGORIA.Enabled = false;
-                cbxARTICULO.Enabled = false;
+                cbxTIPO.Enabled = false;
                 txtCODIGO.ReadOnly = false;
             }
         }
@@ -116,18 +122,18 @@ namespace PrendaSAL.Reportes
 
         private void cbxCATEGORIA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxCATEGORIA.SelectedIndex >= 0)
+            if (cbxCATEGORIA.SelectedIndex >= 0 && cbxCATEGORIA.ValueMember != string.Empty)
             {
-                cbxARTICULO.DataSource = dbCatalogo.showCatalogo((eCategoria) cbxCATEGORIA.SelectedItem);
-                if (cbxARTICULO.DataSource != null && ((DataTable)cbxARTICULO.DataSource).Rows.Count > 0)
+                cbxTIPO.DataSource = dbCatalogo.showCatalogo((string) cbxCATEGORIA.SelectedValue);
+                if (cbxTIPO.DataSource != null && ((DataTable)cbxTIPO.DataSource).Rows.Count > 0)
                 {
-                    cbxARTICULO.DisplayMember = "COD_ITEM";
-                    cbxARTICULO.ValueMember = "COD_ITEM";
-                    DataRow R = ((DataTable)cbxARTICULO.DataSource).NewRow();
-                    R.SetField<string>("CATEGORIA", "TODAS");
+                    cbxTIPO.DisplayMember = "COD_ITEM";
+                    cbxTIPO.ValueMember = "COD_ITEM";
+                    DataRow R = ((DataTable)cbxTIPO.DataSource).NewRow();
                     R.SetField<string>("COD_ITEM", "TODAS");
-                    R.SetField<string>("UNIDAD_MEDIDA", "TODAS");
-                    ((DataTable)cbxARTICULO.DataSource).Rows.InsertAt(R, 0);
+                    R.SetField<string>("CATEGORIA", (string)cbxCATEGORIA.SelectedValue);
+                    ((DataTable)cbxTIPO.DataSource).Rows.InsertAt(R, 0);
+                    cbxTIPO.SelectedIndex = 0;
                 }
             }
             
@@ -142,9 +148,9 @@ namespace PrendaSAL.Reportes
             if (rdbDETALLE.Checked)
             {
                 //BUSCAR POR ARTICULO
-                if (cbxSUCURSAL.SelectedIndex >= 0 && cbxCATEGORIA.SelectedIndex >= 0 && cbxARTICULO.SelectedIndex >= 0)
+                if (cbxSUCURSAL.SelectedIndex >= 0 && cbxCATEGORIA.SelectedIndex >= 0 )
                 {
-                    INVENTARIO = dbInventario.getInvCustodia((string)cbxSUCURSAL.SelectedValue, (string)cbxCATEGORIA.Text, (string)cbxARTICULO.Text);
+                    INVENTARIO = dbInventario.getInvCustodia((string)cbxSUCURSAL.SelectedValue, (string)cbxCATEGORIA.Text, (string)cbxTIPO.Text);
                     tblINVENTARIO.DataSource = INVENTARIO.Copy();
                     System.Media.SystemSounds.Exclamation.Play();
                 }

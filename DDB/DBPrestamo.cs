@@ -29,9 +29,13 @@ namespace DDB
             string items = "";
             foreach (DataRow row in prestamo.ITEMS_PRESTAMO.Rows)
             {
-                items = items + row.Field<string>("COD_ITEM") + ">"
-                    + row.Field<decimal>("CANTIDAD") + ">"
+                items = items + row.Field<string>("CATEGORIA") + ">"
+                    + row.Field<string>("CODIGO") + ">"
+                    + row.Field<string>("COD_ITEM") + ">"
+                    + row.Field<string>("TIPO") + ">"
+                    + row.Field<string>("MARCA") + ">"
                     + row.Field<string>("DESCRIPCION") + ">"
+                    + row.Field<decimal>("CANTIDAD") + ">"
                     + row.Field<decimal>("MONTO") + "&";
             }
             return items;

@@ -88,18 +88,7 @@ namespace PrendaSAL.Reportes
                 R.SetField<bool>("ACTIVA", false);
                 ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
-            cbxARTICULO.DataSource = dbCatalogo.showCatalogo(eCategoria.ARTICULO);
-            if (cbxARTICULO.DataSource != null && ((DataTable)cbxARTICULO.DataSource).Rows.Count > 0)
-            {
-                cbxARTICULO.DisplayMember = "COD_ITEM";
-                cbxARTICULO.ValueMember = "COD_ITEM";
-                DataRow R = ((DataTable)cbxARTICULO.DataSource).NewRow();
-                R.SetField<string>("CATEGORIA", "TODAS");
-                R.SetField<string>("COD_ITEM", "TODAS");
-                R.SetField<string>("UNIDAD_MEDIDA", "TODAS");
-                ((DataTable)cbxARTICULO.DataSource).Rows.InsertAt(R, 0);
-                cbxARTICULO.SelectedIndex = 0;
-            }
+            
 
             cargarExistencias();
             
@@ -109,8 +98,22 @@ namespace PrendaSAL.Reportes
 
         private void cargarExistencias()
         {
-            INVENTARIO = dbInventario.getExistenciasARTICULOS((string)cbxSUCURSAL.SelectedValue);
+            INVENTARIO = dbInventario.getEXISTENCIAS((string)cbxSUCURSAL.SelectedValue,"ARTICULO");
             System.Media.SystemSounds.Exclamation.Play();
+
+            cbxTIPO.DataSource = dbCatalogo.getTipoInv("ARTICULO"); ;
+            if (cbxTIPO.DataSource != null && ((DataTable)cbxTIPO.DataSource).Rows.Count > 0)
+            {
+                cbxTIPO.DisplayMember = "TIPO";
+                cbxTIPO.ValueMember = "TIPO";
+                DataRow R = ((DataTable)cbxTIPO.DataSource).NewRow();
+                R.SetField<string>("TIPO", "TODAS");
+                ((DataTable)cbxTIPO.DataSource).Rows.InsertAt(R, 0);
+                cbxTIPO.SelectedIndex = 0;
+            }
+
+
+
             filtrarDatosExistencias();
         }
 
@@ -134,9 +137,9 @@ namespace PrendaSAL.Reportes
                         FILTRO.Clear();
                     }
                 }
-                if (cbxARTICULO.Text.Trim() != string.Empty && cbxARTICULO.Text.Trim() != "TODAS")
+                if (cbxTIPO.Text.Trim() != string.Empty && cbxTIPO.Text.Trim() != "TODAS")
                 {
-                    filtros = FILTRO.Select("COD_ITEM LIKE '" + cbxARTICULO.Text.Trim() + "%'");
+                    filtros = FILTRO.Select("TIPO LIKE '" + cbxTIPO.Text.Trim() + "%'");
                     if (filtros.Count() > 0)
                     {
                         FILTRO = filtros.CopyToDataTable();
@@ -164,7 +167,6 @@ namespace PrendaSAL.Reportes
             if (cbxSUCURSAL.SelectedIndex >= 0 )
             {
                 txtCODIGO.Text = string.Empty;
-                cbxARTICULO.SelectedIndex = 0;
 
                 cargarExistencias();
             }
