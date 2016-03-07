@@ -514,6 +514,7 @@ namespace PrendaSAL.Movimientos
             var txtDescripcion = insertItemForm.Controls["txtDESCRIPCION"];
             var txtCantidad = insertItemForm.Controls["txtCANTIDAD"];
             var txtMonto = insertItemForm.Controls["txtMONTO"];
+            var lbLimite = insertItemForm.Controls["lbLIMITE"];
 
             insertItemForm.Text = "AGREGAR " + COMPRA.CATEGORIA;
             insertItemForm.PRECIOS = PRECIOS;
@@ -525,6 +526,7 @@ namespace PrendaSAL.Movimientos
                 cbxCodItem.Visible = false;
                 lbMarca.Visible = true;
                 cbxMarca.Visible = true;
+                lbLimite.Visible = false;
             }
             else
             {
@@ -538,6 +540,7 @@ namespace PrendaSAL.Movimientos
                 cbxCodItem.Visible = true;
                 lbMarca.Visible = false;
                 cbxMarca.Visible = false;
+                lbLimite.Visible = true;
             }
             
             cbxTipo.DataSource = dbCatalogo.getTipoInv(COMPRA.CATEGORIA);
@@ -637,6 +640,7 @@ namespace PrendaSAL.Movimientos
                         var txtDescripcion = editItemForm.Controls["txtDESCRIPCION"];
                         var txtCantidad = editItemForm.Controls["txtCANTIDAD"];
                         var txtMonto = editItemForm.Controls["txtMONTO"];
+                        var lbLimite = editItemForm.Controls["lbLIMITE"];
 
                         editItemForm.Text = "EDITAR " + row.Field<string>("CATEGORIA");
                         editItemForm.PRECIOS = PRECIOS;
@@ -648,6 +652,7 @@ namespace PrendaSAL.Movimientos
                             cbxCodItem.Visible = false;
                             lbMarca.Visible = true;
                             cbxMarca.Visible = true;
+                            lbLimite.Visible = false;
                         }
                         else
                         {
@@ -662,6 +667,7 @@ namespace PrendaSAL.Movimientos
                             cbxCodItem.Visible = true; 
                             lbMarca.Visible = false;
                             cbxMarca.Visible = false;
+                            lbLimite.Visible = true;
                         }
             
                         cbxTipo.DataSource = dbCatalogo.getTipoInv(COMPRA.CATEGORIA);
@@ -687,6 +693,7 @@ namespace PrendaSAL.Movimientos
                         txtMonto.Text = row.Field<decimal>("MONTO").ToString();
 
                         editItemForm.LIMITE = row.Field<decimal>("CANTIDAD")*getPrecioKIL(row.Field<string>("COD_ITEM"));
+                        lbLimite.Text = "<= " + editItemForm.LIMITE.ToString("C2");
 
                         if (editItemForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {

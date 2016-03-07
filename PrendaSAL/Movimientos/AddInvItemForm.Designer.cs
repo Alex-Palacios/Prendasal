@@ -46,6 +46,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cbxMARCA = new System.Windows.Forms.ComboBox();
             this.lbMARCA = new System.Windows.Forms.Label();
+            this.lbLIMITE = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -120,9 +121,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(42, 287);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "CANTIDAD";
+            this.label5.Text = "PESO/CANT";
             // 
             // label6
             // 
@@ -222,12 +223,24 @@
             this.lbMARCA.TabIndex = 17;
             this.lbMARCA.Text = "MARCA";
             // 
+            // lbLIMITE
+            // 
+            this.lbLIMITE.AutoSize = true;
+            this.lbLIMITE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLIMITE.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbLIMITE.Location = new System.Drawing.Point(266, 328);
+            this.lbLIMITE.Name = "lbLIMITE";
+            this.lbLIMITE.Size = new System.Drawing.Size(48, 13);
+            this.lbLIMITE.TabIndex = 19;
+            this.lbLIMITE.Text = "LIMITE";
+            // 
             // AddInvItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(374, 420);
+            this.Controls.Add(this.lbLIMITE);
             this.Controls.Add(this.cbxMARCA);
             this.Controls.Add(this.lbMARCA);
             this.Controls.Add(this.btnCancelar);
@@ -278,5 +291,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cbxMARCA;
         private System.Windows.Forms.Label lbMARCA;
+        private System.Windows.Forms.Label lbLIMITE;
     }
 }

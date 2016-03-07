@@ -40,13 +40,17 @@ namespace PrendaSAL.Movimientos
         private void calcularMonto()
         {
             LIMITE = (decimal)0.00;
-            decimal precio = getPrecioKIL((string)cbxCODITEM.SelectedValue);
-            if(precio > 0)
+            if (txtCANTIDAD.Text != string.Empty)
             {
-                decimal cantidad = Decimal.Parse(txtCANTIDAD.Text, System.Globalization.NumberStyles.Currency);
-                LIMITE = Decimal.Round(precio * cantidad, 2, MidpointRounding.AwayFromZero);
-                txtMONTO.Text = LIMITE.ToString();
+                decimal precio = getPrecioKIL((string)cbxCODITEM.SelectedValue);
+                if(precio > 0)
+                {
+                    decimal cantidad = Decimal.Parse(txtCANTIDAD.Text, System.Globalization.NumberStyles.Currency);
+                    LIMITE = Decimal.Round(precio * cantidad, 2, MidpointRounding.AwayFromZero);
+                    txtMONTO.Text = LIMITE.ToString();
+                }
             }
+            lbLIMITE.Text = "<= " + LIMITE.ToString("C2");
         }
 
 
