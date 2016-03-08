@@ -48,7 +48,7 @@
             this.MARCA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BODEGA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblINVENTARIO)).BeginInit();
             this.opciones.SuspendLayout();
@@ -127,7 +127,7 @@
             this.MARCA,
             this.DESCRIPCION,
             this.PRECIO,
-            this.UBICACION,
+            this.BODEGA,
             this.NOTA});
             this.tblINVENTARIO.Location = new System.Drawing.Point(10, 105);
             this.tblINVENTARIO.MultiSelect = false;
@@ -244,14 +244,14 @@
             this.PRECIO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.PRECIO.Width = 80;
             // 
-            // UBICACION
+            // BODEGA
             // 
-            this.UBICACION.DataPropertyName = "UBICACION";
-            this.UBICACION.HeaderText = "UBICACION";
-            this.UBICACION.Name = "UBICACION";
-            this.UBICACION.ReadOnly = true;
-            this.UBICACION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UBICACION.Width = 200;
+            this.BODEGA.DataPropertyName = "BODEGA";
+            this.BODEGA.HeaderText = "BODEGA";
+            this.BODEGA.Name = "BODEGA";
+            this.BODEGA.ReadOnly = true;
+            this.BODEGA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BODEGA.Width = 60;
             // 
             // NOTA
             // 
@@ -311,7 +311,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MARCA;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UBICACION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BODEGA;
         private System.Windows.Forms.DataGridViewTextBoxColumn NOTA;
 
     }

@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorteInvInicialForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorteInvInicialForm));
             this.tblInventario = new System.Windows.Forms.DataGridView();
-            this.opciones = new System.Windows.Forms.ToolStrip();
-            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
-            this.lbNUM_TOTAL = new System.Windows.Forms.Label();
             this.PERIODO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +42,15 @@
             this.MONTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UBICACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opciones = new System.Windows.Forms.ToolStrip();
+            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
+            this.btnExportExcel = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
+            this.lbNUM_TOTAL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblInventario)).BeginInit();
             this.opciones.SuspendLayout();
             this.SuspendLayout();
@@ -73,106 +73,15 @@
             this.MONTO,
             this.UBICACION,
             this.NOTA});
-            this.tblInventario.Location = new System.Drawing.Point(12, 39);
+            this.tblInventario.Location = new System.Drawing.Point(12, 28);
             this.tblInventario.Name = "tblInventario";
             this.tblInventario.ReadOnly = true;
             this.tblInventario.RowHeadersVisible = false;
             this.tblInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblInventario.Size = new System.Drawing.Size(1183, 326);
+            this.tblInventario.Size = new System.Drawing.Size(1319, 337);
             this.tblInventario.TabIndex = 146;
             this.tblInventario.DataSourceChanged += new System.EventHandler(this.tblInventario_DataSourceChanged);
             this.tblInventario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblInventario_CellClick);
-            // 
-            // opciones
-            // 
-            this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAgregar,
-            this.btnEditar,
-            this.btnEliminar,
-            this.toolStripSeparator1,
-            this.btnBuscar,
-            this.btnExportExcel,
-            this.btnAyuda});
-            this.opciones.Location = new System.Drawing.Point(0, 0);
-            this.opciones.Name = "opciones";
-            this.opciones.Size = new System.Drawing.Size(1207, 25);
-            this.opciones.TabIndex = 147;
-            this.opciones.Text = "toolStrip1";
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAgregar.Image = global::PrendaSAL.Properties.Resources.plus;
-            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(23, 22);
-            this.btnAgregar.ToolTipText = "Nuevo";
-            this.btnAgregar.Click += new System.EventHandler(this.AGREGAR_ARTICULO);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(23, 22);
-            this.btnEditar.ToolTipText = "Guardar";
-            this.btnEditar.Click += new System.EventHandler(this.EDITAR_INVENTARIO);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
-            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
-            this.btnEliminar.ToolTipText = "Eliminar";
-            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR_ARTICULO);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(23, 22);
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.Click += new System.EventHandler(this.BUSCAR);
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
-            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
-            this.btnExportExcel.Text = "Exportar";
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
-            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
-            // 
-            // lbNUM_TOTAL
-            // 
-            this.lbNUM_TOTAL.AutoSize = true;
-            this.lbNUM_TOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNUM_TOTAL.Location = new System.Drawing.Point(894, 373);
-            this.lbNUM_TOTAL.Name = "lbNUM_TOTAL";
-            this.lbNUM_TOTAL.Size = new System.Drawing.Size(88, 13);
-            this.lbNUM_TOTAL.TabIndex = 148;
-            this.lbNUM_TOTAL.Text = "0 ARTICULOS";
             // 
             // PERIODO
             // 
@@ -270,6 +179,97 @@
             this.NOTA.ReadOnly = true;
             this.NOTA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // opciones
+            // 
+            this.opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAgregar,
+            this.btnEditar,
+            this.btnEliminar,
+            this.toolStripSeparator1,
+            this.btnBuscar,
+            this.btnExportExcel,
+            this.btnAyuda});
+            this.opciones.Location = new System.Drawing.Point(0, 0);
+            this.opciones.Name = "opciones";
+            this.opciones.Size = new System.Drawing.Size(1343, 25);
+            this.opciones.TabIndex = 147;
+            this.opciones.Text = "toolStrip1";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAgregar.Image = global::PrendaSAL.Properties.Resources.plus;
+            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(23, 22);
+            this.btnAgregar.ToolTipText = "Nuevo";
+            this.btnAgregar.Click += new System.EventHandler(this.AGREGAR_ARTICULO);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(23, 22);
+            this.btnEditar.ToolTipText = "Guardar";
+            this.btnEditar.Click += new System.EventHandler(this.EDITAR_INVENTARIO);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
+            this.btnEliminar.ToolTipText = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR_ARTICULO);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(23, 22);
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Click += new System.EventHandler(this.BUSCAR);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportExcel.Image = global::PrendaSAL.Properties.Resources.excel;
+            this.btnExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.btnExportExcel.Text = "Exportar";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
+            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
+            // 
+            // lbNUM_TOTAL
+            // 
+            this.lbNUM_TOTAL.AutoSize = true;
+            this.lbNUM_TOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNUM_TOTAL.Location = new System.Drawing.Point(12, 373);
+            this.lbNUM_TOTAL.Name = "lbNUM_TOTAL";
+            this.lbNUM_TOTAL.Size = new System.Drawing.Size(88, 13);
+            this.lbNUM_TOTAL.TabIndex = 148;
+            this.lbNUM_TOTAL.Text = "0 ARTICULOS";
+            // 
             // CorteInvInicialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -277,7 +277,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1207, 395);
+            this.ClientSize = new System.Drawing.Size(1343, 395);
             this.Controls.Add(this.lbNUM_TOTAL);
             this.Controls.Add(this.opciones);
             this.Controls.Add(this.tblInventario);

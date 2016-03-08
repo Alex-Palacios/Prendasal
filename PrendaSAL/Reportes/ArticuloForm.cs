@@ -51,16 +51,17 @@ namespace PrendaSAL.Reportes
                 R.SetField<bool>("ACTIVA", false);
                 ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
-            cbxARTICULO.DataSource = dbCatalogo.showCatalogo("ARTICULO");
-            if (cbxARTICULO.DataSource != null && ((DataTable)cbxARTICULO.DataSource).Rows.Count > 0)
+            cbxTIPO.DataSource = dbCatalogo.getTipoInv("ARTICULO");
+            if (cbxTIPO.DataSource != null && ((DataTable)cbxTIPO.DataSource).Rows.Count > 0)
             {
-                cbxARTICULO.DisplayMember = "COD_ITEM";
-                cbxARTICULO.ValueMember = "COD_ITEM";
-                DataRow R = ((DataTable)cbxARTICULO.DataSource).NewRow();
-                R.SetField<string>("CATEGORIA", "TODAS");
-                R.SetField<string>("COD_ITEM", "TODAS");
-                R.SetField<string>("UNIDAD_MEDIDA", "TODAS");
-                ((DataTable)cbxARTICULO.DataSource).Rows.InsertAt(R, 0);
+                cbxTIPO.DisplayMember = "TIPO";
+                cbxTIPO.ValueMember = "TIPO";
+            }
+            cbxMARCA.DataSource = dbCatalogo.getMarcaInv("ARTICULO");
+            if (cbxMARCA.DataSource != null && ((DataTable)cbxMARCA.DataSource).Rows.Count > 0)
+            {
+                cbxMARCA.DisplayMember = "MARCA";
+                cbxMARCA.ValueMember = "MARCA";
             }
 
             cargarItemSelected();
@@ -74,8 +75,8 @@ namespace PrendaSAL.Reportes
             {
                 cbxSUCURSAL.SelectedValue = SELECTED.BODEGA;
                 txtCODIGO.Text = SELECTED.CODIGO;
-                txtCATEGORIA.Text = SELECTED.CATEGORIA.ToString();
-                cbxARTICULO.SelectedValue = SELECTED.COD_ITEM;
+                cbxTIPO.Text = SELECTED.TIPO;
+                cbxMARCA.Text = SELECTED.MARCA;
                 txtCANTIDAD.Text = SELECTED.CANTIDAD.ToString("N1");
                 txtDESCRIPCION.Text = SELECTED.DESCRIPCION;
                 txtPRECIO.Text = SELECTED.PRECIO.ToString("C2");
@@ -157,7 +158,8 @@ namespace PrendaSAL.Reportes
                 if (autorizacion != "" && DBPRENDASAL.md5(autorizacion) == HOME.Instance().USUARIO.PASSWORD)
                 {
                     SELECTED.BODEGA = (string)cbxSUCURSAL.SelectedValue;
-                    SELECTED.COD_ITEM = (string)cbxARTICULO.SelectedValue;
+                    SELECTED.TIPO = (string)cbxTIPO.SelectedValue;
+                    SELECTED.MARCA = cbxMARCA.Text.ToUpper().Trim();
                     SELECTED.DESCRIPCION = txtDESCRIPCION.Text.Trim();
                     SELECTED.NOTA = txtNOTA.Text.Trim();
                     if (dbInventario.updateArticuloInv(SELECTED, HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().USUARIO.COD_EMPLEADO, HOME.Instance().SISTEMA))

@@ -39,15 +39,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSCAN = new System.Windows.Forms.Button();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
-            this.cbxARTICULO = new System.Windows.Forms.ComboBox();
-            this.txtCATEGORIA = new System.Windows.Forms.TextBox();
+            this.cbxTIPO = new System.Windows.Forms.ComboBox();
             this.txtNOTA = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.cbxMARCA = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label19
@@ -86,7 +86,7 @@
             // 
             // txtPRECIO
             // 
-            this.txtPRECIO.Location = new System.Drawing.Point(172, 260);
+            this.txtPRECIO.Location = new System.Drawing.Point(174, 268);
             this.txtPRECIO.Name = "txtPRECIO";
             this.txtPRECIO.Size = new System.Drawing.Size(77, 20);
             this.txtPRECIO.TabIndex = 102;
@@ -96,8 +96,8 @@
             // txtDESCRIPCION
             // 
             this.txtDESCRIPCION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDESCRIPCION.Location = new System.Drawing.Point(171, 179);
-            this.txtDESCRIPCION.MaxLength = 100;
+            this.txtDESCRIPCION.Location = new System.Drawing.Point(173, 187);
+            this.txtDESCRIPCION.MaxLength = 255;
             this.txtDESCRIPCION.Multiline = true;
             this.txtDESCRIPCION.Name = "txtDESCRIPCION";
             this.txtDESCRIPCION.Size = new System.Drawing.Size(342, 62);
@@ -105,7 +105,7 @@
             // 
             // txtCANTIDAD
             // 
-            this.txtCANTIDAD.Location = new System.Drawing.Point(172, 153);
+            this.txtCANTIDAD.Location = new System.Drawing.Point(174, 161);
             this.txtCANTIDAD.Name = "txtCANTIDAD";
             this.txtCANTIDAD.ReadOnly = true;
             this.txtCANTIDAD.Size = new System.Drawing.Size(77, 20);
@@ -114,6 +114,7 @@
             // txtCODIGO
             // 
             this.txtCODIGO.Location = new System.Drawing.Point(171, 51);
+            this.txtCODIGO.MaxLength = 50;
             this.txtCODIGO.Name = "txtCODIGO";
             this.txtCODIGO.ReadOnly = true;
             this.txtCODIGO.Size = new System.Drawing.Size(211, 20);
@@ -123,7 +124,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(82, 263);
+            this.label8.Location = new System.Drawing.Point(84, 271);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 95;
@@ -133,7 +134,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(42, 199);
+            this.label6.Location = new System.Drawing.Point(46, 190);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 13);
             this.label6.TabIndex = 93;
@@ -143,31 +144,21 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(54, 158);
+            this.label5.Location = new System.Drawing.Point(64, 161);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 92;
-            this.label5.Text = "PESO/CANT";
+            this.label5.Text = "CANTIDAD";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(75, 124);
+            this.label4.Location = new System.Drawing.Point(91, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 91;
-            this.label4.Text = "KIL/ART";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(54, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
-            this.label3.TabIndex = 90;
-            this.label3.Text = "CATEGORIA";
+            this.label4.Text = "TIPO";
             // 
             // label2
             // 
@@ -208,27 +199,19 @@
             this.cbxSUCURSAL.Size = new System.Drawing.Size(211, 21);
             this.cbxSUCURSAL.TabIndex = 111;
             // 
-            // cbxARTICULO
+            // cbxTIPO
             // 
-            this.cbxARTICULO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxARTICULO.FormattingEnabled = true;
-            this.cbxARTICULO.Location = new System.Drawing.Point(171, 124);
-            this.cbxARTICULO.Name = "cbxARTICULO";
-            this.cbxARTICULO.Size = new System.Drawing.Size(122, 21);
-            this.cbxARTICULO.TabIndex = 113;
-            // 
-            // txtCATEGORIA
-            // 
-            this.txtCATEGORIA.Location = new System.Drawing.Point(171, 88);
-            this.txtCATEGORIA.Name = "txtCATEGORIA";
-            this.txtCATEGORIA.ReadOnly = true;
-            this.txtCATEGORIA.Size = new System.Drawing.Size(122, 20);
-            this.txtCATEGORIA.TabIndex = 114;
+            this.cbxTIPO.FormattingEnabled = true;
+            this.cbxTIPO.Location = new System.Drawing.Point(171, 93);
+            this.cbxTIPO.MaxLength = 20;
+            this.cbxTIPO.Name = "cbxTIPO";
+            this.cbxTIPO.Size = new System.Drawing.Size(122, 21);
+            this.cbxTIPO.TabIndex = 113;
             // 
             // txtNOTA
             // 
             this.txtNOTA.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNOTA.Location = new System.Drawing.Point(173, 291);
+            this.txtNOTA.Location = new System.Drawing.Point(175, 299);
             this.txtNOTA.MaxLength = 100;
             this.txtNOTA.Multiline = true;
             this.txtNOTA.Name = "txtNOTA";
@@ -239,11 +222,30 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(91, 294);
+            this.label7.Location = new System.Drawing.Point(93, 302);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 115;
             this.label7.Text = "NOTA";
+            // 
+            // cbxMARCA
+            // 
+            this.cbxMARCA.FormattingEnabled = true;
+            this.cbxMARCA.Location = new System.Drawing.Point(173, 127);
+            this.cbxMARCA.MaxLength = 50;
+            this.cbxMARCA.Name = "cbxMARCA";
+            this.cbxMARCA.Size = new System.Drawing.Size(122, 21);
+            this.cbxMARCA.TabIndex = 118;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(84, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 117;
+            this.label3.Text = "MARCA";
             // 
             // ArticuloForm
             // 
@@ -253,10 +255,11 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(604, 418);
+            this.Controls.Add(this.cbxMARCA);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNOTA);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtCATEGORIA);
-            this.Controls.Add(this.cbxARTICULO);
+            this.Controls.Add(this.cbxTIPO);
             this.Controls.Add(this.cbxSUCURSAL);
             this.Controls.Add(this.btnSCAN);
             this.Controls.Add(this.label19);
@@ -270,7 +273,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
@@ -298,14 +300,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSCAN;
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
-        private System.Windows.Forms.ComboBox cbxARTICULO;
-        private System.Windows.Forms.TextBox txtCATEGORIA;
+        private System.Windows.Forms.ComboBox cbxTIPO;
         private System.Windows.Forms.TextBox txtNOTA;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbxMARCA;
+        private System.Windows.Forms.Label label3;
     }
 }

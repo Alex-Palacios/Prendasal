@@ -280,9 +280,15 @@ namespace DDB
                 cod_inv.Direction = ParameterDirection.Input;
                 MySqlParameter suc_inv = cmd.Parameters.Add("suc_inv", MySqlDbType.VarChar, 2);
                 suc_inv.Direction = ParameterDirection.Input;
-                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 20);
+                MySqlParameter cat_inv = cmd.Parameters.Add("cat_inv", MySqlDbType.VarChar, 50);
+                cat_inv.Direction = ParameterDirection.Input;
+                MySqlParameter item_inv = cmd.Parameters.Add("item_inv", MySqlDbType.VarChar, 50);
                 item_inv.Direction = ParameterDirection.Input;
-                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 100);
+                MySqlParameter tipo_inv = cmd.Parameters.Add("tipo_inv", MySqlDbType.VarChar, 20);
+                tipo_inv.Direction = ParameterDirection.Input;
+                MySqlParameter marca_inv = cmd.Parameters.Add("marca_inv", MySqlDbType.VarChar, 50);
+                marca_inv.Direction = ParameterDirection.Input;
+                MySqlParameter descrip_inv = cmd.Parameters.Add("descrip_inv", MySqlDbType.VarChar, 255);
                 descrip_inv.Direction = ParameterDirection.Input;
                 MySqlParameter precio_inv = cmd.Parameters.Add("precio_inv", MySqlDbType.Decimal);
                 precio_inv.Direction = ParameterDirection.Input;
@@ -298,7 +304,10 @@ namespace DDB
 
                 cod_inv.Value = exist.CODIGO;
                 suc_inv.Value = exist.BODEGA;
+                cat_inv.Value = exist.CATEGORIA;
                 item_inv.Value = exist.COD_ITEM;
+                tipo_inv.Value = exist.TIPO;
+                marca_inv.Value = exist.MARCA;
                 descrip_inv.Value = exist.DESCRIPCION;
                 precio_inv.Value = exist.PRECIO;
                 nota_inv.Value = exist.NOTA;

@@ -106,7 +106,7 @@ namespace PrendaSAL.Operaciones
         {
             if (tblInventario.DataSource != null)
             {
-                lbNUM_TOTAL.Text = tblInventario.Rows.Count + " "+CAT_INV;
+                lbNUM_TOTAL.Text = tblInventario.Rows.Count + " "+CAT_INV.Field<string>("CATEGORIA");
             }
             else
             {
