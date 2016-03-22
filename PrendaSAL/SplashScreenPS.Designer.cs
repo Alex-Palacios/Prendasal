@@ -1,6 +1,6 @@
 ﻿namespace PrendaSAL
 {
-    partial class SplashScreen
+    partial class SplashScreenPS
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenPS));
             this.statusLabel = new System.Windows.Forms.StatusStrip();
             this.progressText = new System.Windows.Forms.ToolStripStatusLabel();
             this.progreso = new System.Windows.Forms.ProgressBar();
@@ -98,7 +99,7 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
-            // SplashScreen
+            // SplashScreenPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -111,7 +112,8 @@
             this.Controls.Add(this.statusLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SplashScreen";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SplashScreenPS";
             this.Opacity = 0.9D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

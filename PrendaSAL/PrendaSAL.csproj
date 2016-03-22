@@ -13,21 +13,24 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publicar\</PublishUrl>
+    <PublishUrl>\\DD-SERVER\Instaladores Sucursales\PRENDASAL\prendasal\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>1</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>es-SV</TargetCulture>
-    <ProductName>PRENDASAL</ProductName>
-    <PublisherName>GRUPO D´DICARK S.A de C.V</PublisherName>
+    <ProductName>PrendaSAL</ProductName>
+    <PublisherName>GRUPO DDICARK</PublisherName>
     <SuiteName>SISTEMA PRENDASAL</SuiteName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <MinimumRequiredVersion>3.0.0.15</MinimumRequiredVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -53,6 +56,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>PrendaSAL.Program</StartupObject>
@@ -122,6 +127,12 @@
     <Compile Include="Caja\ConfirmarFinanc.Designer.cs">
       <DependentUpon>ConfirmarFinanc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Caja\ConfirmarSFC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\ConfirmarSFC.Designer.cs">
+      <DependentUpon>ConfirmarSFC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Caja\ConfirmarGasto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +150,12 @@
     </Compile>
     <Compile Include="Caja\FinancForm.Designer.cs">
       <DependentUpon>FinancForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\SFCForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\SFCForm.Designer.cs">
+      <DependentUpon>SFCForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Caja\GastosForm.cs">
       <SubType>Form</SubType>
@@ -517,11 +534,11 @@
     <Compile Include="ScannerPrueba.Designer.cs">
       <DependentUpon>ScannerPrueba.cs</DependentUpon>
     </Compile>
-    <Compile Include="SplashScreen.cs">
+    <Compile Include="SplashScreenPS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SplashScreen.Designer.cs">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
+    <Compile Include="SplashScreenPS.Designer.cs">
+      <DependentUpon>SplashScreenPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Movimientos\ComprasForm.cs">
       <SubType>Form</SubType>
@@ -550,6 +567,9 @@
     <EmbeddedResource Include="Caja\ConfirmarFinanc.resx">
       <DependentUpon>ConfirmarFinanc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Caja\ConfirmarSFC.resx">
+      <DependentUpon>ConfirmarSFC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Caja\ConfirmarGasto.resx">
       <DependentUpon>ConfirmarGasto.cs</DependentUpon>
     </EmbeddedResource>
@@ -558,6 +578,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Caja\FinancForm.resx">
       <DependentUpon>FinancForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\SFCForm.resx">
+      <DependentUpon>SFCForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Caja\GastosForm.resx">
       <DependentUpon>GastosForm.cs</DependentUpon>
@@ -730,8 +753,8 @@
     <EmbeddedResource Include="ScannerPrueba.resx">
       <DependentUpon>ScannerPrueba.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SplashScreen.resx">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
+    <EmbeddedResource Include="SplashScreenPS.resx">
+      <DependentUpon>SplashScreenPS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Movimientos\ComprasForm.resx">
       <DependentUpon>ComprasForm.cs</DependentUpon>
@@ -1147,6 +1170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\icono_caja.png" />
     <None Include="Resources\edit_16.png" />
     <None Include="Resources\chart2.png" />
     <None Include="Resources\print.png" />

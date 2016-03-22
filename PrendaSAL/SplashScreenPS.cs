@@ -15,12 +15,12 @@ namespace PrendaSAL
     using DDB;
     using MODELO;
 
-    public partial class SplashScreen : Form
+    public partial class SplashScreenPS : Form
     {
         //VARIABLES
         public bool OK;
 
-        public SplashScreen()
+        public SplashScreenPS()
         {
             OK = true;
             InitializeComponent();

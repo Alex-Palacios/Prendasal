@@ -15,7 +15,7 @@ namespace PrendaSAL
         static void Main()
         {
             bool activo;
-            System.Threading.Mutex m = new System.Threading.Mutex(true, "SplashScreen",
+            System.Threading.Mutex m = new System.Threading.Mutex(true, "SplashScreenPS",
                                        out activo);
 
             if (!activo)
@@ -29,7 +29,7 @@ namespace PrendaSAL
                 {
                     //Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new SplashScreen());
+                    Application.Run(new SplashScreenPS());
                 }
                 catch (Exception ex)
                 {

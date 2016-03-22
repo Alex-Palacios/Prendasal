@@ -51,6 +51,7 @@
     <Compile Include="EstadoCuenta.cs" />
     <Compile Include="Existencia.cs" />
     <Compile Include="Pac.cs" />
+    <Compile Include="SFCaja.cs" />
     <Compile Include="Vencidos.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Compra.cs" />

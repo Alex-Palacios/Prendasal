@@ -82,7 +82,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox1.Image = global::PrendaSAL.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(40, 56);
             this.pictureBox1.Name = "pictureBox1";
@@ -166,8 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = global::PrendaSAL.Properties.Resources.textura2;
+            this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(676, 289);
             this.Controls.Add(this.txtPASSWORD);
             this.Controls.Add(this.txtUSER);

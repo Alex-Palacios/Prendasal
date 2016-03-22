@@ -73,7 +73,7 @@ namespace DDB
                 item_inv.Value = inv.COD_ITEM;
                 tipo_inv.Value = inv.TIPO;
                 marca_inv.Value = inv.MARCA;
-                descrip_inv.Value = inv.DESCRIPCION;
+                descrip_inv.Value = inv.DESCRIPCION.Replace('>', '-').Replace('&', 'y');
                 cantidad_inv.Value = inv.CANTIDAD;
                 monto_inv.Value = inv.MONTO;
                 nota_inv.Value = inv.NOTA;
@@ -146,7 +146,7 @@ namespace DDB
                 item_inv.Value = inv.COD_ITEM;
                 tipo_inv.Value = inv.TIPO;
                 marca_inv.Value = inv.MARCA;
-                descrip_inv.Value = inv.DESCRIPCION;
+                descrip_inv.Value = inv.DESCRIPCION.Replace('>', '-').Replace('&', 'y');
                 cantidad_inv.Value = inv.CANTIDAD;
                 monto_inv.Value = inv.MONTO;
                 nota_inv.Value = inv.NOTA;
@@ -308,7 +308,7 @@ namespace DDB
                 item_inv.Value = exist.COD_ITEM;
                 tipo_inv.Value = exist.TIPO;
                 marca_inv.Value = exist.MARCA;
-                descrip_inv.Value = exist.DESCRIPCION;
+                descrip_inv.Value = exist.DESCRIPCION.Replace('>', '-').Replace('&', 'y');
                 precio_inv.Value = exist.PRECIO;
                 nota_inv.Value = exist.NOTA;
 

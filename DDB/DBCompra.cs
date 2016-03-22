@@ -31,7 +31,7 @@ namespace DDB
                     + row.Field<string>("COD_ITEM") + ">"
                     + row.Field<string>("TIPO") + ">"
                     + row.Field<string>("MARCA") + ">"
-                    + row.Field<string>("DESCRIPCION") + ">"
+                    + row.Field<string>("DESCRIPCION").Replace('>','-').Replace('&','y') + ">"
                     + row.Field<decimal>("CANTIDAD") + ">"
                     + row.Field<decimal>("MONTO") + "&";
             }

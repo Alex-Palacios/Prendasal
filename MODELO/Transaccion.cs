@@ -32,6 +32,7 @@ namespace MODELO
         CORTE_DIARIO =18,
         REACTIVACION =19,
         GASTO = 20,
+        ARQUEO_CAJA = 21
     }
 
 
@@ -223,6 +224,12 @@ namespace MODELO
     {
         ABIERTA = 1,
         CERRADA
+    }
+
+    public enum eTipoSFC
+    {
+        SOBRANTE = 1,
+        FALTANTE
     }
 
 

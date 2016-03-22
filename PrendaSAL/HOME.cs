@@ -152,6 +152,7 @@ namespace PrendaSAL
             btnMenuFinanc.Visible = false;
             btnMenuRemesas.Visible = false;
             btnMenuGastos.Visible = false;
+            btnMenuSFC.Visible = false;
             btnCorteDiario.Visible = false;
             //MODULO OPERACIONES
             moduloOPERACIONES.Visible = false;
@@ -235,6 +236,9 @@ namespace PrendaSAL
                                 break;
                             case "Gastos":
                                 btnMenuGastos.Visible = p.Field<bool>("ACCESO");
+                                break;
+                            case "S.F.C":
+                                btnMenuSFC.Visible = p.Field<bool>("ACCESO");
                                 break;
                             case "Corte Diario":
                                 btnCorteDiario.Visible = p.Field<bool>("ACCESO");
@@ -334,9 +338,9 @@ namespace PrendaSAL
             //VISIBILIDAD DE MODULOS
             moduloCATALOGOS.Visible = (btnMenuClientes.Visible || btnMenuAMIGO.Visible || btnMenuVIP.Visible );
             grupoClientes.Visible = (btnMenuClientes.Visible || btnMenuAMIGO.Visible || btnMenuVIP.Visible);
-            moduloMOVIMIENTOS.Visible =(btnMenuContratos.Visible || btnMenuPAC.Visible || btnMenuCompras.Visible || btnMenuVentas.Visible || btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible || btnCorteDiario.Visible);
+            moduloMOVIMIENTOS.Visible =(btnMenuContratos.Visible || btnMenuPAC.Visible || btnMenuCompras.Visible || btnMenuVentas.Visible || btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible || btnMenuSFC.Visible || btnCorteDiario.Visible);
             grupoTransComerciales.Visible = (btnMenuContratos.Visible || btnMenuPAC.Visible || btnMenuCompras.Visible || btnMenuVentas.Visible);
-            grupoCajaChica.Visible = (btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible);
+            grupoCajaChica.Visible = (btnMenuFinanc.Visible || btnMenuRemesas.Visible || btnMenuGastos.Visible || btnMenuSFC.Visible);
             moduloOPERACIONES.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
             grupoOperacionesInventario.Visible = (btnMenuCierreVencidos.Visible || btnMenuRecibirInv.Visible || btnMenuEnviarInv.Visible || btnInventarioInicial.Visible);
             moduloREPORTES.Visible = (btnRptInvCustodia.Visible  || btnRptInvVenta.Visible || btnRptTransDiarias.Visible || btnRptContratos.Visible || btnRptComprasORO.Visible || btnRptKardex.Visible || btnRptCancelados.Visible || btnRptEstadoCuenta.Visible || btnRptVencidosORO.Visible || btnRptConsolidado.Visible);
@@ -616,6 +620,22 @@ namespace PrendaSAL
                 gastos.WindowState = FormWindowState.Normal;
             }
         }
+
+
+
+
+        private void menuMovimientosSFC(object sender, EventArgs e)
+        {
+            Caja.SFCForm sfc;
+            sfc = Caja.SFCForm.Instance();
+            sfc.MdiParent = this;
+            sfc.Show();
+            if (sfc.WindowState == FormWindowState.Minimized)
+            {
+                sfc.WindowState = FormWindowState.Normal;
+            }
+        }
+
 
 
 
