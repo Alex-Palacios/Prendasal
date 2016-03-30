@@ -59,7 +59,7 @@ namespace PrendaSAL.Reportes
             if (HOME.Instance().USUARIO.TIPO == eTipoUsuario.ASESOR)
             {
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
-                cbxSUCURSAL.Enabled = false;
+                cbxSUCURSAL.Enabled = true;
             }
             else
             {

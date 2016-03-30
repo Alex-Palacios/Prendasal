@@ -172,7 +172,7 @@
     <value>Realizar Corte Diario</value>
   </data>
   <data name="btnMenuSFC.Text" xml:space="preserve">
-    <value>Sobrantes o Faltantes</value>
+    <value>Sobrantes Faltantes</value>
   </data>
   <data name="grupoCajaChica.Location" type="System.Drawing.Point, System.Drawing">
     <value>331, 0</value>

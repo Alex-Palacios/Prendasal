@@ -273,7 +273,7 @@
             // btnMenuSFC
             // 
             this.btnMenuSFC.Image = global::PrendaSAL.Properties.Resources.icono_caja;
-            this.btnMenuSFC.ImageFixedSize = new System.Drawing.Size(80, 60);
+            this.btnMenuSFC.ImageFixedSize = new System.Drawing.Size(65, 50);
             this.btnMenuSFC.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Default;
             this.btnMenuSFC.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnMenuSFC.Name = "btnMenuSFC";
