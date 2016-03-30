@@ -113,6 +113,9 @@
             this.cerrarTodasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cascadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paraleloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notify = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.back = new System.ComponentModel.BackgroundWorker();
             this.MENU_PRINCIPAL.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
@@ -1319,6 +1322,24 @@
             resources.ApplyResources(this.paraleloToolStripMenuItem, "paraleloToolStripMenuItem");
             this.paraleloToolStripMenuItem.Click += new System.EventHandler(this.ventanasPARALELO);
             // 
+            // notify
+            // 
+            this.notify.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            resources.ApplyResources(this.notify, "notify");
+            this.notify.BalloonTipClicked += new System.EventHandler(this.notify_BalloonTipClicked);
+            this.notify.DoubleClick += new System.EventHandler(this.notify_DoubleClick);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 600000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // back
+            // 
+            this.back.WorkerSupportsCancellation = true;
+            this.back.DoWork += new System.ComponentModel.DoWorkEventHandler(this.back_DoWork);
+            this.back.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.back_RunWorkerCompleted);
+            // 
             // HOME
             // 
             resources.ApplyResources(this, "$this");
@@ -1433,5 +1454,8 @@
         private DevComponents.DotNetBar.ButtonItem btnRptKardex;
         private DevComponents.DotNetBar.ButtonItem btnRptEstadoCuenta;
         private DevComponents.DotNetBar.ButtonItem btnMenuSFC;
+        private System.Windows.Forms.NotifyIcon notify;
+        private System.Windows.Forms.Timer timer;
+        private System.ComponentModel.BackgroundWorker back;
     }
 }

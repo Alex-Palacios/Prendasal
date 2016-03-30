@@ -266,7 +266,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tblFinanc);
             this.Controls.Add(this.toolStrip1);
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "FinancForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

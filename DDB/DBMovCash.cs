@@ -446,5 +446,73 @@ namespace DDB
 
 
 
+
+
+        public DataTable getFinancByRecibir(string sucursalDEST)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "SELECT * FROM prendasal.view_mov_cash WHERE SUC_DEST = @sucdestino AND RECIBIDO = false;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                MySqlParameter sucdestino = cmd.Parameters.Add("sucdestino", MySqlDbType.VarChar, 2);
+                sucdestino.Direction = ParameterDirection.Input;
+                MySqlParameter hoy = cmd.Parameters.Add("hoy", MySqlDbType.Date);
+                hoy.Direction = ParameterDirection.Input;
+
+                sucdestino.Value = sucursalDEST;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR FINANCIAMIENTOS POR RECIBIR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+        
+        public int getCountFinancByRecibir(string sucursalDEST, DateTime fecha)
+        {
+            int reader = 0;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "SELECT COUNT(*) FROM prendasal.view_mov_cash WHERE SUC_DEST = @sucdestino AND RECIBIDO = false AND FECHA < @hoy;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                MySqlParameter sucdestino = cmd.Parameters.Add("sucdestino", MySqlDbType.VarChar, 2);
+                sucdestino.Direction = ParameterDirection.Input;
+                MySqlParameter hoy = cmd.Parameters.Add("hoy", MySqlDbType.Date);
+                hoy.Direction = ParameterDirection.Input;
+
+                sucdestino.Value = sucursalDEST;
+                hoy.Value = fecha.Date;
+
+                reader = Int32.Parse(cmd.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            { 
+                reader = 0; 
+            }
+            return reader;
+        }
+
+
+
+
     }
+
 }

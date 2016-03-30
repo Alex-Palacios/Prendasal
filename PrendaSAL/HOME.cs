@@ -37,12 +37,15 @@ namespace PrendaSAL
         private DBCatalogo dbCatalogo;
         private DBUsuario dbUser;
         private DBPRENDASAL dbPrendaSAL;
+        private DBMovCash dbMovCash;
 
         public DateTime FECHA_SISTEMA;
         public Sucursal SUCURSAL;
         public Usuario USUARIO;
         public string SISTEMA;
         public string TIPO_SESION;
+
+        public int FINANCIAMIENTOS_PENDIENTES;
 
         public ToolStripProgressBar progress {
             get
@@ -64,8 +67,13 @@ namespace PrendaSAL
             dbPrendaSAL = new DBPRENDASAL();
             dbCatalogo = new DBCatalogo();
             dbSucursal = new DBSucursal();
-            dbUser = new DBUsuario(); 
+            dbUser = new DBUsuario();
+            dbMovCash = new DBMovCash();
             SISTEMA = Properties.Settings.Default.SISTEMA;
+
+            Control.CheckForIllegalCrossThreadCalls = false;
+            timer.Enabled = true;
+
         }
 
 
@@ -1185,11 +1193,96 @@ namespace PrendaSAL
             }
             return formato;
         }
+
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (!back.IsBusy)
+            {
+                back.RunWorkerAsync();
+            }
+        }
+
+
+
+
+        private void back_DoWork(object sender, DoWorkEventArgs e)
+        {
+            FINANCIAMIENTOS_PENDIENTES = dbMovCash.getCountFinancByRecibir(SUCURSAL.COD_SUC,FECHA_SISTEMA);
+        }
+
+
+        private void back_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                FINANCIAMIENTOS_PENDIENTES = 0;
+                notify.Visible = false;
+            }
+            else
+            {
+                if (FINANCIAMIENTOS_PENDIENTES > 0)
+                {
+                    SoundPlayer alarma = new SoundPlayer();
+                    alarma.Stream = Properties.Resources.notifyAlarm;
+                    notify.Visible = true;
+                    notify.BalloonTipText = "Tiene " + FINANCIAMIENTOS_PENDIENTES + " Financiamientos pendientes de recibir";
+                    notify.Text = "Tiene " + FINANCIAMIENTOS_PENDIENTES + " Financiamientos pendientes de recibir";
+                    notify.ShowBalloonTip(100000);
+                    alarma.Play();
+                }
+                else
+                {
+                    notify.Visible = false;
+                }
+            }
+        }
+
+
+
+
+
+        private void notify_BalloonTipClicked(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            Caja.FinancForm financ;
+            financ = Caja.FinancForm.Instance();
+            financ.MdiParent = this;
+            financ.Show();
+            if (financ.WindowState == FormWindowState.Minimized)
+            {
+                financ.WindowState = FormWindowState.Normal;
+                financ.Focus();
+            }
+            financ.cargarHistoryFinanc();
+        }
+
+
+
+
+
+
+        private void notify_DoubleClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            menuMovimientosCajaFinanc(sender, e);
+            Caja.FinancForm financ;
+            financ = Caja.FinancForm.Instance();
+            financ.MdiParent = this;
+            financ.Show();
+            if (financ.WindowState == FormWindowState.Minimized)
+            {
+                financ.WindowState = FormWindowState.Normal;
+                financ.Focus();
+            }
+            financ.cargarHistoryFinanc();
+        }
+
+
+
+
+
         
-
-
-
-
        
 
 

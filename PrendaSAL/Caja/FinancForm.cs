@@ -75,7 +75,7 @@ namespace PrendaSAL.Caja
 
         public void cargarHistoryFinanc()
         {
-            FINANCIAMIENTOS = dbFinanc.getFinancBySucAnioMes(HOME.Instance().SUCURSAL.COD_SUC, HOME.Instance().FECHA_SISTEMA.Year.ToString(), HOME.Instance().FECHA_SISTEMA.Month.ToString(),"00");
+            FINANCIAMIENTOS = dbFinanc.getFinancByRecibir(HOME.Instance().SUCURSAL.COD_SUC);
             tblFinanc.DataSource = FINANCIAMIENTOS;
             calcularTotales();
         }

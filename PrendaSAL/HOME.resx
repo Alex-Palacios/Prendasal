@@ -948,6 +948,45 @@
   <data name="&gt;&gt;STATUS_BAR.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>548, 17</value>
+  </metadata>
+  <data name="notify.BalloonTipTitle" xml:space="preserve">
+    <value>Alerta</value>
+  </data>
+  <data name="notify.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAMMOAADDDgAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAA2lAGQdpSCaHYVRDS1FQS/9RUEv/YVRDS2lIJodtQBkEAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAADNTA4S00wIktRQDPrUUQ3/1FEN/9RRDf/UUQ3/1FEN/9RRDf/UUAz600wIks1M
+        DhIAAAAAAAAAAAAAAADKSQsSzEcJys5NDf/OTQ3/zUwN/81LDP/OTA3/zk0N/85NDf/OTQ3/zk0N/85N
+        Df/MRwnKykkLEgAAAAAAAAAAxUMHksdIDf/HSA3/x0gN/9FqP///////yU4V/8dIDf/HSA3/x0gN/8dI
+        Df/HSA3/x0gN/8VDB5IAAAAAvTwDQcBCCvrBRAz/wUQM/8FEDP/MZj7//////8JKFP/BRAz/wUQM/8FE
+        DP/BRAz/wUQM/8FEDP/AQgr6vTwDQbg6B6G6Pwz/uj8M/7o/DP+6Pwz/xmI+//////+8RRT/uj8M/7o/
+        DP+6Pwz/uj8M/7o/DP+6Pwz/uj8M/7g6B6GzPA/StDsL/7Q7C/+0Owv/tDsL/8FePf//////zHpc/8t1
+        Vf/FaUX/tDwO/7Q7C/+0Owv/tDsL/7Q7C/+zPA/SrjoQ/602C/+tNgv/rTYL/602C/+8Wj3//////+XA
+        uP/kv7b/8+Pd//Xl4f+2TCf/rTYL/602C/+tNgv/rjoQ/6g2D/+mMgr/pjIK/6YyCv+mMgr/tlc9////
+        //+pOBP/pjIK/6YxDP/t1c//2aia/6YyCv+mMgr/pjIK/6g2D/+iMQ7SoC4K/6AuCv+gLQr/oC0J/7JW
+        Pv//////pjsa/6EwDf+gLQn/16eb/+LAuf+gLQr/oC0J/6AtCv+iMQ7SlyMFnpkpCf+lQST/qEkt/61S
+        OP+9dWD//////7BYP/+tUzr/sVtD//Lk4f/SoZX/ojwf/6tNMv+gNxn/lyMFnpMiBSiSJAj3sWNP/7Jk
+        Uf+yZVH/wIFw///////16uj/9ern//37+v/p1M//tmxZ/7JkUP+yZVH/mjMZ95IkBygAAAAAiBgEkqRP
+        PP+3c2T/t3Nk/7l3aP/Ah3n/wId5/8CGef+6eWr/tnJi/7dzZP+3c2T/qltK/4wgDJIAAAAAAAAAAJIs
+        GRKLJBfKr2pe/72DeP+9g3j/vYN4/72DeP+9g3j/vYN4/72DeP+9g3j/r2ld/44rHcqqWUYSAAAAAAAA
+        AAAAAAAAs29kEoMeEZKdT0X3vYeA/8WWj//ElI3/xJSN/8WWj/+7hHz/m0pA94AYDJKzbWISAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAgRwRKHsXDo2KLiXSlUA0/5ZANf+JLCPSehQKjYAfEygAAAAAAAAAAAAA
+        AAAAAAAA8A8AAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIAB
+        AADAAwAA8A8AAA==
+</value>
+  </data>
+  <data name="notify.Text" xml:space="preserve">
+    <value>Prendasal</value>
+  </data>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>631, 17</value>
+  </metadata>
+  <metadata name="back.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>711, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1517,6 +1556,24 @@
   </data>
   <data name="&gt;&gt;paraleloToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notify.Name" xml:space="preserve">
+    <value>notify</value>
+  </data>
+  <data name="&gt;&gt;notify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timer.Name" xml:space="preserve">
+    <value>timer</value>
+  </data>
+  <data name="&gt;&gt;timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;back.Name" xml:space="preserve">
+    <value>back</value>
+  </data>
+  <data name="&gt;&gt;back.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>HOME</value>

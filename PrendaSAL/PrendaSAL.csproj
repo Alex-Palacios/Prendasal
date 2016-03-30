@@ -1170,6 +1170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\notifyAlarm.wav" />
     <None Include="Resources\icono_caja.png" />
     <None Include="Resources\edit_16.png" />
     <None Include="Resources\chart2.png" />
