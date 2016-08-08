@@ -408,5 +408,37 @@ namespace DDB
 
 
 
+
+
+        public DataTable showListaVencByYear(int year)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "SELECT * FROM prendasal.view_lista_vencidos WHERE YEAR(FECHA_APERTURA) = @anio;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.Text;
+
+                MySqlParameter anio = cmd.Parameters.Add("anio", MySqlDbType.Int32);
+                anio.Direction = ParameterDirection.Input;
+
+
+                anio.Value = year;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL CONSULTAR LISTAS DE VENCIDOS\nDetalle:" + e.Message, "ERROR EN CONSULTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos; ;
+        }
+
     }
 }

@@ -65,6 +65,11 @@ namespace DDB
                 MySqlParameter nota_pac = cmd.Parameters.Add("nota_pac", MySqlDbType.VarChar, 100);
                 nota_pac.Direction = ParameterDirection.Input;
 
+                MySqlParameter idcupon = cmd.Parameters.Add("idcupon", MySqlDbType.Int32);
+                idcupon.Direction = ParameterDirection.Input;
+                MySqlParameter numcupon = cmd.Parameters.Add("numcupon", MySqlDbType.Int32);
+                numcupon.Direction = ParameterDirection.Input;
+
                 MySqlParameter items_pac = cmd.Parameters.Add("items_pac", MySqlDbType.LongText);
                 items_pac.Direction = ParameterDirection.Input;
                 MySqlParameter suc = cmd.Parameters.Add("suc", MySqlDbType.VarChar, 2);
@@ -91,7 +96,13 @@ namespace DDB
                 imp_desc.Value = pac.IVA_DESC;
                 nivel_pac.Value = (int)pac.NIVEL;
                 nota_pac.Value = pac.NOTA;
-                
+
+                if (pac.CUPON_CANJE != null)
+                {
+                    idcupon.Value = pac.CUPON_CANJE.ID_CUPON;
+                    numcupon.Value = pac.CUPON_CANJE.NUMCUPON;
+                }
+
                 suc.Value = sucursal;
                 emp.Value = empleado;
                 sys.Value = sistema;
@@ -232,6 +243,9 @@ namespace DDB
             return datos;
         }
 
+
+
+        
 
 
     }

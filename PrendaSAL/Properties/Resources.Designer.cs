@@ -73,6 +73,16 @@ namespace PrendaSAL.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap activar_desactivar {
+            get {
+                object obj = ResourceManager.GetObject("activar-desactivar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap actualizar_precios {
             get {
                 object obj = ResourceManager.GetObject("actualizar_precios", resourceCulture);
@@ -283,6 +293,16 @@ namespace PrendaSAL.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap canjeo {
+            get {
+                object obj = ResourceManager.GetObject("canjeo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cargar_catalogo {
             get {
                 object obj = ResourceManager.GetObject("cargar_catalogo", resourceCulture);
@@ -296,6 +316,16 @@ namespace PrendaSAL.Properties {
         internal static System.Drawing.Bitmap carrito {
             get {
                 object obj = ResourceManager.GetObject("carrito", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cartera {
+            get {
+                object obj = ResourceManager.GetObject("cartera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -346,6 +376,16 @@ namespace PrendaSAL.Properties {
         internal static System.Drawing.Bitmap cierre3 {
             get {
                 object obj = ResourceManager.GetObject("cierre3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cinema_ticket {
+            get {
+                object obj = ResourceManager.GetObject("cinema_ticket", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +516,26 @@ namespace PrendaSAL.Properties {
         internal static System.Drawing.Bitmap cuenta {
             get {
                 object obj = ResourceManager.GetObject("cuenta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cupon_icon {
+            get {
+                object obj = ResourceManager.GetObject("cupon-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cupones {
+            get {
+                object obj = ResourceManager.GetObject("cupones", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -956,6 +1016,16 @@ namespace PrendaSAL.Properties {
         internal static System.Drawing.Bitmap lingote {
             get {
                 object obj = ResourceManager.GetObject("lingote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap list_list {
+            get {
+                object obj = ResourceManager.GetObject("list_list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1574,6 +1644,16 @@ namespace PrendaSAL.Properties {
         internal static System.Drawing.Bitmap ventas1 {
             get {
                 object obj = ResourceManager.GetObject("ventas1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vigencia {
+            get {
+                object obj = ResourceManager.GetObject("vigencia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

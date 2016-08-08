@@ -88,8 +88,8 @@ namespace PrendaSAL.Reportes
                 R.SetField<bool>("ACTIVA", false);
                 ((DataTable)cbxSUCURSAL.DataSource).Rows.InsertAt(R, 0);
             }
-            
 
+            rdbARTICULO.Checked = true;
             cargarExistencias();
             
         }
@@ -98,7 +98,15 @@ namespace PrendaSAL.Reportes
 
         private void cargarExistencias()
         {
-            INVENTARIO = dbInventario.getEXISTENCIAS((string)cbxSUCURSAL.SelectedValue,"ARTICULO");
+            if (rdbARTICULO.Checked)
+            {
+                INVENTARIO = dbInventario.getEXISTENCIAS((string)cbxSUCURSAL.SelectedValue, "ARTICULO");
+            }
+            else if (rdbORO.Checked)
+            {
+                INVENTARIO = dbInventario.getEXISTENCIAS_ITEM( "ORO",txtCONTRATO.Text);
+            }
+            
             System.Media.SystemSounds.Exclamation.Play();
 
             cbxTIPO.DataSource = dbCatalogo.getTipoInv("ARTICULO"); ;
@@ -164,16 +172,31 @@ namespace PrendaSAL.Reportes
         private void btnBUSCAR_Click(object sender, EventArgs e)
         {
             //BUSCAR POR ARTICULO
-            if (cbxSUCURSAL.SelectedIndex >= 0 )
+            if (rdbARTICULO.Checked)
             {
-                txtCODIGO.Text = string.Empty;
-
-                cargarExistencias();
+                if (cbxSUCURSAL.SelectedIndex >= 0)
+                {
+                    txtCODIGO.Text = string.Empty;
+                    cargarExistencias();
+                }
+                else
+                {
+                    MessageBox.Show("SELECCIONE SUCURSAL ", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            else if (rdbORO.Checked)
             {
-                MessageBox.Show("SELECCIONE SUCURSAL ", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (txtCONTRATO.Text != string.Empty)
+                {
+                    txtCODIGO.Text = string.Empty;
+                    cargarExistencias();
+                }
+                else
+                {
+                    MessageBox.Show("INGRESE CONTRATO ", "VALIDACION DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+            
             
         }
 
@@ -266,6 +289,26 @@ namespace PrendaSAL.Reportes
             if (FILTRO != null)
             {
                 HOME.Instance().exportDataGridViewToExcel("REPORTE DE EXISTENCIA", tblINVENTARIO.Columns, FILTRO, "ReporteExistencias");
+            }
+        }
+
+        private void rdbARTICULO_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbARTICULO.Checked)
+            {
+                txtCONTRATO.Text = string.Empty;
+                txtCONTRATO.Enabled = false;
+                cbxSUCURSAL.Enabled = true;
+            }
+        }
+
+        private void rdbORO_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbORO.Checked)
+            {
+                txtCONTRATO.Text = string.Empty;
+                txtCONTRATO.Enabled = true;
+                cbxSUCURSAL.Enabled = false;
             }
         }
 

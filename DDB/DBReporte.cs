@@ -55,6 +55,40 @@ namespace DDB
 
 
 
+        public DataTable RptContratosVigentesDias(string sucursal,int desde, int hasta)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_CONTRATOS_VIGENTES";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 2);
+                suc_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter desde_rpt = cmd.Parameters.Add("desde_rpt", MySqlDbType.Int32);
+                desde_rpt.Direction = ParameterDirection.Input;
+                MySqlParameter hasta_rpt = cmd.Parameters.Add("hasta_rpt", MySqlDbType.Int32);
+                hasta_rpt.Direction = ParameterDirection.Input;
+
+                suc_rpt.Value = sucursal;
+                desde_rpt.Value = desde;
+                hasta_rpt.Value = hasta;
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR EN CONSULTAR CONTRATOS VIGENTES", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
 
 
         public DataTable RptContratosCancelados(string sucursal, DateTime FechaInicio, DateTime FechaFin)
@@ -372,6 +406,44 @@ namespace DDB
             }
             return datos;
         }
+
+
+
+
+
+
+        public DataTable RptCarteraVigente(string sucursales)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_CARTERA_VIGENTE";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlParameter suc_rpt = cmd.Parameters.Add("suc_rpt", MySqlDbType.VarChar, 100);
+                suc_rpt.Direction = ParameterDirection.Input;
+
+                suc_rpt.Value = sucursales;
+                
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR REPORTE DE CARTERA VIGENTE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
+
+
+
+
 
 
 

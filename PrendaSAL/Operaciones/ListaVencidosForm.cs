@@ -475,6 +475,14 @@ namespace PrendaSAL.Operaciones
 
 
 
+        private void btnVerList_Click(object sender, EventArgs e)
+        {
+            ACCION = eOperacion.SEARCH; 
+            VencidosList vencidos = new VencidosList();
+            vencidos.ShowDialog();
+        }
+
+
         private void IMPRIMIR(object sender, EventArgs e)
         {
             viewerLISTAVENC.Clear();
@@ -555,6 +563,7 @@ namespace PrendaSAL.Operaciones
         {
 
         }
+
 
 
 

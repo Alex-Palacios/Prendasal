@@ -45,7 +45,15 @@ namespace PrendaSAL.Movimientos
                 lbCLIENTE.Text = PAC.CONTRATO.CLIENTE;
                 lbTIPO_MOV.Text = PAC.TIPO.ToString();
                 lbINTERES.Text = PAC.INTERES.ToString("C2");
-                lbDESCUENTO.Text = PAC.DESCUENTO.ToString("C2");
+                if(PAC.CUPON_CANJE != null)
+                {
+                    lbDESCUENTO.Text = PAC.DESCUENTO.ToString("C2") + " --> CUPON #: " + PAC.CUPON_CANJE.NUMCUPON;
+                }
+                else
+                {
+                    lbDESCUENTO.Text = PAC.DESCUENTO.ToString("C2");
+                }
+
                 lbABONO.Text = PAC.ABONO.ToString("C2");
                 lbTOTAL.Text = PAC.TOTAL.ToString("C2");
 

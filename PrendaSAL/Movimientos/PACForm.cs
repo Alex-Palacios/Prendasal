@@ -15,6 +15,7 @@ namespace PrendaSAL.Movimientos
 
     using MODELO;
     using DDB;
+    using ControlesPersonalizados;
 
     public partial class PACForm : Form
     {
@@ -38,13 +39,14 @@ namespace PrendaSAL.Movimientos
         private DBUsuario dbUser;
         private DBVencidos dbVencidos;
         private DBPac dbPAC;
+        private DBCupones dbCupon;
 
         private eOperacion ACCION;
         private Pac PAC;
         private Pac SELECTED;
         private Reglas REGLAS;
         private Tarjeta TARJETA;
-
+        private Cupon CuponX;
 
         
         public PACForm()
@@ -57,6 +59,7 @@ namespace PrendaSAL.Movimientos
             dbPAC = new DBPac();
             dbVencidos = new DBVencidos();
             PAC = new Pac();
+            dbCupon = new DBCupones();
         }
 
 
@@ -182,6 +185,7 @@ namespace PrendaSAL.Movimientos
         private void NUEVO(object sender, EventArgs e)
         {
             ACCION = eOperacion.INSERT;
+            CuponX = null;
             Prestamo contrato = null;
             if (PAC != null)
             {
@@ -457,11 +461,14 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+
         private void rdbPRORROGA_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbPRORROGA.Checked && PAC.CONTRATO != null)
             {
                 PAC.TIPO = eTipoMovPac.PRORROGA;
+                CuponX = null;
                 PAC.MESES = 0;
                 PAC.DIAS = 0;
                 PAC.ABONO = 0;
@@ -485,6 +492,7 @@ namespace PrendaSAL.Movimientos
             if (rdbABONO.Checked && PAC.CONTRATO != null)
             {
                 PAC.TIPO = eTipoMovPac.ABONO;
+                CuponX = null;
                 if (PAC.CONTRATO.DIAS_TRANS <= 0)
                 {
                     PAC.MESES = 0;
@@ -524,6 +532,7 @@ namespace PrendaSAL.Movimientos
             if (rdbCANCELACION.Checked && PAC.CONTRATO != null)
             {
                 PAC.TIPO = eTipoMovPac.CANCELACION;
+                CuponX = null;
                 if (PAC.CONTRATO.DIAS_TRANS <= 0)
                 {
                     PAC.MESES = 0;
@@ -574,6 +583,7 @@ namespace PrendaSAL.Movimientos
             if (ACCION == eOperacion.INSERT)
             {
                 PAC.MESES = (int)numMESES.Value;
+                CuponX = null;
                 calcularTotales();
             }
         }
@@ -626,15 +636,26 @@ namespace PrendaSAL.Movimientos
         {
             if (PAC != null && PAC.CONTRATO != null)
             {
-
-                PAC.INTERES = Decimal.Round(PAC.MESES * PAC.CONTRATO.INTERES_MENSUAL + PAC.DIAS * PAC.CONTRATO.INTERES_DIARIO, 2, MidpointRounding.AwayFromZero);
-                if (PAC.CONTRATO.ESTADO_CONTRATO == eEstadoContrato.ACTIVO && PAC.INTERES < 1 && PAC.TIPO == eTipoMovPac.CANCELACION)
+                if (PAC.CONTRATO.ESTADO_CONTRATO == eEstadoContrato.ACTIVO && PAC.CONTRATO.DIAS_TRANS < 30 && PAC.TIPO != eTipoMovPac.PRORROGA) // PRIMEROS 30 DIAS INTERES DIVIDIDO
                 {
-                    PAC.INTERES = 1;
+                    PAC.INTERES = PAC.CONTRATO.INTERES_15;
                 }
-                PAC.DESCUENTO = Decimal.Round(PAC.INTERES * REGLAS.DESC_INTERES/100, 2, MidpointRounding.AwayFromZero);
-                PAC.TOTAL = PAC.INTERES - PAC.DESCUENTO + PAC.ABONO;
+                else // DESPUES DE 30 DIAS INTERES NORMAL
+                {
+                    PAC.INTERES = Decimal.Round(PAC.MESES * PAC.CONTRATO.INTERES_MENSUAL + PAC.DIAS * PAC.CONTRATO.INTERES_DIARIO, 2, MidpointRounding.AwayFromZero);
+                    
+                }
 
+                if (CuponX != null)
+                {
+                    PAC.DESCUENTO = Decimal.Round(PAC.MESES * PAC.CONTRATO.INTERES_MENSUAL * CuponX.DESC_INTERES / 100, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+                    PAC.DESCUENTO = Decimal.Round(PAC.INTERES * REGLAS.DESC_INTERES / 100, 2, MidpointRounding.AwayFromZero);                    
+                }
+
+                PAC.TOTAL = PAC.INTERES - PAC.DESCUENTO + PAC.ABONO;
                 txtINTERESES.Text = PAC.INTERES.ToString("C2");
                 txtDESCUENTO.Text = PAC.DESCUENTO.ToString("C2");
                 txtTOTAL.Text = PAC.TOTAL.ToString("C2");
@@ -643,6 +664,24 @@ namespace PrendaSAL.Movimientos
         }
 
 
+        //private void calcularTotales()
+        //{
+        //    if (PAC != null && PAC.CONTRATO != null)
+        //    {
+        //        PAC.INTERES = Decimal.Round(PAC.MESES * PAC.CONTRATO.INTERES_MENSUAL + PAC.DIAS * PAC.CONTRATO.INTERES_DIARIO, 2, MidpointRounding.AwayFromZero);
+        //        if (PAC.CONTRATO.ESTADO_CONTRATO == eEstadoContrato.ACTIVO && PAC.INTERES < 1 && PAC.TIPO == eTipoMovPac.CANCELACION)
+        //        {
+        //            PAC.INTERES = 1;
+        //        }
+        //        PAC.DESCUENTO = Decimal.Round(PAC.INTERES * REGLAS.DESC_INTERES / 100, 2, MidpointRounding.AwayFromZero);
+        //        PAC.TOTAL = PAC.INTERES - PAC.DESCUENTO + PAC.ABONO;
+
+        //        txtINTERESES.Text = PAC.INTERES.ToString("C2");
+        //        txtDESCUENTO.Text = PAC.DESCUENTO.ToString("C2");
+        //        txtTOTAL.Text = PAC.TOTAL.ToString("C2");
+
+        //    }
+        //}
 
 
 
@@ -728,6 +767,7 @@ namespace PrendaSAL.Movimientos
                     {
                         if (validarAbono())
                         {
+                            PAC.CUPON_CANJE = CuponX;
                             ConfirmarPAC confirmar = new ConfirmarPAC(PAC, ACCION);
                             confirmar.ShowDialog();
                         }
@@ -790,6 +830,31 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+
+
+        private void EDITAR(object sender, EventArgs e)
+        {
+            if (tblHistorialPAC.CurrentCell != null && tblHistorialPAC.SelectedRows.Count == 1)
+            {
+                if (SELECTED != null)
+                {
+                    ACCION = eOperacion.UPDATE;
+                    SELECTED = Pac.ConvertToPAC(PAC.CONTRATO.HISTORIAL_PAC.Rows[tblHistorialPAC.CurrentCell.RowIndex]);
+                    if (SELECTED != null)
+                    {
+                        SELECTED.CONTRATO = PAC.CONTRATO;
+                        EditarPACForm editPAC = new EditarPACForm(SELECTED);
+                        editPAC.Show();
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("SELECCIONE UN P.A.C", "DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
 
 
 
@@ -957,6 +1022,18 @@ namespace PrendaSAL.Movimientos
         }
 
 
+        private void ImprimirFactura()
+        {
+            switch (Properties.Settings.Default.FCF_FORMAT)
+            {
+                case eFormatFCF.FORMATO_1:
+                    ImprimirFCF_FORMATO_1();
+                    break;
+                case eFormatFCF.FORMATO_2:
+                    ImprimirFCF_FORMATO_2();
+                    break;
+            }
+        }
 
 
         private void ImprimirReciboPAC()
@@ -1018,7 +1095,7 @@ namespace PrendaSAL.Movimientos
 
 
 
-        private void ImprimirFactura()
+        private void ImprimirFCF_FORMATO_1()
         {
             viewerRECIBO.Clear();
             if (SELECTED != null && SELECTED.INTERES > 0)
@@ -1061,18 +1138,19 @@ namespace PrendaSAL.Movimientos
                     }
                     bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                    ReportParameter[] parameters = new ReportParameter[9];
+                    ReportParameter[] parameters = new ReportParameter[10];
                     parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
-                    parameters[1] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
-                    parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                    parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                    parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                    parameters[5] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                    parameters[6] = new ReportParameter("CESC", "");
-                    parameters[7] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
-                    parameters[8] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
+                    parameters[1] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                    parameters[3] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[4] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[5] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[6] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[7] = new ReportParameter("CESC", "");
+                    parameters[8] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[9] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
 
-                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
+                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Formato1.rdlc";
                     viewerRECIBO.LocalReport.DataSources.Clear();
                     viewerRECIBO.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
                     viewerRECIBO.LocalReport.SetParameters(parameters);
@@ -1093,7 +1171,79 @@ namespace PrendaSAL.Movimientos
 
 
 
+        private void ImprimirFCF_FORMATO_2()
+        {
+            viewerRECIBO.Clear();
+            if (SELECTED != null && SELECTED.INTERES > 0)
+            {
+                try
+                {
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    dSItemFCF.Clear();
+                    dSItemFCF.ITEM.AddITEMRow("", SELECTED.MESES + " Meses " + SELECTED.DIAS + " Dias " + " INTERES Cto #" + SELECTED.CONTRATO.DOCUMENTO, SELECTED.INTERES);
+                    if (SELECTED.DESCUENTO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO APLICADO S/INTERES ", -SELECTED.DESCUENTO);
+                    }
+                    else
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                    }
+                    if (SELECTED.ABONO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "ABONO A CAPITAL:  " + SELECTED.ABONO, Decimal.Zero);
+                    }
+                    else
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                    }
+                    switch (SELECTED.TIPO)
+                    {
+                        case eTipoMovPac.CANCELACION:
+                            dSItemFCF.ITEM.AddITEMRow("", eTipoMovPac.CANCELACION.ToString(), Decimal.Zero);
+                            //dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                        case eTipoMovPac.ABONO:
+                            dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
+                            //dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                        case eTipoMovPac.PRORROGA:
+                            dSItemFCF.ITEM.AddITEMRow("", "Proximo Pago: " + SELECTED.PROXIMO_PAGO.Date.ToString("dd/MM/yyyy"), Decimal.Zero);
+                            //dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                            break;
+                    }
+                    bindingFCF.DataSource = dSItemFCF.ITEM;
 
+                    ReportParameter[] parameters = new ReportParameter[10];
+                    parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.RECIBO);
+                    parameters[1] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[2] = new ReportParameter("CLIENTE", SELECTED.CONTRATO.CLIENTE);
+                    parameters[3] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[4] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[5] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[6] = new ReportParameter("SUMAS", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[7] = new ReportParameter("CESC", "");
+                    parameters[8] = new ReportParameter("TOTAL", (SELECTED.INTERES - SELECTED.DESCUENTO).ToString("C2"));
+                    parameters[9] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras((SELECTED.INTERES - SELECTED.DESCUENTO)));
+
+                    viewerRECIBO.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Formato2.rdlc";
+                    viewerRECIBO.LocalReport.DataSources.Clear();
+                    viewerRECIBO.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
+                    viewerRECIBO.LocalReport.SetParameters(parameters);
+                    viewerRECIBO.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR FACTURA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                DialogResult detalle = MessageBox.Show("IMPRIMIR DETALLE AL REVERSO DE LA FACTURA?", "IMPRIMIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (detalle == DialogResult.Yes)
+                {
+                    ImprimirReversoFactura();
+                }
+
+            }
+        }
 
 
 
@@ -1229,8 +1379,108 @@ namespace PrendaSAL.Movimientos
 
         }
 
-       
-        
+
+
+
+
+        private void CAJEAR_CUPON(object sender, EventArgs e)
+        {
+            //VERIFICAR REGLAS DE CANJE
+            if (verificarReglasCanje())
+            {
+                //INTRODUCIR NUMERO DE CUPON
+                ComboBox cbxCupon = Controles.ComboInputBox("Ingrese el numero de billete o cupon:", "CANJEAR CUPON", Enum.GetValues(new eTipoCupon().GetType()));
+                //BUSCAR CUPON
+                if (cbxCupon != null && cbxCupon.Tag != null && cbxCupon.Tag.ToString() != string.Empty)
+                {
+                    try
+                    {
+                        int numeroCupon = Int32.Parse(cbxCupon.Tag.ToString());
+                        if (numeroCupon > 0)
+                        {
+                            CuponX = Cupon.ConvertToCupon(dbCupon.searchCuponDesc((eTipoCupon)cbxCupon.SelectedItem, numeroCupon));
+                            if (CuponX != null)
+                            {
+                                // DISPONIBILIDAD DEL CUPON
+                                CuponX.NUMCUPON = numeroCupon;
+                                if (dbCupon.isCuponDisponible(CuponX))
+                                {
+                                    if (CuponX.FECHA_EXP <= PAC.FECHA && CuponX.FECHA_VENC >= PAC.FECHA)
+                                    {
+                                        DialogResult canjear = MessageBox.Show(CuponX.TIPO.ToString() + " localizado con el " + CuponX.DESC_INTERES + " % de descuento sobre interes mensual ... Desea Aplicarlo ?", "REALIZAR CANJE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (canjear == DialogResult.Yes)
+                                        {
+                                            MessageBox.Show("DESCUENTO sobre interes por canje de " + CuponX.TIPO.ToString() + " # " + CuponX.NUMCUPON + " APLICADO", "DESCUENTO APLICADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            CuponX = null;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cupon o billete a expirado ... Verifique el numero del " + CuponX.TIPO.ToString(), "ERROR BUSCAR CUPON", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Este cupon ya ha sido conjeado ... Verifique el numero del " + CuponX.TIPO.ToString(), "ERROR BUSCAR CUPON", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    CuponX = null;
+                                }
+                            }
+                            else
+                            {
+                                CuponX = null;
+                                MessageBox.Show("CUPON o BILLETE NO EXISTE O TIRAJE DESACTIVADO", "ERROR BUSCAR CUPON", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        CuponX = null;
+                        MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    CuponX = null;
+                }
+            }
+            calcularTotales();
+        }
+
+            
+
+
+
+        public bool verificarReglasCanje()
+        {
+            bool OK = true;
+            if (PAC != null && PAC.CONTRATO != null)
+            {
+                //CONTRATO CON MENOS DE 60 DIAS
+                if (PAC.CONTRATO.DIAS_TRANS > 60)
+                {
+                    OK = false;
+                    MessageBox.Show( "DESCUENTO POR CUPON NO APLICA .... Contrato Excede los 60 dias","VALIDACION DE CUPON", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                //AL MENOS UN MES PARA APLICAR
+                if (PAC.MESES <= 0)
+                {
+                    OK = false;
+                    MessageBox.Show("DESCUENTO POR CUPON NO APLICA .... Solo se aplican a meses completos", "VALIDACION DE CUPON", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            else
+            {
+                OK = false;
+                MessageBox.Show("NO HA CARGADO NINGUN CONTRATO","ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return OK;
+        }
+
+            
 
 
 

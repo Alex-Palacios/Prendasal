@@ -43,6 +43,8 @@
             this.btnProbarConexion = new System.Windows.Forms.Button();
             this.btnGUARDAR = new System.Windows.Forms.Button();
             this.btnCANCELAR = new System.Windows.Forms.Button();
+            this.cbxFCF = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbPassword
@@ -144,7 +146,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 244);
+            this.label2.Location = new System.Drawing.Point(61, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 31;
@@ -166,7 +168,7 @@
             // btnGUARDAR
             // 
             this.btnGUARDAR.Image = global::PrendaSAL.Properties.Resources.Save_32x32;
-            this.btnGUARDAR.Location = new System.Drawing.Point(64, 292);
+            this.btnGUARDAR.Location = new System.Drawing.Point(64, 324);
             this.btnGUARDAR.Name = "btnGUARDAR";
             this.btnGUARDAR.Size = new System.Drawing.Size(132, 41);
             this.btnGUARDAR.TabIndex = 19;
@@ -179,7 +181,7 @@
             // btnCANCELAR
             // 
             this.btnCANCELAR.Image = global::PrendaSAL.Properties.Resources.cancel;
-            this.btnCANCELAR.Location = new System.Drawing.Point(301, 292);
+            this.btnCANCELAR.Location = new System.Drawing.Point(301, 324);
             this.btnCANCELAR.Name = "btnCANCELAR";
             this.btnCANCELAR.Size = new System.Drawing.Size(127, 41);
             this.btnCANCELAR.TabIndex = 20;
@@ -188,6 +190,25 @@
             this.btnCANCELAR.UseVisualStyleBackColor = true;
             this.btnCANCELAR.Click += new System.EventHandler(this.CANCELAR);
             // 
+            // cbxFCF
+            // 
+            this.cbxFCF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFCF.FormattingEnabled = true;
+            this.cbxFCF.Location = new System.Drawing.Point(199, 281);
+            this.cbxFCF.Name = "cbxFCF";
+            this.cbxFCF.Size = new System.Drawing.Size(229, 21);
+            this.cbxFCF.TabIndex = 36;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(103, 281);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "FCF:";
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -195,7 +216,9 @@
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(603, 345);
+            this.ClientSize = new System.Drawing.Size(603, 377);
+            this.Controls.Add(this.cbxFCF);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnProbarConexion);
             this.Controls.Add(this.cbxSUCURSAL);
             this.Controls.Add(this.label2);
@@ -241,5 +264,7 @@
         private System.Windows.Forms.ComboBox cbxSUCURSAL;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnProbarConexion;
+        private System.Windows.Forms.ComboBox cbxFCF;
+        private System.Windows.Forms.Label label1;
     }
 }

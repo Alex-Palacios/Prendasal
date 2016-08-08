@@ -121,20 +121,191 @@
     <value>321, 17</value>
   </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="grupoReportesGerenciales.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnRptConsolidado.Text" xml:space="preserve">
+    <value>Consolidado</value>
+  </data>
+  <data name="btnRptCarteraVigente.Text" xml:space="preserve">
+    <value>Cartera Vigente</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="grupoReportesGerenciales.Location" type="System.Drawing.Point, System.Drawing">
+    <value>821, 0</value>
+  </data>
+  <data name="grupoReportesGerenciales.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 106</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="grupoReportesGerenciales.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="grupoReportesGerenciales.Text" xml:space="preserve">
+    <value>REPORTE GERENCIALES</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesGerenciales.Name" xml:space="preserve">
+    <value>grupoReportesGerenciales</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesGerenciales.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesGerenciales.Parent" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesGerenciales.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grupoReportesConta.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnRptComprasORO.Text" xml:space="preserve">
+    <value>Compras</value>
+  </data>
+  <data name="btnRptVencidosORO.Text" xml:space="preserve">
+    <value>Vencidos</value>
+  </data>
+  <data name="grupoReportesConta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>661, 0</value>
+  </data>
+  <data name="grupoReportesConta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 106</value>
+  </data>
+  <data name="grupoReportesConta.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="grupoReportesConta.Text" xml:space="preserve">
+    <value>REPORTES CONTABLES</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesConta.Name" xml:space="preserve">
+    <value>grupoReportesConta</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesConta.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesConta.Parent" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesConta.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grupoReporteVarios.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnRptContratos.Text" xml:space="preserve">
+    <value>Contratos</value>
+  </data>
+  <data name="btnRptContratosVigentes.Text" xml:space="preserve">
+    <value>Vigentes</value>
+  </data>
+  <data name="btnRptCancelados.Text" xml:space="preserve">
+    <value>Cancelados</value>
+  </data>
+  <data name="btnRptTransDiarias.Text" xml:space="preserve">
+    <value>Transacciones</value>
+  </data>
+  <data name="btnRptEstadoCuenta.Text" xml:space="preserve">
+    <value>Estado Cuenta</value>
+  </data>
+  <data name="grupoReporteVarios.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 0</value>
+  </data>
+  <data name="grupoReporteVarios.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 106</value>
+  </data>
+  <data name="grupoReporteVarios.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grupoReporteVarios.Text" xml:space="preserve">
+    <value>REPORTE VARIOS</value>
+  </data>
+  <data name="&gt;&gt;grupoReporteVarios.Name" xml:space="preserve">
+    <value>grupoReporteVarios</value>
+  </data>
+  <data name="&gt;&gt;grupoReporteVarios.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoReporteVarios.Parent" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;grupoReporteVarios.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grupoReportesInventario.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnRptInvCustodia.Text" xml:space="preserve">
+    <value>Resguardo</value>
+  </data>
+  <data name="btnRptInvVenta.Text" xml:space="preserve">
+    <value>En Venta</value>
+  </data>
+  <data name="btnRptKardex.Text" xml:space="preserve">
+    <value>KARDEX</value>
+  </data>
+  <data name="grupoReportesInventario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="grupoReportesInventario.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 106</value>
+  </data>
+  <data name="grupoReportesInventario.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="grupoReportesInventario.Text" xml:space="preserve">
+    <value>INVENTARIO</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesInventario.Name" xml:space="preserve">
+    <value>grupoReportesInventario</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesInventario.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesInventario.Parent" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;grupoReportesInventario.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ribbonPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ribbonPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 56</value>
+  </data>
+  <data name="ribbonPanel4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 3</value>
+  </data>
+  <data name="ribbonPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1046, 109</value>
+  </data>
+  <data name="ribbonPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.Name" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonPanel, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.Parent" xml:space="preserve">
+    <value>MENU_PRINCIPAL</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="ribbonPanel2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="btnCorteDiario.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCorteDiario.Location" type="System.Drawing.Point, System.Drawing">
     <value>941, 5</value>
   </data>
   <data name="btnCorteDiario.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 97</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCorteDiario.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -264,6 +435,9 @@
   <data name="ribbonPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="ribbonPanel2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;ribbonPanel2.Name" xml:space="preserve">
     <value>ribbonPanel2</value>
   </data>
@@ -274,241 +448,7 @@
     <value>MENU_PRINCIPAL</value>
   </data>
   <data name="&gt;&gt;ribbonPanel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="grupoClientes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="btnMenuClientes.Text" xml:space="preserve">
-    <value>Clientes</value>
-  </data>
-  <data name="btnMenuAMIGO.Text" xml:space="preserve">
-    <value>AMIGO</value>
-  </data>
-  <data name="btnMenuVIP.Text" xml:space="preserve">
-    <value>V.I.P</value>
-  </data>
-  <data name="grupoClientes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="grupoClientes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 106</value>
-  </data>
-  <data name="grupoClientes.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="grupoClientes.Text" xml:space="preserve">
-    <value>Mantenimiento de Clientes</value>
-  </data>
-  <data name="&gt;&gt;grupoClientes.Name" xml:space="preserve">
-    <value>grupoClientes</value>
-  </data>
-  <data name="&gt;&gt;grupoClientes.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;grupoClientes.Parent" xml:space="preserve">
-    <value>ribbonPanel1</value>
-  </data>
-  <data name="&gt;&gt;grupoClientes.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ribbonPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ribbonPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 56</value>
-  </data>
-  <data name="ribbonPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 3</value>
-  </data>
-  <data name="ribbonPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1046, 109</value>
-  </data>
-  <data name="ribbonPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ribbonPanel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel1.Name" xml:space="preserve">
-    <value>ribbonPanel1</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel1.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonPanel, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel1.Parent" xml:space="preserve">
-    <value>MENU_PRINCIPAL</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel1.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="grupoReportesGerenciales.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="btnRptConsolidado.Text" xml:space="preserve">
-    <value>Consolidado</value>
-  </data>
-  <data name="grupoReportesGerenciales.Location" type="System.Drawing.Point, System.Drawing">
-    <value>773, 0</value>
-  </data>
-  <data name="grupoReportesGerenciales.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 106</value>
-  </data>
-  <data name="grupoReportesGerenciales.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="grupoReportesGerenciales.Text" xml:space="preserve">
-    <value>REPORTE GERENCIALES</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesGerenciales.Name" xml:space="preserve">
-    <value>grupoReportesGerenciales</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesGerenciales.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesGerenciales.Parent" xml:space="preserve">
-    <value>ribbonPanel4</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesGerenciales.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="grupoReportesConta.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="btnRptComprasORO.Text" xml:space="preserve">
-    <value>Compras</value>
-  </data>
-  <data name="btnRptVencidosORO.Text" xml:space="preserve">
-    <value>Vencidos</value>
-  </data>
-  <data name="grupoReportesConta.Location" type="System.Drawing.Point, System.Drawing">
-    <value>601, 0</value>
-  </data>
-  <data name="grupoReportesConta.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 106</value>
-  </data>
-  <data name="grupoReportesConta.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="grupoReportesConta.Text" xml:space="preserve">
-    <value>REPORTES CONTABLES</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesConta.Name" xml:space="preserve">
-    <value>grupoReportesConta</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesConta.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesConta.Parent" xml:space="preserve">
-    <value>ribbonPanel4</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesConta.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grupoReporteVarios.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="btnRptContratos.Text" xml:space="preserve">
-    <value>Contratos</value>
-  </data>
-  <data name="btnRptCancelados.Text" xml:space="preserve">
-    <value>Cancelados</value>
-  </data>
-  <data name="btnRptTransDiarias.Text" xml:space="preserve">
-    <value>Transacciones</value>
-  </data>
-  <data name="btnRptEstadoCuenta.Text" xml:space="preserve">
-    <value>Estado Cuenta</value>
-  </data>
-  <data name="grupoReporteVarios.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 0</value>
-  </data>
-  <data name="grupoReporteVarios.Size" type="System.Drawing.Size, System.Drawing">
-    <value>362, 106</value>
-  </data>
-  <data name="grupoReporteVarios.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="grupoReporteVarios.Text" xml:space="preserve">
-    <value>REPORTE VARIOS</value>
-  </data>
-  <data name="&gt;&gt;grupoReporteVarios.Name" xml:space="preserve">
-    <value>grupoReporteVarios</value>
-  </data>
-  <data name="&gt;&gt;grupoReporteVarios.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;grupoReporteVarios.Parent" xml:space="preserve">
-    <value>ribbonPanel4</value>
-  </data>
-  <data name="&gt;&gt;grupoReporteVarios.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="grupoReportesInventario.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="btnRptInvCustodia.Text" xml:space="preserve">
-    <value>Resguardo</value>
-  </data>
-  <data name="btnRptInvVenta.Text" xml:space="preserve">
-    <value>En Venta</value>
-  </data>
-  <data name="btnRptKardex.Text" xml:space="preserve">
-    <value>KARDEX</value>
-  </data>
-  <data name="grupoReportesInventario.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="grupoReportesInventario.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 106</value>
-  </data>
-  <data name="grupoReportesInventario.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="grupoReportesInventario.Text" xml:space="preserve">
-    <value>INVENTARIO</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesInventario.Name" xml:space="preserve">
-    <value>grupoReportesInventario</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesInventario.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesInventario.Parent" xml:space="preserve">
-    <value>ribbonPanel4</value>
-  </data>
-  <data name="&gt;&gt;grupoReportesInventario.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ribbonPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ribbonPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 56</value>
-  </data>
-  <data name="ribbonPanel4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 3</value>
-  </data>
-  <data name="ribbonPanel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1046, 109</value>
-  </data>
-  <data name="ribbonPanel4.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="ribbonPanel4.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel4.Name" xml:space="preserve">
-    <value>ribbonPanel4</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel4.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.RibbonPanel, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel4.Parent" xml:space="preserve">
-    <value>MENU_PRINCIPAL</value>
-  </data>
-  <data name="&gt;&gt;ribbonPanel4.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="ribbonBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -604,6 +544,102 @@
     <value>MENU_PRINCIPAL</value>
   </data>
   <data name="&gt;&gt;ribbonPanel7.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grupoPromociones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnMenuCupones.Text" xml:space="preserve">
+    <value>Cupones</value>
+  </data>
+  <data name="grupoPromociones.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 0</value>
+  </data>
+  <data name="grupoPromociones.Size" type="System.Drawing.Size, System.Drawing">
+    <value>419, 106</value>
+  </data>
+  <data name="grupoPromociones.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grupoPromociones.Text" xml:space="preserve">
+    <value>PROMOCIONES</value>
+  </data>
+  <data name="&gt;&gt;grupoPromociones.Name" xml:space="preserve">
+    <value>grupoPromociones</value>
+  </data>
+  <data name="&gt;&gt;grupoPromociones.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoPromociones.Parent" xml:space="preserve">
+    <value>ribbonPanel1</value>
+  </data>
+  <data name="&gt;&gt;grupoPromociones.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grupoClientes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnMenuClientes.Text" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="btnMenuAMIGO.Text" xml:space="preserve">
+    <value>AMIGO</value>
+  </data>
+  <data name="btnMenuVIP.Text" xml:space="preserve">
+    <value>V.I.P</value>
+  </data>
+  <data name="grupoClientes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="grupoClientes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 106</value>
+  </data>
+  <data name="grupoClientes.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grupoClientes.Text" xml:space="preserve">
+    <value>Mantenimiento de Clientes</value>
+  </data>
+  <data name="&gt;&gt;grupoClientes.Name" xml:space="preserve">
+    <value>grupoClientes</value>
+  </data>
+  <data name="&gt;&gt;grupoClientes.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonBar, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;grupoClientes.Parent" xml:space="preserve">
+    <value>ribbonPanel1</value>
+  </data>
+  <data name="&gt;&gt;grupoClientes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ribbonPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ribbonPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 56</value>
+  </data>
+  <data name="ribbonPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 3</value>
+  </data>
+  <data name="ribbonPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1046, 109</value>
+  </data>
+  <data name="ribbonPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="ribbonPanel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.Name" xml:space="preserve">
+    <value>ribbonPanel1</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.RibbonPanel, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.Parent" xml:space="preserve">
+    <value>MENU_PRINCIPAL</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="grupoConfigConexion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1191,6 +1227,78 @@
   <data name="&gt;&gt;styleForm.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.StyleManager, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
+  <data name="&gt;&gt;btnRptConsolidado.Name" xml:space="preserve">
+    <value>btnRptConsolidado</value>
+  </data>
+  <data name="&gt;&gt;btnRptConsolidado.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptCarteraVigente.Name" xml:space="preserve">
+    <value>btnRptCarteraVigente</value>
+  </data>
+  <data name="&gt;&gt;btnRptCarteraVigente.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptComprasORO.Name" xml:space="preserve">
+    <value>btnRptComprasORO</value>
+  </data>
+  <data name="&gt;&gt;btnRptComprasORO.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptVencidosORO.Name" xml:space="preserve">
+    <value>btnRptVencidosORO</value>
+  </data>
+  <data name="&gt;&gt;btnRptVencidosORO.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptContratos.Name" xml:space="preserve">
+    <value>btnRptContratos</value>
+  </data>
+  <data name="&gt;&gt;btnRptContratos.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptContratosVigentes.Name" xml:space="preserve">
+    <value>btnRptContratosVigentes</value>
+  </data>
+  <data name="&gt;&gt;btnRptContratosVigentes.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptCancelados.Name" xml:space="preserve">
+    <value>btnRptCancelados</value>
+  </data>
+  <data name="&gt;&gt;btnRptCancelados.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptTransDiarias.Name" xml:space="preserve">
+    <value>btnRptTransDiarias</value>
+  </data>
+  <data name="&gt;&gt;btnRptTransDiarias.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptEstadoCuenta.Name" xml:space="preserve">
+    <value>btnRptEstadoCuenta</value>
+  </data>
+  <data name="&gt;&gt;btnRptEstadoCuenta.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptInvCustodia.Name" xml:space="preserve">
+    <value>btnRptInvCustodia</value>
+  </data>
+  <data name="&gt;&gt;btnRptInvCustodia.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptInvVenta.Name" xml:space="preserve">
+    <value>btnRptInvVenta</value>
+  </data>
+  <data name="&gt;&gt;btnRptInvVenta.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnRptKardex.Name" xml:space="preserve">
+    <value>btnRptKardex</value>
+  </data>
+  <data name="&gt;&gt;btnRptKardex.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
   <data name="&gt;&gt;btnMenuFinanc.Name" xml:space="preserve">
     <value>btnMenuFinanc</value>
   </data>
@@ -1239,84 +1347,6 @@
   <data name="&gt;&gt;btnMenuVentas.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
-  <data name="&gt;&gt;btnMenuClientes.Name" xml:space="preserve">
-    <value>btnMenuClientes</value>
-  </data>
-  <data name="&gt;&gt;btnMenuClientes.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnMenuAMIGO.Name" xml:space="preserve">
-    <value>btnMenuAMIGO</value>
-  </data>
-  <data name="&gt;&gt;btnMenuAMIGO.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnMenuVIP.Name" xml:space="preserve">
-    <value>btnMenuVIP</value>
-  </data>
-  <data name="&gt;&gt;btnMenuVIP.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptConsolidado.Name" xml:space="preserve">
-    <value>btnRptConsolidado</value>
-  </data>
-  <data name="&gt;&gt;btnRptConsolidado.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptComprasORO.Name" xml:space="preserve">
-    <value>btnRptComprasORO</value>
-  </data>
-  <data name="&gt;&gt;btnRptComprasORO.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptVencidosORO.Name" xml:space="preserve">
-    <value>btnRptVencidosORO</value>
-  </data>
-  <data name="&gt;&gt;btnRptVencidosORO.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptContratos.Name" xml:space="preserve">
-    <value>btnRptContratos</value>
-  </data>
-  <data name="&gt;&gt;btnRptContratos.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptCancelados.Name" xml:space="preserve">
-    <value>btnRptCancelados</value>
-  </data>
-  <data name="&gt;&gt;btnRptCancelados.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptTransDiarias.Name" xml:space="preserve">
-    <value>btnRptTransDiarias</value>
-  </data>
-  <data name="&gt;&gt;btnRptTransDiarias.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptEstadoCuenta.Name" xml:space="preserve">
-    <value>btnRptEstadoCuenta</value>
-  </data>
-  <data name="&gt;&gt;btnRptEstadoCuenta.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptInvCustodia.Name" xml:space="preserve">
-    <value>btnRptInvCustodia</value>
-  </data>
-  <data name="&gt;&gt;btnRptInvCustodia.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptInvVenta.Name" xml:space="preserve">
-    <value>btnRptInvVenta</value>
-  </data>
-  <data name="&gt;&gt;btnRptInvVenta.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
-  <data name="&gt;&gt;btnRptKardex.Name" xml:space="preserve">
-    <value>btnRptKardex</value>
-  </data>
-  <data name="&gt;&gt;btnRptKardex.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
-  </data>
   <data name="&gt;&gt;btnMenuCierreVencidos.Name" xml:space="preserve">
     <value>btnMenuCierreVencidos</value>
   </data>
@@ -1339,6 +1369,30 @@
     <value>btnMenuRecibirInv</value>
   </data>
   <data name="&gt;&gt;btnMenuRecibirInv.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnMenuCupones.Name" xml:space="preserve">
+    <value>btnMenuCupones</value>
+  </data>
+  <data name="&gt;&gt;btnMenuCupones.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnMenuClientes.Name" xml:space="preserve">
+    <value>btnMenuClientes</value>
+  </data>
+  <data name="&gt;&gt;btnMenuClientes.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnMenuAMIGO.Name" xml:space="preserve">
+    <value>btnMenuAMIGO</value>
+  </data>
+  <data name="&gt;&gt;btnMenuAMIGO.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
+  </data>
+  <data name="&gt;&gt;btnMenuVIP.Name" xml:space="preserve">
+    <value>btnMenuVIP</value>
+  </data>
+  <data name="&gt;&gt;btnMenuVIP.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.8.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b</value>
   </data>
   <data name="&gt;&gt;btnConfigConexionDB.Name" xml:space="preserve">

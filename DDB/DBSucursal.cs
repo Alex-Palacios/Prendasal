@@ -118,6 +118,13 @@ namespace DDB
 
 
 
+
+
+
+
+
+
+
         public DataTable showSucursalesConfig()
         {
             MySqlDataReader reader;
@@ -143,6 +150,13 @@ namespace DDB
 
 
 
+
+
+
+
+
+
+
         public DataTable showSucursalesNoConfig()
         {
             MySqlDataReader reader;
@@ -165,6 +179,13 @@ namespace DDB
             }
             return datos;
         }
+
+
+
+
+
+
+
 
 
 

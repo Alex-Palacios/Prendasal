@@ -29,11 +29,15 @@ namespace DDB
             string items = "";
             foreach (DataRow row in prestamo.ITEMS_PRESTAMO.Rows)
             {
+                string marca = row.Field<string>("MARCA");
+                if( marca != null ) {
+                    marca = marca.Replace('>', '-').Replace('&', 'y');
+                }
                 items = items + row.Field<string>("CATEGORIA") + ">"
                     + row.Field<string>("CODIGO") + ">"
                     + row.Field<string>("COD_ITEM") + ">"
                     + row.Field<string>("TIPO") + ">"
-                    + row.Field<string>("MARCA") + ">"
+                    + marca + ">"
                     + row.Field<string>("DESCRIPCION").Replace('>','-').Replace('&','y') + ">"
                     + row.Field<decimal>("CANTIDAD") + ">"
                     + row.Field<decimal>("MONTO") + "&";

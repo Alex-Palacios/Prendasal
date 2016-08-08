@@ -194,7 +194,17 @@ namespace MODELO
             }
         }
 
-        
+
+
+        public decimal INTERES_15
+        {
+            get
+            {
+                long diasDistribuidos = this.DIAS_TRANS - 15;
+                if(diasDistribuidos < 0) { diasDistribuidos = 0;}
+                return Decimal.Round(this.SALDO * (decimal)(10.00 + (5.00/15*diasDistribuidos))/ 100, 2, MidpointRounding.AwayFromZero);
+            }
+        }
 
 
 

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCanjeos" targetNamespace="http://tempuri.org/DSCanjeos.xsd" xmlns:mstns="http://tempuri.org/DSCanjeos.xsd" xmlns="http://tempuri.org/DSCanjeos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCanjeos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCanjeos" msprop:Generator_UserDSName="DSCanjeos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CANJEO" msprop:Generator_TableClassName="CANJEODataTable" msprop:Generator_TableVarName="tableCANJEO" msprop:Generator_TablePropName="CANJEO" msprop:Generator_RowDeletingName="CANJEORowDeleting" msprop:Generator_RowChangingName="CANJEORowChanging" msprop:Generator_RowEvHandlerName="CANJEORowChangeEventHandler" msprop:Generator_RowDeletedName="CANJEORowDeleted" msprop:Generator_UserTableName="CANJEO" msprop:Generator_RowChangedName="CANJEORowChanged" msprop:Generator_RowEvArgName="CANJEORowChangeEvent" msprop:Generator_RowClassName="CANJEORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FECHA" msprop:Generator_ColumnVarNameInTable="columnFECHA" msprop:Generator_ColumnPropNameInRow="FECHA" msprop:Generator_ColumnPropNameInTable="FECHAColumn" msprop:Generator_UserColumnName="FECHA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="COD_SUC" msprop:Generator_ColumnVarNameInTable="columnCOD_SUC" msprop:Generator_ColumnPropNameInRow="COD_SUC" msprop:Generator_ColumnPropNameInTable="COD_SUCColumn" msprop:Generator_UserColumnName="COD_SUC" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTRATO" msprop:Generator_ColumnVarNameInTable="columnCONTRATO" msprop:Generator_ColumnPropNameInRow="CONTRATO" msprop:Generator_ColumnPropNameInTable="CONTRATOColumn" msprop:Generator_UserColumnName="CONTRATO" type="xs:string" minOccurs="0" />
+              <xs:element name="CLIENTE" msprop:Generator_ColumnVarNameInTable="columnCLIENTE" msprop:Generator_ColumnPropNameInRow="CLIENTE" msprop:Generator_ColumnPropNameInTable="CLIENTEColumn" msprop:Generator_UserColumnName="CLIENTE" type="xs:string" minOccurs="0" />
+              <xs:element name="INTERES" msprop:Generator_ColumnVarNameInTable="columnINTERES" msprop:Generator_ColumnPropNameInRow="INTERES" msprop:Generator_ColumnPropNameInTable="INTERESColumn" msprop:Generator_UserColumnName="INTERES" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DESCUENTO" msprop:Generator_ColumnVarNameInTable="columnDESCUENTO" msprop:Generator_ColumnPropNameInRow="DESCUENTO" msprop:Generator_ColumnPropNameInTable="DESCUENTOColumn" msprop:Generator_UserColumnName="DESCUENTO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ABONO" msprop:Generator_ColumnVarNameInTable="columnABONO" msprop:Generator_ColumnPropNameInRow="ABONO" msprop:Generator_ColumnPropNameInTable="ABONOColumn" msprop:Generator_UserColumnName="ABONO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NUMERO" msprop:Generator_ColumnVarNameInTable="columnNUMERO" msprop:Generator_ColumnPropNameInRow="NUMERO" msprop:Generator_ColumnPropNameInTable="NUMEROColumn" msprop:Generator_UserColumnName="NUMERO" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

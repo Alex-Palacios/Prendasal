@@ -308,6 +308,9 @@ namespace DDB
         }
 
 
+
+
+
         public DataRow getTrasladoByDocTipoSucENVIA(eTipoTraslado tipo, string documento, string envia)
         {
             MySqlDataReader reader;
@@ -426,14 +429,17 @@ namespace DDB
             DataTable datos = new DataTable();
             try
             {
-                string sql = "prendasal.SP_TRASLADO_EXISTENCIAS_ARTICULO;";
+                string sql = "prendasal.RPT_EXISTENCIAS_CATEGORIA;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 MySqlParameter suc_exis = cmd.Parameters.Add("suc_exis", MySqlDbType.VarChar, 2);
                 suc_exis.Direction = ParameterDirection.Input;
+                MySqlParameter cat_exis = cmd.Parameters.Add("cat_exis", MySqlDbType.VarChar, 50);
+                cat_exis.Direction = ParameterDirection.Input;
 
                 suc_exis.Value = sucursal;
+                cat_exis.Value = "ARTICULO";
 
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)

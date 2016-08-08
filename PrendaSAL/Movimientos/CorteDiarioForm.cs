@@ -102,6 +102,7 @@ namespace PrendaSAL.Movimientos
                 cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
+
             
         }
 

@@ -28,6 +28,7 @@ namespace PrendaSAL.Configuracion
         public ConfigForm(bool init)
         {
             InitializeComponent();
+            cbxFCF.DataSource = Enum.GetValues(new eFormatFCF().GetType());
             dbSucursal = new DBSucursal();
             INIT = init;
         }
@@ -58,6 +59,7 @@ namespace PrendaSAL.Configuracion
             txtDB.Text = Properties.Settings.Default.DATABASE;
             txtUSER.Text = Properties.Settings.Default.USERDB;
             txtPASSWORD.Text = Properties.Settings.Default.PASSWORD;
+            cbxFCF.SelectedItem = Properties.Settings.Default.FCF_FORMAT;
             cargarSucursales();
             permisos();
         }
@@ -111,6 +113,7 @@ namespace PrendaSAL.Configuracion
                     cfgSetValue("configuration/applicationSettings/PrendaSAL.Properties.Settings", "USERDB", this.txtUSER.Text);
                     cfgSetValue("configuration/applicationSettings/PrendaSAL.Properties.Settings", "PASSWORD", this.txtPASSWORD.Text);
                     cfgSetValue("configuration/applicationSettings/PrendaSAL.Properties.Settings", "SUCURSAL", (string)cbxSUCURSAL.SelectedValue);
+                    cfgSetValue("configuration/applicationSettings/PrendaSAL.Properties.Settings", "FCF_FORMAT", (string)((eFormatFCF)cbxFCF.SelectedItem).ToString());
 
                     configXml.Save(ficConfig);
                     

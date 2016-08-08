@@ -44,6 +44,8 @@ namespace MODELO
         public decimal NUEVO_SALDO;
 
 
+        public Cupon CUPON_CANJE;
+
         public Pac()
         {
 

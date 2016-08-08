@@ -103,5 +103,14 @@ namespace PrendaSAL.Properties {
                 return ((global::MODELO.GlobalPeriodoInteres)(this["PERIODO_INTERES"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FORMATO_2")]
+        public global::MODELO.eFormatFCF FCF_FORMAT {
+            get {
+                return ((global::MODELO.eFormatFCF)(this["FCF_FORMAT"]));
+            }
+        }
     }
 }

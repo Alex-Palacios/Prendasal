@@ -232,6 +232,18 @@ namespace MODELO
         FALTANTE
     }
 
+    public enum eTipoCupon
+    {
+        BILLETE = 1,
+        CUPON
+    }
+
+    public enum eFormatFCF
+    {
+        FORMATO_1 = 1,
+        FORMATO_2
+    }
+
 
     public class Transaccion
     {

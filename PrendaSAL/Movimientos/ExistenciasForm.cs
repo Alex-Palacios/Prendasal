@@ -19,6 +19,7 @@ namespace PrendaSAL.Movimientos
         //VARIABLES
         private DBInventario dbExistencias;
         private DataTable EXISTENCIAS;
+        private DataTable FILTRO;
 
         public ExistenciasForm()
         {
@@ -36,24 +37,39 @@ namespace PrendaSAL.Movimientos
 
         private void cargarExistencias(){
             EXISTENCIAS = dbExistencias.getEXISTENCIAS(HOME.Instance().SUCURSAL.COD_SUC, "ARTICULO");
-            tblEXISTENCIAS.DataSource = EXISTENCIAS;
+            filtrarDatosExistencias();
         }
 
+
+        private void filtrarDatosExistencias()
+        {
+            DataRow[] filtros;
+            FILTRO = EXISTENCIAS.Copy();
+            if (FILTRO.Rows.Count > 0)
+            {
+                if (txtCODIGO.Text.Trim() != string.Empty)
+                {
+                    filtros = FILTRO.Select("CODIGO LIKE '" + txtCODIGO.Text.Trim() + "%'");
+                    if (filtros.Count() > 0)
+                    {
+                        FILTRO = filtros.CopyToDataTable();
+                    }
+                    else
+                    {
+                        FILTRO.Clear();
+                    }
+                }
+
+            }
+            tblEXISTENCIAS.DataSource = FILTRO;
+        }
 
 
         private void txtCODIGO_TextChanged(object sender, EventArgs e)
         {
-            if (txtCODIGO.Text.Trim() != string.Empty)
+            if (EXISTENCIAS != null)
             {
-                if (EXISTENCIAS.Rows.Count > 0)
-                {
-                    EXISTENCIAS.DefaultView.RowFilter = "CODIGO LIKE '" + txtCODIGO.Text.Trim() + "%'";
-                }
-                tblEXISTENCIAS.DataSource = EXISTENCIAS.DefaultView;
-            }
-            else
-            {
-                tblEXISTENCIAS.DataSource = EXISTENCIAS.Copy();
+                filtrarDatosExistencias();
             }
         }
 
@@ -75,7 +91,7 @@ namespace PrendaSAL.Movimientos
         {
             if (tblEXISTENCIAS.CurrentCell != null && tblEXISTENCIAS.CurrentCell.RowIndex >= 0 && tblEXISTENCIAS.SelectedRows.Count == 1)
             {
-                Existencia exist = Existencia.ConvertToExistencia(EXISTENCIAS.Rows[tblEXISTENCIAS.CurrentCell.RowIndex]);
+                Existencia exist = Existencia.ConvertToExistencia(FILTRO.Rows[tblEXISTENCIAS.CurrentCell.RowIndex]);
                 if (exist != null)
                 {
                     VentasForm.Instance().addItemVenta(exist);

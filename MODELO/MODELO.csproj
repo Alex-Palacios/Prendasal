@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cupon.cs" />
     <Compile Include="EstadoCuenta.cs" />
     <Compile Include="Existencia.cs" />
     <Compile Include="Pac.cs" />

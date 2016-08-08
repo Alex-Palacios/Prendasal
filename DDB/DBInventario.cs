@@ -371,6 +371,38 @@ namespace DDB
 
 
 
+        public DataTable getEXISTENCIAS_ITEM(string categoria,string codigo)
+        {
+            MySqlDataReader reader;
+            DataTable datos = new DataTable();
+            try
+            {
+                string sql = "prendasal.RPT_EXISTENCIAS_CATEGORIA_CODIGO;";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.conection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                MySqlParameter cat_exis = cmd.Parameters.Add("cat_exis", MySqlDbType.VarChar, 50);
+                cat_exis.Direction = ParameterDirection.Input;
+                MySqlParameter cod_exis = cmd.Parameters.Add("cod_exis", MySqlDbType.VarChar, 50);
+                cod_exis.Direction = ParameterDirection.Input;
+
+                cat_exis.Value = categoria;
+                cod_exis.Value = codigo + "-";
+
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    datos.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR AL CONSULTAR EXISTENCIAS DE " + categoria, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return datos;
+        }
+
 
 
 

@@ -29,32 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaVencidosForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.opciones = new System.Windows.Forms.ToolStrip();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
-            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
-            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.btnReimprimir = new System.Windows.Forms.ToolStripButton();
-            this.btnLog = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.tblCONTRATOS = new System.Windows.Forms.DataGridView();
             this.ID_PRESTAMO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REACTIVADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -75,7 +66,6 @@
             this.lbCONTRATOS = new System.Windows.Forms.Label();
             this.cbxSUCURSAL = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.btnLISTAR = new System.Windows.Forms.Button();
             this.txtNOTA = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.lbREACTIVADOS = new System.Windows.Forms.Label();
             this.lbTOTAL = new System.Windows.Forms.Label();
@@ -98,6 +88,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtRespoCierre = new System.Windows.Forms.TextBox();
             this.lbESTADO = new System.Windows.Forms.Label();
+            this.btnLISTAR = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
+            this.btnReimprimir = new System.Windows.Forms.ToolStripButton();
+            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
+            this.btnLog = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
+            this.btnVerList = new System.Windows.Forms.ToolStripButton();
             this.opciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCONTRATOS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDIAS)).BeginInit();
@@ -117,6 +118,7 @@
             this.btnCancelar,
             this.toolStripSeparator2,
             this.btnBuscar,
+            this.btnVerList,
             this.btnReimprimir,
             this.btnCerrar,
             this.btnLog,
@@ -128,105 +130,15 @@
             this.opciones.TabIndex = 2;
             this.opciones.Text = "toolStrip1";
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::PrendaSAL.Properties.Resources.nuevo;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(23, 22);
-            this.btnNuevo.ToolTipText = "Nuevo";
-            this.btnNuevo.Click += new System.EventHandler(this.NUEVO);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::PrendaSAL.Properties.Resources.icon_save;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
-            this.btnGuardar.ToolTipText = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.GUARDAR);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCancelar.Image = global::PrendaSAL.Properties.Resources.cancel_16;
-            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(23, 22);
-            this.btnCancelar.ToolTipText = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.CANCELAR);
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(23, 22);
-            this.btnCerrar.Text = "Cerrar Lista";
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnBuscar.Image = global::PrendaSAL.Properties.Resources.buscar_icon2;
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(23, 22);
-            this.btnBuscar.ToolTipText = "Buscar";
-            this.btnBuscar.Click += new System.EventHandler(this.BUSCAR);
-            // 
-            // btnReimprimir
-            // 
-            this.btnReimprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnReimprimir.Image = global::PrendaSAL.Properties.Resources.printer;
-            this.btnReimprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnReimprimir.Name = "btnReimprimir";
-            this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnReimprimir.ToolTipText = "Imprimir";
-            this.btnReimprimir.Click += new System.EventHandler(this.IMPRIMIR);
-            // 
-            // btnLog
-            // 
-            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
-            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(23, 22);
-            this.btnLog.ToolTipText = "Log";
-            this.btnLog.Click += new System.EventHandler(this.LOG);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
-            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
-            this.btnEliminar.ToolTipText = "Eliminar";
-            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR);
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
-            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
             // 
             // tblCONTRATOS
             // 
@@ -249,17 +161,17 @@
             this.tblCONTRATOS.Name = "tblCONTRATOS";
             this.tblCONTRATOS.ReadOnly = true;
             this.tblCONTRATOS.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblCONTRATOS.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblCONTRATOS.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.tblCONTRATOS.RowHeadersVisible = false;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.tblCONTRATOS.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.tblCONTRATOS.RowsDefaultCellStyle = dataGridViewCellStyle23;
             this.tblCONTRATOS.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tblCONTRATOS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblCONTRATOS.Size = new System.Drawing.Size(983, 405);
@@ -286,8 +198,8 @@
             // CONTRATO
             // 
             this.CONTRATO.DataPropertyName = "CONTRATO";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CONTRATO.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CONTRATO.DefaultCellStyle = dataGridViewCellStyle14;
             this.CONTRATO.HeaderText = "CONTRATO";
             this.CONTRATO.Name = "CONTRATO";
             this.CONTRATO.ReadOnly = true;
@@ -296,8 +208,8 @@
             // CLIENTE
             // 
             this.CLIENTE.DataPropertyName = "CLIENTE";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CLIENTE.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CLIENTE.DefaultCellStyle = dataGridViewCellStyle15;
             this.CLIENTE.HeaderText = "CLIENTE";
             this.CLIENTE.Name = "CLIENTE";
             this.CLIENTE.ReadOnly = true;
@@ -307,8 +219,8 @@
             // CATEGORIA
             // 
             this.CATEGORIA.DataPropertyName = "CATEGORIA";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.CATEGORIA.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.CATEGORIA.DefaultCellStyle = dataGridViewCellStyle16;
             this.CATEGORIA.HeaderText = "CATEGORIA";
             this.CATEGORIA.Name = "CATEGORIA";
             this.CATEGORIA.ReadOnly = true;
@@ -316,8 +228,8 @@
             // ARTICULO
             // 
             this.ARTICULO.DataPropertyName = "ARTICULO";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.ARTICULO.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.ARTICULO.DefaultCellStyle = dataGridViewCellStyle17;
             this.ARTICULO.HeaderText = "ARTICULO";
             this.ARTICULO.Name = "ARTICULO";
             this.ARTICULO.ReadOnly = true;
@@ -327,9 +239,9 @@
             // PRESTAMO
             // 
             this.PRESTAMO.DataPropertyName = "PRESTAMO";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle5.Format = "C2";
-            this.PRESTAMO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle18.Format = "C2";
+            this.PRESTAMO.DefaultCellStyle = dataGridViewCellStyle18;
             this.PRESTAMO.HeaderText = "PRESTAMO";
             this.PRESTAMO.Name = "PRESTAMO";
             this.PRESTAMO.ReadOnly = true;
@@ -339,8 +251,8 @@
             // SALDO
             // 
             this.SALDO.DataPropertyName = "SALDO";
-            dataGridViewCellStyle6.Format = "C2";
-            this.SALDO.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle19.Format = "C2";
+            this.SALDO.DefaultCellStyle = dataGridViewCellStyle19;
             this.SALDO.HeaderText = "SALDO";
             this.SALDO.Name = "SALDO";
             this.SALDO.ReadOnly = true;
@@ -350,8 +262,8 @@
             // ESTADO_CONTRATO
             // 
             this.ESTADO_CONTRATO.DataPropertyName = "ESTADO_CONTRATO";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ESTADO_CONTRATO.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ESTADO_CONTRATO.DefaultCellStyle = dataGridViewCellStyle20;
             this.ESTADO_CONTRATO.HeaderText = "ESTADO";
             this.ESTADO_CONTRATO.Name = "ESTADO_CONTRATO";
             this.ESTADO_CONTRATO.ReadOnly = true;
@@ -360,8 +272,8 @@
             // DIAS_VENC
             // 
             this.DIAS_VENC.DataPropertyName = "DIAS_VENC";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DIAS_VENC.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DIAS_VENC.DefaultCellStyle = dataGridViewCellStyle21;
             this.DIAS_VENC.HeaderText = "DIAS VENC";
             this.DIAS_VENC.Name = "DIAS_VENC";
             this.DIAS_VENC.ReadOnly = true;
@@ -462,18 +374,6 @@
             this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 118;
             this.label19.Text = "SUCURSAL";
-            // 
-            // btnLISTAR
-            // 
-            this.btnLISTAR.Image = global::PrendaSAL.Properties.Resources.lista1;
-            this.btnLISTAR.Location = new System.Drawing.Point(1043, 89);
-            this.btnLISTAR.Name = "btnLISTAR";
-            this.btnLISTAR.Size = new System.Drawing.Size(122, 48);
-            this.btnLISTAR.TabIndex = 121;
-            this.btnLISTAR.Text = "CONTRATOS VENCIDOS";
-            this.btnLISTAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLISTAR.UseVisualStyleBackColor = true;
-            this.btnLISTAR.Click += new System.EventHandler(this.btnLISTAR_Click);
             // 
             // txtNOTA
             // 
@@ -598,8 +498,8 @@
             // KILATAJE
             // 
             this.KILATAJE.DataPropertyName = "KILATAJE";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.KILATAJE.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.KILATAJE.DefaultCellStyle = dataGridViewCellStyle24;
             this.KILATAJE.HeaderText = "KIL";
             this.KILATAJE.Name = "KILATAJE";
             this.KILATAJE.ReadOnly = true;
@@ -608,8 +508,8 @@
             // PESO
             // 
             this.PESO.DataPropertyName = "PESO";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.PESO.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.PESO.DefaultCellStyle = dataGridViewCellStyle25;
             this.PESO.HeaderText = "GRS";
             this.PESO.Name = "PESO";
             this.PESO.ReadOnly = true;
@@ -618,9 +518,9 @@
             // MONTO
             // 
             this.MONTO.DataPropertyName = "MONTO";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle13.Format = "C2";
-            this.MONTO.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle26.Format = "C2";
+            this.MONTO.DefaultCellStyle = dataGridViewCellStyle26;
             this.MONTO.HeaderText = "MONTO";
             this.MONTO.Name = "MONTO";
             this.MONTO.ReadOnly = true;
@@ -696,6 +596,118 @@
             this.lbESTADO.Size = new System.Drawing.Size(170, 25);
             this.lbESTADO.TabIndex = 139;
             this.lbESTADO.Text = "ESTADO LISTA";
+            // 
+            // btnLISTAR
+            // 
+            this.btnLISTAR.Image = global::PrendaSAL.Properties.Resources.lista1;
+            this.btnLISTAR.Location = new System.Drawing.Point(1043, 89);
+            this.btnLISTAR.Name = "btnLISTAR";
+            this.btnLISTAR.Size = new System.Drawing.Size(122, 48);
+            this.btnLISTAR.TabIndex = 121;
+            this.btnLISTAR.Text = "CONTRATOS VENCIDOS";
+            this.btnLISTAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLISTAR.UseVisualStyleBackColor = true;
+            this.btnLISTAR.Click += new System.EventHandler(this.btnLISTAR_Click);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNuevo.Image = global::PrendaSAL.Properties.Resources.nuevo;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(23, 22);
+            this.btnNuevo.ToolTipText = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.NUEVO);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::PrendaSAL.Properties.Resources.icon_save;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
+            this.btnGuardar.ToolTipText = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.GUARDAR);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCancelar.Image = global::PrendaSAL.Properties.Resources.cancel_16;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(23, 22);
+            this.btnCancelar.ToolTipText = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.CANCELAR);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnBuscar.Image = global::PrendaSAL.Properties.Resources.buscar_icon2;
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(23, 22);
+            this.btnBuscar.ToolTipText = "Buscar";
+            this.btnBuscar.Click += new System.EventHandler(this.BUSCAR);
+            // 
+            // btnReimprimir
+            // 
+            this.btnReimprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnReimprimir.Image = global::PrendaSAL.Properties.Resources.printer;
+            this.btnReimprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReimprimir.Name = "btnReimprimir";
+            this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
+            this.btnReimprimir.ToolTipText = "Imprimir";
+            this.btnReimprimir.Click += new System.EventHandler(this.IMPRIMIR);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+            this.btnCerrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(23, 22);
+            this.btnCerrar.Text = "Cerrar Lista";
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnLog
+            // 
+            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
+            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(23, 22);
+            this.btnLog.ToolTipText = "Log";
+            this.btnLog.Click += new System.EventHandler(this.LOG);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
+            this.btnEliminar.ToolTipText = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
+            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
+            // 
+            // btnVerList
+            // 
+            this.btnVerList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnVerList.Image = global::PrendaSAL.Properties.Resources.list_list;
+            this.btnVerList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVerList.Name = "btnVerList";
+            this.btnVerList.Size = new System.Drawing.Size(23, 22);
+            this.btnVerList.Text = "Ver Listas";
+            this.btnVerList.Click += new System.EventHandler(this.btnVerList_Click);
             // 
             // ListaVencidosForm
             // 
@@ -809,5 +821,6 @@
         private System.Windows.Forms.TextBox txtRespoCierre;
         private System.Windows.Forms.Label lbESTADO;
         private System.Windows.Forms.ToolStripButton btnCerrar;
+        private System.Windows.Forms.ToolStripButton btnVerList;
     }
 }

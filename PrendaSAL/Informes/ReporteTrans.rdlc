@@ -7146,7 +7146,7 @@
             <FilterExpression>=Fields!CONCEPTO.Value</FilterExpression>
             <Operator>Equal</Operator>
             <FilterValues>
-              <FilterValue>CANCELADO</FilterValue>
+              <FilterValue>ARQUEO</FilterValue>
             </FilterValues>
           </Filter>
         </Filters>

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBCorteDiario.cs" />
+    <Compile Include="DBCupones.cs" />
     <Compile Include="DBSFCaja.cs" />
     <Compile Include="DBTraslado.cs" />
     <Compile Include="DBPac.cs" />

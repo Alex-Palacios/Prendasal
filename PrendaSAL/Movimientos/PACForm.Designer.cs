@@ -29,36 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
-            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.btnAnular = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnReimprimir = new System.Windows.Forms.ToolStripButton();
-            this.btnLog = new System.Windows.Forms.ToolStripButton();
-            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.grbCONTRATO = new System.Windows.Forms.GroupBox();
             this.lbVENCIDO = new System.Windows.Forms.Label();
-            this.btnReactivar = new System.Windows.Forms.Button();
             this.lbTOTAL_CTO = new System.Windows.Forms.Label();
             this.lbARTICULO = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.txtCodigoCLI = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnTARJETA = new System.Windows.Forms.Button();
             this.txtINT_DIARIO = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.dateFechaCONT = new System.Windows.Forms.DateTimePicker();
@@ -78,7 +67,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbNIVEL = new System.Windows.Forms.Label();
             this.grbHISTORIAL = new System.Windows.Forms.GroupBox();
-            this.btnHistorialPAC = new System.Windows.Forms.Button();
             this.lbCAPITAL = new System.Windows.Forms.Label();
             this.lbSALDO = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -121,10 +109,23 @@
             this.viewerRECIBO = new Microsoft.Reporting.WinForms.ReportViewer();
             this.bindingFCF = new System.Windows.Forms.BindingSource(this.components);
             this.dSItemFCF = new PrendaSAL.Informes.DSItemFCF();
-            this.btnEstadoCuenta = new System.Windows.Forms.Button();
             this.txtBitacora = new System.Windows.Forms.RichTextBox();
             this.bsHistorialPAC = new System.Windows.Forms.BindingSource(this.components);
             this.dSHistorialPAC = new PrendaSAL.Informes.DSHistorialPAC();
+            this.btnEstadoCuenta = new System.Windows.Forms.Button();
+            this.btnCANJE = new System.Windows.Forms.Button();
+            this.btnHistorialPAC = new System.Windows.Forms.Button();
+            this.btnReactivar = new System.Windows.Forms.Button();
+            this.btnTARJETA = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnAnular = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.btnReimprimir = new System.Windows.Forms.ToolStripButton();
+            this.btnLog = new System.Windows.Forms.ToolStripButton();
+            this.btnAyuda = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.grbCONTRATO.SuspendLayout();
             this.grbHISTORIAL.SuspendLayout();
@@ -159,108 +160,20 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::PrendaSAL.Properties.Resources.nuevo;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(23, 22);
-            this.btnNuevo.ToolTipText = "Nuevo";
-            this.btnNuevo.Click += new System.EventHandler(this.NUEVO);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::PrendaSAL.Properties.Resources.icon_save;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
-            this.btnGuardar.ToolTipText = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.GUARDAR);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCancelar.Image = global::PrendaSAL.Properties.Resources.cancel_16;
-            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(23, 22);
-            this.btnCancelar.ToolTipText = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.CANCELAR);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(23, 22);
-            this.btnEditar.ToolTipText = "Editar ";
-            // 
-            // btnAnular
-            // 
-            this.btnAnular.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAnular.Image = global::PrendaSAL.Properties.Resources.anular2;
-            this.btnAnular.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAnular.Name = "btnAnular";
-            this.btnAnular.Size = new System.Drawing.Size(23, 22);
-            this.btnAnular.Text = "Anular";
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
-            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
-            this.btnEliminar.ToolTipText = "Eliminar";
-            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnReimprimir
-            // 
-            this.btnReimprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnReimprimir.Image = global::PrendaSAL.Properties.Resources.printer;
-            this.btnReimprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnReimprimir.Name = "btnReimprimir";
-            this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
-            this.btnReimprimir.ToolTipText = "Imprimir";
-            this.btnReimprimir.Click += new System.EventHandler(this.REIMPRIMIR);
-            // 
-            // btnLog
-            // 
-            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
-            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(23, 22);
-            this.btnLog.ToolTipText = "Log";
-            this.btnLog.Click += new System.EventHandler(this.LOG);
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
-            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
-            this.btnAyuda.ToolTipText = "Ayuda";
-            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
             // 
             // grbCONTRATO
             // 
@@ -306,18 +219,6 @@
             this.lbVENCIDO.Size = new System.Drawing.Size(81, 13);
             this.lbVENCIDO.TabIndex = 79;
             this.lbVENCIDO.Text = "VENCIDO EL";
-            // 
-            // btnReactivar
-            // 
-            this.btnReactivar.Enabled = false;
-            this.btnReactivar.Image = global::PrendaSAL.Properties.Resources.candado;
-            this.btnReactivar.Location = new System.Drawing.Point(176, 100);
-            this.btnReactivar.Name = "btnReactivar";
-            this.btnReactivar.Size = new System.Drawing.Size(40, 30);
-            this.btnReactivar.TabIndex = 78;
-            this.btnReactivar.UseVisualStyleBackColor = true;
-            this.btnReactivar.Visible = false;
-            this.btnReactivar.Click += new System.EventHandler(this.btnReactivar_Click);
             // 
             // lbTOTAL_CTO
             // 
@@ -367,17 +268,6 @@
             this.label18.Size = new System.Drawing.Size(55, 13);
             this.label18.TabIndex = 75;
             this.label18.Text = "CODIGO";
-            // 
-            // btnTARJETA
-            // 
-            this.btnTARJETA.BackgroundImage = global::PrendaSAL.Properties.Resources.documentos3;
-            this.btnTARJETA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTARJETA.Location = new System.Drawing.Point(715, 13);
-            this.btnTARJETA.Name = "btnTARJETA";
-            this.btnTARJETA.Size = new System.Drawing.Size(91, 63);
-            this.btnTARJETA.TabIndex = 71;
-            this.btnTARJETA.UseVisualStyleBackColor = true;
-            this.btnTARJETA.Click += new System.EventHandler(this.btnTARJETA_Click);
             // 
             // txtINT_DIARIO
             // 
@@ -574,16 +464,6 @@
             this.grbHISTORIAL.TabStop = false;
             this.grbHISTORIAL.Text = "HISTORIAL CONTRATO";
             // 
-            // btnHistorialPAC
-            // 
-            this.btnHistorialPAC.Image = global::PrendaSAL.Properties.Resources.print;
-            this.btnHistorialPAC.Location = new System.Drawing.Point(831, 14);
-            this.btnHistorialPAC.Name = "btnHistorialPAC";
-            this.btnHistorialPAC.Size = new System.Drawing.Size(34, 35);
-            this.btnHistorialPAC.TabIndex = 75;
-            this.btnHistorialPAC.UseVisualStyleBackColor = true;
-            this.btnHistorialPAC.Click += new System.EventHandler(this.btnHistorialPAC_Click);
-            // 
             // lbCAPITAL
             // 
             this.lbCAPITAL.Location = new System.Drawing.Point(588, 180);
@@ -663,8 +543,8 @@
             // DOCUMENTO
             // 
             this.DOCUMENTO.DataPropertyName = "DOCUMENTO";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DOCUMENTO.DefaultCellStyle = dataGridViewCellStyle15;
             this.DOCUMENTO.HeaderText = "REFERENCIA";
             this.DOCUMENTO.Name = "DOCUMENTO";
             this.DOCUMENTO.ReadOnly = true;
@@ -681,8 +561,8 @@
             // MESES
             // 
             this.MESES.DataPropertyName = "MESES";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.MESES.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.MESES.DefaultCellStyle = dataGridViewCellStyle16;
             this.MESES.HeaderText = "MESES";
             this.MESES.Name = "MESES";
             this.MESES.ReadOnly = true;
@@ -692,8 +572,8 @@
             // DIAS
             // 
             this.DIAS.DataPropertyName = "DIAS";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DIAS.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DIAS.DefaultCellStyle = dataGridViewCellStyle17;
             this.DIAS.HeaderText = "DIAS";
             this.DIAS.Name = "DIAS";
             this.DIAS.ReadOnly = true;
@@ -702,9 +582,9 @@
             // INTERES
             // 
             this.INTERES.DataPropertyName = "INTERES";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "C2";
-            this.INTERES.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.Format = "C2";
+            this.INTERES.DefaultCellStyle = dataGridViewCellStyle18;
             this.INTERES.HeaderText = "INTERES";
             this.INTERES.Name = "INTERES";
             this.INTERES.ReadOnly = true;
@@ -714,9 +594,9 @@
             // DESCUENTO
             // 
             this.DESCUENTO.DataPropertyName = "DESCUENTO";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C2";
-            this.DESCUENTO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.Format = "C2";
+            this.DESCUENTO.DefaultCellStyle = dataGridViewCellStyle19;
             this.DESCUENTO.HeaderText = "DESCUENTO";
             this.DESCUENTO.Name = "DESCUENTO";
             this.DESCUENTO.ReadOnly = true;
@@ -726,9 +606,9 @@
             // ABONO
             // 
             this.ABONO.DataPropertyName = "ABONO";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "C2";
-            this.ABONO.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle20.Format = "C2";
+            this.ABONO.DefaultCellStyle = dataGridViewCellStyle20;
             this.ABONO.HeaderText = "ABONO";
             this.ABONO.Name = "ABONO";
             this.ABONO.ReadOnly = true;
@@ -738,9 +618,9 @@
             // TOTAL
             // 
             this.TOTAL.DataPropertyName = "TOTAL";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "C2";
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.Format = "C2";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle21;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
@@ -749,6 +629,7 @@
             // 
             // grbABONO
             // 
+            this.grbABONO.Controls.Add(this.btnCANJE);
             this.grbABONO.Controls.Add(this.txtNOTA);
             this.grbABONO.Controls.Add(this.label2);
             this.grbABONO.Controls.Add(this.label21);
@@ -949,7 +830,7 @@
             // 
             this.txtTOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTOTAL.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtTOTAL.Location = new System.Drawing.Point(627, 94);
+            this.txtTOTAL.Location = new System.Drawing.Point(670, 94);
             this.txtTOTAL.Name = "txtTOTAL";
             this.txtTOTAL.ReadOnly = true;
             this.txtTOTAL.Size = new System.Drawing.Size(184, 38);
@@ -961,7 +842,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label14.Location = new System.Drawing.Point(673, 68);
+            this.label14.Location = new System.Drawing.Point(708, 68);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(112, 23);
             this.label14.TabIndex = 68;
@@ -1037,9 +918,9 @@
             // 
             // viewerRECIBO
             // 
-            reportDataSource1.Name = "DSI";
-            reportDataSource1.Value = null;
-            this.viewerRECIBO.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource3.Name = "DSI";
+            reportDataSource3.Value = null;
+            this.viewerRECIBO.LocalReport.DataSources.Add(reportDataSource3);
             this.viewerRECIBO.LocalReport.ReportEmbeddedResource = "";
             this.viewerRECIBO.Location = new System.Drawing.Point(830, 0);
             this.viewerRECIBO.Name = "viewerRECIBO";
@@ -1057,17 +938,6 @@
             // 
             this.dSItemFCF.DataSetName = "DSItemFCF";
             this.dSItemFCF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // btnEstadoCuenta
-            // 
-            this.btnEstadoCuenta.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
-            this.btnEstadoCuenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEstadoCuenta.Location = new System.Drawing.Point(909, 33);
-            this.btnEstadoCuenta.Name = "btnEstadoCuenta";
-            this.btnEstadoCuenta.Size = new System.Drawing.Size(181, 162);
-            this.btnEstadoCuenta.TabIndex = 92;
-            this.btnEstadoCuenta.UseVisualStyleBackColor = true;
-            this.btnEstadoCuenta.Click += new System.EventHandler(this.btnEstadoCuenta_Click);
             // 
             // txtBitacora
             // 
@@ -1087,6 +957,149 @@
             // 
             this.dSHistorialPAC.DataSetName = "DSHistorialPAC";
             this.dSHistorialPAC.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // btnEstadoCuenta
+            // 
+            this.btnEstadoCuenta.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
+            this.btnEstadoCuenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEstadoCuenta.Location = new System.Drawing.Point(909, 33);
+            this.btnEstadoCuenta.Name = "btnEstadoCuenta";
+            this.btnEstadoCuenta.Size = new System.Drawing.Size(181, 162);
+            this.btnEstadoCuenta.TabIndex = 92;
+            this.btnEstadoCuenta.UseVisualStyleBackColor = true;
+            this.btnEstadoCuenta.Click += new System.EventHandler(this.btnEstadoCuenta_Click);
+            // 
+            // btnCANJE
+            // 
+            this.btnCANJE.Image = global::PrendaSAL.Properties.Resources.cupon_icon;
+            this.btnCANJE.Location = new System.Drawing.Point(581, 73);
+            this.btnCANJE.Name = "btnCANJE";
+            this.btnCANJE.Size = new System.Drawing.Size(36, 30);
+            this.btnCANJE.TabIndex = 80;
+            this.btnCANJE.UseVisualStyleBackColor = true;
+            this.btnCANJE.Click += new System.EventHandler(this.CAJEAR_CUPON);
+            // 
+            // btnHistorialPAC
+            // 
+            this.btnHistorialPAC.Image = global::PrendaSAL.Properties.Resources.print;
+            this.btnHistorialPAC.Location = new System.Drawing.Point(831, 14);
+            this.btnHistorialPAC.Name = "btnHistorialPAC";
+            this.btnHistorialPAC.Size = new System.Drawing.Size(34, 35);
+            this.btnHistorialPAC.TabIndex = 75;
+            this.btnHistorialPAC.UseVisualStyleBackColor = true;
+            this.btnHistorialPAC.Click += new System.EventHandler(this.btnHistorialPAC_Click);
+            // 
+            // btnReactivar
+            // 
+            this.btnReactivar.Enabled = false;
+            this.btnReactivar.Image = global::PrendaSAL.Properties.Resources.candado;
+            this.btnReactivar.Location = new System.Drawing.Point(176, 100);
+            this.btnReactivar.Name = "btnReactivar";
+            this.btnReactivar.Size = new System.Drawing.Size(40, 30);
+            this.btnReactivar.TabIndex = 78;
+            this.btnReactivar.UseVisualStyleBackColor = true;
+            this.btnReactivar.Visible = false;
+            this.btnReactivar.Click += new System.EventHandler(this.btnReactivar_Click);
+            // 
+            // btnTARJETA
+            // 
+            this.btnTARJETA.BackgroundImage = global::PrendaSAL.Properties.Resources.documentos3;
+            this.btnTARJETA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTARJETA.Location = new System.Drawing.Point(715, 13);
+            this.btnTARJETA.Name = "btnTARJETA";
+            this.btnTARJETA.Size = new System.Drawing.Size(91, 63);
+            this.btnTARJETA.TabIndex = 71;
+            this.btnTARJETA.UseVisualStyleBackColor = true;
+            this.btnTARJETA.Click += new System.EventHandler(this.btnTARJETA_Click);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNuevo.Image = global::PrendaSAL.Properties.Resources.nuevo;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(23, 22);
+            this.btnNuevo.ToolTipText = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.NUEVO);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::PrendaSAL.Properties.Resources.icon_save;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(23, 22);
+            this.btnGuardar.ToolTipText = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.GUARDAR);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCancelar.Image = global::PrendaSAL.Properties.Resources.cancel_16;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(23, 22);
+            this.btnCancelar.ToolTipText = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.CANCELAR);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Image = global::PrendaSAL.Properties.Resources.editar;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(23, 22);
+            this.btnEditar.ToolTipText = "Editar ";
+            this.btnEditar.Click += new System.EventHandler(this.EDITAR);
+            // 
+            // btnAnular
+            // 
+            this.btnAnular.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAnular.Image = global::PrendaSAL.Properties.Resources.anular2;
+            this.btnAnular.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnular.Name = "btnAnular";
+            this.btnAnular.Size = new System.Drawing.Size(23, 22);
+            this.btnAnular.Text = "Anular";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::PrendaSAL.Properties.Resources.eliminar;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(23, 22);
+            this.btnEliminar.ToolTipText = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.ELIMINAR);
+            // 
+            // btnReimprimir
+            // 
+            this.btnReimprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnReimprimir.Image = global::PrendaSAL.Properties.Resources.printer;
+            this.btnReimprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReimprimir.Name = "btnReimprimir";
+            this.btnReimprimir.Size = new System.Drawing.Size(23, 22);
+            this.btnReimprimir.ToolTipText = "Imprimir";
+            this.btnReimprimir.Click += new System.EventHandler(this.REIMPRIMIR);
+            // 
+            // btnLog
+            // 
+            this.btnLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLog.Image = global::PrendaSAL.Properties.Resources.log;
+            this.btnLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(23, 22);
+            this.btnLog.ToolTipText = "Log";
+            this.btnLog.Click += new System.EventHandler(this.LOG);
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAyuda.Image = global::PrendaSAL.Properties.Resources.help;
+            this.btnAyuda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(23, 22);
+            this.btnAyuda.ToolTipText = "Ayuda";
+            this.btnAyuda.Click += new System.EventHandler(this.AYUDA);
             // 
             // PACForm
             // 
@@ -1220,6 +1233,7 @@
         private System.Windows.Forms.BindingSource bsHistorialPAC;
         private Informes.DSHistorialPAC dSHistorialPAC;
         private System.Windows.Forms.Label lbVENCIDO;
+        private System.Windows.Forms.Button btnCANJE;
 
 
     }

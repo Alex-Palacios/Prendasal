@@ -377,7 +377,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(531, 386);
+            this.ClientSize = new System.Drawing.Size(536, 386);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.lbNuevoInteres);
             this.Controls.Add(this.label14);

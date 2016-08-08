@@ -12,10 +12,10 @@
               <Width>1.49502cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.26143cm</Width>
+              <Width>5.96978cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.15774cm</Width>
+              <Width>5.36278cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.90265cm</Width>
@@ -223,11 +223,12 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.46771cm</Height>
+              <Height>0.44125cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="REACTIVADO">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -243,6 +244,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>REACTIVADO</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -258,6 +260,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="CONTRATO">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -276,6 +279,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CONTRATO</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -289,6 +293,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="CLIENTE">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -307,6 +312,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CLIENTE</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -320,6 +326,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="ARTICULO">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -338,6 +345,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>ARTICULO</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -351,6 +359,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="PRESTAMO1">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -371,6 +380,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>PRESTAMO1</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -383,6 +393,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="SALDO">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -404,6 +415,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>SALDO</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -417,6 +429,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="FECHAV">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -436,6 +449,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>FECHAV</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -449,6 +463,7 @@
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="DIAS">
+                      <DataElementStyle>Element</DataElementStyle>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -467,6 +482,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DIAS</rd:DefaultName>
+                      <DataElementOutput>NoOutput</DataElementOutput>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -785,8 +801,8 @@
         <DataSetName>CONTRATOS</DataSetName>
         <Top>4.55331cm</Top>
         <Left>0.62413cm</Left>
-        <Height>1.69417cm</Height>
-        <Width>20.09951cm</Width>
+        <Height>1.66771cm</Height>
+        <Width>20.0129cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

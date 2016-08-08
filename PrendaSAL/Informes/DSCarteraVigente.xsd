@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCarteraVigente" targetNamespace="http://tempuri.org/DSCarteraVigente.xsd" xmlns:mstns="http://tempuri.org/DSCarteraVigente.xsd" xmlns="http://tempuri.org/DSCarteraVigente.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCarteraVigente" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCarteraVigente" msprop:Generator_UserDSName="DSCarteraVigente">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RESUMEN" msprop:Generator_TableClassName="RESUMENDataTable" msprop:Generator_TableVarName="tableRESUMEN" msprop:Generator_RowChangedName="RESUMENRowChanged" msprop:Generator_TablePropName="RESUMEN" msprop:Generator_RowDeletingName="RESUMENRowDeleting" msprop:Generator_RowChangingName="RESUMENRowChanging" msprop:Generator_RowEvHandlerName="RESUMENRowChangeEventHandler" msprop:Generator_RowDeletedName="RESUMENRowDeleted" msprop:Generator_RowClassName="RESUMENRow" msprop:Generator_UserTableName="RESUMEN" msprop:Generator_RowEvArgName="RESUMENRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CODIGO" msprop:Generator_ColumnVarNameInTable="columnCODIGO" msprop:Generator_ColumnPropNameInRow="CODIGO" msprop:Generator_ColumnPropNameInTable="CODIGOColumn" msprop:Generator_UserColumnName="CODIGO" type="xs:string" minOccurs="0" />
+              <xs:element name="SUCURSAL" msprop:Generator_ColumnVarNameInTable="columnSUCURSAL" msprop:Generator_ColumnPropNameInRow="SUCURSAL" msprop:Generator_ColumnPropNameInTable="SUCURSALColumn" msprop:Generator_UserColumnName="SUCURSAL" type="xs:string" minOccurs="0" />
+              <xs:element name="VIGENTES" msprop:Generator_ColumnVarNameInTable="columnVIGENTES" msprop:Generator_ColumnPropNameInRow="VIGENTES" msprop:Generator_ColumnPropNameInTable="VIGENTESColumn" msprop:Generator_UserColumnName="VIGENTES" type="xs:long" minOccurs="0" />
+              <xs:element name="MONTOS" msprop:Generator_ColumnVarNameInTable="columnMONTOS" msprop:Generator_ColumnPropNameInRow="MONTOS" msprop:Generator_ColumnPropNameInTable="MONTOSColumn" msprop:Generator_UserColumnName="MONTOS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SALDOS" msprop:Generator_ColumnVarNameInTable="columnSALDOS" msprop:Generator_ColumnPropNameInRow="SALDOS" msprop:Generator_ColumnPropNameInTable="SALDOSColumn" msprop:Generator_UserColumnName="SALDOS" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

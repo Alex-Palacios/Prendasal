@@ -36,6 +36,7 @@ namespace PrendaSAL.Movimientos
         private DBCliente dbCliente;
         private DBVenta dbVenta;
         private DBCatalogo dbCatalogo;
+        private DBInventario dbExistencias;
 
         private eOperacion ACCION;
 
@@ -51,6 +52,7 @@ namespace PrendaSAL.Movimientos
             dbPrendasal = new DBPRENDASAL();
             dbCliente = new DBCliente();
             dbVenta = new DBVenta();
+            dbExistencias = new DBInventario();
             dbCatalogo = new DBCatalogo();
             VENTA = new Venta();
         }
@@ -102,7 +104,14 @@ namespace PrendaSAL.Movimientos
                 cbxSUCURSAL.ValueMember = "COD_SUC";
                 cbxSUCURSAL.SelectedValue = HOME.Instance().SUCURSAL.COD_SUC;
             }
-            
+            cbxCategorias.DataSource = HOME.Instance().datCATEGORIAS.Copy();
+            if (HOME.Instance().datCATEGORIAS.Rows.Count > 0)
+            {
+                cbxCategorias.DisplayMember = "CATEGORIA";
+                cbxCategorias.ValueMember = "CATEGORIA";
+                cbxCategorias.SelectedIndex = -1;
+                cbxCategorias.SelectedIndex = 0;
+            }
             bloquear();
             NUEVO(null, null);
         }
@@ -256,6 +265,7 @@ namespace PrendaSAL.Movimientos
                 dateVenta.Value = VENTA.FECHA;
                 lbNIVEL.Text = VENTA.NIVEL.ToString();
                 tblITEMS.DataSource = null;
+                cbxCategorias.SelectedValue = VENTA.CATEGORIA.ToString();
                 tblITEMS.DataSource = VENTA.ITEMS_VENTA;
                 //TOTALES
                 lbSUMAS.Text = VENTA.SUMAS.ToString("C2");
@@ -390,12 +400,59 @@ namespace PrendaSAL.Movimientos
 
 
 
+
+        private void cbxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxCategorias.SelectedIndex >= 0 && cbxCategorias.ValueMember != string.Empty && (ACCION == eOperacion.INSERT || ACCION == eOperacion.UPDATE) )
+            {
+                VENTA.CATEGORIA = (string)cbxCategorias.SelectedValue;
+                VENTA.ITEMS_VENTA.Rows.Clear();
+            }
+            
+        }
+
+
+
+
+
         public void getExistencias(object sender, EventArgs e)
         {
             if (tblITEMS.Rows.Count <= 5)
             {
-                ExistenciasForm carrito = new ExistenciasForm();
-                carrito.ShowDialog();
+                if (cbxCategorias.SelectedValue.ToString() == "ARTICULO")
+                {
+                    ExistenciasForm carrito = new ExistenciasForm();
+                    carrito.ShowDialog();
+                }
+                else
+                {
+                    string contrato = Controles.InputBox("CONTRATO", "Numero de Contrato a vender");
+                    if (contrato != "")
+                    {
+                        DataTable ORO_EXIS = dbExistencias.getEXISTENCIAS_ITEM( "ORO",contrato);
+                        if (ORO_EXIS != null)
+                        {
+                            foreach (DataRow row in ORO_EXIS.Rows)
+                            {
+                                Existencia exist = Existencia.ConvertToExistencia(row);
+                                if (exist != null)
+                                {
+                                    VentasForm.Instance().addItemVenta(exist);
+                                }
+                            }
+                            MessageBox.Show("PRENDAS AGREGADAS", "ITEM VENTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("CONTRATO NO DISPONIBLE PARA LA VENTA", "INVALIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("NUMERO DE CONTRATO INVALIDO", "INVALIDO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+                
             }
             else
             {
@@ -868,18 +925,31 @@ namespace PrendaSAL.Movimientos
             }
         }
 
-        
-
-
-
 
         private void ImprimirFactura()
+        {
+            switch (Properties.Settings.Default.FCF_FORMAT)
+            {
+                case eFormatFCF.FORMATO_1:
+                    ImprimirFCF_FORMATO_1();
+                    break;
+                case eFormatFCF.FORMATO_2:
+                    ImprimirFCF_FORMATO_2();
+                    break;
+            }
+        }
+
+
+
+
+        private void ImprimirFCF_FORMATO_1()
         {
             viewerFACTURA.Clear();
             if (SELECTED != null)
             {
                 try
                 {
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
                     dSItemFCF.Clear();
                     foreach (DataRow row in VENTA.ITEMS_VENTA.Rows)
                     {
@@ -904,18 +974,19 @@ namespace PrendaSAL.Movimientos
                     }
                     bindingFCF.DataSource = dSItemFCF.ITEM;
 
-                    ReportParameter[] parameters = new ReportParameter[9];
+                    ReportParameter[] parameters = new ReportParameter[10];
                     parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
-                    parameters[1] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
-                    parameters[2] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
-                    parameters[3] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
-                    parameters[4] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
-                    parameters[5] = new ReportParameter("SUMAS", SELECTED.SUBTOTAL.ToString("C2"));
-                    parameters[6] = new ReportParameter("CESC", SELECTED.CESC.ToString("C2"));
-                    parameters[7] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
-                    parameters[8] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
+                    parameters[1] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[2] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
+                    parameters[3] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[4] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[5] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[6] = new ReportParameter("SUMAS", SELECTED.SUBTOTAL.ToString("C2"));
+                    parameters[7] = new ReportParameter("CESC", SELECTED.CESC.ToString("C2"));
+                    parameters[8] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                    parameters[9] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
 
-                    viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF.rdlc";
+                    viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Formato1.rdlc";
                     viewerFACTURA.LocalReport.DataSources.Clear();
                     viewerFACTURA.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
                     viewerFACTURA.LocalReport.SetParameters(parameters);
@@ -926,6 +997,66 @@ namespace PrendaSAL.Movimientos
                     MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR FACTURA DE VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
+            }
+        }
+
+
+
+        private void ImprimirFCF_FORMATO_2()
+        {
+            viewerFACTURA.Clear();
+            if (SELECTED != null)
+            {
+                try
+                {
+                    Sucursal SUC = HOME.Instance().getSucursal(SELECTED.COD_SUC).Copy();
+                    dSItemFCF.Clear();
+                    foreach (DataRow row in VENTA.ITEMS_VENTA.Rows)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow(row.Field<decimal>("CANTIDAD").ToString(), row.Field<string>("DESCRIPCION"), row.Field<decimal>("MONTO"));
+                    }
+                    //RELLENAR ESPACIOS SIN OCUPAR
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        if (i > VENTA.ITEMS_VENTA.Rows.Count)
+                        {
+                            dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                        }
+                    }
+                    //AGREGAR LINEA DESCUENTO
+                    if (SELECTED.DESCUENTO > 0)
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "DESCUENTO S/VENTA", -SELECTED.DESCUENTO);
+                    }
+                    else
+                    {
+                        dSItemFCF.ITEM.AddITEMRow("", "", Decimal.Zero);
+                    }
+                    bindingFCF.DataSource = dSItemFCF.ITEM;
+
+                    ReportParameter[] parameters = new ReportParameter[10];
+                    parameters[0] = new ReportParameter("DOCUMENTO", SELECTED.NUMVENTA);
+                    parameters[1] = new ReportParameter("SUCURSAL", SUC.SUCURSAL);
+                    parameters[2] = new ReportParameter("CLIENTE", SELECTED.CLIENTE);
+                    parameters[3] = new ReportParameter("DIA", SELECTED.FECHA.Date.ToString("dd"));
+                    parameters[4] = new ReportParameter("MES", SELECTED.FECHA.Date.ToString("MMM").ToUpper());
+                    parameters[5] = new ReportParameter("ANIO", SELECTED.FECHA.Date.ToString("yyyy"));
+                    parameters[6] = new ReportParameter("SUMAS", SELECTED.SUBTOTAL.ToString("C2"));
+                    parameters[7] = new ReportParameter("CESC", SELECTED.CESC.ToString("C2"));
+                    parameters[8] = new ReportParameter("TOTAL", SELECTED.TOTAL.ToString("C2"));
+                    parameters[9] = new ReportParameter("LETRAS", HOME.Instance().convertirCantidadEnLetras(SELECTED.TOTAL));
+
+                    viewerFACTURA.LocalReport.ReportEmbeddedResource = "PrendaSAL.Informes.FCF_Formato2.rdlc";
+                    viewerFACTURA.LocalReport.DataSources.Clear();
+                    viewerFACTURA.LocalReport.DataSources.Add(new ReportDataSource("ITEM", bindingFCF));
+                    viewerFACTURA.LocalReport.SetParameters(parameters);
+                    viewerFACTURA.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Detalle: \n" + ex.Message, "ERROR AL IMPRIMIR FACTURA DE VENTA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
 
@@ -949,6 +1080,8 @@ namespace PrendaSAL.Movimientos
         {
 
         }
+
+        
 
 
     }

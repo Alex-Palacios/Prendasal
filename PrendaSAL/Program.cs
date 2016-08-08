@@ -48,5 +48,10 @@ namespace PrendaSAL
             //Liberamos la exclusión mutua
             m.ReleaseMutex();
         }
+
+
+
+
+
     }
 }

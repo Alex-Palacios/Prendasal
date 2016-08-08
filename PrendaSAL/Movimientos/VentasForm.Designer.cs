@@ -104,6 +104,8 @@
             this.lbCESC = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.cbxCategorias = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             this.grbVENTA.SuspendLayout();
@@ -254,9 +256,9 @@
             // 
             this.picLOGO.BackgroundImage = global::PrendaSAL.Properties.Resources.logo;
             this.picLOGO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLOGO.Location = new System.Drawing.Point(795, 50);
+            this.picLOGO.Location = new System.Drawing.Point(795, 48);
             this.picLOGO.Name = "picLOGO";
-            this.picLOGO.Size = new System.Drawing.Size(210, 213);
+            this.picLOGO.Size = new System.Drawing.Size(210, 215);
             this.picLOGO.TabIndex = 89;
             this.picLOGO.TabStop = false;
             // 
@@ -273,16 +275,18 @@
             // 
             // txtNOTA
             // 
-            this.txtNOTA.Location = new System.Drawing.Point(130, 473);
+            this.txtNOTA.Location = new System.Drawing.Point(130, 466);
             this.txtNOTA.MaxLength = 100;
             this.txtNOTA.Name = "txtNOTA";
-            this.txtNOTA.Size = new System.Drawing.Size(389, 96);
+            this.txtNOTA.Size = new System.Drawing.Size(389, 103);
             this.txtNOTA.TabIndex = 92;
             this.txtNOTA.Text = "";
             // 
             // grbVENTA
             // 
+            this.grbVENTA.Controls.Add(this.cbxCategorias);
             this.grbVENTA.Controls.Add(this.lbDOCUMENTO);
+            this.grbVENTA.Controls.Add(this.label8);
             this.grbVENTA.Controls.Add(this.lbNIVEL);
             this.grbVENTA.Controls.Add(this.dateVenta);
             this.grbVENTA.Controls.Add(this.txtNUMVENTA);
@@ -314,7 +318,7 @@
             this.lbNIVEL.AutoSize = true;
             this.lbNIVEL.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbNIVEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNIVEL.Location = new System.Drawing.Point(100, 180);
+            this.lbNIVEL.Location = new System.Drawing.Point(107, 159);
             this.lbNIVEL.Name = "lbNIVEL";
             this.lbNIVEL.Size = new System.Drawing.Size(74, 25);
             this.lbNIVEL.TabIndex = 99;
@@ -324,7 +328,7 @@
             // 
             this.dateVenta.Enabled = false;
             this.dateVenta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateVenta.Location = new System.Drawing.Point(105, 144);
+            this.dateVenta.Location = new System.Drawing.Point(105, 128);
             this.dateVenta.Name = "dateVenta";
             this.dateVenta.Size = new System.Drawing.Size(129, 20);
             this.dateVenta.TabIndex = 9;
@@ -344,7 +348,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(31, 144);
+            this.label5.Location = new System.Drawing.Point(31, 128);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 4;
@@ -854,6 +858,26 @@
             this.label21.Text = "--------------------";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // cbxCategorias
+            // 
+            this.cbxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCategorias.FormattingEnabled = true;
+            this.cbxCategorias.Location = new System.Drawing.Point(105, 195);
+            this.cbxCategorias.Name = "cbxCategorias";
+            this.cbxCategorias.Size = new System.Drawing.Size(130, 21);
+            this.cbxCategorias.TabIndex = 116;
+            this.cbxCategorias.SelectedIndexChanged += new System.EventHandler(this.cbxCategorias_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(18, 198);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 13);
+            this.label8.TabIndex = 117;
+            this.label8.Text = "CATEGORIA";
+            // 
             // VentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -975,5 +999,7 @@
         private System.Windows.Forms.Label lbCESC;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cbxCategorias;
+        private System.Windows.Forms.Label label8;
     }
 }
